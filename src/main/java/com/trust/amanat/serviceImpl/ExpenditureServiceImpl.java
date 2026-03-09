@@ -34,44 +34,51 @@ public class ExpenditureServiceImpl implements ExpenditureService {
                 expenditureDTO != null ? expenditureDTO.getReceiptNo() : null);
 
         ExpenditureEntity expenditure = new ExpenditureEntity();
-        if(expenditureDTO.getName()!=null && !expenditureDTO.getName().isEmpty()) {
-            expenditure.setName(expenditureDTO.getName());
-        }
-            else {
+        if(expenditureDTO != null) {
+
+
+            if (expenditureDTO.getName() != null && !expenditureDTO.getName().isEmpty()) {
+                expenditure.setName(expenditureDTO.getName());
+            } else {
                 logger.warn("Validation failed while saving expenditure: Name is required");
                 return "Name is required";
             }
-        if (expenditureDTO.getAddress() != null && !expenditureDTO.getAddress().isEmpty()) {
-            expenditure.setAddress(expenditureDTO.getAddress());
-        } else {
-            logger.warn("Validation failed while saving expenditure: Address is required");
-            return "Address is required";
+            if (expenditureDTO.getAddress() != null && !expenditureDTO.getAddress().isEmpty()) {
+                expenditure.setAddress(expenditureDTO.getAddress());
+            } else {
+                logger.warn("Validation failed while saving expenditure: Address is required");
+                return "Address is required";
+            }
+            if (expenditureDTO.getAmount() != null && expenditureDTO.getAmount() > 0) {
+                expenditure.setAmount(expenditureDTO.getAmount());
+            } else {
+                logger.warn("Validation failed while saving expenditure: Amount is required or invalid");
+                return "Amount is required";
+            }
+            if (expenditureDTO.getExpDate() != null) {
+                expenditure.setExpDate(expenditureDTO.getExpDate());
+            } else {
+                logger.warn("Validation failed while saving expenditure: Expenditure date is required");
+                return "Expenditure date is required";
+            }
+            if (expenditureDTO.getYear() != 0 && expenditureDTO.getYear() > 0) {
+                expenditure.setYear(expenditureDTO.getYear());
+            } else {
+                logger.warn("Validation failed while saving expenditure: Year is required or invalid");
+                return "Year is required";
+            }
+            if (expenditureDTO.getReceiptNo() != null && !expenditureDTO.getReceiptNo().isEmpty()) {
+                expenditure.setReceiptNo(expenditureDTO.getReceiptNo());
+            } else {
+                logger.warn("Validation failed while saving expenditure: Receipt number is required");
+                return "Receipt number is required";
+            }
         }
-        if (expenditureDTO.getAmount() != null && expenditureDTO.getAmount() > 0) {
-            expenditure.setAmount(expenditureDTO.getAmount());
-        } else {
-            logger.warn("Validation failed while saving expenditure: Amount is required or invalid");
-            return "Amount is required";
-        }
-        if (expenditureDTO.getExpDate() != null ) {
-            expenditure.setExpDate(expenditureDTO.getExpDate());
-        } else {
-            logger.warn("Validation failed while saving expenditure: Expenditure date is required");
-            return "Expenditure date is required";
-        }
-        if (expenditureDTO.getYear() != 0 && expenditureDTO.getYear() > 0) {
-            expenditure.setYear(expenditureDTO.getYear());
-        } else {
-            logger.warn("Validation failed while saving expenditure: Year is required or invalid");
-            return "Year is required";
-        }
-        if (expenditureDTO.getReceiptNo() != null && !expenditureDTO.getReceiptNo().isEmpty()) {
-            expenditure.setReceiptNo(expenditureDTO.getReceiptNo());
-        } else {
-            logger.warn("Validation failed while saving expenditure: Receipt number is required");
-            return "Receipt number is required";
-        }
+        else {
+            logger.warn("Validation failed while saving expenditure: Expenditure data is null");
+            return "Expenditure data is required";
 
+        }
         ExpenditureEntity saved = expenditureRepository.save(expenditure);
         logger.info("Saving expenditure completed: id={} name={}", saved != null ? saved.getId() : null, saved != null ? saved.getName() : null);
         return "Expenditure added successfully";
