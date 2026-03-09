@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+
+    <!-- SAME CSS linked externally -->
+    <link rel="stylesheet" href="/css/welcome.css">
+    <!-- COMMON LOADER CSS -->
+    <link rel="stylesheet" href="/css/common.css">
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>Amanat Welfare Trust</h1>
+
+    <h2 id="welcomeText">Welcome 🎉</h2>
+
+    <p>Your account has been created successfully.</p>
+
+    <button onclick="showLoader(); location.href='/index.html'">
+        Go to Home
+    </button>
+
+    <button onclick="showLoader(); location.href='/userdetails.html'">
+        See your details
+    </button>
+
+    <button onclick="showLoader(); logout()" style="background:#b30000;">
+        Logout
+    </button>
+
+</div>
+<!-- LOADER -->
+<div id="loader" class="loader-overlay">
+    <div class="spinner"></div>
+</div>
+
+<script src="/js/common.js"></script>
+<script src="/js/welcome.js"></script>
+
+</body>
+</html>

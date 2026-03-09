@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Amanat Welfare Trust</title>
+
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+
+    <div class="logo">
+
+        <img src="/images/logo.png" class="nav-logo">
+
+        Amanat Welfare Trust - Admin
+
+    </div>
+    <div class="logout">
+        <button onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <div class="sidebar">
+
+        <h3>Navigation</h3>
+
+        <ul>
+
+            <li onclick="openPage('/members.html')">Members Details</li>
+
+            <li onclick="openPage('/signup.html')">Add Member</li>
+
+            <li onclick="openPage('/scan&pay.html')">Scan & Pay</li>
+
+            <li onclick="openPage('/expenditure.html')">Expenditure Details</li>
+
+            <li onclick="openPage('/incomedet.html')"> Add Income Details</li>
+
+            <li onclick="feature()">Donation Records</li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="main">
+
+        <h1>Admin Control Panel</h1>
+
+        <p>Welcome to Amanat Welfare Trust Administration Panel</p>
+
+        <div class="cards">
+
+            <div class="card" onclick="openPage('/members.html')">
+                👥<br>
+                Members Details
+            </div>
+
+            <div class="card" onclick="openPage('/signup.html')">
+                ➕<br>
+                Add Member
+            </div>
+
+            <div class="card" onclick="openPage('/scan&pay.html')">
+                💰<br>
+                Scan & Pay
+            </div>
+
+            <div class="card" onclick="openPage('/expenditure.html')">
+                📄<br>
+                Expenditure Details
+            </div>
+
+            <div class="card" onclick="openPage('/incomedet.html')">
+                📊<br>
+                Add Income Details
+            </div>
+
+            <div class="card" onclick="feature()">
+                🤝<br>
+                Donation Records
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/admin.js"></script>
+
+</body>
+</html>

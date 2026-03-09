@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Signup - Amanat Welfare Trust</title>
+    <link rel="stylesheet" href="/css/signup.css">
+</head>
+
+<body>
+
+<div class="header">
+    <img src="/images/logo.png" class="logo">
+    <h1>Amanat Welfare Trust</h1>
+    <p>Create your account</p>
+</div>
+
+<div class="card">
+
+    <h2>Create Account</h2>
+
+    <div id="msgBox" class="msg">
+        ⚠ <span id="msgText"></span>
+    </div>
+
+    <div class="form-grid">
+
+        <div>
+            <input id="firstName" placeholder="First Name">
+            <div id="firstNameError" class="error"></div>
+        </div>
+
+        <div>
+            <input id="lastName" placeholder="Last Name">
+            <div id="lastNameError" class="error"></div>
+        </div>
+
+        <div>
+            <input id="mobile" placeholder="Mobile">
+            <div id="mobileError" class="error"></div>
+        </div>
+
+        <div>
+            <input id="email" placeholder="Email">
+            <div id="emailError" class="error"></div>
+        </div>
+
+        <!-- Username full row -->
+
+        <div class="full">
+            <input id="userName" placeholder="Username">
+            <div id="userNameError" class="error"></div>
+        </div>
+
+        <!-- Password -->
+
+        <div class="password-box">
+            <input id="password" type="password" placeholder="Password">
+            <span class="eye" onclick="togglePassword()">👁</span>
+            <div id="passwordError" class="error"></div>
+        </div>
+
+        <!-- Confirm Password -->
+
+        <div>
+            <input id="confirmPassword" type="password" placeholder="Confirm Password">
+            <div id="confirmPasswordError" class="error"></div>
+        </div>
+
+        <!-- Role -->
+
+        <div class="full">
+            <select id="role">
+                <option value="user">Member</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+
+        <button class="full" onclick="signup()">
+            Create Account
+        </button>
+
+        <button onclick="location.href='/index.html'" class="full back">
+            Back to Home
+        </button>
+
+    </div>
+
+</div>
+
+<div id="popup"></div>
+
+<script src="/js/signup.js"></script>
+
+</body>
+</html>

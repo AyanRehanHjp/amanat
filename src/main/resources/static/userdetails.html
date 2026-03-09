@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details - Amanat Welfare Trust</title>
+
+    <!-- PAGE CSS -->
+    <link rel="stylesheet" href="/css/userdetails.css">
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="header">
+
+        <div class="profile">
+            <img id="profilePreview" src="/images/default-user.png">
+            <div class="upload-text">Upload Image</div>
+            <input type="file" id="profileImage" onchange="previewImage(event)">
+            <button onclick="deleteProfilePic()" class="delete-pic-btn" style="background:#b30000;margin-top:6px;">
+                Remove Pic
+            </button>
+        </div>
+
+        <div class="heading">
+            <h1>User Profile Details</h1>
+            <h3>My Profile</h3>
+        </div>
+
+        <div class="logo-block">
+            <img src="/images/logo.png" class="logo">
+            <div class="logo-text">Amanat Welfare Trust</div>
+            <div class="logo-sub">Serving the Needy</div>
+        </div>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="field">
+            <label>First Name</label>
+            <input id="firstName" readonly>
+        </div>
+
+        <div class="field">
+            <label>Last Name</label>
+            <input id="lastName" readonly>
+        </div>
+
+        <div class="field">
+            <label>Mobile</label>
+            <input type="number" id="mobile" readonly>
+        </div>
+
+        <div class="field">
+            <label>Email</label>
+            <input id="email" readonly>
+        </div>
+
+        <div class="field">
+            <label>Username</label>
+            <input id="userName" readonly>
+        </div>
+
+        <div class="field">
+            <label>Role</label>
+            <input id="role" readonly>
+        </div>
+
+        <div class="field">
+            <label>Date of Joining</label>
+            <input type="date" id="dateOfJoining">
+        </div>
+
+        <div class="field">
+            <label>Gender</label>
+            <select id="gender">
+                <option value="" selected disabled>Select your gender</option>
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
+                <option value="OTHER">Other</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>City</label>
+            <input id="city">
+        </div>
+
+        <div class="field">
+            <label>State</label>
+            <select id="state">
+                <option value="">Select State</option>
+
+                <option value="ANDHRA PRADESH">Andhra Pradesh</option>
+                <option value="ARUNACHAL PRADESH">Arunachal Pradesh</option>
+                <option value="ASSAM">Assam</option>
+                <option value="BIHAR">Bihar</option>
+                <option value="GOA">Goa</option>
+                <option value="GUJARAT">Gujarat</option>
+                <option value="KARNATAKA">Karnataka</option>
+                <option value="KERALA">Kerala</option>
+                <option value="MADHYA PRADESH">Madhya Pradesh</option>
+                <option value="MAHARASHTRA">Maharashtra</option>
+                <option value="TAMIL NADU">Tamil Nadu</option>
+                <option value="UTTAR PRADESH">Uttar Pradesh</option>
+                <option value="WEST BENGAL">West Bengal</option>
+
+                <option value="OTHER">Other</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Country</label>
+            <select id="country">
+                <option value="">Select Country</option>
+                <option value="INDIA">India</option>
+                <option value="OTHER">Other</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Pincode</label>
+            <input id="pinCode">
+        </div>
+
+        <div class="field">
+            <label>Joined by</label>
+            <input id="joinedBy">
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <button onclick="updateUser()">
+            Update Details
+        </button>
+
+        <button onclick="location.href='/welcome.html'">
+            Back
+        </button>
+
+        <button onclick="logout()" style="background:#b30000;">
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+<!-- PAGE JS -->
+<script src="/js/userdetails.js"></script>
+
+</body>
+</html>

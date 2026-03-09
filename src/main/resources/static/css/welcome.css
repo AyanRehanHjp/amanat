@@ -1,0 +1,72 @@
+/* full page layout with silver gradient + star pattern */
+/* grey-silver-gold gradient with dense star pattern */
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+/* strong metallic gradient */
+background:
+linear-gradient(
+135deg,
+#5f5f5f 0%,     /* dark grey */
+#9e9e9e 20%,    /* grey */
+#c0c0c0 40%,    /* silver */
+#bfbfbf 80%,    /* silver */
+#6e6e6e 100%    /* dark grey */
+);
+
+/* dense star pattern (4 layers) */
+background-image:
+radial-gradient(sky 1px, transparent 1px),
+radial-gradient(#e6e6e6 1px, transparent 1px),
+radial-gradient(#ffd700 0.8px, transparent 0.8px),
+radial-gradient(#ffffff 0.6px, transparent 0.6px);
+
+/* density control */
+background-size:
+18px 18px,
+22px 22px,
+28px 28px,
+35px 35px;
+
+/* offset for random effect */
+background-position:
+0 0,
+10px 12px,
+6px 18px,
+15px 5px;
+
+font-family:'Segoe UI',sans-serif;
+}
+
+/* main card container */
+.card{
+background:#E5E4E2;
+padding:40px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* welcome heading */
+h2{
+color:#134E5E;
+}
+
+/* button style */
+button{
+padding:10px 20px;
+margin-top:15px;
+background:#134E5E;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* button hover effect */
+button:hover{
+background:#0f3b46;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expenditure Details - Amanat Welfare Trust</title>
+
+    <link rel="stylesheet" href="/css/expenditure.css">
+</head>
+
+<body>
+
+<header>
+    Amanat Welfare Trust - Expenditure Records
+</header>
+<button class="back-btn" onclick="goBack()">⬅ Back to Admin</button>
+<div class="container">
+    <div class="form-container">
+        <h2>Add New Expenditure</h2>
+        <table class="add-exp-table">
+
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Year</th>
+                <th>Receipt No</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td><input type="text" id="name" placeholder="Name"></td>
+                <td><input type="text" id="address" placeholder="Address"></td>
+                <td><input type="number" id="amount" placeholder="Amount"></td>
+                <td><input type="date" id="expDate"></td>
+                <td><input type="number" id="year"></td>
+                <td><input type="text" id="receiptNo" placeholder="Receipt No"></td>
+                <td><button onclick="saveExp()">Save</button></td>
+            </tr>
+            </tbody>
+
+        </table>
+    <h2>All Expenditure Details</h2>
+
+    <table id="expTable">
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Receipt No</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Year</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="/js/expenditure.js"></script>
+
+</body>
+</html>

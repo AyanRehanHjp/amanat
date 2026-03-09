@@ -1,0 +1,101 @@
+body{
+font-family:Arial;
+margin:0;
+background:#f5f6fa;
+}
+
+/* CONTAINER */
+
+.team-container{
+text-align:center;
+padding:60px 10%;
+}
+
+.team-container h1{
+font-size:36px;
+margin-bottom:10px;
+color:#2c3e50;
+}
+
+.team-desc{
+max-width:600px;
+margin:auto;
+margin-bottom:40px;
+color:#555;
+}
+
+/* GRID */
+
+.team-grid{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+}
+
+/* CARD */
+
+.team-card{
+background:white;
+width:150px;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.team-card:hover{
+transform:translateY(-6px);
+}
+
+/* IMAGE */
+
+.team-card img{
+width:120px;
+height:160px;
+border-radius:8%;
+object-fit:cover;
+margin-bottom:15px;
+border : 1px solid black;
+}
+
+/* TEXT */
+
+.team-card h3{
+margin:10px 0 5px;
+}
+
+.role{
+color:#27ae60;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.info{
+font-size:14px;
+color:#666;
+line-height:1.5;
+}
+.back-btn{
+position:absolute;
+top:20px;
+left:20px;
+}
+
+.back-btn button{
+background:#c0392b; /* professional red */
+color:white;
+border:none;
+padding:10px 22px;
+font-size:14px;
+font-weight:600;
+border-radius:6px;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+.back-btn button:hover{
+background:#a93226;
+transform:translateY(-2px);
+}

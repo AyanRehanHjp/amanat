@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Amanat Welfare Trust</title>
+
+    <!-- COMMON CSS (LOADER) -->
+    <link rel="stylesheet" href="/css/common.css">
+    <!-- PAGE CSS -->
+    <link rel="stylesheet" href="/css/login.css">
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h2>Login</h2>
+
+    <div id="msg" class="msg"></div>
+
+    <input id="userName" placeholder="Username">
+
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <button class="back" onclick="location.href='/index.html'">
+        Back to Home
+    </button>
+
+</div>
+<div id="loader" class="loader-overlay">
+    <div class="spinner"></div>
+</div>
+<!-- PAGE JS -->
+<script src="/js/common.js"></script>
+<script src="/js/login.js"></script>
+
+</body>
+</html>

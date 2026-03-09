@@ -1,0 +1,113 @@
+body{
+font-family: Arial;
+background:#f4f6f9;
+margin:0;
+padding:0;
+}
+
+header{
+background:#1e88e5;
+color:white;
+text-align:center;
+padding:18px;
+font-size:26px;
+font-weight:bold;
+}
+
+.container{
+width:95%;
+margin:30px auto;
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+th{
+background:#198754;
+color:white;
+padding:12px;
+font-size:15px;
+text-align:left;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+tr:hover{
+background:#f1f1f1;
+}
+
+.amount{
+color:#d32f2f;
+font-weight:bold;
+}
+
+.back-btn{
+margin:20px;
+padding:10px 18px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+}
+
+.back-btn:hover{
+background:#084298;
+}
+.add-exp-table{
+width:100%;
+border-collapse:collapse;
+background:white;
+margin-bottom:25px;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+.add-exp-table th{
+background:#ffc107;
+color:black;
+padding:12px;
+font-size:15px;
+text-align:left;
+
+}
+
+.add-exp-table td{
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+.add-exp-table input{
+width:100%;
+padding:7px;
+border:1px solid #ccc;
+border-radius:4px;
+}
+
+.add-exp-table button{
+background:#198754;
+color:white;
+border:none;
+padding:8px 18px;
+border-radius:5px;
+cursor:pointer;
+
+}
+
+.add-exp-table button:hover{
+background:#146c43;
+}

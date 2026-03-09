@@ -1,0 +1,90 @@
+body{
+font-family:Arial;
+margin:0;
+background:#f5f6fa;
+}
+
+.contact-container{
+text-align:center;
+padding:60px 20px;
+max-width:800px;
+margin:auto;
+}
+
+.contact-container h1{
+font-size:36px;
+color:#2c3e50;
+margin-bottom:20px;
+}
+
+.contact-message{
+font-size:16px;
+color:#555;
+margin-bottom:40px;
+line-height:1.6;
+}
+
+/* CONTACT BOX */
+
+.contact-box{
+background:white;
+padding:30px;
+margin:20px 0;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.contact-box h2{
+margin-bottom:15px;
+color:#2c3e50;
+}
+
+/* LINKS */
+
+.contact-link{
+font-size:22px;
+font-weight:bold;
+color:#c0392b;
+text-decoration:none;
+}
+
+.contact-link:hover{
+text-decoration:underline;
+}
+
+/* ADDRESS */
+
+.address{
+font-size:18px;
+line-height:1.6;
+color:#333;
+}
+
+/* THANK YOU */
+
+.thank-you{
+margin-top:40px;
+padding:20px;
+background:#ecf0f1;
+border-radius:8px;
+}
+
+/* BUTTON */
+
+.back-btn{
+margin-top:30px;
+}
+
+.back-btn button{
+background:#c0392b;
+color:white;
+border:none;
+padding:10px 25px;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.back-btn button:hover{
+background:#a93226;
+}

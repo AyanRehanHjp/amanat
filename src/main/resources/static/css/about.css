@@ -1,0 +1,154 @@
+body{
+font-family: Arial, sans-serif;
+margin:0;
+background:#f5f6fa;
+color:#333;
+}
+
+/* CONTAINER */
+
+.about-container{
+padding:60px 10%;
+text-align:center;
+}
+
+.about-container h1{
+font-size:36px;
+margin-bottom:40px;
+color:#2c3e50;
+}
+
+/* ABOUT SECTION */
+
+.about-section{
+display:flex;
+gap:40px;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+}
+
+.about-image img{
+width:350px;
+border-radius:10px;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.about-text{
+max-width:500px;
+text-align:left;
+}
+
+.about-text h2{
+color:#2c3e50;
+margin-bottom:15px;
+}
+
+.about-text p{
+line-height:1.7;
+margin-bottom:15px;
+}
+
+/* MISSION */
+
+.mission{
+background:white;
+padding:60px 10%;
+text-align:center;
+}
+
+.mission h2{
+margin-bottom:20px;
+color:#2c3e50;
+}
+
+/* VISION */
+
+.vision{
+background:#f0f3f6;
+padding:60px 10%;
+text-align:center;
+}
+
+.vision h2{
+margin-bottom:20px;
+color:#2c3e50;
+}
+
+/* STATS */
+
+.stats{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+padding:60px 10%;
+background:white;
+}
+
+.stat{
+background:#f5f6fa;
+padding:30px;
+border-radius:10px;
+width:200px;
+text-align:center;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.stat:hover{
+transform:translateY(-5px);
+}
+
+.stat h2{
+font-size:32px;
+color:#27ae60;
+margin-bottom:10px;
+}
+
+.stat p{
+font-size:14px;
+color:#555;
+}
+
+/* HELP SECTION */
+
+.help{
+background:#2c3e50;
+color:white;
+padding:60px 10%;
+text-align:center;
+}
+
+.help h2{
+margin-bottom:20px;
+}
+
+.help p{
+max-width:800px;
+margin:auto;
+line-height:1.7;
+}
+.back-btn{
+position:absolute;
+top:20px;
+left:20px;
+}
+
+.back-btn button{
+background:#c0392b; /* professional red */
+color:white;
+border:none;
+padding:10px 22px;
+font-size:14px;
+font-weight:600;
+border-radius:6px;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+.back-btn button:hover{
+background:#a93226;
+transform:translateY(-2px);
+}
