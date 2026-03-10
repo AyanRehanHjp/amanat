@@ -4,6 +4,8 @@ import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.service.UserSignUpService;
 import com.trust.amanat.dto.SignUpDTO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +19,7 @@ import java.util.Map;
 @RestController
 @RequestMapping ("/signUp")
 public class UserSignUpController {
+    public static final Logger logger = LoggerFactory.getLogger(UserSignUpController.class);
     @Autowired
     private UserSignUpService userSignUpService;
 
@@ -26,14 +29,16 @@ public class UserSignUpController {
             UserEntity response = userSignUpService.addUser(signUpDTO);
             if (response != null) {
                 Map<String, Object> userData = new HashMap<>();
+                logger.info("User signed up successfully:  email={}",response.getEmail());
                 userData.put("msg", "You have successfully signed up");
                 userData.put("userId", response.getId());
                 return new ResponseEntity<>(userData, HttpStatus.CREATED);
             }
-
+            logger.error("Failed to sign up user: email={}", signUpDTO != null ? signUpDTO.getEmail() : null);
             return new ResponseEntity<>("Saved Failed", HttpStatus.INTERNAL_SERVER_ERROR);
 
         } catch (RuntimeException ex) {
+            logger.error("Error occurred while signing up user: email={}, error={}", signUpDTO != null ? signUpDTO.getEmail() : null, ex.getMessage(), ex);
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
