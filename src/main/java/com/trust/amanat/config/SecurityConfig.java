@@ -45,7 +45,9 @@ public class SecurityConfig {
                                 "/incomedet.html",
                                 "/incomeDet/addPayment",
                                 "/scan&pay.html",
-                                "/scan&pay/**"
+                                "/scan&pay/**",
+                                "/recpdfgen.html",
+                                "/recpdfgen/**"
 
 
                         ).permitAll()

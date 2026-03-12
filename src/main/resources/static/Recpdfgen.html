@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Page title -->
+    <title>Receipt Generator</title>
+
+    <!-- CSS file for styling -->
+    <link rel="stylesheet" href="/css/receipt.css">
+
+</head>
+
+<body>
+
+<!-- ===== Main Page Wrapper ===== -->
+<div class="page">
+
+    <!-- ===== Form Card Container ===== -->
+    <div class="card">
+
+        <!-- Page Heading -->
+        <h1 style="text-align:center;">AMANAT WELFARE TRUST</h1>
+        <h2 style="text-align:center;">Receipt Generator</h2>
+
+        <!-- Instruction / Description -->
+        <p class="desc">
+            Fill the form to generate a receipt.
+            Please keep the receipt number unique.
+        </p>
+
+        <!-- ===== Form Fields Grid ===== -->
+        <div class="form-grid">
+
+            <!-- Receipt Number Field -->
+            <div class="field">
+                <label>Receipt Number</label>
+                <input id="receiptNo" type="text" placeholder="Enter receipt number">
+            </div>
+
+            <!-- Name Field -->
+            <div class="field">
+                <label>Name</label>
+                <input id="name" type="text" placeholder="Enter name">
+            </div>
+
+            <!-- Address Field -->
+            <div class="field">
+                <label>Address</label>
+                <input id="address" type="text" placeholder="Enter address">
+            </div>
+
+            <!-- Amount Field -->
+            <div class="field">
+                <label>Amount</label>
+                <input id="amount" type="number" placeholder="Enter amount">
+            </div>
+
+            <!-- Receipt Date Field -->
+            <div class="field">
+                <label>Receipt Date</label>
+                <input id="date" type="date">
+            </div>
+
+        </div>
+
+        <!-- ===== Buttons Section ===== -->
+        <div class="buttons">
+
+            <!-- Generate Receipt Button -->
+            <button class="generate" onclick="generateReceipt()">
+                Generate Receipt
+            </button>
+
+            <!-- Back to Admin Button -->
+            <button class="admin" onclick="goAdmin()">
+                Back to Admin
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===== Receipt Preview Modal ===== -->
+<div id="receiptModal" class="modal">
+
+    <!-- Modal Content Box -->
+    <div class="modal-content">
+
+        <!-- Close Button -->
+        <span class="close" onclick="closeModal()">×</span>
+
+        <!-- Receipt Background Image -->
+        <img src="/images/receipt.png" class="bg">
+
+        <!-- Dynamic Preview Data -->
+        <div class="name" id="pName"></div>
+        <div class="address" id="pAddress"></div>
+        <div class="date" id="pDate"></div>
+        <div class="receiptNo" id="pRec"></div>
+        <div class="amount" id="pAmount"></div>
+
+        <!-- PDF Download Button -->
+        <button class="download" onclick="download()">Download PDF</button>
+
+    </div>
+
+</div>
+
+
+<!-- External JavaScript File -->
+<script src="/js/receipt.js"></script>
+
+<script>
+
+    /* Back to Admin Page */
+    function goAdmin(){
+        window.location="/admin.html";
+    }
+
+    /* Close Receipt Preview Modal */
+    function closeModal(){
+        document.getElementById("receiptModal").style.display="none";
+    }
+
+</script>
+
+</body>
+</html>
