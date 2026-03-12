@@ -1,77 +1,77 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 
-    <!-- Page title -->
     <title>Receipt Generator</title>
 
-    <!-- CSS file for styling -->
     <link rel="stylesheet" href="/css/receipt.css">
+
+    <!-- html2canvas -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- jsPDF -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        window.jsPDF = window.jspdf.jsPDF;
+    </script>
 
 </head>
 
 <body>
 
-<!-- ===== Main Page Wrapper ===== -->
 <div class="page">
 
-    <!-- ===== Form Card Container ===== -->
     <div class="card">
 
-        <!-- Page Heading -->
-        <h1 style="text-align:center;">AMANAT WELFARE TRUST</h1>
+        <div style="position:relative; text-align:center;">
+            <img src="/images/logo.png" style="position:absolute; left:8px; top:10px; width:118px;">
+            <h1>AMANAT WELFARE TRUST</h1>
+        </div>
         <h2 style="text-align:center;">Receipt Generator</h2>
 
-        <!-- Instruction / Description -->
         <p class="desc">
-            Fill the form to generate a receipt.
-            Please keep the receipt number unique.
+            Fill the form to generate a receipt. Please keep the receipt number unique.
         </p>
 
-        <!-- ===== Form Fields Grid ===== -->
         <div class="form-grid">
 
-            <!-- Receipt Number Field -->
             <div class="field">
-                <label>Receipt Number</label>
-                <input id="receiptNo" type="text" placeholder="Enter receipt number">
+                <label>Receipt Number<span style="color:red">*</span></label>
+                <input id="receiptNo" type="text" required pattern="[0-9]+" placeholder="Enter receipt number">
             </div>
 
-            <!-- Name Field -->
             <div class="field">
-                <label>Name</label>
-                <input id="name" type="text" placeholder="Enter name">
+                <label>Name<span style="color:red">*</span></label>
+                <input id="name" type="text" required placeholder="Enter name">
             </div>
 
-            <!-- Address Field -->
             <div class="field">
-                <label>Address</label>
-                <input id="address" type="text" placeholder="Enter address">
+                <label>Address<span style="color:red">*</span></label>
+                <input id="address" type="text" required placeholder="Enter address">
             </div>
 
-            <!-- Amount Field -->
             <div class="field">
-                <label>Amount</label>
-                <input id="amount" type="number" placeholder="Enter amount">
+                <label>Amount<span style="color:red">*</span></label>
+                <input id="amount" type="number" required placeholder="Enter amount">
             </div>
 
-            <!-- Receipt Date Field -->
             <div class="field">
-                <label>Receipt Date</label>
-                <input id="date" type="date">
+                <label>Receipt Date<span style="color:red">*</span></label>
+                <input id="date" type="date" required>
             </div>
 
         </div>
 
-        <!-- ===== Buttons Section ===== -->
         <div class="buttons">
 
-            <!-- Generate Receipt Button -->
             <button class="generate" onclick="generateReceipt()">
                 Generate Receipt
             </button>
 
-            <!-- Back to Admin Button -->
             <button class="admin" onclick="goAdmin()">
                 Back to Admin
             </button>
@@ -82,50 +82,35 @@
 
 </div>
 
+<!-- ===== RECEIPT MODAL ===== -->
 
-<!-- ===== Receipt Preview Modal ===== -->
-<div id="receiptModal" class="modal">
+<div id="receiptModal" class="modal" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;">
 
-    <!-- Modal Content Box -->
-    <div class="modal-content">
+    <div class="modal-content" style="background:#fff;padding:20px;position:relative;">
 
-        <!-- Close Button -->
-        <span class="close" onclick="closeModal()">×</span>
+        <div id="receiptArea" style="position:relative;width:700px;margin:auto;">
 
-        <!-- Receipt Background Image -->
-        <img src="/images/receipt.png" class="bg">
+            <img src="/images/receipt.png" style="width:100%;display:block;" crossorigin="anonymous">
 
-        <!-- Dynamic Preview Data -->
-        <div class="name" id="pName"></div>
-        <div class="address" id="pAddress"></div>
-        <div class="date" id="pDate"></div>
-        <div class="receiptNo" id="pRec"></div>
-        <div class="amount" id="pAmount"></div>
+            <div id="pName" style="position:absolute;top:170px;left:156px;font-weight:bold;"></div>
+            <div id="pAddress" style="position:absolute;top:215px;left:157px;"></div>
+            <div id="pDate" style="position:absolute;top:311px;right:456px;"></div>
+            <div id="pRec" style="position:absolute;top:130px;right:60px;"></div>
+            <div id="pAmount" style="position:absolute;top:393px;left:550px;font-weight:bold; font-size:19px"></div>
+            <div id="pAmountWords" style="position:absolute;top:261px;left:210px;"></div>
+            <img src="/images/sign.png" style="position:absolute; bottom:104px; left:120px; width:81px;">
+        </div>
 
-        <!-- PDF Download Button -->
-        <button class="download" onclick="download()">Download PDF</button>
+        <div style="text-align:center;margin-top:20px;">
+            <button class="download" onclick="download()">Download PDF</button>
+            <button class="download" onclick="window.location.href='/recpdfgen.html'"> Return without Download </button>
+        </div>
 
     </div>
 
 </div>
 
-
-<!-- External JavaScript File -->
-<script src="/js/receipt.js"></script>
-
-<script>
-
-    /* Back to Admin Page */
-    function goAdmin(){
-        window.location="/admin.html";
-    }
-
-    /* Close Receipt Preview Modal */
-    function closeModal(){
-        document.getElementById("receiptModal").style.display="none";
-    }
-
-</script>
+<script src="/js/receipt.js" ></script>
 
 </body>
 </html>

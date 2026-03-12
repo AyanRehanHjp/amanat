@@ -60,111 +60,17 @@ public class RecpdfgenController {
 
 
     @GetMapping("/downloadReceipt/{receiptNo}")
-    public void downloadReceipt(@PathVariable String receiptNo,
-                                HttpServletResponse response) throws Exception {
+    public ResponseEntity<?> getReceipt(@PathVariable String receiptNo){
 
         RecPdfGenEntity rec =
                 receiptRepository.findByReceiptNo(receiptNo).orElse(null);
+        if(rec != null){
+            return ResponseEntity.ok(rec);
 
-        if(rec == null){
-            response.sendError(404,"Receipt not found");
-            return;
         }
-
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition",
-                "attachment; filename=receipt_"+receiptNo+".pdf");
-
-        PdfWriter writer = new PdfWriter(response.getOutputStream());
-        PdfDocument pdf = new PdfDocument(writer);
-        Document document = new Document(pdf);
+        return ResponseEntity.status(404).body("Receipt not found");
 
 
-        /* ===== LOGO ===== */
-
-        ImageData logoData =
-                ImageDataFactory.create(
-                        getClass().getClassLoader().getResource("static/images/logo.png")
-                );
-
-        Image logo = new Image(logoData).scaleToFit(80,80);
-
-        document.add(logo);
-
-
-        /* ===== TITLE ===== */
-
-        Paragraph title =
-                new Paragraph("AMANAT WELFARE TRUST")
-                        .setBold()
-                        .setFontSize(20);
-
-        document.add(title);
-
-        Paragraph subtitle =
-                new Paragraph("Donation Receipt");
-
-        document.add(subtitle);
-
-
-        document.add(new Paragraph(" "));
-
-
-        /* ===== RECEIPT DETAILS ===== */
-
-        Table table = new Table(2);
-
-        table.addCell("Receipt Number");
-        table.addCell(rec.getReceiptNo());
-
-        table.addCell("Date");
-        table.addCell(rec.getRecDate());
-
-        table.addCell("Donor Name");
-        table.addCell(rec.getName());
-
-        table.addCell("Address");
-        table.addCell(rec.getAddress());
-
-        table.addCell("Amount");
-        table.addCell("Rs " + rec.getAmount());
-
-        document.add(table);
-
-
-        document.add(new Paragraph(" "));
-
-
-        /* ===== SIGNATURE ===== */
-
-        ImageData signData =
-                ImageDataFactory.create(
-                        getClass().getClassLoader().getResource("static/images/help1.jpg")
-                );
-
-        Image sign = new Image(signData).scaleToFit(120,60);
-
-        document.add(sign);
-
-        Paragraph signText =
-                new Paragraph("Ayan Rehan\nPresident\nAmanat Welfare Trust");
-
-        document.add(signText);
-
-
-        document.add(new Paragraph(" "));
-
-
-        /* ===== FOOTER ===== */
-
-        Paragraph footer =
-                new Paragraph("Thank you for your contribution!")
-                        .setFontColor(ColorConstants.GRAY);
-
-        document.add(footer);
-
-
-        document.close();
     }
 
 }
