@@ -1,0 +1,169 @@
+body{
+font-family: 'Segoe UI', Arial, sans-serif;
+margin:0;
+background:#f5f7fb;
+color:#2c3e50;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:20px;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+padding:25px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+.logo{
+width:100px;
+border-radius:0%;
+background:white;
+padding:5px;
+}
+
+.title h1{
+margin:0;
+font-size:28px;
+letter-spacing:1px;
+}
+
+.title p{
+margin:3px 0;
+font-size:14px;
+opacity:0.9;
+}
+
+
+/* MAIN GRID */
+
+.mainContainer{
+display:grid;
+grid-template-columns:1fr 350px 1fr;
+gap:30px;
+padding:40px;
+}
+
+
+/* YEAR CARDS */
+
+.yearCard{
+background:white;
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+padding:18px;
+transition:all 0.3s ease;
+}
+
+.yearCard:hover{
+transform:translateY(-6px);
+box-shadow:0 12px 35px rgba(0,0,0,0.15);
+}
+
+.yearCard h3{
+background:#f39c12;
+color:white;
+text-align:center;
+padding:8px;
+border-radius:6px;
+margin-bottom:10px;
+font-size:15px;
+}
+
+
+/* TABLE */
+
+table{
+width:100%;
+border-collapse:collapse;
+font-size:14px;
+}
+
+table th{
+background:#34495e;
+color:white;
+padding:7px;
+}
+
+table td{
+padding:7px;
+border-bottom:1px solid #eee;
+}
+
+table tr:hover{
+background:#f7f9fc;
+}
+
+
+/* AMOUNT ROW */
+
+.amount{
+background:#fff4c4;
+font-weight:600;
+}
+
+
+/* CENTER SUMMARY */
+
+.centerSummary{
+display:flex;
+flex-direction:column;
+gap:18px;
+align-items:center;
+justify-content:center;
+}
+
+.summaryBox{
+background:white;
+border-left:6px solid #3498db;
+width:250px;
+padding:15px;
+border-radius:8px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+.summaryBox h3{
+margin:0;
+font-size:15px;
+color:#555;
+}
+
+.summaryBox p{
+margin:8px 0 0;
+font-size:22px;
+font-weight:bold;
+color:#2c3e50;
+}
+
+
+/* TRUST ACCOUNT */
+
+.trustAmount{
+background:linear-gradient(135deg,#1abc9c,#16a085);
+color:white;
+padding:18px;
+border-radius:10px;
+text-align:center;
+width:250px;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.trustAmount p{
+margin:6px 0;
+font-size:15px;
+}
+.back-home{
+background:#2c7be5;
+color:white !important;
+padding:8px 14px;
+border-radius:6px;
+font-weight:600;
+}
+
+.back-home:hover{
+background:#1a5fd0;
+}

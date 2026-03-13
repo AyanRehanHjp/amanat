@@ -47,7 +47,9 @@ public class SecurityConfig {
                                 "/scan&pay.html",
                                 "/scan&pay/**",
                                 "/recpdfgen.html",
-                                "/recpdfgen/**"
+                                "/recpdfgen/**",
+                                "/cover.html",
+                                "/cover/**"
 
 
                         ).permitAll()
