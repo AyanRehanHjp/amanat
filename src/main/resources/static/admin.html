@@ -43,6 +43,8 @@
 
             <li onclick="openPage('/incomedet.html')"> Add Income Details</li>
 
+            <li onclick="openPage('/showIncomeDet.html')"> Show Members Income Details</li>
+
             <li onclick="openPage('/expenditure.html')">Expenditure Details</li>
 
             <li onclick="openPage('/recpdfgen.html')">Generate Receipt</li>
@@ -62,6 +64,7 @@
         <h1>Admin Control Panel</h1>
 
         <p>Welcome to Amanat Welfare Trust Administration Panel</p>
+        <p style="font-size:10px ; font-style : italic; color:red;  font-weight: bold;">This page belongs to admin team only, For Normal User Access is not permissible</p>
 
         <div class="cards">
 
@@ -73,6 +76,10 @@
             <div class="card" onclick="openPage('/signup.html')">
                 ➕<br>
                 Add Member
+            </div>
+            <div class="card" onclick="openPage('/showIncomeDet.html')">
+                📑<br>
+                Show Members Income Details
             </div>
             <div class="card" onclick="openPage('/incomedet.html')">
                 📊<br>
@@ -95,7 +102,7 @@
                 Scan & Pay
             </div>
             <div class="card" onclick="openPage('/cover.html')">
-                💰<br>
+                <br>
                 Cover Page
             </div>
         </div>

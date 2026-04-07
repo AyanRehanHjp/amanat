@@ -6,6 +6,8 @@ import com.trust.amanat.service.IncomeDetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IncomeDetServiceImpl implements IncomeDetService {
     @Autowired
@@ -60,5 +62,11 @@ public class IncomeDetServiceImpl implements IncomeDetService {
             e.printStackTrace();
             return "Database error occurred";
         }
+    }
+
+    public List<IncomeDetEntity> showIncomeDet() {
+        List<IncomeDetEntity> allIncom = incomeDetRepository.findAll();
+        return allIncom;
+
     }
 }
