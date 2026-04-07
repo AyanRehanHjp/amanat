@@ -59,6 +59,11 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.equals("/recpdfgen.html") ||
                 path.startsWith("/recpdfgen/") ||
                 path.startsWith("/showIncomeDet.html")||
+                path.startsWith("/postholder/") ||
+                path.startsWith("/getAllPostHolders") ||
+                path.startsWith("/postholder.html") ||
+
+
                 path.equals("/signUp/addUser")) {
 
             filterChain.doFilter(request, response);

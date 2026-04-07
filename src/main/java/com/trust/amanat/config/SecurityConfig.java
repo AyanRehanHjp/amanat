@@ -50,7 +50,11 @@ public class SecurityConfig {
                                 "/recpdfgen/**",
                                 "/cover.html",
                                 "/cover/**",
-                                "/showIncomeDet.html"
+                                "/showIncomeDet.html",
+                                "/postholder/**",
+                                "/getAllPostHolders",
+                                "/postholder.html"
+
 
 
                         ).permitAll()

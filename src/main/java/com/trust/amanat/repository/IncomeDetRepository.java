@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IncomeDetRepository extends JpaRepository <IncomeDetEntity, Long> {
+    boolean existsByMemberId(String memberId);
 }

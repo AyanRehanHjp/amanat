@@ -36,5 +36,6 @@ public class ExpenditureController {
         logger.info("getAllExpenditure method is called, total expenditures found: {}", allExp != null ? allExp.size() : 0);
        return allExp;
     }
+
 }
 
