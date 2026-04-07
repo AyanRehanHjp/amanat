@@ -10,7 +10,7 @@ public class IncomeDetEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "member_id")
+    @Column(name = "member_id",unique = true)
     private String memberId;
     private Double amount;
     private String month;

@@ -36,14 +36,15 @@
 
         <form id="paymentForm">
 
-            <label>Member ID</label>
-            <input type="text" id="memberId" required placeholder="Enter Member ID">
+            <label class="required" >Member ID</label>
+            <input type="text" id="memberId" list="memberList" placeholder="Enter Member ID" required>
 
-            <label>Amount (₹)</label>
+            <datalist id="memberList"></datalist>
+            <label class="required" >Amount (₹)</label>
             <input type="number" id="amount" required>
 
 
-            <label>Month</label>
+            <label class="required" >Month</label>
             <select id="month">
                 <option value="January">January</option>
                 <option value="February">February</option>
@@ -60,7 +61,7 @@
             </select>
 
 
-            <label>Year</label>
+            <label class="required" >Year</label>
             <select id="year"></select>
 
 

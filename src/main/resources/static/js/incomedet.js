@@ -72,3 +72,10 @@ function closePopup(){
     document.getElementById("popup").style.display = "none";
 
 }
+const dataList = document.getElementById("memberList");
+
+for (let i = 1; i <= 1000; i++) {
+    let option = document.createElement("option");
+    option.value = "AWT" + String(i).padStart(3, '00');
+    dataList.appendChild(option);
+}

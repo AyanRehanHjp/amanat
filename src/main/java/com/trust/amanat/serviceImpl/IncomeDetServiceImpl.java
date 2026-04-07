@@ -44,6 +44,10 @@ public class IncomeDetServiceImpl implements IncomeDetService {
                 return "Invalid year";
             }
 
+            if (incomeDetRepository.existsByMemberId(incomeDetDTO.getMemberId())) {
+                return "Member ID already exists";
+            }
+
             IncomeDetEntity incomeDet = new IncomeDetEntity();
 
             incomeDet.setMemberId(incomeDetDTO.getMemberId());
