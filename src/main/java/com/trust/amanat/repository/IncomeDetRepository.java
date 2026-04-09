@@ -10,20 +10,22 @@ import java.util.List;
 
 @Repository
 public interface IncomeDetRepository extends JpaRepository <IncomeDetEntity, Long> {
-    @Query(value = "SELECT member_id, " +
-            "SUM(CASE WHEN for_month = 'January' THEN amount ELSE 0 END) AS Jan, " +
-            "SUM(CASE WHEN for_month = 'February' THEN amount ELSE 0 END) AS Feb, " +
-            "SUM(CASE WHEN for_month = 'March' THEN amount ELSE 0 END) AS Mar, " +
-            "SUM(CASE WHEN for_month = 'April' THEN amount ELSE 0 END) AS Apr, " +
-            "SUM(CASE WHEN for_month = 'May' THEN amount ELSE 0 END) AS May, " +
-            "SUM(CASE WHEN for_month = 'June' THEN amount ELSE 0 END) AS Jun, " +
-            "SUM(CASE WHEN for_month = 'July' THEN amount ELSE 0 END) AS Jul, " +
-            "SUM(CASE WHEN for_month = 'August' THEN amount ELSE 0 END) AS Aug, " +
-            "SUM(CASE WHEN for_month = 'September' THEN amount ELSE 0 END) AS Sep, " +
-            "SUM(CASE WHEN for_month = 'October' THEN amount ELSE 0 END) AS Oct, " +
-            "SUM(CASE WHEN for_month = 'November' THEN amount ELSE 0 END) AS Nov, " +
-            "SUM(CASE WHEN for_month = 'December' THEN amount ELSE 0 END) AS `Dec` " +
-            "FROM income_details WHERE for_year = :year GROUP BY member_id",
+    @Query(value = "SELECT m.member_id, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'January' THEN i.amount END),0) AS Jan, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'February' THEN i.amount END),0) AS Feb, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'March' THEN i.amount END),0) AS Mar, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'April' THEN i.amount END),0) AS Apr, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'May' THEN i.amount END),0) AS May, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'June' THEN i.amount END),0) AS Jun, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'July' THEN i.amount END),0) AS Jul, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'August' THEN i.amount END),0) AS Aug, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'September' THEN i.amount END),0) AS Sep, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'October' THEN i.amount END),0) AS Oct, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'November' THEN i.amount END),0) AS Nov, " +
+            "IFNULL(SUM(CASE WHEN i.for_month = 'December' THEN i.amount END),0) AS `Dec` " +
+            "FROM members m " +
+            "LEFT JOIN income_details i ON m.member_id = i.member_id AND i.for_year = :year " +
+            "GROUP BY m.member_id",
             nativeQuery = true)
     List<Object[]> getMonthlyReportByYear(@Param("year") int year);
 }
