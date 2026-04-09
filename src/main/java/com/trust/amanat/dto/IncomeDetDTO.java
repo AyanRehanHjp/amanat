@@ -10,6 +10,7 @@ public class IncomeDetDTO {
     @Column(name = "member_id")
     private String memberId;
     private Double amount;
-    private String month;
-    private Integer year;
+    private String forMonth;
+    private Integer forYear;
+    private String paymentDate;
 }

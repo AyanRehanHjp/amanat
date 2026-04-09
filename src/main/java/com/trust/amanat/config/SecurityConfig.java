@@ -53,8 +53,8 @@ public class SecurityConfig {
                                 "/showIncomeDet.html",
                                 "/postholder/**",
                                 "/getAllPostHolders",
-                                "/postholder.html"
-
+                                "/postholder.html",
+                                "/incomeDet/monthly-report"
 
 
                         ).permitAll()

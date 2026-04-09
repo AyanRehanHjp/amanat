@@ -27,8 +27,10 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
 
         memberId: document.getElementById("memberId").value,
         amount: document.getElementById("amount").value,
-        month: document.getElementById("month").value,
-        year: document.getElementById("year").value
+        forMonth: document.getElementById("month").value,
+        forYear: document.getElementById("year").value
+//        forYear: document.getElementById("year").value
+
 
     };
 

@@ -247,3 +247,75 @@ font-weight:bold;
 .admin-btn:hover{
 background:#b02a37;
 }
+/* Container */
+.full-report-btn-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Button */
+.glow-btn {
+    position: relative;
+    font-size: 17px;
+    color: #ffffff;
+    background: #0d0d2b;
+    border: none;
+    font-weight:bold;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+/* Animated Glow Border */
+.glow-btn::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 40px;
+    background: linear-gradient(
+        90deg,
+        #00ffcc,
+        #00bfff,
+        #a855f7,
+        #ff00cc,
+        #00ffcc
+    );
+    background-size: 300%;
+    animation: rotateBorder 4s linear infinite;
+    z-index: -2;
+}
+
+/* Inner Background */
+.glow-btn::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: #0d0d2b;
+    border-radius: 40px;
+    z-index: -1;
+}
+
+/* Animation */
+@keyframes rotateBorder {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 300%;
+    }
+}
+
+/* Hover Effect */
+.glow-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.6),
+                0 0 25px rgba(168, 85, 247, 0.5);
+}
+
+/* Click Effect */
+.glow-btn:active {
+    transform: scale(0.96);
+}

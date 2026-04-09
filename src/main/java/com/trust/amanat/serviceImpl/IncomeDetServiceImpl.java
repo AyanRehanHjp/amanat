@@ -6,6 +6,7 @@ import com.trust.amanat.service.IncomeDetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -34,35 +35,29 @@ public class IncomeDetServiceImpl implements IncomeDetService {
                 return "Amount must be greater than zero";
             }
 
-            if (incomeDetDTO.getMonth() == null || incomeDetDTO.getMonth().trim().isEmpty()) {
+            if (incomeDetDTO.getForMonth() == null || incomeDetDTO.getForMonth().trim().isEmpty()) {
                 return "Month is required";
             }
 
-            if (incomeDetDTO.getYear() == null) {
+            if (incomeDetDTO.getForYear() == null) {
                 return "Year is required";
             }
 
-            if (incomeDetDTO.getYear() < 2000 || incomeDetDTO.getYear() > 2100) {
-                return "Invalid year";
-            }
-
-            if (incomeDetRepository.existsByMemberId(incomeDetDTO.getMemberId())) {
-                return "Member ID already exists";
-            }
 
             IncomeDetEntity incomeDet = new IncomeDetEntity();
 
             incomeDet.setMemberId(incomeDetDTO.getMemberId());
-            incomeDet.setAmount(incomeDetDTO.getAmount());
-            incomeDet.setMonth(incomeDetDTO.getMonth().trim());
-            incomeDet.setYear(incomeDetDTO.getYear());
+            double amount = Math.round(incomeDetDTO.getAmount() * 100.0) / 100.0;
+            incomeDet.setAmount(amount);
+            incomeDet.setForMonth(incomeDetDTO.getForMonth().trim());
+            incomeDet.setForYear(incomeDetDTO.getForYear());
+            incomeDet.setPaymentDate(LocalDate.now());
 
             incomeDetRepository.save(incomeDet);
 
             return "SUCCESS";
 
         } catch (Exception e) {
-
             e.printStackTrace();
             return "Database error occurred";
         }
@@ -72,5 +67,9 @@ public class IncomeDetServiceImpl implements IncomeDetService {
         List<IncomeDetEntity> allIncom = incomeDetRepository.findAll();
         return allIncom;
 
+    }
+
+    public List<Object[]> getMonthlyReportByYear(int year) {
+        return incomeDetRepository.getMonthlyReportByYear(year);
     }
 }

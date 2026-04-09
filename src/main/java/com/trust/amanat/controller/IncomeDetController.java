@@ -28,11 +28,11 @@ public class IncomeDetController {
             String response = incomeDetService.addPayment(incomeDetDTO);
                 logger.info("addPayment method is calling");
             if (response.equals("SUCCESS")) {
-                logger.info("Payment added successfully for memberId={}, amount={}, month={}, year={}",
+                logger.info("Payment added successfully for memberId={}, amount={}, for month={}, and year={}",
                         incomeDetDTO != null ? incomeDetDTO.getMemberId() : null,
                         incomeDetDTO != null ? incomeDetDTO.getAmount() : null,
-                        incomeDetDTO != null ? incomeDetDTO.getMonth() : null,
-                        incomeDetDTO != null ? incomeDetDTO.getYear() : null);
+                        incomeDetDTO != null ? incomeDetDTO.getForMonth() : null,
+                        incomeDetDTO != null ? incomeDetDTO.getForYear() : null);
                 return new ResponseEntity<>("Payment added successfully", HttpStatus.CREATED);
             }
 
@@ -50,6 +50,12 @@ logger.error("Error occurred while adding payment: {}", e.getMessage(), e);
         logger.info("showIncomeDet method is called, total income details found: {}", allInc != null ? allInc.size() : 0);
         return allInc;
 
+    }
+
+    @GetMapping("/monthly-report")
+    public List<Object[]> getMonthlyReport(@RequestParam int year) {
+
+        return incomeDetService.getMonthlyReportByYear(year);
     }
 
 }
