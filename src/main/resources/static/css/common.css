@@ -26,3 +26,87 @@ animation:spin 1s linear infinite;
 0%{transform:rotate(0deg);}
 100%{transform:rotate(360deg);}
 }
+
+/* TOPBAR */
+.topbar{
+background:#111;
+color:white;
+padding:8px 40px;
+display:flex;
+justify-content:space-between;
+font-size:14px;
+}
+
+.topbar a{
+color:white;
+margin-left:15px;
+text-decoration:none;
+}
+
+/* NAVBAR */
+.navbar{
+position:sticky;
+top:0;
+z-index:1000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 40px;
+background:white;
+box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar-logo{
+display:flex;
+align-items:center;
+font-weight:bold;
+font-size:20px;
+color:#134E5E;
+}
+
+.navbar-logo img{
+height:40px;
+margin-right:10px;
+}
+
+.nav-links{
+list-style:none;
+display:flex;
+gap:25px;
+margin:0;
+padding:0;
+}
+
+.nav-links li{
+position:relative;
+}
+
+.nav-links a{
+text-decoration:none;
+color:black;
+font-weight:500;
+padding:8px;
+display:block;
+}
+
+.nav-links a:hover{
+color:#134E5E;
+}
+
+/* dropdown */
+.dropdown-content{
+display:none;
+position:absolute;
+background:white;
+min-width:160px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+border-radius:6px;
+}
+
+.dropdown-content a{
+padding:10px;
+}
+
+.nav-links li:hover .dropdown-content{
+display:block;
+}

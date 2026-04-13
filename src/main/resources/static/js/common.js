@@ -11,3 +11,7 @@ if(loader){
 loader.style.display="none";
 }
 }
+
+function featureWorking(){
+    alert("Sorry, this feature is under development.");
+}
