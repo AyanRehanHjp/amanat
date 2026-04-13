@@ -106,3 +106,33 @@ tbody tr:hover {
 hr {
     margin: 30px 0;
 }
+
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+    .ShowIncomeDet, .ShowIncomeDet * {
+        visibility: visible;
+    }
+
+    .ShowIncomeDet {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    button, select {
+        display: none !important;
+    }
+
+    .back-btn {
+        display: none !important;
+    }
+
+    hr {
+        display: none;
+    }
+}

@@ -63,11 +63,11 @@ public class IncomeDetServiceImpl implements IncomeDetService {
         }
     }
 
-    public List<IncomeDetEntity> showIncomeDet() {
-        List<IncomeDetEntity> allIncom = incomeDetRepository.findAll();
-        return allIncom;
-
-    }
+//    public List<IncomeDetEntity> showIncomeDet() {
+//        List<IncomeDetEntity> allIncom = incomeDetRepository.findAll();
+//        return allIncom;
+//
+//    }
 
     public List<Object[]> getMonthlyReportByYear(int year) {
         return incomeDetRepository.getMonthlyReportByYear(year);

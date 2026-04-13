@@ -1,47 +1,25 @@
-function loadIncome() {
-
-    fetch("http://localhost:9000/incomeDet/showIncomeDet")
-        .then(response => response.json())
-        .then(data => {
-
-            let tableBody = document.querySelector("#incomeTable tbody");
-            tableBody.innerHTML = "";
-
-            data.forEach(item => {
-                let row = `
-                    <tr>
-                        <td>${item.id}</td>
-                        <td>${item.memberId}</td>
-                        <td>${item.amount}</td>
-                        <td>${item.month}</td>
-                        <td>${item.year}</td>
-                    </tr>
-                `;
-                tableBody.innerHTML += row;
-            });
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-}
+// 🔙 Back button
 function goHome(){
-    window.location.href="/admin.html";
+    window.location.href = "/admin.html";
 }
 
-// 🔥 year dropdown
-const reportYear = document.getElementById("reportYear");
+// 🔥 Year dropdown setup (safe way)
+window.onload = function () {
 
-for(let y = 2021; y <= 2099; y++){
-    let option = document.createElement("option");
-    option.value = y;
-    option.text = y;
-    reportYear.appendChild(option);
-}
+    const reportYear = document.getElementById("reportYear");
 
-reportYear.value = new Date().getFullYear();
+    for(let y = 2021; y <= 2099; y++){
+        let option = document.createElement("option");
+        option.value = y;
+        option.text = y;
+        reportYear.appendChild(option);
+    }
+
+    reportYear.value = new Date().getFullYear();
+};
 
 
-// 🔥 monthly report
+// 🔥 Monthly Report API call
 function loadReport(){
 
     let year = document.getElementById("reportYear").value;
@@ -67,5 +45,14 @@ function loadReport(){
             tbody.appendChild(tr);
         });
 
+    })
+    .catch(error => {
+        console.error("Error loading report:", error);
     });
+}
+
+
+// 🖨️ Print PDF
+function printPDF() {
+    window.print();
 }

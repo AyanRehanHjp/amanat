@@ -44,13 +44,13 @@ logger.error("Error occurred while adding payment: {}", e.getMessage(), e);
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping ("/showIncomeDet")
-    public List <IncomeDetEntity> showIncomeDet(){
-        List<IncomeDetEntity> allInc = incomeDetService.showIncomeDet();
-        logger.info("showIncomeDet method is called, total income details found: {}", allInc != null ? allInc.size() : 0);
-        return allInc;
-
-    }
+//    @GetMapping ("/showIncomeDet")
+//    public List <IncomeDetEntity> showIncomeDet(){
+//        List<IncomeDetEntity> allInc = incomeDetService.showIncomeDet();
+//        logger.info("showIncomeDet method is called, total income details found: {}", allInc != null ? allInc.size() : 0);
+//        return allInc;
+//
+//    }
 
     @GetMapping("/monthly-report")
     public List<Object[]> getMonthlyReport(@RequestParam int year) {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Show Income</title>
+    <title>Monthly Report</title>
     <link rel="stylesheet" href="css/showIncomeDet.css">
 
     <style>
@@ -31,7 +31,6 @@
             color: white;
         }
     </style>
-
 </head>
 
 <body>
@@ -40,7 +39,8 @@
 
 <div class="ShowIncomeDet">
 
-    <!-- 🔥 NEW MONTHLY REPORT -->
+    <button onclick="printPDF()">Download PDF</button>
+
     <h2>Monthly Report</h2>
 
     <label>Select Year:</label>
@@ -69,29 +69,15 @@
         <tbody></tbody>
     </table>
 
-    <hr>
-
-    <!-- 🔥 OLD DATA TABLE -->
-    <h2>Income Details</h2>
-
-    <button onclick="loadIncome()">Load Data</button>
-
-    <table id="incomeTable">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Member ID</th>
-            <th>Amount</th>
-            <th>Month</th>
-            <th>Year</th>
-        </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-
 </div>
 
 <script src="js/showIncomeDet.js"></script>
+
+<script>
+    function printPDF() {
+        window.print();
+    }
+</script>
 
 </body>
 </html>
