@@ -68,6 +68,24 @@ font-size:14px;
 .back-btn:hover{
 background:#084298;
 }
+
+.gen-btn{
+    float: right; /* 👉 same line me right shift */
+    margin:20px;
+    padding:15px 30px; /* 👉 thoda bada */
+    background:#0D6F0F;
+    color:white;
+    border:none;
+    border-radius:50px; /* 👉 rounded */
+    cursor:pointer;
+    font-size:18px; /* 👉 thoda bada font */
+    font-weight:bold; /* 👉 bold */
+    font-style: italic; /* 👉 italic */
+}
+
+.gen-btn:hover{
+    background:#0D6E8A; /* 👉 correct color */
+}
 .add-exp-table{
 width:100%;
 border-collapse:collapse;
