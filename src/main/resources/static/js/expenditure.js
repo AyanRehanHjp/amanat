@@ -23,7 +23,7 @@ let row = `
 table.innerHTML += row;
 
 });
-
+addTotalRow();
 });
 
 function goBack(){
@@ -59,4 +59,26 @@ alert(msg);
 location.reload(); // save ke baad table refresh
 });
 
+}
+function addTotalRow() {
+    let rows = document.querySelectorAll("#expTable tbody tr");
+    let total = 0;
+
+    rows.forEach(row => {
+        let amountText = row.querySelector(".amount").innerText.replace("₹", "").trim();
+        total += parseFloat(amountText) || 0;
+    });
+
+    let tbody = document.querySelector("#expTable tbody");
+
+    let tr = document.createElement("tr");
+    tr.classList.add("total-row");
+    tr.innerHTML = `
+        <td colspan="4"></td>
+        <td><b>Total</b></td>
+<td><b>₹ ${total.toLocaleString('en-IN')}</b></td>
+        <td></td>
+    `;
+
+    tbody.appendChild(tr);
 }
