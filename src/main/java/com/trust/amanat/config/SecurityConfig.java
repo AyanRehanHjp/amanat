@@ -37,6 +37,7 @@ public class SecurityConfig {
                                 "/team.html",
                                 "/contact.html",
                                 "/members/allmembers",
+                                "/members/addMembers",
                                 "/admin.html",
                                 "/expenditure/**",
                                 "/expenditure.html/**",

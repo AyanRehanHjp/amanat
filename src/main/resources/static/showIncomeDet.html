@@ -1,53 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+
     <title>Monthly Report</title>
+
+    <!-- CSS FILES -->
     <link rel="stylesheet" href="css/showIncomeDet.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/admin.css">
 
-    <style>
-        .back-btn {
-            margin: 10px;
-            padding: 8px 15px;
-            background: #2e7d32;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        thead {
-            background: #1b5e20;
-            color: white;
-        }
-    </style>
 </head>
 
 <body>
 
-<button class="back-btn" onclick="goHome()">Back to Home</button>
+<!-- COMMON NAVBAR -->
+<div id="common-navbar"></div>
 
 <div class="ShowIncomeDet">
 
-    <button onclick="printPDF()">Download PDF</button>
-
+    <!-- TITLE -->
     <h2>Monthly Report</h2>
-
+    <div class="info-text">
+        📊 Select a year and click <b>Load Report</b> to view the monthly report.
+    </div>
+    <!-- FILTER -->
     <label>Select Year:</label>
     <select id="reportYear"></select>
 
     <button onclick="loadReport()">Load Report</button>
 
+    <!-- TABLE -->
     <table id="reportTable">
         <thead>
         <tr>
@@ -66,17 +50,38 @@
             <th>Dec</th>
         </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+        <!-- Dynamic Data -->
+        </tbody>
     </table>
+
+    <!-- 🔥 BOTTOM BUTTONS -->
+    <div style="display:flex; justify-content:space-between; margin-top:20px;">
+        <button onclick="goHome()"
+                style="background:#e53935; color:white; padding:8px 15px; border:none; border-radius:5px;">
+            Back to Admin
+        </button>
+
+        <button onclick="printPDF()" style="padding:8px 15px; border:none; border-radius:5px;">
+            Download PDF
+        </button>
+    </div>
 
 </div>
 
+<!-- JS FILE -->
 <script src="js/showIncomeDet.js"></script>
 
+<!-- COMMON JS -->
+<script src="/js/common.js"></script>
+
+<!-- LOAD COMMON NAVBAR -->
 <script>
-    function printPDF() {
-        window.print();
-    }
+    fetch('/common.html')
+       .then(res => res.text())
+       .then(data => {
+           document.getElementById("common-navbar").innerHTML = data;
+       });
 </script>
 
 </body>

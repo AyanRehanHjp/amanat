@@ -1,5 +1,5 @@
 body{
-font-family: Arial;
+font-family: Arial, sans-serif;
 background:#f4f6f9;
 margin:0;
 padding:0;
@@ -66,9 +66,79 @@ color:white;
 border:none;
 border-radius:6px;
 cursor:pointer;
-font-size:14px;
 }
 
 .back-btn:hover{
 background:#084298;
+}
+
+.add-member-box{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+background:#ffc107;
+padding:15px;
+border-radius:6px;
+margin-bottom:20px;
+align-items:flex-end;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+}
+
+.form-group label{
+font-size:12px;
+margin-bottom:4px;
+font-weight:bold;
+}
+
+.form-group input,
+.form-group select{
+padding:6px;
+width:160px;
+border:1px solid #ccc;
+border-radius:4px;
+}
+
+.form-group.small input,
+.form-group.small select{
+width:100px;
+}
+
+.mobile-group{
+width:200px;
+}
+
+.mobile-box{
+display:flex;
+}
+
+.mobile-box select{
+width:60px;
+padding:6px;
+border:1px solid #ccc;
+border-radius:4px 0 0 4px;
+}
+
+.mobile-box input{
+flex:1;
+border:1px solid #ccc;
+padding:6px;
+border-radius:0 4px 4px 0;
+}
+
+.button-group button{
+background:#198754;
+color:white;
+border:none;
+padding:8px 20px;
+border-radius:5px;
+cursor:pointer;
+height:32px;
+}
+
+.button-group button:hover{
+background:#146c43;
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RegMembersRepository extends JpaRepository <MembersEntity, Long> {
-
+    MembersEntity findTopByOrderByIdDesc();
 }
