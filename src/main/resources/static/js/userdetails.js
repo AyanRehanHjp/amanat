@@ -143,3 +143,6 @@ fetch("http://localhost:9000/signUp/removeProfilePic/"+userId,{
 });
 
 }
+function openPaymentPage() {
+    window.location.href = "/showIncomeDet.html";
+}
