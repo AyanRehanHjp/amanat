@@ -1,5 +1,6 @@
 package com.trust.amanat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -27,11 +28,16 @@ public class MembersEntity {
 
     private String address;
 
-    @Column(name = "member_id")
+
+    @Column(name = "member_id", unique = true)
     private String memberId;
 
     private String status;
 
     @Column(name = "joined_by")
     private String joinedBy;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "member")
+    private UserEntity user;
 }

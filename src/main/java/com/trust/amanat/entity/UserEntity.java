@@ -67,8 +67,11 @@ public class UserEntity {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "member_id", unique = true)
+    @Column(name = "member_id", unique = true, insertable = false, updatable = false)
     private String memberId;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "member_id", referencedColumnName = "member_id")
+    private MembersEntity member;
 
 }

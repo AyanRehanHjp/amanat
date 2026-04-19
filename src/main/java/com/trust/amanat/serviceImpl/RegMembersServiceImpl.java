@@ -18,6 +18,7 @@ public class RegMembersServiceImpl implements RegMembersService {
 
     @Override
     public MembersEntity addMember(MembersEntity member) {
+
         MembersEntity lastMember = regMembersRepository.findTopByOrderByIdDesc();
 
         String newMemberId = "AWT001";
