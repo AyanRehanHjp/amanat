@@ -11,6 +11,9 @@ import java.util.List;
 @Repository
 public interface IncomeDetRepository extends JpaRepository <IncomeDetEntity, Long> {
     @Query(value = "SELECT m.member_id, " +
+            "CONCAT(m.first_name, ' ', m.last_name) AS name, " +
+            "m.mobile, m.address, " +
+
             "IFNULL(SUM(CASE WHEN i.for_month = 'January' THEN i.amount END),0) AS Jan, " +
             "IFNULL(SUM(CASE WHEN i.for_month = 'February' THEN i.amount END),0) AS Feb, " +
             "IFNULL(SUM(CASE WHEN i.for_month = 'March' THEN i.amount END),0) AS Mar, " +
@@ -23,9 +26,11 @@ public interface IncomeDetRepository extends JpaRepository <IncomeDetEntity, Lon
             "IFNULL(SUM(CASE WHEN i.for_month = 'October' THEN i.amount END),0) AS Oct, " +
             "IFNULL(SUM(CASE WHEN i.for_month = 'November' THEN i.amount END),0) AS Nov, " +
             "IFNULL(SUM(CASE WHEN i.for_month = 'December' THEN i.amount END),0) AS `Dec` " +
+
             "FROM members m " +
             "LEFT JOIN income_details i ON m.member_id = i.member_id AND i.for_year = :year " +
-            "GROUP BY m.member_id",
+            "GROUP BY m.member_id, m.first_name, m.last_name, m.mobile, m.address",
+
             nativeQuery = true)
     List<Object[]> getMonthlyReportByYear(@Param("year") int year);
 }

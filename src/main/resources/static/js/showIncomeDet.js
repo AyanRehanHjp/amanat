@@ -11,11 +11,8 @@ function goHome(){
 window.onload = function () {
 
     const reportYear = document.getElementById("reportYear");
-
-    // Safety check (element mila ya nahi)
     if(!reportYear) return;
 
-    // Year dropdown populate (2021 → 2099)
     for(let y = 2021; y <= 2099; y++){
         let option = document.createElement("option");
         option.value = y;
@@ -23,7 +20,6 @@ window.onload = function () {
         reportYear.appendChild(option);
     }
 
-    // Default current year select
     reportYear.value = new Date().getFullYear();
 };
 
@@ -36,29 +32,22 @@ function loadReport(){
 
     fetch(`/incomeDet/monthly-report?year=${year}`)
     .then(res => {
-
-        // 🔥 response check (important)
         if(!res.ok){
             throw new Error("API response not OK");
         }
-
         return res.json();
     })
     .then(data => {
 
         let tbody = document.querySelector("#reportTable tbody");
-
-        // Safety check
         if(!tbody) return;
 
-        // Clear previous data
         tbody.innerHTML = "";
 
-        // If no data
         if(!data || data.length === 0){
             tbody.innerHTML = `
                 <tr>
-                    <td colspan="13" style="color:gray;">
+                    <td colspan="16" style="color:gray;">
                         No data available
                     </td>
                 </tr>
@@ -66,24 +55,57 @@ function loadReport(){
             return;
         }
 
-        // Loop rows
+        // 🔥 TOTAL ARRAY (Jan–Dec)
+        let totals = new Array(12).fill(0);
+
         data.forEach(row => {
 
             let tr = document.createElement("tr");
 
-            // 🔥 IMPORTANT: data-value added for CSS coloring
-            tr.innerHTML = `
+            let html = `
                 <td>${row[0]}</td>
-                ${row.slice(1).map(val =>
-                    `<td data-value="${val}"
-                         style="color:${val == 0 ? 'red' : 'green'}">
-                         ${val}
-                     </td>`
-                ).join("")}
+                <td>${row[1]}</td>
+                <td>${row[2]}</td>
+                <td>${row[3]}</td>
             `;
 
+            for(let i = 4; i <= 15; i++){
+                let val = Number(row[i] || 0);
+
+                // 🔥 ADD TOTAL
+                totals[i - 4] += val;
+
+                html += `
+                    <td data-value="${val}"
+                        style="color:${val == 0 ? 'red' : 'green'}">
+                        ${val}
+                    </td>
+                `;
+            }
+
+            tr.innerHTML = html;
             tbody.appendChild(tr);
         });
+
+        // 🔥 TOTAL ROW ADD
+        let totalRow = document.createElement("tr");
+
+        let totalHTML = `
+            <td colspan="4" style="font-weight:bold; background:#e8f5e9;">
+                TOTAL
+            </td>
+        `;
+
+        totals.forEach(val => {
+            totalHTML += `
+                <td style="font-weight:bold; color:blue;">
+                    ${val}
+                </td>
+            `;
+        });
+
+        totalRow.innerHTML = totalHTML;
+        tbody.appendChild(totalRow);
 
     })
     .catch(error => {
@@ -91,10 +113,37 @@ function loadReport(){
         alert("Something went wrong while loading report!");
     });
 }
-
 // ===============================
 // 🖨️ Print PDF
 // ===============================
-function printPDF() {
-    window.print(); // browser print
+function printPDF(){
+
+    let checked = document.querySelectorAll("#monthFilter input:checked");
+
+    // sab months hide
+    for(let i = 4; i <= 15; i++){
+        toggleColumn(i, false);
+    }
+
+    // agar kuch select nahi → sab dikhao
+    if(checked.length === 0){
+        for(let i = 4; i <= 15; i++){
+            toggleColumn(i, true);
+        }
+    } else {
+        checked.forEach(cb => {
+            toggleColumn(parseInt(cb.value), true);
+        });
+    }
+
+    window.print();
+
+    location.reload();
+}
+function toggleColumn(index, show){
+    document.querySelectorAll("#reportTable tr").forEach(row => {
+        if(row.children[index]){
+            row.children[index].style.display = show ? "" : "none";
+        }
+    });
 }

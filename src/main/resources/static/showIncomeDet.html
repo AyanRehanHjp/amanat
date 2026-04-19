@@ -36,6 +36,9 @@
         <thead>
         <tr>
             <th>Member ID</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Address</th>
             <th>Jan</th>
             <th>Feb</th>
             <th>Mar</th>
@@ -54,7 +57,22 @@
         <!-- Dynamic Data -->
         </tbody>
     </table>
+    <div id="monthFilter" style="margin:15px 0;">
+        <b>Select months to include months in the report and print:</b><br>
 
+        <label><input type="checkbox" value="4"> Jan</label>
+        <label><input type="checkbox" value="5"> Feb</label>
+        <label><input type="checkbox" value="6"> Mar</label>
+        <label><input type="checkbox" value="7"> Apr</label>
+        <label><input type="checkbox" value="8"> May</label>
+        <label><input type="checkbox" value="9"> Jun</label>
+        <label><input type="checkbox" value="10"> Jul</label>
+        <label><input type="checkbox" value="11"> Aug</label>
+        <label><input type="checkbox" value="12"> Sep</label>
+        <label><input type="checkbox" value="13"> Oct</label>
+        <label><input type="checkbox" value="14"> Nov</label>
+        <label><input type="checkbox" value="15"> Dec</label>
+    </div>
     <!-- 🔥 BOTTOM BUTTONS -->
     <div style="display:flex; justify-content:space-between; margin-top:20px;">
         <button onclick="goHome()"
