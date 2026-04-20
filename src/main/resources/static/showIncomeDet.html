@@ -26,10 +26,21 @@
         📊 Select a year and click <b>Load Report</b> to view the monthly report.
     </div>
     <!-- FILTER -->
-    <label>Select Year:</label>
-    <select id="reportYear"></select>
+    <div style="display:flex; align-items:center; justify-content:center; gap:15px; margin-bottom:15px;">
 
-    <button onclick="loadReport()">Load Report</button>
+        <label>Select Year:</label>
+        <select id="reportYear"></select>
+
+        <button onclick="loadReport()" class="load-btn">
+            Load Report
+        </button>
+
+        <!-- 🔥 Animated Pay Button -->
+        <button class="pay-btn" onclick="goToPayment()">
+            ₹<br>Pay
+        </button>
+
+    </div>
 
     <!-- TABLE -->
     <table id="reportTable">

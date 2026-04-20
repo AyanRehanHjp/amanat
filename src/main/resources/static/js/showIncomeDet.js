@@ -164,3 +164,7 @@ function toggleColumn(index, show){
         }
     });
 }
+
+function goToPayment(){
+    window.location.href = "/scan&pay.html";
+}

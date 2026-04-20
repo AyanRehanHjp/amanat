@@ -56,6 +56,54 @@
         <img src="/images/scan.png" class="qr">
 
         <p>UPI ID: amanatwelfaretrust@jio</p>
+        <div class="payment-form">
+
+            <h3>Payment Details</h3>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Member ID (If Applicable)</label>
+                    <input type="text" id="memberId" placeholder="Enter member ID">
+                </div>
+
+                <div class="form-group">
+                    <label>Payee Name</label>
+                    <input type="text" id="payeeName" placeholder="Enter your name">
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Mobile Number (10 digits only)</label>
+                    <input type="tel" id="mobile" maxlength="10" placeholder="Enter mobile number">
+                </div>
+
+                <div class="form-group">
+                    <label>Amount (Numbers Only)</label>
+                    <input type="number" id="amount" placeholder="Enter amount">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>UTR Number (Last 5 Digits) *</label>
+                <input type="text" id="utr" maxlength="5" placeholder="Enter last 5 digits" required>
+            </div>
+
+            <div class="form-group">
+                <label>Payment Date *</label>
+                <input type="date" id="paymentDate" required>
+            </div>
+
+            <!-- 🔥 IMPORTANT -->
+            <button class="submit-btn" onclick="submitPayment()">
+                Submit Payment
+            </button>
+
+        </div>
 
     </div>
 

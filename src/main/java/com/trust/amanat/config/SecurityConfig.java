@@ -55,7 +55,8 @@ public class SecurityConfig {
                                 "/getAllPostHolders",
                                 "/postholder.html",
                                 "/incomeDet/monthly-report",
-                                "/common.html"
+                                "/common.html",
+                                "/scan&pay/addPayee"
 
 
                         ).permitAll()

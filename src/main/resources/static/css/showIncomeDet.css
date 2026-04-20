@@ -22,9 +22,9 @@
 }
 
 /* ============================= */
-/* BUTTONS */
+/* BUTTONS (ONLY NORMAL BUTTONS) */
 /* ============================= */
-.ShowIncomeDet button {
+.ShowIncomeDet button:not(.pay-btn):not(.load-btn) {
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
@@ -35,7 +35,23 @@
     font-size: 14px;
 }
 
-.ShowIncomeDet button:hover {
+.ShowIncomeDet button:not(.pay-btn):not(.load-btn):hover {
+    background: #2e7d32;
+}
+
+/* ============================= */
+/* LOAD BUTTON */
+/* ============================= */
+.load-btn {
+    padding: 10px 20px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.load-btn:hover {
     background: #2e7d32;
 }
 
@@ -68,7 +84,7 @@ table {
     border-collapse: collapse;
     margin-top: 20px;
     font-size: 14px;
-    table-layout: fixed; /* 🔥 important */
+    table-layout: fixed;
 }
 
 thead {
@@ -85,10 +101,10 @@ th, td {
 }
 
 /* Column width control */
-th:nth-child(1), td:nth-child(1) { width: 80px; }   /* Member ID */
-th:nth-child(2), td:nth-child(2) { width: 140px; }  /* Name */
-th:nth-child(3), td:nth-child(3) { width: 110px; }  /* Mobile */
-th:nth-child(4), td:nth-child(4) { width: 120px; }  /* Address */
+th:nth-child(1), td:nth-child(1) { width: 80px; }
+th:nth-child(2), td:nth-child(2) { width: 140px; }
+th:nth-child(3), td:nth-child(3) { width: 110px; }
+th:nth-child(4), td:nth-child(4) { width: 120px; }
 
 /* Zebra rows */
 tbody tr:nth-child(even) {
@@ -128,6 +144,10 @@ tbody tr:hover {
     font-size: 14px;
     border: 1px solid #c8e6c9;
 }
+
+/* ============================= */
+/* PRINT */
+/* ============================= */
 @media print {
 
     @page {
@@ -150,42 +170,40 @@ tbody tr:hover {
         padding: 5px;
     }
 
-    /* Hide UI */
     button, select {
         display: none !important;
     }
 
-    /* Hide mobile */
     th:nth-child(3),
     td:nth-child(3) {
         display: none;
     }
 
-    /* 🔥 MAIN FIX */
     table {
         width: 100%;
         border-collapse: collapse;
-        table-layout: auto;   /* 🔥 auto adjust */
+        table-layout: auto;
     }
 
     th, td {
         font-size: 9px;
         padding: 4px;
-        white-space: nowrap;   /* 🔥 avoid stretching */
+        white-space: nowrap;
     }
 
-    /* Name + Address wrap allow */
     td:nth-child(2),
     td:nth-child(4) {
         white-space: normal;
     }
 
-    /* Prevent break */
     tr {
         page-break-inside: avoid;
     }
 }
 
+/* ============================= */
+/* MONTH FILTER */
+/* ============================= */
 #monthFilter {
     background: #e8f5e9;
     border: 1px solid #c8e6c9;
@@ -202,6 +220,9 @@ tbody tr:hover {
     color: #000;
 }
 
+/* ============================= */
+/* TOTAL ROW */
+/* ============================= */
 #reportTable tr:last-child {
     background: #e8f5e9;
 }
@@ -209,4 +230,39 @@ tbody tr:hover {
     font-weight: bold;
     background: #e8f5e9;
     color: #2e7d32;
+}
+
+/* ============================= */
+/* 💎 PAY BUTTON */
+/* ============================= */
+.pay-btn {
+    width: 75px;
+    height: 75px;
+    min-width: 75px;
+    min-height: 75px;
+
+    border-radius: 50% !important;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    font-weight: 600;
+    font-size: 20px;
+    color: #0c0b0b;
+
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    /* 🔥 DIFFERENT COLOR (NO GREEN CLASH) */
+    background: linear-gradient(135deg, #2cff00, #ffeb00);
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+.pay-btn:hover {
+    transform: scale(1.05);
 }
