@@ -1,16 +1,15 @@
 package com.trust.amanat.controller;
 
 import com.trust.amanat.dto.IncomeDetDTO;
-import com.trust.amanat.entity.ExpenditureEntity;
-import com.trust.amanat.entity.IncomeDetEntity;
+import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.service.IncomeDetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -44,13 +43,6 @@ logger.error("Error occurred while adding payment: {}", e.getMessage(), e);
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//    @GetMapping ("/showIncomeDet")
-//    public List <IncomeDetEntity> showIncomeDet(){
-//        List<IncomeDetEntity> allInc = incomeDetService.showIncomeDet();
-//        logger.info("showIncomeDet method is called, total income details found: {}", allInc != null ? allInc.size() : 0);
-//        return allInc;
-//
-//    }
 
     @GetMapping("/monthly-report")
     public List<Object[]> getMonthlyReport(@RequestParam int year) {
@@ -58,4 +50,31 @@ logger.error("Error occurred while adding payment: {}", e.getMessage(), e);
         return incomeDetService.getMonthlyReportByYear(year);
     }
 
+    @GetMapping("/my-monthly-report")
+    public List<Object[]> getMyMonthlyReport(@RequestParam int year) {
+
+        logger.info("my-monthly-report called for year={}", year);
+        //Get current logged-in user from SecurityContext
+        Object principal = SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        // Check if the user is valid (not anonymous)
+        if (!(principal instanceof UserEntity)) {
+
+            logger.error("User not authenticated properly");
+            throw new RuntimeException("User not authenticated");
+        }
+
+        UserEntity user = (UserEntity) principal;
+        String memberId = user.getMemberId();
+
+        logger.info("Fetching report for memberId={}", memberId);
+
+        List<Object[]> result =
+        incomeDetService.getMonthlyReportByYearAndMember(year, memberId);
+        logger.info("Total records fetched = {}", result != null ? result.size() : 0);
+        return result;
+    }
 }

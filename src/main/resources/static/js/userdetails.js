@@ -42,7 +42,7 @@ fetch("http://localhost:9000/signUp/retriveUser/" + userId,{
     role.value=data.role||"";
 memberId.value = data.memberId || (data.member && data.member.memberId) || "";
 
-    /* ⭐ PROFILE IMAGE LOAD WITH AUTH HEADER + SPACE FIX */
+    /*  PROFILE IMAGE LOAD WITH AUTH HEADER + SPACE FIX */
     if(data.profilePicture){
 
         fetch(
@@ -113,7 +113,7 @@ fetch("http://localhost:9000/signUp/updateUser/"+userId,{
 .then(msg=>{
     alert(msg);
 
-    /* ⭐ reload ki jagah direct latest image load */
+    /* reload ki jagah direct latest image load */
     loadUser();
 });
 
@@ -147,4 +147,10 @@ fetch("http://localhost:9000/signUp/removeProfilePic/"+userId,{
 }
 function openPaymentPage() {
     window.location.href = "/showIncomeDet.html";
+}
+// Redirect to personal report page
+function openPaymentPage(){
+
+    // Adding ?type=my so frontend knows this is user-specific request
+    window.location.href = "/showIncomeDet.html?type=my";
 }

@@ -41,7 +41,6 @@ public class SecurityConfig {
                                 "/admin.html",
                                 "/expenditure/**",
                                 "/expenditure.html/**",
-                                "/incomeDet/**",
                                 "/members.html/**",
                                 "/incomedet.html",
                                 "/incomeDet/addPayment",

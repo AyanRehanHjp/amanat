@@ -50,7 +50,6 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/admin.html") ||
                 path.startsWith("/expenditure/") ||
                 path.startsWith("/expenditure.html") ||
-                path.startsWith("/incomeDet") ||
                 path.startsWith("/incomedet.html") ||
                 path.equals("/incomeDet/addPayment") ||
                 path.startsWith("/scan&pay") ||

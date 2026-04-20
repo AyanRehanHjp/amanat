@@ -30,7 +30,28 @@ function loadReport(){
 
     let year = document.getElementById("reportYear").value;
 
-    fetch(`/incomeDet/monthly-report?year=${year}`)
+    let params = new URLSearchParams(window.location.search);
+    let type = params.get("type");
+
+    let apiUrl;
+
+    if(type === "my"){
+        apiUrl = `/incomeDet/my-monthly-report?year=${year}`;
+    } else {
+        apiUrl = `/incomeDet/monthly-report?year=${year}`;
+    }
+
+    // 🔥 GET TOKEN FROM LOCAL STORAGE
+    let token = localStorage.getItem("token");
+
+    console.log("TOKEN:", token); // debug check
+
+    fetch(apiUrl, {
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + token   // 🔥 IMPORTANT FIX
+        }
+    })
     .then(res => {
         if(!res.ok){
             throw new Error("API response not OK");
@@ -55,7 +76,6 @@ function loadReport(){
             return;
         }
 
-        // 🔥 TOTAL ARRAY (Jan–Dec)
         let totals = new Array(12).fill(0);
 
         data.forEach(row => {
@@ -72,7 +92,6 @@ function loadReport(){
             for(let i = 4; i <= 15; i++){
                 let val = Number(row[i] || 0);
 
-                // 🔥 ADD TOTAL
                 totals[i - 4] += val;
 
                 html += `
@@ -87,7 +106,6 @@ function loadReport(){
             tbody.appendChild(tr);
         });
 
-        // 🔥 TOTAL ROW ADD
         let totalRow = document.createElement("tr");
 
         let totalHTML = `
@@ -113,6 +131,7 @@ function loadReport(){
         alert("Something went wrong while loading report!");
     });
 }
+
 // ===============================
 // 🖨️ Print PDF
 // ===============================
@@ -120,12 +139,10 @@ function printPDF(){
 
     let checked = document.querySelectorAll("#monthFilter input:checked");
 
-    // sab months hide
     for(let i = 4; i <= 15; i++){
         toggleColumn(i, false);
     }
 
-    // agar kuch select nahi → sab dikhao
     if(checked.length === 0){
         for(let i = 4; i <= 15; i++){
             toggleColumn(i, true);
@@ -137,9 +154,9 @@ function printPDF(){
     }
 
     window.print();
-
     location.reload();
 }
+
 function toggleColumn(index, show){
     document.querySelectorAll("#reportTable tr").forEach(row => {
         if(row.children[index]){

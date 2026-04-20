@@ -5,12 +5,14 @@ import com.trust.amanat.repository.IncomeDetRepository;
 import com.trust.amanat.service.IncomeDetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class IncomeDetServiceImpl implements IncomeDetService {
+    private static final Logger logger = LoggerFactory.getLogger(IncomeDetServiceImpl.class);
     @Autowired
     IncomeDetRepository incomeDetRepository;
 
@@ -63,13 +65,20 @@ public class IncomeDetServiceImpl implements IncomeDetService {
         }
     }
 
-//    public List<IncomeDetEntity> showIncomeDet() {
-//        List<IncomeDetEntity> allIncom = incomeDetRepository.findAll();
-//        return allIncom;
-//
-//    }
-
+    @Override
     public List<Object[]> getMonthlyReportByYear(int year) {
         return incomeDetRepository.getMonthlyReportByYear(year);
+    }
+    @Override
+    public List<Object[]> getMonthlyReportByYearAndMember(int year, String memberId) {
+        logger.info("➡️ Service: Fetching monthly report for year={} and memberId={}", year, memberId);
+
+        List<Object[]> data = incomeDetRepository.getMonthlyReportByYearAndMember(year, memberId);
+        if (data == null || data.isEmpty()) {
+            logger.warn("No data found for memberId={} and year={}", memberId, year);
+        } else {
+            logger.info("Service: Data fetched successfully, records count={}", data.size());
+        }
+        return data;
     }
 }

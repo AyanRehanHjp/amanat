@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IncomeDetService {
     public String addPayment(IncomeDetDTO incomeDetDTO);
-//    public List<IncomeDetEntity> showIncomeDet();
     public List<Object[]> getMonthlyReportByYear(int year) ;
+    public List<Object[]> getMonthlyReportByYearAndMember(int year, String memberId);
 
     }
