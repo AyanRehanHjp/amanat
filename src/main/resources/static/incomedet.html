@@ -36,46 +36,67 @@
 
         <form id="paymentForm">
 
-            <label class="required" >Member ID</label>
-            <input type="text" id="memberId" list="memberList" placeholder="Enter Member ID" required>
+            <!-- Row 1 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required">Member ID</label>
+                    <input type="text" id="memberId" list="memberList" placeholder="Search by ID / Name / Mobile" required>
+                    <datalist id="memberList"></datalist>
+                </div>
 
-            <datalist id="memberList"></datalist>
-            <label class="required" >Amount (₹)</label>
-            <input type="number" id="amount" required>
+                <div class="form-group">
+                    <label class="required">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter Full Name" autocomplete="off" required>
+                </div>
 
+                <div class="form-group">
+                    <label class="required">Mobile Number</label>
+                    <input type="text" id="mobile" placeholder="Enter Mobile Number" maxlength="10" required>
+                </div>
+            </div>
 
-            <label class="required" >Month</label>
-            <select id="month">
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-            </select>
+            <!-- Row 2 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required">Amount (₹)</label>
+                    <input type="number" id="amount" required>
+                </div>
 
+                <div class="form-group">
+                    <label class="required">Month</label>
+                    <select id="month">
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
 
-            <label class="required" >Year</label>
-            <select id="year"></select>
+                <div class="form-group">
+                    <label class="required">Year</label>
+                    <select id="year"></select>
+                </div>
+            </div>
 
+            <!-- 🔹 Inline message (error / not registered) -->
+            <div id="msg" style="color:red; text-align:center; margin-top:10px;"></div>
 
-            <button type="submit" class="save-btn">
-
-                Save Payment
-
-            </button>
+            <button type="submit" class="save-btn">Save Payment</button>
 
         </form>
-
     </div>
 
 </div>
+
+<!-- 🔹 Popup -->
 <div id="popup" class="popup">
 
     <div class="popup-content">
@@ -87,6 +108,7 @@
     </div>
 
 </div>
+
 <script src="/js/incomedet.js"></script>
 
 </body>

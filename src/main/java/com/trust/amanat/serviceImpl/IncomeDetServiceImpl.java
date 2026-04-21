@@ -81,4 +81,8 @@ public class IncomeDetServiceImpl implements IncomeDetService {
         }
         return data;
     }
+    @Override
+    public List<Object[]> searchMember(String value) {
+        return incomeDetRepository.searchMember(value);
+    }
 }

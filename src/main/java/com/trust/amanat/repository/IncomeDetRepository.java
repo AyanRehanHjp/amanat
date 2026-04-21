@@ -61,4 +61,12 @@ public interface IncomeDetRepository extends JpaRepository <IncomeDetEntity, Lon
             nativeQuery = true)
     List<Object[]> getMonthlyReportByYearAndMember(@Param("year") int year,
                                                    @Param("memberId") String memberId);
+    @Query(value = "SELECT member_id, CONCAT(first_name,' ',last_name) as name, mobile " +
+            "FROM members " +
+            "WHERE member_id LIKE %:value% " +
+            "OR mobile LIKE %:value% " +
+            "OR first_name LIKE %:value% " +
+            "OR last_name LIKE %:value%",
+            nativeQuery = true)
+    List<Object[]> searchMember(@Param("value") String value);
 }

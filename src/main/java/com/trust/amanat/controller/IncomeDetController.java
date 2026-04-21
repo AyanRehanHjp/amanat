@@ -77,4 +77,9 @@ logger.error("Error occurred while adding payment: {}", e.getMessage(), e);
         logger.info("Total records fetched = {}", result != null ? result.size() : 0);
         return result;
     }
+
+    @GetMapping("/searchMember")
+    public List<Object[]> searchMember(@RequestParam String value) {
+        return incomeDetService.searchMember(value);
+    }
 }

@@ -9,5 +9,6 @@ public interface IncomeDetService {
     public String addPayment(IncomeDetDTO incomeDetDTO);
     public List<Object[]> getMonthlyReportByYear(int year) ;
     public List<Object[]> getMonthlyReportByYearAndMember(int year, String memberId);
+    public List<Object[]> searchMember(String value) ;
 
     }

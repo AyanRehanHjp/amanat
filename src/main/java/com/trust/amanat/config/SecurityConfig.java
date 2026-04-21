@@ -55,6 +55,7 @@ public class SecurityConfig {
                                 "/getAllPostHolders",
                                 "/postholder.html",
                                 "/incomeDet/monthly-report",
+                                "/incomeDet/searchMember",
                                 "/common.html",
                                 "/scan&pay/addPayee"
 
