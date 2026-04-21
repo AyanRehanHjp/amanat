@@ -252,7 +252,7 @@ tbody tr:hover {
     font-weight: 600;
     font-size: 20px;
     color: #0c0b0b;
-
+    left: 299px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
