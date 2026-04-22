@@ -22,12 +22,8 @@ let row = `
 <td>${member.mobile ?? ""}</td>
 <td>${member.address ?? ""}</td>
 <td>${member.status ?? ""}</td>
-
-<td>
-<button onclick="editMember('${member.memberId}')">Edit</button>
-</td>
-
 <td>${member.joinedBy ?? ""}</td>
+<td><button onclick="editMember('${member.memberId}')">Edit</button></td>
 </tr>
 `;
 
