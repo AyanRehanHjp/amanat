@@ -10,5 +10,6 @@ import java.util.List;
 public interface RegMembersService {
     public List <MembersEntity> getAllMembers();
     public MembersEntity addMember(MembersEntity member);
+    public MembersEntity updateMember(String memberId, MembersEntity member);
 
 }

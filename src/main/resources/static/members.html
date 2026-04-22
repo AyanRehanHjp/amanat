@@ -17,15 +17,18 @@
 
     <button class="back-btn" onclick="goBack()">⬅ Back to Admin</button>
 
-    <h2>Add New Member</h2>
+    <h2 id="formTitle">Add New Member</h2>
 
     <div class="add-member-box">
-
+        <div class="form-group">
+            <label>Member ID</label>
+            <input type="text" id="memberId" placeholder="Auto / Enter Member ID">
+        </div>
         <div class="form-group small">
             <label>Prefix</label>
             <select id="prefix">
                 <option value="">Select</option>
-                <option value="MD">MD</option>
+                <option value="MD">Md</option>
                 <option value="Mr">Mr</option>
                 <option value="Mrs">Mrs</option>
             </select>
@@ -51,8 +54,6 @@
             <div class="mobile-box">
                 <select id="countryCode">
                     <option value="+91">+91</option>
-                    <option value="+1">+1</option>
-                    <option value="+971">+971</option>
                 </select>
                 <input type="text" id="mobile">
             </div>
@@ -68,6 +69,7 @@
             <select id="status">
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
+                <option value="Left">Left</option>
             </select>
         </div>
 
@@ -77,8 +79,7 @@
         </div>
 
         <div class="form-group button-group">
-            <label>&nbsp;</label>
-            <button type="button" onclick="addMember()">Save</button>
+            <button type="button" onclick="saveMember()">Save</button>
         </div>
 
     </div>
@@ -88,7 +89,7 @@
     <table id="membersTable">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>SN.</th>
             <th>Member ID</th>
             <th>Prefix</th>
             <th>Full Name</th>
@@ -96,6 +97,7 @@
             <th>Mobile</th>
             <th>Address</th>
             <th>Status</th>
+            <th>Action</th>
             <th>Joined By</th>
         </tr>
         </thead>

@@ -7,6 +7,8 @@ public interface UserSignUpRepository extends JpaRepository <UserEntity,Long> {
    boolean existsByUserName (String userName);
    boolean existsByEmail (String email);
    boolean existsByMobile (String mobile);
+   UserEntity findByMemberId(String memberId);
+
 
 }
 

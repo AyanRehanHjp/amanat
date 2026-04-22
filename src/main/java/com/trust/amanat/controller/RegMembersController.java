@@ -38,4 +38,10 @@ public class RegMembersController {
 
         return ResponseEntity.badRequest().body("Failed to add member");
     }
+    @PutMapping("/updateMember/{memberId}")
+    public ResponseEntity<?> updateMember(@PathVariable String memberId, @RequestBody MembersEntity member) {
+        MembersEntity updatedMember = regMembersService.updateMember(memberId, member);
+        return ResponseEntity.ok( updatedMember.getMemberId()+ "Member updated successfully" );
+    }
+
 }
