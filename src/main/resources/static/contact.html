@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <title>Contact Us - Amanat Welfare Trust</title>
     <link rel="stylesheet" href="/css/contact.css">
+    <link rel="stylesheet" href="/css/common.css">
+
 </head>
 
 <body>
-
+<div id="common-navbar"></div>
 <div class="contact-container">
 
     <h1>Contact Us</h1>
@@ -78,6 +80,13 @@
     </div>
 
 </div>
-
+<script src="/js/common.js"></script>
+<script>
+    fetch('/common.html')
+       .then(res => res.text())
+       .then(data => {
+           document.getElementById("common-navbar").innerHTML = data;
+       });
+</script>
 </body>
 </html>

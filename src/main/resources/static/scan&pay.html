@@ -7,18 +7,18 @@
     <title>Scan & Pay - Amanat Welfare Trust</title>
 
     <link rel="stylesheet" href="/css/scan&pay.css">
+    <link rel="stylesheet" href="/css/common.css">
+
 
 </head>
 
 <body>
-
+<div id="common-navbar"></div>
 <div class="header">
 
-    <img src="/images/logo.png" class="logo">
+    <img src="/images/money.png" class="logo">
 
-    <h1>Amanat Welfare Trust</h1>
-
-    <button onclick="goBack()">⬅ Back</button>
+    <h1>PAYMENT PAGE</h1>
 
 </div>
 
@@ -97,7 +97,10 @@
                 <label>Payment Date *</label>
                 <input type="date" id="paymentDate" required>
             </div>
-
+            <div class="form-group">
+                <label>Comment</label>
+                <input type="text" id="comment" placeholder="Type any comment regarding to this payment">
+            </div>
             <!-- 🔥 IMPORTANT -->
             <button class="submit-btn" onclick="submitPayment()">
                 Submit Payment
@@ -135,6 +138,13 @@
 </div>
 
 <script src="/js/scan&pay.js"></script>
-
+<script src="/js/common.js"></script>
+<script>
+    fetch('/common.html')
+       .then(res => res.text())
+       .then(data => {
+           document.getElementById("common-navbar").innerHTML = data;
+       });
+</script>
 </body>
 </html>

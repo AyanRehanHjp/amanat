@@ -67,6 +67,10 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/members/addMember") ||
                 path.startsWith("/incomeDet/searchMember")||
                 path.startsWith("/members/updateMember/") ||
+                path.startsWith("/beneficiary/") ||
+                path.equals("/beneficiary.html") ||
+                path.startsWith("/help-requests/") ||
+                path.equals("/help-requests.html") ||
 
                 path.equals("/signUp/addUser")) {
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Help Requests - Admin</title>
+
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/help-requests.css">
+    <link rel="stylesheet" href="/css/common.css">
+
+</head>
+
+<body>
+<div id="common-navbar"></div>
+<div class="header">
+    Beneficiary Help Requests (Admin Panel)
+</div>
+
+<div class="container">
+
+    <table id="helpTable">
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Pin</th>
+            <th>State</th>
+            <th>Problem</th>
+            <th>Occupation</th>
+            <th>Financial</th>
+            <th>Reference</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Save</th>
+        </tr>
+        </thead>
+
+        <tbody></tbody>
+
+    </table>
+
+</div>
+
+<script src="/js/help-requests.js"></script>
+<script src="/js/common.js"></script>
+
+<script>
+    fetch('/common.html')
+       .then(res => res.text())
+       .then(data => {
+           document.getElementById("common-navbar").innerHTML = data;
+       });
+</script>
+</body>
+</html>

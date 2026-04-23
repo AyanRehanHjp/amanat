@@ -18,4 +18,6 @@ public class IncomeDetEntity {
     private String forMonth;
     private int forYear;
     @Column(name = "payment_date")
-    private LocalDate paymentDate;}
+    private LocalDate paymentDate;
+    private String comment;
+}

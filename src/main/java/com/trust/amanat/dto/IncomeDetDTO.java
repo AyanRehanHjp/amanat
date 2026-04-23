@@ -13,4 +13,6 @@ public class IncomeDetDTO {
     private String forMonth;
     private Integer forYear;
     private String paymentDate;
+    private String comment;
+
 }

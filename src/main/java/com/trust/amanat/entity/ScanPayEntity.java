@@ -17,4 +17,5 @@ public class ScanPayEntity {
     private double amount;
     private String mobile;
     private String payDate;
+    private String comment;
 }
