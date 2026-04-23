@@ -14,4 +14,6 @@ public class ScanPayDTO {
     private double amount;
     private String mobile;
     private String payDate;
+    private String comment;
+
 }

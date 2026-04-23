@@ -12,6 +12,7 @@ function submitPayment(){
     let amount = document.getElementById("amount").value.trim();
     let utr = document.getElementById("utr").value.trim();
     let paymentDate = document.getElementById("paymentDate").value;
+    let comment = document.getElementById("comment").value.trim();
 
     // ===============================
     // 🔥 VALIDATION
@@ -44,8 +45,9 @@ function submitPayment(){
         memberId: memberId,
         mobile: mobile,
         amount: amount,
-        payDate: paymentDate,   // ⚠️ backend me payDate hai
-        utrNo: utr              // ⚠️ backend me utrNo hai
+        payDate: paymentDate,
+        utrNo: utr,
+        comment: comment
     };
 
     console.log("Sending Data:", data);
@@ -64,11 +66,11 @@ function submitPayment(){
         if(!res.ok){
             throw new Error("API failed");
         }
-        return res.text();  // ⚠️ backend String return kar raha hai
+        return res.text();  //
     })
     .then(msg => {
 
-        alert(msg); // ✅ "Payment details submitted Successfully"
+        alert(msg);
 
         // 🔥 reset form
         document.querySelectorAll(".payment-form input").forEach(input => input.value = "");

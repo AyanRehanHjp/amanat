@@ -54,7 +54,7 @@ public class IncomeDetServiceImpl implements IncomeDetService {
             incomeDet.setForMonth(incomeDetDTO.getForMonth().trim());
             incomeDet.setForYear(incomeDetDTO.getForYear());
             incomeDet.setPaymentDate(LocalDate.now());
-
+            incomeDet.setComment(incomeDetDTO.getComment());
             incomeDetRepository.save(incomeDet);
 
             return "SUCCESS";
