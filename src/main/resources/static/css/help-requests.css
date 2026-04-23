@@ -1,0 +1,87 @@
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#eef2f7;
+}
+
+/* HEADER */
+.header{
+    background:#134E5E;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* CONTAINER */
+.container{
+    padding:20px;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+th, td{
+    padding:10px;
+    border:1px solid #ddd;
+    text-align:left;
+    font-size:14px;
+}
+
+th{
+    background:#134E5E;
+    color:white;
+}
+
+/* STATUS DROPDOWN */
+.status-dropdown{
+    padding:5px;
+    border-radius:5px;
+    color:white;
+    font-weight:bold;
+    border:none;
+}
+
+/* COLORS */
+.status-dropdown.pending{ background:orange; }
+.status-dropdown.working{ background:#007bff; }
+.status-dropdown.accepted{ background:#28a745; }
+.status-dropdown.rejected{ background:#dc3545; }
+.status-dropdown.done{ background:#6c757d; }
+
+/* AMOUNT */
+.amount-input{
+    width:80px;
+    padding:5px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+/* SAVE BUTTON */
+.save-btn{
+    background:#134E5E;
+    color:white;
+    border:none;
+    padding:6px 10px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.save-btn:hover{
+    background:#0f3b46;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    table{
+        font-size:12px;
+    }
+}

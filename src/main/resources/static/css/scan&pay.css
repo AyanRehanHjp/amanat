@@ -12,10 +12,10 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 
-background:#1b5e20;
-color:white;
+background: linear-gradient(green,white,green);
+color:green;
 
-padding:15px 30px;
+padding:1px 550px;
 
 }
 

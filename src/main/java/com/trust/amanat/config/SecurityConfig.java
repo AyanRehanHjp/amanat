@@ -58,7 +58,12 @@ public class SecurityConfig {
                                 "/incomeDet/searchMember",
                                 "/common.html",
                                 "/scan&pay/addPayee",
-                                "/members/updateMember/**"
+                                "/beneficiary/**",
+                                "/members/updateMember/**",
+                                "/help-requests/",
+                                "/help-requests/**",
+                                "/help-requests.html",
+                                "/beneficiary.html"
 
 
                         ).permitAll()

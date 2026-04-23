@@ -249,13 +249,20 @@ background:#b02a37;
 }
 /* Container */
 .full-report-btn-container {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;              /* spacing between buttons */
     margin-top: 30px;
+    flex-wrap: wrap;        /* mobile fix */
 }
 
 /* Button */
 .glow-btn {
     position: relative;
+    min:width: 220px;
+    text-align: center;
+    padding: 14px 20px;
     font-size: 17px;
     color: #ffffff;
     background: #0d0d2b;

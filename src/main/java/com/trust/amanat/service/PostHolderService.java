@@ -2,7 +2,6 @@ package com.trust.amanat.service;
 
 import com.trust.amanat.dto.PostHolderDTO;
 import com.trust.amanat.entity.PostHolderEntity;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 

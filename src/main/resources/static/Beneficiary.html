@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beneficiary Registration</title>
+    <link rel="stylesheet" href="/css/beneficiary.css">
+</head>
+
+<body>
+
+<div class="topbar">
+    📞 +91 72772 22729 | ✉ amanatwelfaretrust@gmail.com
+</div>
+
+<div class="navbar">
+    <div class="logo">
+        <img src="/images/logo.png"> Amanat Welfare Trust
+    </div>
+
+    <!-- 🔥 ADD THIS -->
+    <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/team.html">Our Team</a></li>
+        <li><a href="/beneficiary.html">Beneficiary</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+    </ul>
+</div>
+
+<div class="hero">
+    <h1>Beneficiary Help Request</h1>
+</div>
+
+<div class="form-container">
+
+    <form id="beneficiaryForm">
+
+        <div class="section">
+            <h3>Basic Information</h3>
+
+            <label>Needy Name <span style="color:red">*</span></label>
+            <input type="text" id="needyName" placeholder="Enter Needy Name (with C/o if applicable)" required>
+
+            <label>Mobile Number <span style="color:red">*</span></label>
+            <input type="text" id="mobile" placeholder="Enter Needy or Guardian Mobile Number" maxlength="10" required>
+
+            <label>Full Address <span style="color:red">*</span></label>
+            <textarea id="address" placeholder="Enter Complete Address of the Needy" required></textarea>
+
+            <label>Pin Code <span style="color:red">*</span></label>
+            <input type="text" id="pinCode" placeholder="Enter Pin Code" required>
+
+            <label>State <span style="color:red">*</span></label>
+            <input type="text" id="state" placeholder="Enter State" required>
+        </div>
+
+        <div class="section">
+            <h3>Additional Details</h3>
+
+            <label>Problem <span style="color:red">*</span></label>
+            <textarea id="problem" placeholder="Describe the Current Problem in Detail" required></textarea>
+
+            <label>Family Occupation <span style="color:red">*</span></label>
+            <input type="text" id="familyOccupation" placeholder="Enter Occupation of Main Earning Member of the family" required>
+
+            <label>Financial Condition <span style="color:red">*</span></label>
+            <input type="text" id="financialCondition" placeholder="Describe Family Financial Condition"  required>
+
+            <label>Reference Person / How do you reach <span style="color:red">*</span></label>
+            <input type="text" id="comment" placeholder="Enter Reference Person or How You Reached Us" required>
+        </div>
+
+        <button type="submit">Submit Request</button>
+
+        <div id="msg" style="color:red;text-align:center;margin-top:10px;"></div>
+
+    </form>
+    <button class="back-btn" onclick="window.location.href='/index.html'">
+        ⬅ Back to Admin
+    </button>
+</div>
+
+<script src="/js/beneficiary.js"></script>
+
+</body>
+</html>
