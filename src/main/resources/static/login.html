@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <title>Login - Amanat Welfare Trust</title>
 
-    <!-- COMMON CSS (LOADER) -->
+    <!-- COMMON CSS -->
     <link rel="stylesheet" href="/css/common.css">
+
     <!-- PAGE CSS -->
     <link rel="stylesheet" href="/css/login.css">
-
 </head>
 
 <body>
 
+<!-- COMMON NAVBAR -->
+<div id="common-navbar"></div>
+<div class="login-container">
+
 <div class="card">
 
+    <h2>Amanat Welfare Trust</h2>
     <h2>Login</h2>
 
     <div id="msg" class="msg"></div>
@@ -23,19 +28,42 @@
 
     <input id="password" type="password" placeholder="Password">
 
-    <button onclick="login()">Login</button>
+    <!-- BUTTONS -->
+    <div class="btn-group">
 
-    <button class="back" onclick="location.href='/index.html'">
-        Back to Home
-    </button>
+        <button class="login-btn" onclick="login()">
+            Login
+        </button>
+
+        <div class="btn-row">
+            <button class="back" onclick="location.href='/index.html'">
+                Back to Home
+            </button>
+
+            <button class="signup" onclick="location.href='/signup.html'">
+                Create Account
+            </button>
+        </div>
+
+    </div>
 
 </div>
+</div>
+<!-- LOADER -->
 <div id="loader" class="loader-overlay">
     <div class="spinner"></div>
 </div>
-<!-- PAGE JS -->
+
 <script src="/js/common.js"></script>
 <script src="/js/login.js"></script>
+
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML = data;
+    });
+</script>
 
 </body>
 </html>

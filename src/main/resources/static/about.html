@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <title>About Us - Amanat Welfare Trust</title>
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/common.css">
+
 </head>
 
 <body>
-<div class="back-btn">
-    <button onclick="location.href='/index.html'">
-        ⬅ Back to Home
-    </button>
-</div>
+<div id="common-navbar"></div>
+
 <div class="about-container">
 
     <h1>About Amanat Welfare Trust</h1>
@@ -127,11 +126,15 @@
     </p>
 
 </div>
-<div class="back-btn">
-    <button onclick="location.href='/index.html'">
-        ⬅ Back to Home
-    </button>
-</div>
+
 <script src="/js/about.js"></script>
+<script src="/js/common.js"></script>
+<script>
+    fetch('/common.html')
+       .then(res => res.text())
+       .then(data => {
+           document.getElementById("common-navbar").innerHTML = data;
+       });
+</script>
 </body>
 </html>

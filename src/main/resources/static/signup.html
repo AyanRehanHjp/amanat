@@ -4,19 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Signup - Amanat Welfare Trust</title>
+
     <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/common.css">
 </head>
 
 <body>
 
+<div id="common-navbar"></div>
+
 <div class="header">
     <img src="/images/logo.png" class="logo">
-    <h1>Amanat Welfare Trust</h1>
-    <p>Create your account</p>
 </div>
 
 <div class="card">
 
+    <h2>Amanat Welfare Trust</h2>
     <h2>Create Account</h2>
 
     <div id="msgBox" class="msg">
@@ -45,14 +48,10 @@
             <div id="emailError" class="error"></div>
         </div>
 
-        <!-- Username full row -->
-
         <div class="full">
             <input id="userName" placeholder="Username">
             <div id="userNameError" class="error"></div>
         </div>
-
-        <!-- Password -->
 
         <div class="password-box">
             <input id="password" type="password" placeholder="Password">
@@ -60,14 +59,10 @@
             <div id="passwordError" class="error"></div>
         </div>
 
-        <!-- Confirm Password -->
-
         <div>
             <input id="confirmPassword" type="password" placeholder="Confirm Password">
             <div id="confirmPasswordError" class="error"></div>
         </div>
-
-        <!-- Role -->
 
         <div class="full">
             <select id="role">
@@ -76,13 +71,24 @@
             </select>
         </div>
 
-        <button class="full" onclick="signup()">
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="btn-group">
+
+        <button class="crt-act" onclick="signup()">
             Create Account
         </button>
 
-        <button onclick="location.href='/index.html'" class="full back">
-            Back to Home
-        </button>
+        <div class="btn-row">
+            <button onclick="location.href='/index.html'" class="back">
+                Back to Home
+            </button>
+
+            <button onclick="location.href='/login.html'" class="login">
+                Go to Login
+            </button>
+        </div>
 
     </div>
 
@@ -91,6 +97,15 @@
 <div id="popup"></div>
 
 <script src="/js/signup.js"></script>
+<script src="/js/common.js"></script>
+
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML = data;
+    });
+</script>
 
 </body>
 </html>
