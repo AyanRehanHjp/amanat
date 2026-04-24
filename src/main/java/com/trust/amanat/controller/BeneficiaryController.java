@@ -37,14 +37,10 @@ public class BeneficiaryController {
     }
 
     @PutMapping("/updateStatus/{id}")
-    public ResponseEntity<?> updateStatus(
-            @PathVariable Long id,
-            @RequestBody Map<String, Object> data) {
+    public ResponseEntity<?> updateStatus(@PathVariable Long id,@RequestBody Map<String, Object> data) {
 
         String status = (String) data.get("status");
-        Integer amount = data.get("amount") != null
-                ? Integer.parseInt(data.get("amount").toString())
-                : 0;
+        Integer amount = data.get("amount") != null ? Integer.parseInt(data.get("amount").toString()): 0;
 
         BeneficiaryEntity updated = beneficiaryService.updateStatus(id, status, amount);
 

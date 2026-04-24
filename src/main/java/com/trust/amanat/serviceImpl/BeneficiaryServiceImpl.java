@@ -16,7 +16,9 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 
     @Override
     public BeneficiaryEntity addBeneficiary(BeneficiaryDTO beneficiaryDTO) {
-BeneficiaryEntity beneficiary = new BeneficiaryEntity();
+
+        BeneficiaryEntity beneficiary = new BeneficiaryEntity();
+
         beneficiary.setNeedyName(beneficiaryDTO.getNeedyName());
         beneficiary.setMobile(beneficiaryDTO.getMobile());
         beneficiary.setAddress(beneficiaryDTO.getAddress());
@@ -37,15 +39,15 @@ BeneficiaryEntity beneficiary = new BeneficiaryEntity();
     @Override
     public BeneficiaryEntity updateStatus(Long id, String status, Integer amount){
 
-        BeneficiaryEntity b = beneficiaryRepository.findById(id).orElse(null);
+        BeneficiaryEntity beneficiary = beneficiaryRepository.findById(id).orElse(null);
 
-        if(b == null){
+        if(beneficiary == null){
             return null;
         }
 
-        b.setStatus(status);     // 🔥 new field
-        b.setAmount(amount);     // 🔥 new field
+        beneficiary.setStatus(status);
+        beneficiary.setAmount(amount);
 
-        return beneficiaryRepository.save(b);
+        return beneficiaryRepository.save(beneficiary);
     }
 }
