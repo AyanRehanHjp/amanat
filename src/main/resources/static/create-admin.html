@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Amanat Trust</title>
+
+    <link rel="stylesheet" href="/css/create-admin.css">
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+
+<body>
+
+<div id="common-navbar"></div>
+
+<div class="header">
+    <h2>Admin Panel</h2>
+</div>
+
+<div class="card">
+
+    <h3>Create New Admin</h3>
+
+    <div id="msgBox" class="msg">
+        <span id="msgText"></span>
+    </div>
+
+    <label>Full Name</label>
+    <input id="fullName" placeholder="Enter full name">
+
+    <label>Designation</label>
+    <input id="designation" placeholder="Enter designation">
+
+    <label>Admin ID</label>
+    <input id="userId" placeholder="Enter Admin ID"
+           maxlength="6" minlength="3" required>
+
+    <label>Password</label>
+    <input id="password" type="password"
+           maxlength="10" minlength="4" required>
+
+    <button onclick="createAdmin()">Create Admin</button>
+
+</div>
+
+<script src="/js/create-admin.js"></script>
+<script src="/js/common.js"></script>
+
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML = data;
+    });
+</script>
+
+</body>
+</html>
