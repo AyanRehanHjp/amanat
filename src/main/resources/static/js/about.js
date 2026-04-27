@@ -25,7 +25,7 @@ window.onload=function(){
 
 animateCounter("year",2021);
 
-animateCounter("helped",43,"+");
+animateCounter("helped",47,"+");
 
 animateCounter("amount",50,"₹");
 
