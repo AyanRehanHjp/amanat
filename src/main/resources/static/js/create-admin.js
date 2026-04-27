@@ -34,9 +34,22 @@ function createAdmin(){
 }
 
 function showMsg(msg){
-    let box = document.getElementById("msgBox");
-    let text = document.getElementById("msgText");
+    let popup = document.getElementById("popup");
+    let text = document.getElementById("popupMsg");
 
     text.innerText = msg;
-    box.style.display = "block";
+    popup.style.display = "flex";
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 30000); // 3 sec baad close
 }
+
+document.getElementById("adminForm").addEventListener("submit", function(e){
+    if(!this.checkValidity()){
+    e.preventDefault();   //  invalid hai to yahi ruk jayega
+             return;
+    }
+    e.preventDefault();   //
+     createAdmin();
+});

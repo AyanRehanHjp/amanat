@@ -24,7 +24,7 @@
     <div id="msgBox" class="msg">
         <span id="msgText"></span>
     </div>
-
+    <form id="adminForm">
     <label>Full Name</label>
     <input id="fullName" placeholder="Enter full name">
 
@@ -32,17 +32,25 @@
     <input id="designation" placeholder="Enter designation">
 
     <label>Admin ID</label>
-    <input id="userId" placeholder="Enter Admin ID"
+    <input id="userId" placeholder="Enter Admin ID AWTADM..."
            maxlength="6" minlength="3" required>
 
     <label>Password</label>
     <input id="password" type="password"
-           maxlength="10" minlength="4" required>
+           maxlength="10" minlength="4" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,10}"
+           title="Password must contain at least 1 uppercase, 1 lowercase and 1 number" required>
 
-    <button onclick="createAdmin()">Create Admin</button>
-
+    <button type="submit">Create Admin</button>
+    </form>
 </div>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <h2>🎉 Congratulations!</h2>
+        <h3>New Admin Created Successfully</h3>
 
+        <p id="popupMsg"></p>
+    </div>
+</div>
 <script src="/js/create-admin.js"></script>
 <script src="/js/common.js"></script>
 

@@ -2,6 +2,8 @@ body{
     margin:0;
     font-family:'Segoe UI',sans-serif;
     background:#888B90;
+background-image: radial-gradient(#d9e2ec 1px, transparent 1px);
+    background-size:20px 20px;
     display:flex;
     flex-direction:column;
 }
@@ -14,10 +16,11 @@ body{
 }
 
 .card{
-    width:400px;
+    width:500px;
     background:#fff;
     padding:25px;
-    margin-top:30px;
+    margin-top:40px;
+    margin-bottom:40px;
     border-radius:10px;
     box-shadow:0 5px 15px rgba(0,0,0,0.2);
     align-self:center;
@@ -49,4 +52,32 @@ button:hover{
     display:none;
     margin-bottom:10px;
     color:red;
+}
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background: #0ee15f;
+        color: #fff;
+        padding: 3px 49px;
+        border-radius: 12px;
+        text-align: center;
+        font-size: 16px;
+        width: 300px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        animation: popupFade 0.3s ease;
+}
+
+@keyframes popupFade{
+    from{transform:scale(0.8); opacity:0;}
+    to{transform:scale(1); opacity:1;}
 }
