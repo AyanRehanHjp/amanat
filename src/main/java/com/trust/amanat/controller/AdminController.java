@@ -18,7 +18,7 @@ public class AdminController {
     @PostMapping("/create")
     public ResponseEntity<?> createAdmin(@RequestBody AdminEntity admin){
         AdminEntity saved = adminService.createAdmin(admin);
-        return ResponseEntity.ok("Admin Created Successfully");
+        return ResponseEntity.ok("Congratulation!, Admin with User Id "+saved.getUserId()+" Created Successfully");
     }
 
         @PostMapping("/login")

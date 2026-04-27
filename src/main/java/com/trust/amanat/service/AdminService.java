@@ -5,6 +5,6 @@ import com.trust.amanat.entity.AdminEntity;
 
 public interface AdminService {
     AdminEntity createAdmin(AdminEntity admin);
-    public String verifyAdminLogin(AdminLoginDTO adminLoginDTO) ;
+    String verifyAdminLogin(AdminLoginDTO adminLoginDTO) ;
 
     }
