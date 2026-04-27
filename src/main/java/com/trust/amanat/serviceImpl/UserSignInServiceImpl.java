@@ -24,7 +24,7 @@ public class UserSignInServiceImpl implements UserSignInService {
         if(!record.isEmpty()){
             UserEntity user = record.get(0);
             if(BCrypt.checkpw(loginDTO.getPassword(),user.getPassword())){
-                return  jwtService.generateToken(user);
+                return  jwtService.generateToken(user.getUserName());
 
             }
         }

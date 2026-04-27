@@ -40,7 +40,23 @@
            maxlength="10" minlength="4" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,10}"
            title="Password must contain at least 1 uppercase, 1 lowercase and 1 number" required>
 
-    <button type="submit">Create Admin</button>
+        <button type="submit" class="login-btn">Create Admin</button>
+
+        <div class="btn-group">
+
+            <div class="btn-row">
+
+                <button type="button" class="back" onclick="location.href='/index.html'">
+                    Back to Home
+                </button>
+
+                <button type="button" class="signup" onclick="location.href='/admin-login.html'">
+                    Go to Login
+                </button>
+
+            </div>
+
+        </div>
     </form>
 </div>
 <div id="popup" class="popup">

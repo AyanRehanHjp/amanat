@@ -1,6 +1,8 @@
 package com.trust.amanat.config;
 
+import com.trust.amanat.entity.AdminEntity;
 import com.trust.amanat.entity.UserEntity;
+import com.trust.amanat.repository.AdminRepository;
 import com.trust.amanat.repository.UserSignInRepository;
 import com.trust.amanat.serviceImpl.JWTService;
 import jakarta.servlet.FilterChain;
@@ -25,7 +27,8 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     private JWTService jwtService;
     @Autowired
     private UserSignInRepository userSignInRepository;
-
+    @Autowired
+    private AdminRepository adminRepository;
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response, FilterChain filterChain)
@@ -72,7 +75,9 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/help-requests/") ||
                 path.equals("/help-requests.html") ||
                 path.startsWith("/create-admin.html") ||
+                path.startsWith("/admin-login.html") ||
                 path.startsWith("/admins/create") ||
+                path.startsWith("/admins/login") ||
 
                 path.equals("/signUp/addUser")) {
 
@@ -88,22 +93,30 @@ public class JWTRequestFilter extends OncePerRequestFilter {
         }
             String token = tokenHeader.substring(7);
             String username = jwtService.getUserName(token);
+
             List<UserEntity> opUser = userSignInRepository.findByUserName(username);
-        if (opUser.isEmpty()) {
+        if (!opUser.isEmpty()) {
 
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            return;
-
-        }
                 UserEntity user = opUser.get(0);
                 UsernamePasswordAuthenticationToken authenticationToken
                         = new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
                 authenticationToken.setDetails(new WebAuthenticationDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
+            } else {
+            AdminEntity admin = adminRepository.findByUserId(username);
+            if (admin != null) {
+                UsernamePasswordAuthenticationToken auth =
+                        new UsernamePasswordAuthenticationToken(admin, null, new ArrayList<>());
 
+                auth.setDetails(new WebAuthenticationDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            } else {
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                return;
+            }
 
-
+        }
 
         filterChain.doFilter(request, response);
     }

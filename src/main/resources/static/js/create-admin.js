@@ -42,7 +42,7 @@ function showMsg(msg){
 
     setTimeout(() => {
         popup.style.display = "none";
-    }, 30000); // 3 sec baad close
+    }, 3000); // 3 sec baad close
 }
 
 document.getElementById("adminForm").addEventListener("submit", function(e){

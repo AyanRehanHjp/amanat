@@ -65,7 +65,9 @@ public class SecurityConfig {
                                 "/help-requests.html",
                                 "/create-admin.html",
                                 "/admins/create",
-                                "/beneficiary.html"
+                                "/beneficiary.html",
+                                "/admin-login.html",
+                                "/admins/login"
 
 
                         ).permitAll()

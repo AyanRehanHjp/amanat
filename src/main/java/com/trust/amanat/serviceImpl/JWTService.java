@@ -26,9 +26,9 @@ public class JWTService {
     public void postConstruct() {
         algorithm = Algorithm.HMAC256(algorithmKey);
     }
-    public String generateToken(UserEntity userEntity){
+    public String generateToken(String userName){
         return JWT.create()
-                .withClaim(USER_NAME, userEntity.getUserName())
+                .withClaim(USER_NAME, userName)
                 .withIssuer(issuer)
                 .withExpiresAt(new Date(System.currentTimeMillis()+expiryTime))
                 .sign(algorithm);

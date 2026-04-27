@@ -96,7 +96,7 @@
             Login
         </button>
 
-        <button class="admin-btn" onclick="goToAdmin()">
+        <button class="admin-btn" onclick="goToAdminLogin()">
             Admin Panel
         </button>
     </div>
@@ -139,10 +139,12 @@
 </div>
 <!-- FOOTER -->
 <footer class="footer">
+    <div class="footer-container">   <!-- 👈 ADD THIS -->
 
-    <div class="footer-container">
+    <div class="footer-content">
 
-        <div class="footer-column">
+        <!-- LEFT: ADDRESS -->
+        <div class="footer-left">
 
             <h3>Office Address</h3>
 
@@ -153,13 +155,26 @@
             </p>
 
             <p>📞 +91 72772 22729</p>
-
             <p>✉ amanatwelfaretrust@gmail.com</p>
+
+        </div>
+
+        <!-- RIGHT: MAP -->
+        <div class="footer-right">
+
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d1797.587290136292!2d85.20392846050132!3d25.698643171791435!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1777294340812!5m2!1sen!2sus"
+                    width="320"
+                    height="220"
+                    style="border:0; border-radius:10px;"
+                    loading="lazy">
+            </iframe>
 
         </div>
 
     </div>
 
+    </div> <!-- 👈 CLOSE -->
 
     <div class="footer-bottom">
         © 2026 Amanat Welfare Trust. All Rights Reserved.
