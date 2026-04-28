@@ -185,3 +185,16 @@ font-size:16px;
 .submit-btn:hover {
     background: #2e7d32;
 }
+.bck-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: grey;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bck-btn:hover {
+    background: black;
+}

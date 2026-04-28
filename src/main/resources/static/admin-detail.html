@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Details</title>
+
+    <link rel="stylesheet" href="/css/admin-detail.css">
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+
+<body>
+
+<div id="common-navbar"></div>
+
+<div class="container">
+
+    <!-- CREATE ADMIN (HIGHLIGHTED CENTER) -->
+    <div class="top-create">
+        <span>To Create Admin Click here</span>
+        <button class="create-btn" onclick="goToCreate()">+ Create Admin</button>
+    </div>
+
+    <!-- TITLE + VIEW -->
+    <div class="title-bar">
+        <h2>Admin Details</h2>
+
+        <div class="view-section">
+            <span>Click here for Admin Details</span>
+            <button class="view-btn" onclick="loadAdmins()">View Admins</button>
+        </div>
+    </div>
+
+    <!-- CARD -->
+    <div class="card">
+        <table>
+            <thead>
+            <tr>
+                <th>Sl No</th>
+                <th>User ID</th>
+                <th>Full Name</th>
+                <th>Designation</th>
+            </tr>
+            </thead>
+
+            <tbody id="adminTableBody">
+            <tr>
+                <td colspan="4" class="empty">Click "View Admins" to load data</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- BACK BUTTON -->
+    <div class="back-container">
+        <button class="back-btn" onclick="goBack()">⬅ Back to Admin Page</button>
+    </div>
+
+</div>
+
+<script src="/js/admin-detail.js"></script>
+<script src="/js/common.js"></script>
+
+<script>
+    fetch('/common.html')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("common-navbar").innerHTML = data;
+        });
+</script>
+
+</body>
+</html>

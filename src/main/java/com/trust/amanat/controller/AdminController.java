@@ -5,8 +5,12 @@ import com.trust.amanat.entity.AdminEntity;
 import com.trust.amanat.service.AdminService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admins")
@@ -29,4 +33,13 @@ public class AdminController {
             }
             return ResponseEntity.badRequest().body("Invalid credentials, Try again with correct credential");
 }
+
+@GetMapping("/getAllAdmins")
+    public ResponseEntity<?> getAllAdmins(){
+       List<AdminEntity> allAdmins= adminService.getAllAdmins();
+       if (allAdmins!=null){
+           return new ResponseEntity<>(allAdmins, HttpStatus.OK);
+       }
+       return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
     }
+}

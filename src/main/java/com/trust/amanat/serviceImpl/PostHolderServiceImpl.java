@@ -28,7 +28,7 @@ public class PostHolderServiceImpl implements PostHolderService {
 
 
     public List< PostHolderEntity > getAllPostHolders(){
-        return (List<PostHolderEntity>) postHolderRepository.findAll();
+        return postHolderRepository.findAll();
     }
 
     public String deletePostHolder(Long id){
