@@ -69,7 +69,8 @@ public class SecurityConfig {
                                 "/admin-login.html",
                                 "/admin-detail.html",
                                 "/admins/login",
-                                "/admins/getAllAdmins"
+                                "/admins/getAllAdmins",
+                                "/report/**"
 
 
                         ).permitAll()

@@ -1,19 +1,16 @@
 function loadTrustData(){
 
-fetch("/api/trustOverview")
+    fetch("/report/total-expenditure")
+    .then(res => res.text())
+    .then(data => {
 
-.then(res => res.json())
+        document.getElementById("totalExpense").innerText = "₹" + data;
 
-.then(data => {
-
-document.getElementById("totalIncome").innerText="₹"+data.totalIncome
-
-document.getElementById("totalExpense").innerText="₹"+data.totalExpense
-
-document.getElementById("balance").innerText="₹"+data.balance
-
-})
+    })
+    .catch(err => {
+        console.log("Error fetching total expenditure:", err);
+    });
 
 }
 
-loadTrustData()
+loadTrustData();
