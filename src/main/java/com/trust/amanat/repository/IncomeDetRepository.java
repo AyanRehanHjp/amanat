@@ -52,10 +52,7 @@ public interface IncomeDetRepository extends JpaRepository <IncomeDetEntity, Lon
 
             "FROM members m " +
             "LEFT JOIN income_details i ON m.member_id = i.member_id AND i.for_year = :year " +
-
-            // 🔥 YAHI MAIN CHANGE HAI
             "WHERE m.member_id = :memberId " +
-
             "GROUP BY m.member_id, m.first_name, m.last_name, m.mobile, m.address",
 
             nativeQuery = true)
@@ -69,4 +66,10 @@ public interface IncomeDetRepository extends JpaRepository <IncomeDetEntity, Lon
             "OR last_name LIKE %:value%",
             nativeQuery = true)
     List<Object[]> searchMember(@Param("value") String value);
+
+    @Query("SELECT SUM(i.amount) FROM IncomeDetEntity i")
+    Double getTotalIncome();
+
+    @Query("SELECT i.forYear, SUM(i.amount) FROM IncomeDetEntity i GROUP BY i.forYear")
+    List<Object[]> getYearlyIncome();
 }

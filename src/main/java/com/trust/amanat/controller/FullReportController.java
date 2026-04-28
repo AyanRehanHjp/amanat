@@ -18,4 +18,13 @@ public class FullReportController {
     public ResponseEntity<?> getTotalExpenditure(){
         return ResponseEntity.ok(fullReportService.getTotalExpenditure());
     }
-}
+
+    @GetMapping("/total-income")
+    public ResponseEntity<?> getTotalIncome(){
+        return ResponseEntity.ok(fullReportService.getTotalIncome());
+    }
+
+    @GetMapping("/yearly")
+    public ResponseEntity<?> getYearlyReport(){
+        return ResponseEntity.ok(fullReportService.getYearlyReport());
+    }}
