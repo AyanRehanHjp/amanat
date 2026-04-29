@@ -29,6 +29,7 @@ public class AdminController {
     public ResponseEntity<?> verifyAdminLogin(@RequestBody AdminLoginDTO adminLoginDTO){
             String token = adminService.verifyAdminLogin(adminLoginDTO);
             if(token!=null) {
+
                 return ResponseEntity.ok(token);
             }
             return ResponseEntity.badRequest().body("Invalid credentials, Try again with correct credential");

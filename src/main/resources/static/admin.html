@@ -12,7 +12,14 @@
 </head>
 
 <body>
+<script>
+    let token = localStorage.getItem("token");
 
+    if(!token){
+        alert("Please login first");
+        window.location.href = "/admin-login.html";
+    }
+</script>
 <div id="common-navbar"></div>
 
 
@@ -31,14 +38,13 @@
 
         <ul>
             <li onclick="openPage('/admin-detail.html')">Admin Details</li>
-            <li onclick="openPage('/members.html')">Members Details</li>
-            <li onclick="openPage('/signup.html')">Add Member</li>
+            <li onclick="openPage('/members.html')">Add/Modify/View Members Details</li>
             <li onclick="openPage('/incomedet.html')"> Add Income Details</li>
             <li onclick="openPage('/showIncomeDet.html')"> Show Members Income Details</li>
             <li onclick="openPage('/expenditure.html')">Expenditure Details</li>
             <li onclick="openPage('/recpdfgen.html')">Generate Receipt</li>
             <li onclick="openPage('/help-requests.html')">Help Requests</li>
-            <li onclick="openPage('/fullReport.html')">Full Report</li>
+            <li onclick="openPage('/cover.html')">Full Report</li>
 
 
 
@@ -62,13 +68,8 @@
             </div>
 
             <div class="card" onclick="openPage('/members.html')">
-                👥<br>
-                Members Details
-            </div>
-
-            <div class="card" onclick="openPage('/signup.html')">
-                ➕<br>
-                Add Member
+                ➕ / 👥<br>
+                Add/Modify/View Members Details
             </div>
             <div class="card" onclick="openPage('/showIncomeDet.html')">
                 📑<br>
@@ -95,7 +96,7 @@
                 🙏 Help Requests
             </div>
 
-             <div class="card" onclick="openPage('/fullReport.html')">
+             <div class="card" onclick="openPage('/cover.html')">
                 📊<br>
                 Full Report
              </div>

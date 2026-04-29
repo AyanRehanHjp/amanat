@@ -9,7 +9,14 @@
 </head>
 
 <body>
+<script>
+    let token = localStorage.getItem("token");
 
+    if(!token){
+        alert("Please login first");
+        window.location.href = "/admin-login.html";
+    }
+</script>
 <div id="common-navbar"></div>
 
 <div class="container">

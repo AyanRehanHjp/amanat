@@ -7,6 +7,7 @@ alert("Feature coming soon");
 }
 
 function logout(){
-window.location.href="/index.html";
-}
+ localStorage.clear();   // 🔥 token delete
+    window.location.href="/admin-login.html";
+    }
 
