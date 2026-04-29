@@ -19,9 +19,11 @@ public class AdminServiceImpl implements AdminService {
     @Autowired JWTService jwtService;
     @Override
     public AdminEntity createAdmin(AdminEntity admin) {
+        admin.setUserId(admin.getUserId().trim().toUpperCase());
+        // normalize userId to avoid duplicate case issues
 
         if(adminRepository.existsByUserId(admin.getUserId())){
-            throw new RuntimeException("AdminId already exists");
+            throw new RuntimeException("Admin Id already exists");
         }
 
         admin.setPassword(BCrypt.hashpw(admin.getPassword(), BCrypt.gensalt()));

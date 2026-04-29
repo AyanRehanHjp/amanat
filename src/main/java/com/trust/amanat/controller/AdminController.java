@@ -21,11 +21,15 @@ public class AdminController {
     private AdminService adminService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createAdmin(@RequestBody AdminEntity admin){
-        AdminEntity saved = adminService.createAdmin(admin);
-        return ResponseEntity.ok("Congratulation!, Admin with User Id "+saved.getUserId()+" Created Successfully");
-    }
+    public ResponseEntity<?> createAdmin(@RequestBody AdminEntity admin) {
+        try {
+            AdminEntity saved = adminService.createAdmin(admin);
+            return ResponseEntity.ok("Congratulation!, Admin with User Id " + saved.getUserId() + " Created Successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
 
+        }
+    }
         @PostMapping("/login")
     public ResponseEntity<?> verifyAdminLogin(@RequestBody AdminLoginDTO adminLoginDTO){
             String token = adminService.verifyAdminLogin(adminLoginDTO);
