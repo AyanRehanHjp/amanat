@@ -12,4 +12,5 @@ private Long userId;
 private String firstName;
 private String lastName;
 private String userName;
+private String role;
 }

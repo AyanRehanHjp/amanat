@@ -20,14 +20,16 @@ public class JWTService {
 
     private Algorithm algorithm;
     private final static String USER_NAME="userName";
+    private final static String ROLE="role";
 
     @PostConstruct
     public void postConstruct() {
         algorithm = Algorithm.HMAC256(algorithmKey);
     }
-    public String generateToken(String userName){
+    public String generateToken(String userName, String role){
         return JWT.create()
                 .withClaim(USER_NAME, userName)
+                .withClaim(ROLE, role)
                 .withIssuer(issuer)
                 .withExpiresAt(new Date(System.currentTimeMillis()+expiryTime))
                 .sign(algorithm);
@@ -36,6 +38,10 @@ public class JWTService {
         DecodedJWT decodedJWT = JWT.require(algorithm).withIssuer(issuer).build().verify(token);
         return decodedJWT.getClaim(USER_NAME).asString();
 
+    }
+    public String getRole(String token){
+        DecodedJWT decodedJWT = JWT.require(algorithm).withIssuer(issuer).build().verify(token);
+        return decodedJWT.getClaim(ROLE).asString();
     }
 }
 

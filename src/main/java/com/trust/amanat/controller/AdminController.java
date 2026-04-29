@@ -1,6 +1,7 @@
 package com.trust.amanat.controller;
 
 import com.trust.amanat.dto.AdminLoginDTO;
+import com.trust.amanat.dto.TokenResponseDTO;
 import com.trust.amanat.entity.AdminEntity;
 import com.trust.amanat.service.AdminService;
 
@@ -29,8 +30,11 @@ public class AdminController {
     public ResponseEntity<?> verifyAdminLogin(@RequestBody AdminLoginDTO adminLoginDTO){
             String token = adminService.verifyAdminLogin(adminLoginDTO);
             if(token!=null) {
+                TokenResponseDTO tok = new TokenResponseDTO();
+                tok.setToken(token);
+                tok.setRole("ADMIN");
 
-                return ResponseEntity.ok(token);
+                return ResponseEntity.ok(tok);
             }
             return ResponseEntity.badRequest().body("Invalid credentials, Try again with correct credential");
 }

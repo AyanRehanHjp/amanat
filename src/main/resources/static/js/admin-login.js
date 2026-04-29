@@ -25,12 +25,13 @@ function adminLogin(){
         if(!res.ok){
             throw new Error("Invalid credentials");
         }
-        return res.text(); // token aa raha hai
+        return res.json(); //getting token and role
     })
-    .then(token => {
+    .then(data => {
 
-        // 🔥 token store karo
-        localStorage.setItem("token", token);
+        // 🔥 token and role store
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.role);
 
         showMsg("Login Successful");
 

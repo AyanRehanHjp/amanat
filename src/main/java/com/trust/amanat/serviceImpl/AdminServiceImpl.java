@@ -33,7 +33,7 @@ public class AdminServiceImpl implements AdminService {
         AdminEntity admin = adminRepository.findByUserId(adminLoginDTO.getUserId());
     if (admin != null){
         if (BCrypt.checkpw(adminLoginDTO.getPassword(), admin.getPassword())){
-            return jwtService.generateToken(admin.getUserId());
+            return jwtService.generateToken(admin.getUserId(), admin.getRole());
 
         }
     }

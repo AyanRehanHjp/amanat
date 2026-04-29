@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
@@ -95,21 +96,22 @@ public class JWTRequestFilter extends OncePerRequestFilter {
         }
             String token = tokenHeader.substring(7);
             String username = jwtService.getUserName(token);
+            String role = jwtService.getRole(token);
 
             List<UserEntity> opUser = userSignInRepository.findByUserName(username);
         if (!opUser.isEmpty()) {
 
                 UserEntity user = opUser.get(0);
                 UsernamePasswordAuthenticationToken authenticationToken
-                        = new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+                        = new UsernamePasswordAuthenticationToken(user,null,List.of(new SimpleGrantedAuthority(role)));
                 authenticationToken.setDetails(new WebAuthenticationDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
             } else {
             AdminEntity admin = adminRepository.findByUserId(username);
             if (admin != null) {
-                UsernamePasswordAuthenticationToken auth =
-                        new UsernamePasswordAuthenticationToken(admin, null, new ArrayList<>());
+                UsernamePasswordAuthenticationToken auth
+                        = new UsernamePasswordAuthenticationToken(admin,null,List.of(new SimpleGrantedAuthority(role)));
 
                 auth.setDetails(new WebAuthenticationDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(auth);

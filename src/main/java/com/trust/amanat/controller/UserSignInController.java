@@ -36,6 +36,7 @@ public class UserSignInController {
                 tokenResp.setFirstName(user.getFirstName());
                 tokenResp.setLastName(user.getLastName());
                 tokenResp.setUserName(user.getUserName());
+                tokenResp.setRole(user.getRole());
                 logger.info("User logged in successfully: userName={}, userId={}", loginDTO != null ? loginDTO.getUserName() : null, userId);
                 return new ResponseEntity<>(tokenResp, HttpStatus.OK);
 

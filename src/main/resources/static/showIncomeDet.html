@@ -16,10 +16,11 @@
 <body>
 <script>
     let token = localStorage.getItem("token");
+    let role = localStorage.getItem("role");
 
-    if(!token){
-        alert("Please login first");
-        window.location.href = "/admin-login.html";
+if(!token || !role || (role.toUpperCase() !== "ADMIN" && role.toUpperCase() !== "USER")){
+        alert("Access Denied");
+        window.location.href = "/login.html";
     }
 </script>
 <!-- COMMON NAVBAR -->
