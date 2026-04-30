@@ -1,5 +1,6 @@
 package com.trust.amanat.controller;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.ScanPayDTO;
 import com.trust.amanat.entity.ScanPayEntity;
 import com.trust.amanat.service.ScanPayService;
@@ -21,7 +22,7 @@ public class ScanPayController {
     @PostMapping("/addPayee")
     public ResponseEntity<String> addPayee(@RequestBody ScanPayDTO scanPayDTO) {
          scanPayService.addPayee(scanPayDTO);
-        return new ResponseEntity<>("Payment details submitted Successfully", HttpStatus.CREATED) ;
+        return new ResponseEntity<>(AppConstants.Message.PAYMENT_DETAILS_SUBMITTED, HttpStatus.CREATED) ;
     }
 
 }

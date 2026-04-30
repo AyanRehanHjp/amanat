@@ -1,5 +1,6 @@
 package com.trust.amanat.controller;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.IncomeDetDTO;
 import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.service.IncomeDetService;
@@ -26,20 +27,20 @@ public class IncomeDetController {
 
             String response = incomeDetService.addPayment(incomeDetDTO);
                 logger.info("addPayment method is calling");
-            if (response.equals("SUCCESS")) {
+            if (response.equals(AppConstants.Message.SUCCESS)) {
                 logger.info("Payment added successfully for memberId={}, amount={}, for month={}, and year={}",
                         incomeDetDTO != null ? incomeDetDTO.getMemberId() : null,
                         incomeDetDTO != null ? incomeDetDTO.getAmount() : null,
                         incomeDetDTO != null ? incomeDetDTO.getForMonth() : null,
                         incomeDetDTO != null ? incomeDetDTO.getForYear() : null);
-                return new ResponseEntity<>("Payment added successfully", HttpStatus.CREATED);
+                return new ResponseEntity<>(AppConstants.Message.PAYMENT_ADDED, HttpStatus.CREATED);
             }
 
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 
         } catch (Exception e) {
 logger.error("Error occurred while adding payment: {}", e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong while adding payment",
+            return new ResponseEntity<>(AppConstants.Message.PAYMENT_FAILED,
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -64,7 +65,7 @@ logger.error("Error occurred while adding payment: {}", e.getMessage(), e);
         if (!(principal instanceof UserEntity)) {
 
             logger.error("User not authenticated properly");
-            throw new RuntimeException("User not authenticated");
+            throw new RuntimeException(AppConstants.Message.USER_NOT_AUTHENTICATED);
         }
 
         UserEntity user = (UserEntity) principal;

@@ -1,5 +1,6 @@
 package com.trust.amanat.controller;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.RecPdfGenDTO;
 import com.trust.amanat.entity.RecPdfGenEntity;
 import com.trust.amanat.repository.RecPdfGenRepository;
@@ -27,7 +28,7 @@ public class RecpdfgenController {
         if(receipt.isPresent()){
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
-                    .body("Receipt already generated");
+                    .body(AppConstants.Message.RECEIPT_ALREADY_GENERATED);
         }
 
         RecPdfGenEntity rec = new RecPdfGenEntity();
@@ -54,7 +55,7 @@ public class RecpdfgenController {
             return ResponseEntity.ok(rec);
 
         }
-        return ResponseEntity.status(404).body("Receipt not found");
+        return ResponseEntity.status(404).body(AppConstants.Message.RECEIPT_NOT_FOUND);
 
 
     }

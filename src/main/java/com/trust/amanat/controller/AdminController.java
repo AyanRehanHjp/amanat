@@ -1,5 +1,6 @@
 package com.trust.amanat.controller;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.AdminLoginDTO;
 import com.trust.amanat.dto.TokenResponseDTO;
 import com.trust.amanat.entity.AdminEntity;
@@ -24,7 +25,7 @@ public class AdminController {
     public ResponseEntity<?> createAdmin(@RequestBody AdminEntity admin) {
         try {
             AdminEntity saved = adminService.createAdmin(admin);
-            return ResponseEntity.ok("Congratulation!, Admin with User Id " + saved.getUserId() + " Created Successfully");
+            return ResponseEntity.ok(AppConstants.Message.ADMIN_ID + saved.getUserId() );
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
 
@@ -36,11 +37,11 @@ public class AdminController {
             if(token!=null) {
                 TokenResponseDTO tok = new TokenResponseDTO();
                 tok.setToken(token);
-                tok.setRole("ADMIN");
+                tok.setRole(AppConstants.Role.ADMIN);
 
                 return ResponseEntity.ok(tok);
             }
-            return ResponseEntity.badRequest().body("Invalid credentials, Try again with correct credential");
+            return ResponseEntity.badRequest().body(AppConstants.Message.INVALID_CREDENTIALS);
 }
 
 @GetMapping("/getAllAdmins")
@@ -49,6 +50,6 @@ public class AdminController {
        if (allAdmins!=null){
            return new ResponseEntity<>(allAdmins, HttpStatus.OK);
        }
-       return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+       return new ResponseEntity<>(AppConstants.Message.SOMETHING_WRONG, HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,5 +1,6 @@
 package com.trust.amanat.controller;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.BeneficiaryDTO;
 import com.trust.amanat.entity.BeneficiaryEntity;
 import com.trust.amanat.service.BeneficiaryService;
@@ -22,9 +23,9 @@ public class BeneficiaryController {
     public ResponseEntity <?> addBeneficiary(@RequestBody BeneficiaryDTO beneficiaryDTO) {
         BeneficiaryEntity submittedDetails = beneficiaryService.addBeneficiary(beneficiaryDTO);
         if (submittedDetails != null) {
-            return new ResponseEntity<>("Your details submitted successfully", HttpStatus.CREATED);
+            return new ResponseEntity<>(AppConstants.Message.BENEFICIARY_CREATED, HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>( "Something went wrong, Please try again",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>( AppConstants.Message.BENEFICIARY_FAILED,HttpStatus.BAD_REQUEST);
 
         }
     }
@@ -45,9 +46,9 @@ public class BeneficiaryController {
         BeneficiaryEntity updated = beneficiaryService.updateStatus(id, status, amount);
 
         if(updated != null){
-            return ResponseEntity.ok("Updated Successfully");
+            return ResponseEntity.ok(AppConstants.Message.BENEFICIARY_UPDATED);
         }else{
-            return ResponseEntity.badRequest().body("Update Failed");
+            return ResponseEntity.badRequest().body(AppConstants.Message.BENEFICIARY_UPDATE_FAILED);
         }
     }
 }

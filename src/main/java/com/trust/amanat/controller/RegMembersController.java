@@ -1,5 +1,6 @@
 package com.trust.amanat.controller;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.PostHolderDTO;
 import com.trust.amanat.entity.MembersEntity;
 import com.trust.amanat.entity.PostHolderEntity;
@@ -33,15 +34,15 @@ public class RegMembersController {
         MembersEntity addedMember = regMembersService.addMember(member);
 
         if (addedMember != null) {
-            return ResponseEntity.ok("Member added successfully");
+            return ResponseEntity.ok(AppConstants.Message.MEMBER_ADDED);
         }
 
-        return ResponseEntity.badRequest().body("Failed to add member");
+        return ResponseEntity.badRequest().body(AppConstants.Message.MEMBER_ADDING_FAILED);
     }
     @PutMapping("/updateMember/{memberId}")
     public ResponseEntity<?> updateMember(@PathVariable String memberId, @RequestBody MembersEntity member) {
         MembersEntity updatedMember = regMembersService.updateMember(memberId, member);
-        return ResponseEntity.ok( updatedMember.getMemberId()+ "Member updated successfully" );
+        return ResponseEntity.ok( updatedMember.getMemberId()+AppConstants.Message.MEMBER_UPDATED );
     }
 
 }
