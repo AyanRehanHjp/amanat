@@ -15,3 +15,9 @@ loader.style.display="none";
 function featureWorking(){
     alert("Sorry, this feature is under development.");
 }
+function instagram(){
+    window.open(URLS.INSTAGRAM, "_blank");
+}
+function youtube(){
+    window.open(URLS.YOUTUBE, "_blank");
+}
