@@ -1,5 +1,6 @@
 package com.trust.amanat.serviceImpl;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.entity.MembersEntity;
 import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.repository.RegMembersRepository;
@@ -29,10 +30,10 @@ public class RegMembersServiceImpl implements RegMembersService {
 
         if (lastMember != null && lastMember.getMemberId() != null) {
             String lastId = lastMember.getMemberId();
-            String numberPart = lastId.replace("AWT", "");
+            String numberPart = lastId.replace(AppConstants.Message.AWT, "");
             int num = Integer.parseInt(numberPart);
             num++;
-            newMemberId = "AWT" + num;
+            newMemberId = AppConstants.Message.AWT + num;
         }
 
         MembersEntity newMember = new MembersEntity();
@@ -65,6 +66,7 @@ public class RegMembersServiceImpl implements RegMembersService {
     // ================= GET ALL =================
     @Override
     public List<MembersEntity> getAllMembers() {
+
         return regMembersRepository.findAll();
     }
 
@@ -76,7 +78,7 @@ public class RegMembersServiceImpl implements RegMembersService {
         MembersEntity members = regMembersRepository.findByMemberId(memberId);
 
         if(members == null){
-            throw new RuntimeException("Member not found");
+            throw new RuntimeException(AppConstants.Message.MEMBER_NOT_FOUND);
         }
 
         members.setPrefix(member.getPrefix());

@@ -1,5 +1,6 @@
 package com.trust.amanat.serviceImpl;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.LogInDTO;
 import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.repository.UserSignInRepository;
@@ -19,7 +20,7 @@ public class UserSignInServiceImpl implements UserSignInService {
     public  String verifyLogIn(LogInDTO loginDTO){
         List<UserEntity> record = userSignInRepository.findByUserName(loginDTO.getUserName());
         if (record.size()>1){
-            throw new RuntimeException("This username has multiple records, Please SignUp with new username.");
+            throw new RuntimeException(AppConstants.Validation.MULTIPLE_RECORD_USER);
         }
         if(!record.isEmpty()){
             UserEntity user = record.get(0);

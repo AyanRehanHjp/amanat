@@ -1,5 +1,6 @@
 package com.trust.amanat.serviceImpl;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.PostHolderDTO;
 import com.trust.amanat.entity.PostHolderEntity;
 import com.trust.amanat.repository.PostHolderRepository;
@@ -34,9 +35,9 @@ public class PostHolderServiceImpl implements PostHolderService {
     public String deletePostHolder(Long id){
         if (postHolderRepository.existsById(id)){
             postHolderRepository.deleteById(id);
-            return "Post holder deleted successfully";
+            return AppConstants.Message.POST_HOLDER_DELETED_SUCCESSFULLY;
         }
-        return "Post holder not found with id: " + id;
+        return AppConstants.Message.POST_HOLDER_NOT_FOUND + id;
     }
 
 }

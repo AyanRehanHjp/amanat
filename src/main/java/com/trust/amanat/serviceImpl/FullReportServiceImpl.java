@@ -1,5 +1,6 @@
 package com.trust.amanat.serviceImpl;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.repository.ExpenditureRepository;
 import com.trust.amanat.repository.IncomeDetRepository;
 import com.trust.amanat.service.FullReportService;
@@ -64,10 +65,10 @@ public class FullReportServiceImpl implements FullReportService {
             double left = income - expense;
 
             Map<String, Object> data = new HashMap<>();
-            data.put("year", year);
-            data.put("income", income);
-            data.put("expense", expense);
-            data.put("left", left);
+            data.put(AppConstants.Message.YEAR, year);
+            data.put(AppConstants.Message.INCOME, income);
+            data.put(AppConstants.Message.EXPENSE, expense);
+            data.put(AppConstants.Message.LEFT_BALANCE, left);
 
             result.add(data);
         }

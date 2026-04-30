@@ -1,5 +1,6 @@
 package com.trust.amanat.config;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.entity.AdminEntity;
 import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.repository.AdminRepository;
@@ -87,8 +88,8 @@ public class JWTRequestFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        String tokenHeader = request.getHeader("Authorization");
-        if (tokenHeader == null || !tokenHeader.startsWith("Bearer ")) {
+        String tokenHeader = request.getHeader(AppConstants.Message.AUTH_HEADER);
+        if (tokenHeader == null || !tokenHeader.startsWith(AppConstants.Message.BEARER_PREFIX)) {
 
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             return;

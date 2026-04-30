@@ -1,5 +1,6 @@
 package com.trust.amanat.serviceImpl;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.AdminLoginDTO;
 import com.trust.amanat.entity.AdminEntity;
 import com.trust.amanat.repository.AdminRepository;
@@ -23,7 +24,7 @@ public class AdminServiceImpl implements AdminService {
         // normalize userId to avoid duplicate case issues
 
         if(adminRepository.existsByUserId(admin.getUserId())){
-            throw new RuntimeException("Admin Id already exists");
+            throw new RuntimeException(AppConstants.Message.ADMIN_ID_ALREADY_EXISTS);
         }
 
         admin.setPassword(BCrypt.hashpw(admin.getPassword(), BCrypt.gensalt()));
