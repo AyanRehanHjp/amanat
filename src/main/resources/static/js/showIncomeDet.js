@@ -15,20 +15,30 @@ function goHome(){
 }
 
 // 🔥 Page Load (Dropdown Setup)
-    window.onload = function () {
+  window.onload = function () {
 
-    const reportYear = document.getElementById("reportYear");
-    if(!reportYear) return;
+      const reportYear = document.getElementById("reportYear");
+      if(!reportYear) return;
 
-    for(let y = 2021; y <= 2099; y++){
-        let option = document.createElement("option");
-        option.value = y;
-        option.text = y;
-        reportYear.appendChild(option);
-    }
+      for(let y = 2021; y <= 2099; y++){
+          let option = document.createElement("option");
+          option.value = y;
+          option.text = y;
+          reportYear.appendChild(option);
+      }
 
-    reportYear.value = new Date().getFullYear();
-};
+      reportYear.value = new Date().getFullYear();
+
+      // ✅ Pay button only for user
+      let role = localStorage.getItem("role");
+
+      if(role && role.toUpperCase() === "ADMIN"){
+          let payBtn = document.querySelector(".pay-btn");
+          if(payBtn){
+              payBtn.style.display = "none";
+          }
+      }
+  };
 
 // 🔥 Load Monthly Report API
 function loadReport(){

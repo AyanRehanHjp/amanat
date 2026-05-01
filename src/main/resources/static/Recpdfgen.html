@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Receipt Generator</title>
-
+    <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/receipt.css">
 
     <!-- html2canvas -->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
     <!-- jsPDF -->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <script>
@@ -22,6 +19,8 @@
 </head>
 
 <body>
+<div id="common-navbar"></div>
+
 <script>
     let token = localStorage.getItem("token");
     let role = localStorage.getItem("role");
@@ -120,8 +119,14 @@
     </div>
 
 </div>
-
+<script src="/js/common.js"></script>
 <script src="/js/receipt.js" ></script>
-
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML = data;
+    });
+</script>
 </body>
 </html>

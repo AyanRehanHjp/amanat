@@ -21,3 +21,29 @@ function instagram(){
 function youtube(){
     window.open(URLS.YOUTUBE, "_blank");
 }
+// 🔹 GLOBAL POPUP
+function showPopup(message){
+
+    const popup = document.getElementById("globalPopup");
+    const msg = document.getElementById("globalPopupMsg");
+
+    if(!popup || !msg){
+        console.log("Popup not loaded yet");
+        return;
+    }
+
+    msg.innerText = message;
+    popup.style.display = "flex";
+}
+
+function closeGlobalPopup(){
+    const popup = document.getElementById("globalPopup");
+    if(popup){
+        popup.style.display = "none";
+    }
+
+    if(window.redirectAfterPopup){
+        window.location.href = window.redirectAfterPopup;
+        window.redirectAfterPopup = null;
+    }
+}

@@ -55,6 +55,7 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
 
         document.getElementById("popupMsg").innerText = msg;
         document.getElementById("popup").style.display = "flex";
+        document.getElementById("paymentForm").reset();
 
     })
 

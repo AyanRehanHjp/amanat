@@ -4,9 +4,7 @@ margin:0;
 font-family:Segoe UI,Arial;
 min-height:100vh;
 background:linear-gradient(120deg,#f8fafc,#e2e8f0,#cbd5e1);
-display:flex;
-justify-content:center;
-align-items:center;
+
 }
 
 /* ===== Main Page Wrapper ===== */
@@ -14,6 +12,7 @@ align-items:center;
 width:100%;
 padding:40px;
 display:flex;
+box-sizing: border-box;
 justify-content:center;
 }
 

@@ -4,16 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Members - Amanat Welfare Trust</title>
+    <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/members.css">
 </head>
 
 <body>
+<div id="common-navbar"></div>
+
 <script>
     let token = localStorage.getItem("token");
     let role = localStorage.getItem("role");
 
     if(!token || role !== "ADMIN"){
-        alert("Access Denied - Admin Only");
+        showPopup("Access Denied - Admin Only");
         window.location.href = "/admin-login.html";
     }
 </script>
@@ -114,7 +117,16 @@
 
 </div>
 
+<script src="/js/constants.js"></script>
+<script src="/js/common.js"></script>
 <script src="/js/members.js"></script>
 
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML = data;
+    });
+</script>
 </body>
 </html>

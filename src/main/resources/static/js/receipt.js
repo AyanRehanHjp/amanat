@@ -45,11 +45,11 @@ recDate:date
 .then(res=>{
 
 if(res.status==409){
-alert("Receipt already generated");
+showPopup("Receipt already generated");
 return;
 }
 
-alert("Receipt Created Successfully");
+showPopup("Receipt Created Successfully");
 
 document.getElementById("pName").innerText=name;
 document.getElementById("pAddress").innerText=address;

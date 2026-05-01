@@ -1,5 +1,4 @@
 body{
-
 margin:0;
 font-family:Segoe UI;
 background:#f1f8f4;
@@ -7,17 +6,15 @@ background:#f1f8f4;
 }
 
 .header{
-
 display:flex;
 align-items:center;
 justify-content:space-between;
 
-background: linear-gradient(green,white,green);
-color:green;
-
-padding:1px 550px;
+background: linear-gradient(#023644, #110909, #1d201d);
+padding:1px 25px;
 
 }
+
 
 .logo{
 
@@ -197,4 +194,7 @@ font-size:16px;
 
 .bck-btn:hover {
     background: black;
+}
+.header h1{
+    color: white;
 }

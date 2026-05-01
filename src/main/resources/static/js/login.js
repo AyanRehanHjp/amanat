@@ -54,13 +54,20 @@ function login(){
         localStorage.setItem("userName", userName);
 
         // redirect to welcome page
-        window.location.href="/welcome.html";
+hideLoader();
 
+// 👇 popup show karo
+showPopup("Login Successful");
+
+// 👇 2 sec baad redirect
+setTimeout(()=>{
+    window.location.href="/welcome.html";
+},2000);
     })
     .catch(error=>{
         console.error(error);
         hideLoader();
-        showMessage("Invalid Username or Password");
+        showPopup("Invalid Username or Password");
     })
     .finally(()=>{
         // ensure loader hidden in all cases (if redirect happens this may not run, but safe)

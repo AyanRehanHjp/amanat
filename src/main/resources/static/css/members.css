@@ -75,7 +75,7 @@ background:#084298;
 .add-member-box{
 display:flex;
 flex-wrap:wrap;
-gap:15px;
+gap:1px;
 background:#ffc107;
 padding:15px;
 border-radius:6px;
@@ -130,7 +130,7 @@ border-radius:0 4px 4px 0;
 }
 
 .button-group button{
-background:#198754;
+background:aqua;
 color:white;
 border:none;
 padding:8px 20px;
@@ -153,4 +153,20 @@ cursor:pointer;
 
 button:hover{
 background:#084298;
+}
+.add-member-box{
+border:3px solid #3aad56;
+}
+
+.add-member-box.add-mode{
+background:#198754;   /* green */
+color:white;
+}
+
+.add-member-box.edit-mode{
+background:#fef300;   /* yellow */
+color:black;
+}
+#formTitle{
+text-align:center;
 }

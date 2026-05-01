@@ -55,8 +55,8 @@ body: JSON.stringify(data)
 })
 .then(res=>res.text())
 .then(msg=>{
-alert(msg);
-location.reload(); // save ke baad table refresh
+showPopup(msg);
+window.redirectAfterPopup = location.href; //save ke baad table refresh
 });
 
 }

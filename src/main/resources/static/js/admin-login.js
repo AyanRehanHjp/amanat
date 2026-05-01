@@ -4,7 +4,7 @@ function adminLogin(){
     let password = document.getElementById("password").value;
 
     if(!adminId || !password){
-        showMsg("Please enter Admin ID and Password");
+        showPopup("Please enter Admin ID and Password");
         return;
     }
 
@@ -33,15 +33,12 @@ function adminLogin(){
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
 
-        showMsg("Login Successful");
+        showPopup("Login Successful");
 
-        // redirect after 1 sec
-        setTimeout(() => {
-            window.location.href = "/admin.html";
-        }, 1000);
+        window.redirectAfterPopup = "/admin.html";
     })
     .catch(err => {
-        showMsg(err.message || "Login Failed");
+        showPopup(err.message || "Login Failed");
     })
     .finally(() => {
         document.getElementById("loader").style.display = "none";

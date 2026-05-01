@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <title>Expenditure Details - Amanat Welfare Trust</title>
 
+    <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/expenditure.css">
 </head>
 
 <body>
+<div id="common-navbar"></div>
+
 <script>
     let token = localStorage.getItem("token");
     let role = localStorage.getItem("role");
@@ -79,8 +82,16 @@
     </table>
 
 </div>
-
+<script src="/js/constants.js"></script>
+<script src="/js/common.js"></script>
 <script src="/js/expenditure.js"></script>
 
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML = data;
+    });
+</script>
 </body>
 </html>

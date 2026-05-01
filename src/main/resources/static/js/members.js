@@ -49,7 +49,7 @@ fetch("http://localhost:9000/members/allmembers")
 let m = data.find(x => x.memberId === memberId);
 
 if(!m){
-    alert("Member not found");
+    showPopup("Member not found");
     return;
 }
 
@@ -74,8 +74,8 @@ document.getElementById("formTitle").innerText = "Update Member";
 
 // scroll
 window.scrollTo({ top: 0, behavior: "smooth" });
-
-})
+document.querySelector(".add-member-box").classList.remove("add-mode");
+document.querySelector(".add-member-box").classList.add("edit-mode");})
 .catch(err => {
 console.error("Error fetching member:", err);
 });
@@ -118,14 +118,14 @@ fetch(url,{
 .then(res => res.text())
 .then(msg => {
 
-    alert(msg);
+    showPopup(msg);
     loadMembers();
     resetForm();
 
 })
 .catch(err => {
     console.error("Save error:", err);
-    alert("Something went wrong");
+    showPopup("Something went wrong");
 });
 }
 
@@ -150,7 +150,9 @@ document.getElementById("mobile").value = "";
 document.getElementById("address").value = "";
 document.getElementById("joinedBy").value = "";
 document.getElementById("status").value = "Active";
-}
+
+document.querySelector(".add-member-box").classList.remove("edit-mode");
+document.querySelector(".add-member-box").classList.add("add-mode");}
 
 
 // ================= YEAR =================
@@ -176,4 +178,5 @@ window.location.href="/admin.html";
 window.onload = function(){
 loadMembers();
 loadYears();
+document.querySelector(".add-member-box").classList.add("add-mode");
 };
