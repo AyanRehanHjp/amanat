@@ -22,7 +22,15 @@
 </head>
 
 <body>
+<script>
+    let token = localStorage.getItem("token");
+    let role = localStorage.getItem("role");
 
+    if(!token || role !== "ADMIN"){
+        alert("Access Denied - Admin Only");
+        window.location.href = "/admin-login.html";
+    }
+</script>
 <div class="page">
 
     <div class="card">

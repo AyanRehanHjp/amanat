@@ -1,5 +1,6 @@
 package com.trust.amanat.controller;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.LogInDTO;
 import com.trust.amanat.dto.TokenResponseDTO;
 import com.trust.amanat.entity.UserEntity;
@@ -36,12 +37,13 @@ public class UserSignInController {
                 tokenResp.setFirstName(user.getFirstName());
                 tokenResp.setLastName(user.getLastName());
                 tokenResp.setUserName(user.getUserName());
+                tokenResp.setRole(user.getRole());
                 logger.info("User logged in successfully: userName={}, userId={}", loginDTO != null ? loginDTO.getUserName() : null, userId);
                 return new ResponseEntity<>(tokenResp, HttpStatus.OK);
 
             }
             logger.warn("Invalid login attempt for userName={}", loginDTO != null ? loginDTO.getUserName() : null);
-            return new ResponseEntity<>("Invalid credentials, Try again with correct credential", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(AppConstants.Message.INVALID_CREDENTIALS, HttpStatus.BAD_REQUEST);
         } catch (RuntimeException ex) {
             logger.error("Error occurred while verifying login for userName={}: error={}", loginDTO != null ? loginDTO.getUserName() : null, ex.getMessage(), ex);
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST) ;

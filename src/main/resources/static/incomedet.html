@@ -7,11 +7,22 @@
     <title>Amanat Welfare Trust - Income Details Entry</title>
 
     <link rel="stylesheet" href="/css/incomedet.css">
+    <link rel="stylesheet" href="/css/common.css">
+
 
 </head>
 
 <body>
+<script>
+    let token = localStorage.getItem("token");
+    let role = localStorage.getItem("role");
 
+    if(!token || role !== "ADMIN"){
+        alert("Access Denied - Admin Only");
+        window.location.href = "/admin-login.html";
+    }
+</script>
+<div id="common-navbar"></div>
 <div class="header">
 
     <img src="/images/logo.png" class="logo">
@@ -23,7 +34,7 @@
 
     </div>
 
-    <button class="back-btn" onclick="goHome()">⬅ Back Home</button>
+    <button class="back-btn" onclick="goHome()">⬅ Back to Admin</button>
 
 </div>
 
@@ -113,8 +124,15 @@
     </div>
 
 </div>
-
+<script src="/js/constants.js"></script>
 <script src="/js/incomedet.js"></script>
-
+<script src="/js/common.js"></script>
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML = data;
+    });
+</script>
 </body>
 </html>

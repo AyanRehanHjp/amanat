@@ -1,5 +1,6 @@
 package com.trust.amanat.serviceImpl;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.entity.MembersEntity;
 import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.repository.RegMembersRepository;
@@ -36,20 +37,20 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         String memberId = "AWT001";
 
         if (last != null && last.getMemberId() != null) {
-            int num = Integer.parseInt(last.getMemberId().replace("AWT", ""));
+            int num = Integer.parseInt(last.getMemberId().replace(AppConstants.Message.AWT, ""));
             memberId = String.format("AWT%03d", num + 1);
         }
 
         if (userSignUpRepository.existsByUserName(signUpDTO.getUserName())) {
-            throw new RuntimeException("UserName already exists");
+            throw new RuntimeException(AppConstants.Validation.USERNAME_ALREADY_EXISTS);
         }
 
         if (signUpDTO.getEmail() != null && userSignUpRepository.existsByEmail(signUpDTO.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new RuntimeException(AppConstants.Validation.EMAIL_ALREADY_EXISTS);
         }
 
         if (signUpDTO.getMobile() != null && userSignUpRepository.existsByMobile(signUpDTO.getMobile())) {
-            throw new RuntimeException("Mobile already exists");
+            throw new RuntimeException(AppConstants.Validation.MOBILE_ALREADY_EXISTS);
         }
 
         // USER
@@ -70,7 +71,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         member.setAddress(signUpDTO.getCity());
         member.setMemberId(memberId);
         member.setJoiningYear(java.time.Year.now().getValue());
-        member.setStatus("INACTIVE");
+        member.setStatus(AppConstants.Message.INACTIVE);
 
         // LINK
         signUp.setMemberId(memberId);
@@ -82,14 +83,14 @@ public class UserSignUpServiceImpl implements UserSignUpService {
     public UserEntity updateUser(Long id, SignUpDTO signUpDTO, MultipartFile file) {
 
         UserEntity user = userSignUpRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User Not found"));
+                .orElseThrow(() -> new RuntimeException(AppConstants.Validation.USER_NOT_FOUND));
 
         // ================= MOBILE CHECK =================
         String newMobile = signUpDTO.getMobile();
         if (newMobile != null) {
             if (!Objects.equals(newMobile, user.getMobile()) &&
                     userSignUpRepository.existsByMobile(newMobile)) {
-                throw new RuntimeException("Mobile already exists to another one");
+                throw new RuntimeException(AppConstants.Validation.MOBILE_ALREADY_EXISTS_TO_ANOTHER);
             }
             user.setMobile(newMobile);
         }
@@ -99,7 +100,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         if (newEmail != null) {
             if (!Objects.equals(newEmail, user.getEmail()) &&
                     userSignUpRepository.existsByEmail(newEmail)) {
-                throw new RuntimeException("Email already exists to another one");
+                throw new RuntimeException(AppConstants.Validation.EMAIL_ALREADY_EXISTS_TO_ANOTHER);
             }
             user.setEmail(newEmail);
         }
@@ -137,7 +138,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
                 user.setProfilePicture(fileName);
 
             } catch (IOException e) {
-                throw new RuntimeException("Failed to upload profile picture", e);
+                throw new RuntimeException(AppConstants.Message.FAILED_TO_UPLOAD_PROFILE_PIC, e);
             }
         }
 
@@ -147,23 +148,15 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         MembersEntity member = user.getMember();
 
         if (member != null) {
-
-            // firstname sync
             if (signUpDTO.getFirstName() != null) {
                 member.setFirstname(signUpDTO.getFirstName());
             }
-
-            // lastname sync
             if (signUpDTO.getLastName() != null) {
                 member.setLastname(signUpDTO.getLastName());
             }
-
-            // mobile sync
             if (signUpDTO.getMobile() != null) {
                 member.setMobile(signUpDTO.getMobile());
             }
-
-            // address sync (city use kar rahe ho)
             if (signUpDTO.getCity() != null) {
                 member.setAddress(signUpDTO.getCity());
             }
@@ -177,25 +170,17 @@ public class UserSignUpServiceImpl implements UserSignUpService {
     public String deleteUser(Long id) {
 
         UserEntity user = userSignUpRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        // 🔥 ADDED: member reference nikaalo
+                .orElseThrow(() -> new RuntimeException(AppConstants.Validation.USER_NOT_FOUND));
         MembersEntity member = user.getMember();
-
-        // 🔥 ADDED: relation break karo (important)
         if (member != null) {
             user.setMember(null);
         }
-
-        // USER delete
         userSignUpRepository.delete(user);
-
-        // 🔥 ADDED: member delete
         if (member != null) {
             regMembersRepository.delete(member);
         }
 
-        return "Deleted Successfully";
+        return AppConstants.Message.DELETED_SUCCESSFULLY;
     }
 
     @Override
@@ -204,13 +189,13 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         if (user.isPresent()) {
             return user.get();
 
-        } else throw new RuntimeException("User not found with this id: " + id);
+        } else throw new RuntimeException(AppConstants.Validation.USER_NOT_FOUND_WITH_THIS_ID + id);
     }
 
     public void removeProfilePic(Long id){
 
         UserEntity user = userSignUpRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException(AppConstants.Validation.USER_NOT_FOUND));
 
         user.setProfilePicture(null);
         userSignUpRepository.save(user);

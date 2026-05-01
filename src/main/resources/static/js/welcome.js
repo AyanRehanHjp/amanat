@@ -1,7 +1,8 @@
 /* check JWT token */
 const token = localStorage.getItem("token");
+const role  = localStorage.getItem("role");
 
-if(!token){
+if(!token || role.toUpperCase() !== "USER"){
     window.location.href="/login.html";
 }
 
@@ -16,13 +17,7 @@ if(firstName && lastName){
 
 /* logout */
 function logout(){
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userName");
-    localStorage.removeItem("firstName");
-    localStorage.removeItem("lastName");
-
+    localStorage.clear();
     window.location.href="/login.html";
-
 }
+

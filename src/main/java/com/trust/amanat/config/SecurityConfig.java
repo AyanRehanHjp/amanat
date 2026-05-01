@@ -63,7 +63,14 @@ public class SecurityConfig {
                                 "/help-requests/",
                                 "/help-requests/**",
                                 "/help-requests.html",
-                                "/beneficiary.html"
+                                "/create-admin.html",
+                                "/admins/create",
+                                "/beneficiary.html",
+                                "/admin-login.html",
+                                "/admin-detail.html",
+                                "/admins/login",
+                                "/admins/getAllAdmins",
+                                "/report/**"
 
 
                         ).permitAll()

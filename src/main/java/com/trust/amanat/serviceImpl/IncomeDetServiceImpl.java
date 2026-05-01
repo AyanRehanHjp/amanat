@@ -1,4 +1,5 @@
 package com.trust.amanat.serviceImpl;
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.IncomeDetDTO;
 import com.trust.amanat.entity.IncomeDetEntity;
 import com.trust.amanat.repository.IncomeDetRepository;
@@ -22,27 +23,27 @@ public class IncomeDetServiceImpl implements IncomeDetService {
         try {
 
             if (incomeDetDTO == null) {
-                return "Request body is empty";
+                return AppConstants.Validation.REQUEST_BODY_EMPTY;
             }
 
             if (incomeDetDTO.getMemberId() == null) {
-                return "Member Id is required";
+                return AppConstants.Validation.MEMBER_ID_REQUIRED;
             }
 
             if (incomeDetDTO.getAmount() == null) {
-                return "Amount is required";
+                return AppConstants.Validation.AMOUNT_REQUIRED;
             }
 
             if (incomeDetDTO.getAmount() <= 0) {
-                return "Amount must be greater than zero";
+                return AppConstants.Validation.AMOUNT_NOT_GREATER_ZERO;
             }
 
             if (incomeDetDTO.getForMonth() == null || incomeDetDTO.getForMonth().trim().isEmpty()) {
-                return "Month is required";
+                return AppConstants.Validation.MONTH_REQUIRED;
             }
 
             if (incomeDetDTO.getForYear() == null) {
-                return "Year is required";
+                return AppConstants.Validation.YEAR_REQUIRED;
             }
 
 
@@ -57,11 +58,11 @@ public class IncomeDetServiceImpl implements IncomeDetService {
             incomeDet.setComment(incomeDetDTO.getComment());
             incomeDetRepository.save(incomeDet);
 
-            return "SUCCESS";
+            return AppConstants.Message.SUCCESS;
 
         } catch (Exception e) {
             e.printStackTrace();
-            return "Database error occurred";
+            return AppConstants.Message.DATABASE_ERROR;
         }
     }
 

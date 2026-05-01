@@ -1,5 +1,6 @@
 package com.trust.amanat.controller;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.PostHolderDTO;
 import com.trust.amanat.entity.PostHolderEntity;
 import com.trust.amanat.service.PostHolderService;
@@ -20,7 +21,7 @@ public class PostHolderController {
     public ResponseEntity<?> addPostHolder(@RequestBody PostHolderDTO postHolderDTO) {
         PostHolderEntity postHolder = postHolderService.addPostHolder(postHolderDTO);
         if (postHolder != null) {
-            return new ResponseEntity<>("post holder added successfully", HttpStatus.OK);
+            return new ResponseEntity<>(AppConstants.Message.POST_HOLDER_ADDED_SUCCESSFULLY, HttpStatus.OK);
         }
         return ResponseEntity.badRequest().build();
     }
@@ -32,15 +33,15 @@ public class PostHolderController {
             return new ResponseEntity<>(postHolderEntity, HttpStatus.OK);
 
         }
-        return new ResponseEntity<>("Something went error", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(AppConstants.Message.SOMETHING_WENT_ERROR, HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/deletePostHolder/{id}")
     public ResponseEntity<?> deletePostHolder(@PathVariable Long id) {
         String response = postHolderService.deletePostHolder(id);
         if (response != null) {
-            return new ResponseEntity<>("Post Holder Deleted Successfully ", HttpStatus.OK);
+            return new ResponseEntity<>(AppConstants.Message.POST_HOLDER_DELETED_SUCCESSFULLY, HttpStatus.OK);
         }
-        return new ResponseEntity<>("Post Holder Not Found with id: " + id, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(AppConstants.Message.POST_HOLDER_NOT_FOUND + id, HttpStatus.BAD_REQUEST);
     }
 }

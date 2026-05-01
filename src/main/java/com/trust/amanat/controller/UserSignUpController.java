@@ -1,5 +1,6 @@
 package com.trust.amanat.controller;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.service.UserSignUpService;
 import com.trust.amanat.dto.SignUpDTO;
@@ -35,7 +36,7 @@ public class UserSignUpController {
                 return new ResponseEntity<>(userData, HttpStatus.CREATED);
             }
             logger.error("Failed to sign up user: email={}", signUpDTO != null ? signUpDTO.getEmail() : null);
-            return new ResponseEntity<>("Saved Failed", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(AppConstants.Message.SAVED_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
 
         } catch (RuntimeException ex) {
             logger.error("Error occurred while signing up user: email={}, error={}", signUpDTO != null ? signUpDTO.getEmail() : null, ex.getMessage(), ex);
@@ -51,7 +52,7 @@ public class UserSignUpController {
         try {
             UserEntity updated = userSignUpService.updateUser(id, signUpDTO, file);
             if (updated != null) {
-                return new ResponseEntity<>("Updated successfully", HttpStatus.OK);
+                return new ResponseEntity<>(AppConstants.Message.UPDATED, HttpStatus.OK);
 
             }
 
@@ -59,7 +60,7 @@ public class UserSignUpController {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
-        return new ResponseEntity<>("Failed", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(AppConstants.Message.FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
@@ -88,6 +89,6 @@ public class UserSignUpController {
     @DeleteMapping("/removeProfilePic/{id}")
     public ResponseEntity<String> removeProfilePic(@PathVariable Long id) {
              userSignUpService.removeProfilePic(id);
-            return new ResponseEntity<>("Profile picture removed successfully", HttpStatus.OK);
+            return new ResponseEntity<>(AppConstants.Message.PROFILE_PIC_REMOVED, HttpStatus.OK);
 }
 }

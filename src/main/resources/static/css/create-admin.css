@@ -1,0 +1,172 @@
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+
+    background:#888B90;
+    background-image: radial-gradient(#d9e2ec 1px, transparent 1px);
+    background-size:20px 20px;
+
+    display:flex;
+    flex-direction:column;
+}
+
+/* HEADER */
+.header{
+    margin-top:20px;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+}
+
+/* CARD */
+.card{
+    width:500px;
+    background:#fff;
+    padding:30px;
+    margin-top:40px;
+    margin-bottom:40px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    align-self:center;
+}
+
+/* INPUT */
+input{
+    width:100%;
+    padding:11px;
+    margin:10px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+input:focus{
+    border-color:#2a9d8f;
+    box-shadow:0 0 5px rgba(42,157,143,0.3);
+    outline:none;
+}
+
+/* MAIN BUTTON (Create Admin) */
+.login-btn{
+    width:100%;
+    padding:11px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-size:15px;
+    background: linear-gradient(45deg,#2a9d8f,#1abc9c);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-btn:hover{
+    transform:scale(1.02);
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* BUTTON GROUP */
+.btn-group{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    margin-top:15px;
+}
+
+/* ROW */
+.btn-row{
+    display:flex;
+    gap:12px;
+}
+
+/* SMALL BUTTONS */
+.back, .signup{
+    width:150px;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+/* BACK */
+.back{
+    background: linear-gradient(45deg,#c0392b,#e74c3c);
+}
+
+.back:hover{
+    transform:scale(1.05);
+}
+
+/* GO TO LOGIN */
+.signup{
+    background: linear-gradient(45deg,#134E5E,#1f6f8b);
+}
+
+.signup:hover{
+    transform:scale(1.05);
+}
+
+/* MESSAGE */
+.msg{
+    display:none;
+    margin-bottom:10px;
+    padding:10px;
+    border-radius:6px;
+    font-weight:bold;
+    background:#fff3cd;
+    color:#856404;
+    text-align:center;
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    position:relative; /* added for close button */
+    /* background removed from here to control via JS */
+    color:#fff;
+    padding:25px 40px;
+    border-radius:12px;
+    text-align:center;
+    font-size:16px;
+    width:320px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    animation:popupFade 0.3s ease;
+}
+
+/* CLOSE BUTTON */
+.close-btn{
+    position:absolute;
+    top:10px;
+    right:15px;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* ANIMATION */
+@keyframes popupFade{
+    from{transform:scale(0.8); opacity:0;}
+    to{transform:scale(1); opacity:1;}
+}
+
+/* MOBILE */
+@media(max-width:500px){
+    .card{
+        width:90%;
+    }
+    .btn-row{
+        flex-direction:column;
+    }
+}

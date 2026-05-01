@@ -12,7 +12,15 @@
 </head>
 
 <body>
+<script>
+    let token = localStorage.getItem("token");
+    let role = localStorage.getItem("role");
 
+    if(!token || role !== "ADMIN"){
+        alert("Access Denied - Admin Only");
+        window.location.href = "/admin-login.html";
+    }
+</script>
 <div id="common-navbar"></div>
 
 
@@ -30,16 +38,15 @@
         <h3>Navigation</h3>
 
         <ul>
-
-            <li onclick="openPage('/members.html')">Members Details</li>
-            <li onclick="openPage('/signup.html')">Add Member</li>
+            <li onclick="openPage('/admin-detail.html')">Admin Details</li>
+            <li onclick="openPage('/members.html')">Add/Modify/View Members Details</li>
             <li onclick="openPage('/incomedet.html')"> Add Income Details</li>
             <li onclick="openPage('/showIncomeDet.html')"> Show Members Income Details</li>
             <li onclick="openPage('/expenditure.html')">Expenditure Details</li>
             <li onclick="openPage('/recpdfgen.html')">Generate Receipt</li>
-            <li onclick="openPage('/scan&pay.html')">Scan & Pay</li>
-            <li onclick="openPage('/cover.html')">Cover Page</li>
             <li onclick="openPage('/help-requests.html')">Help Requests</li>
+            <li onclick="openPage('/cover.html')">Full Report</li>
+
 
 
 
@@ -56,15 +63,14 @@
         <p style="font-size:11px ; font-style : italic; color:red;  font-weight: bold; text-decoration: underline;">This page belongs to admin team only, For Normal User Access is not permissible</p>
 
         <div class="cards">
-
-            <div class="card" onclick="openPage('/members.html')">
+            <div class="card" onclick="openPage('/admin-detail.html')">
                 👥<br>
-                Members Details
+                Admin Details
             </div>
 
-            <div class="card" onclick="openPage('/signup.html')">
-                ➕<br>
-                Add Member
+            <div class="card" onclick="openPage('/members.html')">
+                ➕ / 👥<br>
+                Add/Modify/View Members Details
             </div>
             <div class="card" onclick="openPage('/showIncomeDet.html')">
                 📑<br>
@@ -86,24 +92,21 @@
                 Generate Receipt
             </div>
 
-            <div class="card" onclick="openPage('/scan&pay.html')">
-                💰<br>
-                Scan & Pay
-            </div>
-            <div class="card" onclick="openPage('/cover.html')">
-                <br>
-                Cover Page
-            </div>
             <div class="card" onclick="openPage('/help-requests.html')">
                 <br>
                 🙏 Help Requests
             </div>
+
+             <div class="card" onclick="openPage('/cover.html')">
+                📊<br>
+                Full Report
+             </div>
         </div>
 
     </div>
 
 </div>
-
+<script src="/js/constants.js"></script>
 <script src="/js/admin.js"></script>
 <script src="/js/common.js"></script>
 

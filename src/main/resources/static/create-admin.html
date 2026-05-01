@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Amanat Trust</title>
+
+    <link rel="stylesheet" href="/css/create-admin.css">
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+
+<body>
+<script>
+    let token = localStorage.getItem("token");
+    let role = localStorage.getItem("role");
+
+    if(!token || role !== "ADMIN"){
+        alert("Access Denied - Admin Only");
+        window.location.href = "/admin-login.html";
+    }
+</script>
+<div id="common-navbar"></div>
+
+<div class="header">
+    <h2>Admin Panel</h2>
+</div>
+
+<div class="card">
+
+    <h3>Create New Admin</h3>
+
+    <div id="msgBox" class="msg">
+        <span id="msgText"></span>
+    </div>
+    <form id="adminForm">
+
+        <label>Full Name</label>
+        <input id="fullName"
+               placeholder="Enter full name"
+               required
+               minlength="3"
+               maxlength="50"
+               pattern="^[A-Za-z ]+$">
+        <!-- Only alphabets and spaces allowed -->
+
+        <label>Designation</label>
+        <input id="designation"
+               placeholder="Enter designation"
+               required
+               minlength="2"
+               maxlength="50"
+               pattern="^[A-Za-z ]+$">
+        <!-- Prevent numbers/special characters -->
+
+        <label>Admin ID</label>
+        <input id="userId"
+               placeholder="Enter Admin ID (ADM001)"
+               required
+               minlength="5"
+               maxlength="10"
+               pattern="^[A-Za-z0-9]+$">
+        <!-- No spaces, only alphanumeric -->
+
+        <label>Password</label>
+        <input id="password"
+               type="password"
+               required
+               minlength="6"
+               maxlength="12"
+               pattern="(?=.*[A-Z])(?=.*[0-9]).{6,12}"
+               title="Password must contain 1 uppercase and 1 number">
+        <!-- Strong password rule -->
+
+        <button type="submit" class="login-btn">Create Admin</button>
+
+    </form>
+</div>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">✖</span>
+        <h2 id="popupTitle"></h2>
+        <h3 id="popupSubTitle"></h3>
+        <p id="popupMsg"></p>
+    </div>
+</div>
+<button class="signup"
+        style="display:block; margin:20px auto;"
+        onclick="location.href='/admin.html'">
+    Go to Admin
+</button>
+
+
+<script src="/js/constants.js"></script>
+<script src="/js/create-admin.js"></script>
+<script src="/js/common.js"></script>
+
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML = data;
+    });
+</script>
+
+</body>
+</html>

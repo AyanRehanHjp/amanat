@@ -47,7 +47,8 @@ function login(){
         localStorage.setItem("token", data.token);
         localStorage.setItem("firstName", data.firstName);
         localStorage.setItem("lastName", data.lastName);
-        localStorage.setItem("userId", data.userId);   //  id aa rhi
+        localStorage.setItem("userId", data.userId);
+        localStorage.setItem("role", data.role);
 
         // save username
         localStorage.setItem("userName", userName);

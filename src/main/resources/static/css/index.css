@@ -326,3 +326,25 @@ background:#b02a37;
 .glow-btn:active {
     transform: scale(0.96);
 }
+/* Map address */
+.map-container{
+    margin-top:15px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+.footer-content{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.footer-left{
+    max-width:350px;
+}
+
+.footer-right iframe{
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}

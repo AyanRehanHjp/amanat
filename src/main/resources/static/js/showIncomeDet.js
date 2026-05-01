@@ -1,14 +1,21 @@
-// ===============================
 // 🔙 Back button (Go to dashboard)
-// ===============================
 function goHome(){
-    window.location.href = "/admin.html";
+
+  let role = localStorage.getItem("role");
+
+  if(role && role.toUpperCase() === "ADMIN"){
+      window.location.href = "/admin.html";
+  }
+  else if(role && role.toUpperCase() === "USER"){
+      window.location.href = "/userdetails.html";
+  }
+  else {
+      window.location.href = "/login.html";
+  }
 }
 
-// ===============================
 // 🔥 Page Load (Dropdown Setup)
-// ===============================
-window.onload = function () {
+    window.onload = function () {
 
     const reportYear = document.getElementById("reportYear");
     if(!reportYear) return;
@@ -23,9 +30,7 @@ window.onload = function () {
     reportYear.value = new Date().getFullYear();
 };
 
-// ===============================
 // 🔥 Load Monthly Report API
-// ===============================
 function loadReport(){
 
     let year = document.getElementById("reportYear").value;
@@ -34,12 +39,20 @@ function loadReport(){
     let type = params.get("type");
 
     let apiUrl;
+ // Api url for user and admin
+let role = localStorage.getItem("role");
 
-    if(type === "my"){
-        apiUrl = `/incomeDet/my-monthly-report?year=${year}`;
-    } else {
-        apiUrl = `/incomeDet/monthly-report?year=${year}`;
-    }
+if(role && role.toUpperCase() === "USER"){
+    apiUrl = `/incomeDet/my-monthly-report?year=${year}`;
+}
+else if(role && role.toUpperCase() === "ADMIN"){
+    apiUrl = `/incomeDet/monthly-report?year=${year}`;
+}
+else {
+    alert("Unauthorized access");
+    window.location.href = "/login.html";
+    return;
+}
 
     // 🔥 GET TOKEN FROM LOCAL STORAGE
     let token = localStorage.getItem("token");

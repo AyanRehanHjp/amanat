@@ -11,6 +11,15 @@
 </head>
 
 <body>
+<script>
+    let token = localStorage.getItem("token");
+    let role = localStorage.getItem("role");
+
+    if(!token || role !== "ADMIN"){
+        alert("Access Denied - Admin Only");
+        window.location.href = "/admin-login.html";
+    }
+</script>
 <div id="common-navbar"></div>
 <div class="header">
     Beneficiary Help Requests (Admin Panel)
@@ -41,9 +50,11 @@
         <tbody></tbody>
 
     </table>
-
+    <button class="back-btn" onclick="window.location.href='/admin.html'">
+        ⬅ Back to Admin
+    </button>
 </div>
-
+<script src="/js/constants.js"></script>
 <script src="/js/help-requests.js"></script>
 <script src="/js/common.js"></script>
 

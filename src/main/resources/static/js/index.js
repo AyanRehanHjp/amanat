@@ -12,3 +12,12 @@ alert("Sorry, this feature is under development.");
 function goToAdmin(){
     window.location.href="/admin.html";
 }
+function goToAdminLogin(){
+    window.location.href="/admin-login.html";
+}
+function instagram(){
+    window.open(URLS.INSTAGRAM, "_blank");
+}
+function youtube(){
+    window.open(URLS.YOUTUBE, "_blank");
+}

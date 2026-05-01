@@ -9,7 +9,9 @@ function previewImage(event){
 
 /* TOKEN CHECK */
 const token = localStorage.getItem("token");
-if(!token){
+const role  = localStorage.getItem("role");
+
+if(!token || role.toUpperCase() !== "USER"){
     window.location.href="/login.html";
 }
 
@@ -122,10 +124,8 @@ fetch("http://localhost:9000/signUp/updateUser/"+userId,{
 
 /* LOGOUT */
 function logout(){
-localStorage.removeItem("token");
-localStorage.removeItem("userId");
-localStorage.removeItem("userName");
-window.location.href="/login.html";
+    localStorage.clear();
+    window.location.href="/login.html";
 }
 function deleteProfilePic(){
 
@@ -146,7 +146,7 @@ fetch("http://localhost:9000/signUp/removeProfilePic/"+userId,{
 
 }
 function openPaymentPage() {
-    window.location.href = "/showIncomeDet.html";
+    window.location.href = "/showIncomeDet.html?type=my";
 }
 // Redirect to personal report page
 function openPaymentPage(){
