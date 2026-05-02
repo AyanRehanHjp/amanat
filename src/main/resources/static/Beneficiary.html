@@ -3,32 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Beneficiary Registration</title>
+    <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/beneficiary.css">
 </head>
 
 <body>
-
-<div class="topbar">
-    📞 +91 72772 22729 | ✉ amanatwelfaretrust@gmail.com
-</div>
-
-<div class="navbar">
-    <div class="logo">
-        <img src="/images/logo.png"> Amanat Welfare Trust
-    </div>
-
-    <!-- 🔥 ADD THIS -->
-    <ul>
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="/about.html">About Us</a></li>
-        <li><a href="/team.html">Our Team</a></li>
-        <li><a href="/beneficiary.html">Beneficiary</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-    </ul>
-</div>
-
+<div id="common-navbar"></div>
 <div class="hero">
-    <h1>Beneficiary Help Request</h1>
+    <h1>Help Request Form</h1>
 </div>
 
 <div class="form-container">
@@ -68,6 +50,10 @@
 
             <label>Reference Person / How do you reach <span style="color:red">*</span></label>
             <input type="text" id="comment" placeholder="Enter Reference Person or How You Reached Us" required>
+
+            <label>Supportive Documents</label>
+            <input type="file" id="supportiveDocuments" accept=".pdf,.jpg,.jpeg,.png">
+
         </div>
 
         <button type="submit">Submit Request</button>
@@ -80,7 +66,17 @@
     </button>
 </div>
 
+
+<script src="/js/constants.js"></script>
+<script src="/js/common.js"></script>
 <script src="/js/beneficiary.js"></script>
 
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML = data;
+    });
+</script>
 </body>
 </html>

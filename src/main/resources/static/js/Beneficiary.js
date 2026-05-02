@@ -2,7 +2,8 @@ document.getElementById("beneficiaryForm").addEventListener("submit", function(e
 
     e.preventDefault();
 
-    let data = {
+    // Collect JSON data
+    let beneficiaryData = {
         needyName: document.getElementById("needyName").value.trim(),
         mobile: document.getElementById("mobile").value.trim(),
         address: document.getElementById("address").value.trim(),
@@ -14,44 +15,43 @@ document.getElementById("beneficiaryForm").addEventListener("submit", function(e
         comment: document.getElementById("comment").value.trim()
     };
 
-
-    // 🔥 EMPTY FIELD CHECK
-    for(let key in data){
-        if(!data[key]){
+    // Empty field check
+    for(let key in beneficiaryData){
+        if(!beneficiaryData[key]){
             document.getElementById("msg").innerText = "All fields are mandatory";
             return;
         }
     }
 
-    // 🔥 MOBILE VALIDATION
-    if(data.mobile.length !== 10 || isNaN(data.mobile)){
+    // Mobile validation
+    if(beneficiaryData.mobile.length !== 10 || isNaN(beneficiaryData.mobile)){
         document.getElementById("msg").innerText = "Enter valid 10 digit mobile number";
         return;
     }
 
+    // Prepare FormData for JSON + File
+    let formData = new FormData();
+    formData.append("beneficiary", new Blob([JSON.stringify(beneficiaryData)], { type: "application/json" }));
 
-    // 🔥 API CALL
-    fetch("http://localhost:9000/beneficiary/addBeneficiary",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify(data)
+    let fileInput = document.getElementById("supportiveDocuments");
+    if(fileInput && fileInput.files.length > 0){
+        formData.append("file", fileInput.files[0]);
+    }
+
+    // API call
+    fetch("http://localhost:9000/beneficiary/addBeneficiary", {
+        method: "POST",
+        body: formData
     })
     .then(res => res.text())
     .then(msg => {
-
-        alert(msg);
-
+        showPopup(msg);
         document.getElementById("beneficiaryForm").reset();
         document.getElementById("msg").innerText = "";
-
     })
     .catch(err => {
-
         console.error(err);
         document.getElementById("msg").innerText = "Server error";
-
     });
 
 });

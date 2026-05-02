@@ -49,8 +49,8 @@ font-weight:500;
 .hero{
 text-align:center;
 padding:11px;
-background: linear-gradient(green,white,green);
-color:Blue;
+background: linear-gradient(black);
+color:white;
 }
 
 .hero h1{

@@ -17,4 +17,5 @@ public class BeneficiaryDTO {
     private String financialCondition;
     private String familyOccupation;
     private String comment;
+    private String supportiveDocuments;
 }

@@ -23,4 +23,8 @@ public class BeneficiaryEntity {
     private String comment;
     private String status;
     private Integer amount;
+    private String documentPath;
+    @Column(name = "supportive_documents")
+    private String supportiveDocuments;
+
 }
