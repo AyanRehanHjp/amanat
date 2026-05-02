@@ -26,20 +26,16 @@ public class BeneficiaryController {
     public ResponseEntity<?> addBeneficiary(
             @RequestPart("beneficiary") BeneficiaryDTO beneficiaryDTO,
             @RequestPart(value = "file", required = false) MultipartFile file) {
-
         logger.info("Received addBeneficiary request for needyName: {}", beneficiaryDTO.getNeedyName());
-
         if(file != null && !file.isEmpty()){
             logger.info("File received: {}", file.getOriginalFilename());
         } else {
             logger.info("No file uploaded in request");
         }
-
         BeneficiaryEntity submittedDetails = beneficiaryService.addBeneficiary(beneficiaryDTO, file);
-
         if (submittedDetails != null) {
             logger.info("Beneficiary saved successfully with ID: {}", submittedDetails.getId());
-            return new ResponseEntity<>(AppConstants.Message.BENEFICIARY_CREATED, HttpStatus.CREATED);
+            return new ResponseEntity<>(AppConstants.Message.SUCCESSFUL_ASKING_REQUEST + submittedDetails.getTokenId() + AppConstants.Message.WHATSAPP_AND_EMAIL_CONTACT_MSG+AppConstants.Message.WHATSAPP_AND_GMAIL, HttpStatus.CREATED);
         } else {
             logger.error("Failed to save beneficiary");
             return new ResponseEntity<>(AppConstants.Message.BENEFICIARY_FAILED, HttpStatus.BAD_REQUEST);
@@ -58,8 +54,11 @@ public class BeneficiaryController {
     public ResponseEntity<?> updateStatus(@PathVariable Long id,@RequestBody Map<String, Object> data) {
 
         String status = (String) data.get("status");
-        Integer amount = data.get("amount") != null ? Integer.parseInt(data.get("amount").toString()): 0;
+        Integer amount = null;
 
+        if (data.get("amount") != null && !data.get("amount").toString().trim().isEmpty()) {
+            amount = Integer.parseInt(data.get("amount").toString());
+        }
         BeneficiaryEntity updated = beneficiaryService.updateStatus(id, status, amount);
 
         if(updated != null){

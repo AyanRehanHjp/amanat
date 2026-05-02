@@ -33,6 +33,10 @@ public class AppConstants {
         public static final String BENEFICIARY_FAILED = "Something went wrong, Please try again";
         public static final String BENEFICIARY_UPDATED = "Updated Successfully";
         public static final String BENEFICIARY_UPDATE_FAILED = "Update Failed";
+        public static final String SUCCESSFUL_ASKING_REQUEST = "Thank you for Asking Request, Your HelpRequest Token No is: ";
+        public static final String WHATSAPP_AND_EMAIL_CONTACT_MSG = " for further update Contact on WhatsApp or email";
+        public static final String WHATSAPP_AND_GMAIL= " Our WhatsApp No is 7277222729 and Email- amanatwelfaretrust@gmail.com";
+
 
         // Member
         public static final String MEMBER_ADDED = "Member added successfully";

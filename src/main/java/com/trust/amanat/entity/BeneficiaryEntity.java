@@ -26,5 +26,7 @@ public class BeneficiaryEntity {
     private String documentPath;
     @Column(name = "supportive_documents")
     private String supportiveDocuments;
+    @Column(name = "token_Id", unique = true)
+    private String tokenId;
 
 }

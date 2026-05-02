@@ -85,3 +85,18 @@ th{
         font-size:12px;
     }
 }
+/* Make Generate button smaller */
+button.generate-btn {
+    padding: 13px 32px;
+    font-size: 13px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    width: auto;
+}
+
+button.generate-btn:hover {
+    background-color: #006b84;
+}

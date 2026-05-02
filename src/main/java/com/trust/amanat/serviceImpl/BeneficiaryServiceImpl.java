@@ -53,7 +53,9 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
         } else {
             logger.info("No file uploaded for beneficiary: {}", beneficiaryDTO.getNeedyName());
         }
-
+// Generate token: AWT + 5 random digits
+        String token = "AWT" + String.format("%05d", (int)(Math.random() * 100000));
+        beneficiary.setTokenId(token);
         BeneficiaryEntity saved = beneficiaryRepository.save(beneficiary);
         logger.info("Beneficiary saved with ID: {}", saved.getId());
         return saved;
@@ -72,8 +74,18 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
             return null;
         }
 
+        if ("ACCEPTED".equals(status)) {
+            if (amount == null || amount == 0) return null;
+            beneficiary.setAmount(amount);
+        }
+        else if ("REJECTED".equals(status)) {
+            beneficiary.setAmount(0);
+        }
+        else if ("PENDING".equals(status) || "WORKING".equals(status)) {
+            beneficiary.setAmount(null);
+        }
+
         beneficiary.setStatus(status);
-        beneficiary.setAmount(amount);
 
         return beneficiaryRepository.save(beneficiary);
     }

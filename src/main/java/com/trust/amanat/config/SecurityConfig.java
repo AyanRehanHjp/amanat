@@ -70,7 +70,9 @@ public class SecurityConfig {
                                 "/admin-detail.html",
                                 "/admins/login",
                                 "/admins/getAllAdmins",
-                                "/report/**"
+                                "/report/**",
+                                "/uploads/**"
+
 
 
                         ).permitAll()
