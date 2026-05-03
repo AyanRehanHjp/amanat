@@ -5,74 +5,13 @@
     <title>Amanat Welfare Trust</title>
 
     <!-- PAGE CSS -->
+    <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/index.css">
 
 </head>
 
 <body>
-
-<!-- TOPBAR -->
-<div class="topbar">
-
-    <div>
-        📞 +91 72772 22729
-        &nbsp;&nbsp;
-        ✉ amanatwelfaretrust@gmail.com
-    </div>
-
-    <div>
-        <a href="#" onclick="featureWorking()">Facebook</a>
-        <a href="#" onclick="instagram()">Instagram</a>
-        <a href="#" onclick="youtube()">YouTube</a>
-    </div>
-
-</div>
-
-
-<!-- NAVBAR -->
-<div class="navbar">
-
-    <div class="navbar-logo">
-        <img src="/images/logo.png" alt="Logo">
-        Amanat Welfare Trust
-    </div>
-
-    <ul class="nav-links">
-
-        <li><a href="/index.html">Home</a></li>
-
-        <li><a href="/about.html">About Us</a></li>
-
-
-        <li><a href="/team.html">Our Teams</a></li>
-
-
-        <li>
-            <a href="#">Registration ▾</a>
-            <div class="dropdown-content">
-                <a href="/signup.html">User Registration</a>
-                <a href="/beneficiary.html">Request for Help</a>
-            </div>
-        </li>
-        <li><a href="/contact.html">Contact Us</a></li>
-
-        <li>
-            <a href="#" onclick="featureWorking()">Gallery ▾</a>
-            <div class="dropdown-content">
-                <a href="#" onclick="featureWorking()">Photos</a>
-                <a href="#" onclick="featureWorking()">Videos</a>
-            </div>
-        </li>
-        <li><a href="/scan&pay.html" >Donation</a></li>
-
-
-
-
-    </ul>
-
-</div>
-
-
+<div id="common-navbar"></div>
 <!-- HEADER -->
 <div class="header">
 
@@ -112,6 +51,24 @@
                 🤝 Request for Help
             </button>
         </a>
+    </div>
+    <div class="track-wrapper-row">
+
+        <!-- LEFT: INPUT CARD -->
+        <div class="track-card">
+
+            <label class="track-label">Track Your Help Request</label>
+
+            <div class="track-input-group">
+                <input type="text" id="tokenInput" placeholder="Please Enter Token Id: AWT.....">
+                <button onclick="trackStatus()">TRACK</button>
+            </div>
+
+        </div>
+
+        <!-- RIGHT: RESULT -->
+        <div id="resultBox"></div>
+
     </div>
 </div>
 
@@ -184,7 +141,15 @@
 
 <!-- PAGE JS -->
 <script src="/js/constants.js"></script>
+<script src="/js/common.js"></script>
 <script src="/js/index.js"></script>
 
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML = data;
+    });
+</script>
 </body>
 </html>

@@ -67,4 +67,15 @@ public class BeneficiaryController {
             return ResponseEntity.badRequest().body(AppConstants.Message.BENEFICIARY_UPDATE_FAILED);
         }
     }
+    @GetMapping("/track/{tokenId}")
+    public ResponseEntity<?> trackByToken(@PathVariable String tokenId) {
+
+        BeneficiaryEntity data = beneficiaryService.findByToken(tokenId);
+
+        if (data != null) {
+            return ResponseEntity.ok(data);
+        } else {
+            return ResponseEntity.badRequest().body("Invalid Token");
+        }
+    }
 }

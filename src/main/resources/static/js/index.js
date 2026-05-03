@@ -7,7 +7,7 @@ window.location.href="signup.html";
 }
 
 function featureWorking(){
-alert("Sorry, this feature is under development.");
+showPopup("Sorry, this feature is under development.");
 }
 function goToAdmin(){
     window.location.href="/admin.html";
@@ -20,4 +20,42 @@ function instagram(){
 }
 function youtube(){
     window.open(URLS.YOUTUBE, "_blank");
+}
+
+function trackStatus() {
+    let token = document.getElementById("tokenInput").value.trim();
+
+    if (!token) {
+        showPopup("Enter token first");
+        return;
+    }
+
+    fetch("http://localhost:9000/beneficiary/track/" + token)
+        .then(res => {
+            if (!res.ok) throw new Error();
+            return res.json();
+        })
+        .then(data => {
+            document.getElementById("resultBox").innerHTML = `
+                <div class="result-card success">
+                    <span class="close-btn" onclick="closeResult()">✖</span>
+                    <h3>Status: ${data.status.toUpperCase()}</h3>
+                    <p><b>Name:</b> ${data.needyName}</p>
+                    <p><b>Amount:</b> ${data.amount ?? "N/A"}</p>
+                </div>
+            `;
+        })
+        .catch(() => {
+            document.getElementById("resultBox").innerHTML = `
+                <div class="result-card error">
+                    <span class="close-btn" onclick="closeResult()">✖</span>
+                    <h3 style="color:red;">Invalid Token</h3>
+                </div>
+            `;
+        });
+}
+
+/* OUTSIDE function */
+function closeResult() {
+    document.getElementById("resultBox").innerHTML = "";
 }

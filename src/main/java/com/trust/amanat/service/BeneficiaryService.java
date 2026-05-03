@@ -10,4 +10,6 @@ public interface BeneficiaryService {
     public BeneficiaryEntity addBeneficiary(BeneficiaryDTO beneficiaryDTO , MultipartFile file) ;
     public List<BeneficiaryEntity> getAllBeneficiaries() ;
     public BeneficiaryEntity updateStatus(Long id, String status, Integer amount);
-}
+    public BeneficiaryEntity findByToken(String tokenId) ;
+
+    }

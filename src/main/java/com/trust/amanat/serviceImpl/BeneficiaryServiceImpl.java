@@ -89,4 +89,9 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 
         return beneficiaryRepository.save(beneficiary);
     }
+
+    @Override
+    public BeneficiaryEntity findByToken(String tokenId) {
+        return beneficiaryRepository.findByTokenId(tokenId);
+    }
 }
