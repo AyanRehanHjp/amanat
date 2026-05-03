@@ -98,7 +98,7 @@ function updateStatus(id) {
 
     // 🔴 4. Auto amount for rejected
     if (newStatus === "REJECTED") {
-        amount = "0.00";
+        amount = "0";
         amountInput.value = amount;
     }
 
