@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback - Amanat Trust</title>
+
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/feedback.css">
+</head>
+
+<body>
+
+<div id="common-navbar"></div>
+
+<div class="container">
+
+    <h2>Feedback Form</h2>
+
+    <form id="feedbackForm">
+
+        <label>Full Name</label>
+        <input type="text" id="fullName"
+               placeholder="Enter Your Name"
+               required
+               maxlength="30"
+               pattern="^[A-Za-z ]{1,30}$"
+               title="Only alphabets allowed (max 30 characters)">
+
+        <label>Mobile</label>
+        <input type="tel" id="mobile"
+               placeholder="Your Mobile No"
+               required
+               maxlength="10"
+               pattern="[0-9]{10}"
+               title="Mobile must be exactly 10 digits">
+
+        <label>Feedback</label>
+        <textarea id="feedback"
+                  rows="4"
+                  placeholder="Type your Issue/Suggestion (max 500 characters)"
+                  required
+                  maxlength="500"></textarea>
+
+        <button type="submit">Submit Feedback</button>
+
+    </form>
+
+</div>
+
+<script src="/js/constants.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/feedback.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        fetch('/common.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("common-navbar").innerHTML = data;
+            });
+    });
+</script>
+
+</body>
+</html>

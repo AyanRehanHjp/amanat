@@ -70,6 +70,11 @@ public class SecurityConfig {
                                 "/admin-detail.html",
                                 "/admins/login",
                                 "/admins/getAllAdmins",
+                                "/feedback/",
+                                "/feedback/addFeedback",
+                                "/feedback.html",
+                                "/feedback/allFeedback",
+                                "/feedback-view.html",
                                 "/report/**",
                                 "/uploads/**"
 

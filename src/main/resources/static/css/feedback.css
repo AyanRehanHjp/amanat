@@ -1,0 +1,67 @@
+/* BODY */
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#eef2f7;
+}
+
+/* CONTAINER */
+.container{
+    width:750px;
+    background:#fff;
+    padding:100px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+
+    margin:100px auto; /* center */
+}
+
+/* HEADING */
+h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* INPUT & TEXTAREA */
+input, textarea{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+
+/* FOCUS EFFECT */
+input:focus, textarea:focus{
+    border-color:#2a9d8f;
+    box-shadow:0 0 5px rgba(42,157,143,0.3);
+    outline:none;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#2a9d8f;
+    color:#fff;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+/* BUTTON HOVER */
+button:hover{
+    background:#21867a;
+    transform:scale(1.02);
+}
+
+/* RESPONSIVE */
+@media(max-width:500px){
+    .container{
+        width:90%;
+        margin:60px auto;
+    }
+}

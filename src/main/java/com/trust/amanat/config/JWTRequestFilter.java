@@ -83,6 +83,12 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/admins/")||
                 path.startsWith("/report/")||
                 path.startsWith("/uploads/")||
+                path.startsWith("/feedback/")||
+                path.startsWith("/feedback/addFeedback")||
+                path.startsWith("/feedback/allFeedback")||
+                path.startsWith("/feedback.html")||
+                path.startsWith("/feedback-view.html")||
+
 
                 path.equals("/signUp/addUser")) {
 

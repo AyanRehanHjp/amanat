@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View All Feedback</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/feedback-view.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div id="common-navbar"></div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    <button class="back-btn" onclick="goToAdmin()">
+        ← Back to Admin
+    </button>
+    <h2>View All Feedback</h2>
+    <table id="feedbackTable">
+        <thead>
+        <tr>
+            <th>Sl No</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Feedback</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- JS -->
+<script src="/js/constants.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/feedback-view.js"></script>
+
+<!-- Navbar load -->
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        fetch('/common.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("common-navbar").innerHTML = data;
+            });
+
+        // 🔐 Admin check
+        let role = localStorage.getItem("role");
+        if(role !== "ADMIN"){
+            alert("Access Denied");
+            window.location.href = "/admin-login.html";
+        }
+    });
+</script>
+
+</body>
+</html>

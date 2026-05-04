@@ -91,6 +91,10 @@ public class AppConstants {
         // Security
         public static final String AUTH_HEADER = "Authorization";
         public static final String BEARER_PREFIX = "Bearer ";
+
+        //Feedback
+
+        public static final String FEEDBACK_RECEIVED = "Thanks for your feedback, Your Feedback sent to AWT Trust Management";
     }
 
     //  VALIDATION
