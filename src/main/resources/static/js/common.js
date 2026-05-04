@@ -47,3 +47,6 @@ function closeGlobalPopup(){
         window.redirectAfterPopup = null;
     }
 }
+function paymentNotAllowed(){
+    showPopup("⚠ Payment not allowed without Sign Up.\n\n For security reasons, please Sign Up or Log In to continue.");
+}

@@ -41,6 +41,8 @@ body{
 .team-card img{
     width:90px;
     height:120px;
+    border:2px solid black;
+    border-radius:8px;
 }
 
 /* IMAGE big */
