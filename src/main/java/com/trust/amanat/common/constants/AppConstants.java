@@ -107,6 +107,8 @@ public class AppConstants {
         public static final String YEAR_REQUIRED = "Year is required";
         public static final String RECEIPT_REQUIRED = "Receipt number is required";
         public static final String EXP_DATA_REQUIRED = "Expenditure data is required";
+        public static final String PRB_DET_REQUIRED = "Problem detail is required";
+        public static final String SUP_DOC_REQUIRED = "Supportive Docs is required";
 
         public static final String REQUEST_BODY_EMPTY = "Request body is empty";
         public static final String MEMBER_ID_REQUIRED = "Member Id is required";

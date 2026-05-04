@@ -9,7 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -26,64 +31,47 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         return allExpend;
     }
 
-    public String addExpenditure(ExpenditureDTO expenditureDTO) {
+public String addExpenditure(ExpenditureDTO dto, MultipartFile file) {
 
-        logger.info("Saving expenditure started: name={}, amount={}, year={}, receiptNo={}",
-                expenditureDTO != null ? expenditureDTO.getName() : null,
-                expenditureDTO != null ? expenditureDTO.getAmount() : null,
-                expenditureDTO != null ? expenditureDTO.getYear() : null,
-                expenditureDTO != null ? expenditureDTO.getReceiptNo() : null);
+    logger.info("Saving expenditure: {}", dto.getName());
 
-        ExpenditureEntity expenditure = new ExpenditureEntity();
-        if(expenditureDTO != null) {
+    ExpenditureEntity exp = new ExpenditureEntity();
 
+    exp.setName(dto.getName());
+    exp.setAddress(dto.getAddress());
+    exp.setAmount(dto.getAmount());
+    exp.setYear(dto.getYear());
+    exp.setReceiptNo(dto.getReceiptNo());
+    exp.setProblem(dto.getProblem());
+    exp.setExpDate(dto.getExpDate());
 
-            if (expenditureDTO.getName() != null && !expenditureDTO.getName().isEmpty()) {
-                expenditure.setName(expenditureDTO.getName());
-            } else {
-                logger.warn("Validation failed while saving expenditure: Name is required");
-                return AppConstants.Validation.NAME_REQUIRED;
-            }
-            if (expenditureDTO.getAddress() != null && !expenditureDTO.getAddress().isEmpty()) {
-                expenditure.setAddress(expenditureDTO.getAddress());
-            } else {
-                logger.warn("Validation failed while saving expenditure: Address is required");
-                return AppConstants.Validation.ADDRESS_REQUIRED;
-            }
-            if (expenditureDTO.getAmount() != null && expenditureDTO.getAmount() > 0) {
-                expenditure.setAmount(expenditureDTO.getAmount());
-            } else {
-                logger.warn("Validation failed while saving expenditure: Amount is required or invalid");
-                return AppConstants.Validation.AMOUNT_REQUIRED;
-            }
-            if (expenditureDTO.getExpDate() != null) {
-                expenditure.setExpDate(expenditureDTO.getExpDate());
-            } else {
-                logger.warn("Validation failed while saving expenditure: Expenditure date is required");
-                return AppConstants.Validation.EXP_DATE_REQUIRED;
-            }
-            if (expenditureDTO.getYear() != 0 && expenditureDTO.getYear() > 0) {
-                expenditure.setYear(expenditureDTO.getYear());
-            } else {
-                logger.warn("Validation failed while saving expenditure: Year is required or invalid");
-                return AppConstants.Validation.YEAR_REQUIRED;
-            }
-            if (expenditureDTO.getReceiptNo() != null && !expenditureDTO.getReceiptNo().isEmpty()) {
-                expenditure.setReceiptNo(expenditureDTO.getReceiptNo());
-            } else {
-                logger.warn("Validation failed while saving expenditure: Receipt number is required");
-                return AppConstants.Validation.RECEIPT_REQUIRED;
-            }
+    // 🔹 FILE SAVE (same beneficiary logic)
+    if(file != null && !file.isEmpty()){
+
+        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        Path path = Paths.get("uploads/helprequests/" + fileName);
+
+        try {
+            Files.createDirectories(path.getParent());
+            Files.write(path, file.getBytes());
+
+            exp.setSupDoc(fileName);
+
+            logger.info("File saved at: {}", path.toAbsolutePath());
+
+        } catch (IOException e) {
+            logger.error("Error saving file", e);
+            return "File saving failed";
         }
-        else {
-            logger.warn("Validation failed while saving expenditure: Expenditure data is null");
-            return AppConstants.Validation.EXP_DATA_REQUIRED;
-
-        }
-        ExpenditureEntity saved = expenditureRepository.save(expenditure);
-        logger.info("Saving expenditure completed: id={} name={}", saved != null ? saved.getId() : null, saved != null ? saved.getName() : null);
-        return AppConstants.Message.EXP_ADDED_SUCCESSFULLY;
+    } else {
+        logger.warn("Supportive document not uploaded");
+        return "Supportive document is required";
     }
 
+    ExpenditureEntity saved = expenditureRepository.save(exp);
 
+    logger.info("Expenditure saved with id={}", saved.getId());
+
+    return AppConstants.Message.EXP_ADDED_SUCCESSFULLY;
+}
 }

@@ -16,4 +16,6 @@ public class ExpenditureDTO {
     private String address;
     private Double amount;
     private int year;
+    private String problem;
+    private String supDoc;
 }

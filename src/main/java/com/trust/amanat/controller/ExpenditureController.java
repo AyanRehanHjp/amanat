@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,16 +18,21 @@ public class ExpenditureController {
     @Autowired
     ExpenditureService expenditureService;
 
-    @PostMapping ("/addExpenditure")
-    public String addExpenditure(@RequestBody ExpenditureDTO expenditureDTO) {
-        logger.info("addExpenditure method is called with expenditure details: name={}, amount={}, year={}, receiptNo={}",
-                expenditureDTO != null ? expenditureDTO.getName() : null,
-                expenditureDTO != null ? expenditureDTO.getAmount() : null,
-                expenditureDTO != null ? expenditureDTO.getYear() : null,
-                expenditureDTO != null ? expenditureDTO.getReceiptNo() : null);
-        String expenditure = expenditureService.addExpenditure(expenditureDTO);
-        logger.info("addExpenditure method completed with response: {}", expenditure);
-        return expenditure;
+    @PostMapping("/addExpenditure")
+    public String addExpenditure(
+            @RequestPart("expenditure") ExpenditureDTO expenditureDTO,
+            @RequestPart(value = "file", required = false) MultipartFile file) {
+
+        logger.info("Received expenditure request: name={}, amount={}",
+                expenditureDTO.getName(), expenditureDTO.getAmount());
+
+        if(file != null && !file.isEmpty()){
+            logger.info("File received: {}", file.getOriginalFilename());
+        } else {
+            logger.info("No file uploaded");
+        }
+
+        return expenditureService.addExpenditure(expenditureDTO, file);
     }
 
 

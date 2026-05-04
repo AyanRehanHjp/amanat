@@ -1,65 +1,94 @@
-fetch("http://localhost:9000/expenditure/allExpenditure")
-.then(response => response.json())
-.then(data => {
+// LOAD DATA FUNCTION
+function loadData(){
+    fetch("http://localhost:9000/expenditure/allExpenditure")
+    .then(response => response.json())
+    .then(data => {
 
-let table = document.querySelector("#expTable tbody");
+        let table = document.querySelector("#expTable tbody");
+        table.innerHTML = "";
 
-data.forEach(exp => {
+        data.forEach((exp, index) => {
 
-let date = new Date(exp.expDate).toLocaleDateString();
+            let date = exp.expDate ? new Date(exp.expDate).toLocaleDateString() : "";
 
-let row = `
-<tr>
-<td>${exp.id}</td>
-<td>${exp.receiptNo}</td>
-<td>${exp.name}</td>
-<td>${exp.address}</td>
-<td class="amount">₹ ${exp.amount}</td>
-<td>${date}</td>
-<td>${exp.year}</td>
-</tr>
-`;
+            let fileLink = exp.supDoc
+                ? `<a href="http://localhost:9000/uploads/helprequests/${exp.supDoc}" target="_blank">View</a>`
+                : "No File";
 
-table.innerHTML += row;
+            let row = `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${exp.receiptNo}</td>
+                <td>${exp.name}</td>
+                <td>${exp.address}</td>
+                <td class="amount">₹ ${exp.amount}</td>
+                <td>${date}</td>
+                <td>${exp.year}</td>
+                <td>${exp.problem}</td>
+                <td>${fileLink}</td>
+            </tr>
+            `;
 
-});
-addTotalRow();
-});
+            table.innerHTML += row;
+        });
 
-function goBack(){
-window.location.href="/admin.html";
+        addTotalRow();
+    })
+    .catch(err => {
+        showPopup("Error loading data: " + err.message);
+    });
 }
 
-// auto current year
+// PAGE LOAD
 window.onload = function(){
-document.getElementById("year").value = new Date().getFullYear();
-}
-
-function saveExp(){
-
-let data = {
-name: document.getElementById("name").value,
-address: document.getElementById("address").value,
-amount: document.getElementById("amount").value,
-expDate: document.getElementById("expDate").value,
-year: document.getElementById("year").value,
-receiptNo: document.getElementById("receiptNo").value
+    document.getElementById("year").value = new Date().getFullYear();
+    loadData();
 };
 
-fetch("http://localhost:9000/expenditure/addExpenditure",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body: JSON.stringify(data)
-})
-.then(res=>res.text())
-.then(msg=>{
-showPopup(msg);
-window.redirectAfterPopup = location.href; //save ke baad table refresh
-});
-
+// BACK BUTTON
+function goBack(){
+    window.location.href="/admin.html";
 }
+
+// SAVE FUNCTION
+function saveExp(){
+
+    let formData = new FormData();
+
+    let data = {
+        name: document.getElementById("name").value,
+        address: document.getElementById("address").value,
+        amount: document.getElementById("amount").value,
+        expDate: document.getElementById("expDate").value,
+        year: document.getElementById("year").value,
+        receiptNo: document.getElementById("receiptNo").value,
+        problem: document.getElementById("problem").value
+    };
+
+    formData.append("expenditure", new Blob([JSON.stringify(data)], {
+        type: "application/json"
+    }));
+
+    let file = document.getElementById("supDoc").files[0];
+    if(file){
+        formData.append("file", file);
+    }
+
+    fetch("http://localhost:9000/expenditure/addExpenditure", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(msg => {
+        showPopup(msg);   // ✔ popup only
+        loadData();       // ✔ table refresh without reload
+    })
+    .catch(err => {
+        showPopup("Error: " + err.message);
+    });
+}
+
+// TOTAL ROW
 function addTotalRow() {
     let rows = document.querySelectorAll("#expTable tbody tr");
     let total = 0;
@@ -73,11 +102,12 @@ function addTotalRow() {
 
     let tr = document.createElement("tr");
     tr.classList.add("total-row");
+
     tr.innerHTML = `
         <td colspan="4"></td>
         <td><b>Total</b></td>
-<td><b>₹ ${total.toLocaleString('en-IN')}</b></td>
-        <td></td>
+        <td><b>₹ ${total.toLocaleString('en-IN')}</b></td>
+        <td colspan="3"></td>
     `;
 
     tbody.appendChild(tr);

@@ -90,6 +90,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/feedback-view.html")||
 
 
+
                 path.equals("/signUp/addUser")) {
 
             filterChain.doFilter(request, response);
