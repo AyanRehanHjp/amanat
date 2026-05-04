@@ -75,3 +75,7 @@ setTimeout(()=>{
     });
 
 }
+
+function forgotHelp(){
+    showPopup("Please contact admin via WhatsApp or Email.");
+}

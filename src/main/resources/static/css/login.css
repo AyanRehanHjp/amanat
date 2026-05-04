@@ -130,3 +130,17 @@ color:#856404;
 flex-direction:column;
 }
 }
+.forgot-link{
+    margin-top:5px;
+}
+
+.forgot-link a{
+    font-size:13px;
+    color:#134E5E;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+.forgot-link a:hover{
+    color:#0d3a47;
+}
