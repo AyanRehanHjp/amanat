@@ -1,101 +1,97 @@
+
+/* BODY */
 body{
-font-family:Arial;
-margin:0;
-background:#f5f6fa;
+    font-family:Arial;
+    margin:0;
+    background:#f5f6fa;
 }
 
 /* CONTAINER */
-
 .team-container{
-text-align:center;
-padding:60px 10%;
-}
-
-.team-container h1{
-font-size:36px;
-margin-bottom:10px;
-color:#2c3e50;
-}
-
-.team-desc{
-max-width:600px;
-margin:auto;
-margin-bottom:40px;
-color:#555;
+    text-align:center;
+    padding:60px 5%;   /* 👈 thoda kam kiya (space mil sake) */
 }
 
 /* GRID */
-
 .team-grid{
-display:flex;
-justify-content:center;
-gap:30px;
-flex-wrap:wrap;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;   /* 👈 gap kam kiya */
 }
 
-/* CARD */
-
+/* DEFAULT SMALL CARDS (6 per row, smaller) */
 .team-card{
-background:white;
-width:150px;
-padding:20px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-transition:0.3s;
+    background:white;
+    padding:12px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+
+    flex: 0 0 calc(14.28% - 20px); /* 👈 7 slot → max 6 fit comfortably */
 }
 
-.team-card:hover{
-transform:translateY(-6px);
+/* FIRST 4 CARDS (big ones) */
+.team-card:nth-child(-n+4){
+    padding:20px;
+    flex: 0 0 calc(22% - 20px);  /* 👈 ab 4 perfectly fit honge */
 }
 
-/* IMAGE */
-
+/* IMAGE small */
 .team-card img{
-width:120px;
-height:160px;
-border-radius:8%;
-object-fit:cover;
-margin-bottom:15px;
-border : 1px solid black;
+    width:90px;
+    height:120px;
+}
+
+/* IMAGE big */
+.team-card:nth-child(-n+4) img{
+    width:120px;
+    height:160px;
+}
+
+/* HOVER */
+.team-card:hover{
+    transform:translateY(-6px);
 }
 
 /* TEXT */
-
 .team-card h3{
-margin:10px 0 5px;
+    margin:10px 0 5px;
 }
 
 .role{
-color:#27ae60;
-font-weight:bold;
-margin-bottom:10px;
+    color:#27ae60;
+    font-weight:bold;
+    margin-bottom:10px;
 }
 
 .info{
-font-size:14px;
-color:#666;
-line-height:1.5;
+    font-size:13px;
+    color:#666;
+    line-height:1.5;
 }
+
+/* BACK BUTTON */
 .back-btn{
-position:absolute;
-top:20px;
-left:20px;
+    position:absolute;
+    top:20px;
+    left:20px;
 }
 
 .back-btn button{
-background:#c0392b; /* professional red */
-color:white;
-border:none;
-padding:10px 22px;
-font-size:14px;
-font-weight:600;
-border-radius:6px;
-cursor:pointer;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
-transition:0.3s;
+    background:#c0392b;
+    color:white;
+    border:none;
+    padding:10px 22px;
+    font-size:14px;
+    font-weight:600;
+    border-radius:6px;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    transition:0.3s;
 }
 
 .back-btn button:hover{
-background:#a93226;
-transform:translateY(-2px);
+    background:#a93226;
+    transform:translateY(-2px);
 }
