@@ -31,11 +31,11 @@ animation:spin 1s linear infinite;
 .topbar{
 background:#111;
 color:white;
-padding:8px 40px;
+padding:4px 40px;
 display:flex;
 justify-content:space-between;
-font-size:14px;
-}
+font-size:16px;
+font-weight:500; }
 
 .topbar a{
 color:white;
@@ -151,4 +151,27 @@ display:block;
 
 .popup-box button:hover{
     background:#0d3b47;
+}
+
+.social-icon{
+    height:45px;
+    width:auto;
+    margin-left:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.social-icon:hover{
+    transform:scale(1.1);
+}
+
+.contact-item{
+    font-size:20px;
+    font-weight:500;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
