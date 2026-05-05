@@ -20,4 +20,6 @@ public class SignUpDTO {
     private String pinCode;
     private String dateOfJoining;
     private String joinedBy;
+    private String status;
+    private String approvalFlag;
 }

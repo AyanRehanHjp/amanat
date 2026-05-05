@@ -67,6 +67,11 @@ public class AppConstants {
         // Status
         public static final String ACTIVE = "ACTIVE";
         public static final String INACTIVE = "INACTIVE";
+        public static final String APPROVED = "A";
+        public static final String REJECTED = "R";
+        public static final String PENDING = "P";
+
+
 
         // Receipt
         public static final String RECEIPT_ALREADY_GENERATED = "Receipt already generated";
@@ -91,6 +96,10 @@ public class AppConstants {
         // Security
         public static final String AUTH_HEADER = "Authorization";
         public static final String BEARER_PREFIX = "Bearer ";
+
+        public static final String PENDING_APPROVAL ="Your request is pending for approval";
+        public static final String REJECTED_REQUEST ="Sorry!, Your Signup request is Rejected";
+        public static final String ACCESS_DENIED ="Access Denied";
 
         //Feedback
 

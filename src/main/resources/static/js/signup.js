@@ -111,7 +111,7 @@ role
 .then(data=>{
 
     // SUCCESS CASE
-    showPopup("Signup Successful 🎉 Your User Name is: "+userName);
+    showPopup("Thank You for Signup, \n Your Request sent to Admin, After Approval You can login with same username and Password\n Your User Name is: "+userName);
 
     window.redirectAfterPopup = "/login.html";
 

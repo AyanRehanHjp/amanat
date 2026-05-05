@@ -34,6 +34,9 @@ public class MembersEntity {
 
     private String status;
 
+    @Column(name = "approval_flag")
+    private String approvalFlag;
+
     @Column(name = "joined_by")
     private String joinedBy;
 

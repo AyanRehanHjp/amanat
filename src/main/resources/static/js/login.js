@@ -15,29 +15,26 @@ function login(){
         showMessage("Username and Password required");
         return;
     }
+
     showLoader();
+
     fetch(BASE_URL+"/signIn/verifyLogin",{
-
         method:"POST",
-
         headers:{
             "Content-Type":"application/json"
         },
-
         body:JSON.stringify({
             userName:userName,
             password:password
         })
-
     })
     .then(response => {
 
         if(!response.ok){
-            throw new Error("Invalid credentials");
+            return response.text().then(msg => { throw new Error(msg); });
         }
 
         return response.json();
-
     })
     .then(data => {
 
@@ -49,33 +46,31 @@ function login(){
         localStorage.setItem("lastName", data.lastName);
         localStorage.setItem("userId", data.userId);
         localStorage.setItem("role", data.role);
-
-        // save username
         localStorage.setItem("userName", userName);
 
-        // redirect to welcome page
-hideLoader();
+        hideLoader();
 
-// 👇 popup show karo
-showPopup("Login Successful");
+        // popup
+        showPopup("Login Successful");
 
-// 👇 2 sec baad redirect
-setTimeout(()=>{
-    window.location.href="/welcome.html";
-},2000);
+        // ✔ popup ke OK click ke baad redirect
+        window.redirectAfterPopup = "/welcome.html";
+
     })
     .catch(error=>{
         console.error(error);
         hideLoader();
-        showPopup("Invalid Username or Password");
+
+        // 🔥 real backend message show hoga
+        showPopup(error.message);
     })
     .finally(()=>{
-        // ensure loader hidden in all cases (if redirect happens this may not run, but safe)
         try{ hideLoader(); } catch(e){}
     });
 
 }
 
+// forgot button
 function forgotHelp(){
     showPopup("Please contact admin via WhatsApp or Email.");
 }

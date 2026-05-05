@@ -67,6 +67,9 @@ public class UserEntity {
     @Column(name = "status")
     private String status;
 
+    @Column(name = "approval_flag")
+    private String approvalFlag;
+
     @Column(name = "member_id", unique = true, insertable = false, updatable = false)
     private String memberId;
 

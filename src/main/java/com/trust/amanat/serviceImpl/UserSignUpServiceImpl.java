@@ -62,6 +62,8 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         signUp.setMobile(signUpDTO.getMobile());
         signUp.setEmail(signUpDTO.getEmail());
         signUp.setRole(signUpDTO.getRole());
+        signUp.setApprovalFlag(AppConstants.Message.PENDING);
+
 
         // MEMBER
         MembersEntity member = new MembersEntity();
@@ -72,6 +74,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         member.setMemberId(memberId);
         member.setJoiningYear(java.time.Year.now().getValue());
         member.setStatus(AppConstants.Message.INACTIVE);
+        member.setApprovalFlag(AppConstants.Message.PENDING);
 
         // LINK
         signUp.setMemberId(memberId);
