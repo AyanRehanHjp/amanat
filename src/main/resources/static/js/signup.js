@@ -12,7 +12,6 @@ e.classList.remove("input-error");
 });
 
 document.getElementById("msgBox").style.display="none";
-
 }
 
 function setFieldError(id,message){
@@ -23,43 +22,11 @@ error.innerText=message;
 error.style.display="block";
 
 document.getElementById(id).classList.add("input-error");
-
 }
 
 function showTopMessage(message){
-
 document.getElementById("msgText").innerText=message;
 document.getElementById("msgBox").style.display="block";
-
-}
-
-function showPopup(message,success){
-
-const popup=document.getElementById("popup");
-
-popup.innerHTML = success
-? "✔ " + message
-: "✖ " + message;
-
-popup.className = success ? "success" : "error";
-
-popup.style.display="block";
-
-setTimeout(()=>{
-popup.style.opacity="1";
-popup.style.transform="translateY(0)";
-},10);
-
-setTimeout(()=>{
-popup.style.opacity="0";
-popup.style.transform="translateY(-20px)";
-
-setTimeout(()=>{
-popup.style.display="none";
-},400);
-
-},3000);
-
 }
 
 function signup(){
@@ -75,8 +42,9 @@ const email=document.getElementById("email").value.trim();
 const userName=document.getElementById("userName").value.trim();
 const password=document.getElementById("password").value.trim();
 const confirmPassword=document.getElementById("confirmPassword").value.trim();
-const role=document.getElementById("role").value;
+const role="user";
 
+// VALIDATIONS
 if(firstName===""){
 setFieldError("firstName","First Name is mandatory");
 valid=false;
@@ -118,14 +86,12 @@ valid=false;
 
 if(!valid) return;
 
+// API CALL
 fetch(BASE_URL+"/signUp/addUser",{
-
 method:"POST",
-
 headers:{
 "Content-Type":"application/json"
 },
-
 body:JSON.stringify({
 firstName,
 lastName,
@@ -135,36 +101,30 @@ userName,
 password,
 role
 })
-
 })
-.then(res=>res.json())
+.then(res => {
+    if(!res.ok){
+        return res.text().then(msg => { throw new Error(msg); });
+    }
+    return res.json();
+})
 .then(data=>{
 
-if(data.msg && data.msg.toLowerCase().includes("fail")){
+    // SUCCESS CASE
+    showPopup("Signup Successful 🎉 Your User Name is: "+userName);
 
-showTopMessage(data.msg);
-showPopup(data.msg,false);
-
-}
-else{
-
-const userId = data.userId;
-
-showPopup("Signup Successful 🎉 Your User Name is: "+userName,true);
-
-setTimeout(()=>{
-window.location.href="/login.html";
-},2500);
-
-}
+    window.redirectAfterPopup = "/login.html";
 
 })
-.catch(()=>{
-showPopup("Server Error",false);
+.catch(err=>{
+    // real error show (duplicate email, username etc.)
+    showTopMessage(err.message);
+    showPopup(err.message);
 });
 
 }
 
+// PASSWORD TOGGLE
 function togglePassword(){
 
 const pass=document.getElementById("password");
