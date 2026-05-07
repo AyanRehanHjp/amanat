@@ -75,8 +75,14 @@ public class SecurityConfig {
                                 "/feedback.html",
                                 "/feedback/allFeedback",
                                 "/feedback-view.html",
+                                "/super-admin.html",
                                 "/report/**",
-                                "/uploads/**"
+                                "/admins/resign/**",
+                                "/uploads/**",
+                                "/super-admin/create-super-admin",
+                                "/super-admin/super-admin-login",
+                                "/super-admin-login.html",
+                                "/admins/accept-resignation/**"
 
 
 

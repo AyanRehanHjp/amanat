@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Admin Login - Amanat Welfare Trust</title>
+
+    <!-- COMMON CSS -->
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/super-admin-login.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div id="common-navbar"></div>
+
+<div class="login-container">
+
+    <div class="card">
+
+        <h2>Amanat Welfare Trust</h2>
+        <h3>Super Admin Login</h3>
+
+        <div id="msg" class="msg"></div>
+
+        <label>Username</label>
+        <input id="username"
+               placeholder="Enter Username">
+
+        <label>Password</label>
+        <input id="password"
+               type="password"
+               placeholder="Enter Password">
+
+        <div class="btn-group">
+
+            <button class="login-btn"
+                    onclick="superAdminLogin()">
+
+                Login as Super Admin
+
+            </button>
+
+            <div class="btn-row">
+
+                <button class="back"
+                        onclick="location.href='/admin-login.html'">
+
+                    Back to Admin Login
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- LOADER -->
+<div id="loader" class="loader-overlay">
+    <div class="spinner"></div>
+</div>
+
+<script src="/js/constants.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/super-admin-login.js"></script>
+
+<script>
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById(
+            "common-navbar"
+        ).innerHTML = data;
+    });
+</script>
+
+</body>
+</html>

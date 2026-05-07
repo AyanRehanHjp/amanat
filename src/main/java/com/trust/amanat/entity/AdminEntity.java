@@ -25,4 +25,6 @@ public class AdminEntity {
     private String password;
 
     private String role ;
+
+    private String status;   // ACTIVE, PENDING, RESIGNED
 }

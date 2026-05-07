@@ -32,7 +32,8 @@ function adminLogin(){
         // 🔥 token and role store
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
-
+        // 🔥 logged in admin id store
+        localStorage.setItem("userId", adminId);
         showPopup("Login Successful");
 
         window.redirectAfterPopup = "/admin.html";

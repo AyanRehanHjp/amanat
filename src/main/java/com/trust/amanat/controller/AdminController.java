@@ -6,6 +6,8 @@ import com.trust.amanat.dto.TokenResponseDTO;
 import com.trust.amanat.entity.AdminEntity;
 import com.trust.amanat.service.AdminService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/admins")
 public class AdminController {
-
+    public static final Logger logger = LoggerFactory.getLogger(AdminController.class);
     @Autowired
     private AdminService adminService;
 
@@ -51,5 +53,21 @@ public class AdminController {
            return new ResponseEntity<>(allAdmins, HttpStatus.OK);
        }
        return new ResponseEntity<>(AppConstants.Message.SOMETHING_WRONG, HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/resign/{id}")
+    public String resign(@PathVariable Long id){
+        logger.info("RESIGN API HITs ");
+        adminService.resign(id);
+        logger.info("Resignation APi Done");
+        return "Resignation Sent";
+    }
+
+    @PostMapping("/accept-resignation/{id}")
+    public String acceptResignation(@PathVariable Long id){
+        logger.info("method accept resignation started");
+        adminService.acceptResignation(id);
+        logger.info("Resignation Accepted success");
+        return "Resignation Accepted";
     }
 }

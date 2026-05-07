@@ -9,6 +9,7 @@ public interface AdminService {
     AdminEntity createAdmin(AdminEntity admin);
     String verifyAdminLogin(AdminLoginDTO adminLoginDTO) ;
     List<AdminEntity> getAllAdmins();
-
+    public void resign(Long id);
+    void acceptResignation(Long id);
 
     }

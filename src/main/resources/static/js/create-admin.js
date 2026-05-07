@@ -52,6 +52,7 @@ function createAdmin(){
     })
     .then(msg => {
         showMsg(msg, true);
+        document.getElementById("adminForm").reset();
     })
     .catch(err => {
         showMsg(err.message, false);

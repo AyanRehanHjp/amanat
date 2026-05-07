@@ -28,13 +28,16 @@ public class AdminServiceImpl implements AdminService {
         }
 
         admin.setPassword(BCrypt.hashpw(admin.getPassword(), BCrypt.gensalt()));
-
+        admin.setStatus("ACTIVE");
         return adminRepository.save(admin);
     }
 
     public String verifyAdminLogin(AdminLoginDTO adminLoginDTO) {
         AdminEntity admin = adminRepository.findByUserId(adminLoginDTO.getUserId());
     if (admin != null){
+        if(admin.getStatus().equals("RESIGNED")){
+            return null;
+        }
         if (BCrypt.checkpw(adminLoginDTO.getPassword(), admin.getPassword())){
             return jwtService.generateToken(admin.getUserId(), admin.getRole());
 
@@ -44,5 +47,19 @@ public class AdminServiceImpl implements AdminService {
     }
     public List<AdminEntity> getAllAdmins(){
         return  adminRepository.findAll();
+    }
+
+    public void resign(Long id){
+        AdminEntity admin = adminRepository.findById(id).get();
+        admin.setStatus("PENDING");
+        adminRepository.save(admin);
+    }
+
+    @Override
+    public void acceptResignation(Long id){
+
+        AdminEntity admin = adminRepository.findById(id).get();
+        admin.setStatus("RESIGNED");
+        adminRepository.save(admin);
     }
 }

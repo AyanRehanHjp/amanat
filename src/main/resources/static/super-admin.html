@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Admin Details</title>
 
-    <link rel="stylesheet" href="/css/admin-detail.css">
+    <link rel="stylesheet" href="/css/super-admin.css">
     <link rel="stylesheet" href="/css/common.css">
 </head>
 
@@ -13,14 +13,22 @@
     let token = localStorage.getItem("token");
     let role = localStorage.getItem("role");
 
-    if(!token || role !== "ADMIN"){
-        alert("Access Denied - Admin Only");
-        window.location.href = "/admin-login.html";
-    }
+    if(!token || role !== "SUPER_ADMIN"){
+    alert("Access Denied - Super Admin Only");
+    window.location.href = "/super-admin-login.html";
+}
 </script>
 <div id="common-navbar"></div>
-
+<div class="super-admin-ribbon">
+    SUPER ADMIN PANEL
+</div>
 <div class="container">
+
+    <!-- CREATE ADMIN (HIGHLIGHTED CENTER) -->
+    <div class="top-create">
+        <span>To Create Admin Click here</span>
+        <button class="create-btn" onclick="goToCreate()">+ Create Admin</button>
+    </div>
 
     <!-- TITLE + VIEW -->
     <div class="title-bar">
@@ -29,11 +37,6 @@
         <div class="view-section">
             <span>Click here for Admin Details</span>
             <button class="view-btn" onclick="loadAdmins()">View Admins</button>
-        </div>
-
-        <div class="view-section">
-            <span>Click here for Super-Admin Login</span>
-            <button class="view-btn" onclick="supAdmLogin()">Super-Admin Login</button>
         </div>
     </div>
 
@@ -46,13 +49,14 @@
                 <th>User ID</th>
                 <th>Full Name</th>
                 <th>Designation</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
             </thead>
 
             <tbody id="adminTableBody">
             <tr>
-                <td colspan="4" class="empty">Click "View Admins" to load data</td>
+                <td colspan="6" class="empty">Click "View Admins" to load data</td>
             </tr>
             </tbody>
         </table>
@@ -65,7 +69,7 @@
 
 </div>
 <script src="/js/constants.js"></script>
-<script src="/js/admin-detail.js"></script>
+<script src="/js/super-admin.js"></script>
 <script src="/js/common.js"></script>
 
 <script>
@@ -75,29 +79,6 @@
             document.getElementById("common-navbar").innerHTML = data;
         });
 </script>
-<!-- RESIGN POPUP -->
-<div id="resignPopup" class="popup-overlay">
 
-    <div class="popup-box">
-
-        <h3>Are You Sure to Resign?</h3>
-
-        <div style="margin-top:20px;">
-
-            <button onclick="confirmResign()"
-                    style="background:red;margin-right:10px;">
-                Yes
-            </button>
-
-            <button onclick="closeResignPopup()"
-                    style="background:gray;">
-                No
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
 </body>
 </html>
