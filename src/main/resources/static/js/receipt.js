@@ -72,7 +72,7 @@ document.getElementById("receiptModal").style.display="none";
 }
 
 function download(){
-
+let receiptNo = document.getElementById("receiptNo").value;
 const element = document.getElementById("receiptArea");
 
 html2canvas(element,{useCORS:true,scale:2}).then(function(canvas){
@@ -82,8 +82,31 @@ const imgData = canvas.toDataURL("image/png");
 const pdf = new jsPDF('landscape','px',[canvas.width,canvas.height]);
 
 pdf.addImage(imgData,'PNG',0,0,canvas.width,canvas.height);
+let pdfBlob = pdf.output("blob")
 
-pdf.save("receipt.pdf");
+let reader = new FileReader()
+
+reader.readAsDataURL(pdfBlob)
+
+reader.onloadend = function(){
+
+    let base64data = reader.result.split(',')[1]
+
+    fetch("/recpdfgen/savePdf",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+            receiptNo:receiptNo,
+            pdf:base64data
+        })
+    })
+}
+pdf.save(receiptNo+".pdf");
 
 });
 

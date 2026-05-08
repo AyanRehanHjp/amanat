@@ -10,7 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.Map;
+import java.util.Base64;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 @RestController
@@ -69,5 +73,20 @@ public class RecpdfgenController {
 
 
     }
+    @PostMapping("/savePdf")
+    public ResponseEntity<?> savePdf(@RequestBody Map<String,String> data){
 
+        try{
+
+            String pdfBase64 = data.get("pdf");
+            String receiptNo = data.get("receiptNo");
+            byte[] pdfBytes = Base64.getDecoder().decode(pdfBase64);
+            Path path = Paths.get("uploads/receipts/" + receiptNo + ".pdf");
+            Files.createDirectories(path.getParent());
+            Files.write(path, pdfBytes);
+            return ResponseEntity.ok("PDF Saved");
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body("PDF Save Failed");
+        }
+    }
 }
