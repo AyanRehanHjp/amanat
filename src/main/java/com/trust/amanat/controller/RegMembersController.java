@@ -42,7 +42,7 @@ public class RegMembersController {
     @PutMapping("/updateMember/{memberId}")
     public ResponseEntity<?> updateMember(@PathVariable String memberId, @RequestBody MembersEntity member) {
         MembersEntity updatedMember = regMembersService.updateMember(memberId, member);
-        return ResponseEntity.ok( updatedMember.getMemberId()+AppConstants.Message.MEMBER_UPDATED );
+        return ResponseEntity.ok( updatedMember.getMemberId()+" "+AppConstants.Message.MEMBER_UPDATED );
     }
 
 }

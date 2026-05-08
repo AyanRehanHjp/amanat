@@ -138,7 +138,7 @@ else {
 
          <td style="font-weight:bold; background:#e8f5e9;"></td>
 
-         <td style="font-weight:bold; background:#e8f5e9;">
+         <td style="font-weight:bold; font-size : 21px; background:#e8f5e9;">
          TOTAL
          </td>
      `;
