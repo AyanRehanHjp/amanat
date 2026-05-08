@@ -43,12 +43,7 @@ function loadRequests() {
                         <button class="save-btn" onclick="updateStatus(${req.id})">Save</button>
                     </td>
 
-                    <td>
-                    <button class="generate-btn" onclick="generateReceipt(${req.id})">Generate</button>                    </td>
 
-                    <td>
-                        <a href="/receipts/receipt_${req.id}.pdf" target="_blank">View</a>
-                    </td>
                 </tr>`;
                 table.innerHTML += row;
             });
@@ -132,20 +127,6 @@ function updateStatus(id) {
             showPopup("Update failed");
             dropdown.value = currentStatus;
             changeStatusColor(dropdown);
-        });
-}
-
-// ================= GENERATE RECEIPT =================
-function generateReceipt(id) {
-    fetch("http://localhost:9000/report/generateReceipt/" + id)
-        .then(res => res.text())
-        .then(msg => {
-            showPopup(msg);
-            loadRequests();
-        })
-        .catch(err => {
-            console.error(err);
-            showPopup("Receipt generation failed");
         });
 }
 

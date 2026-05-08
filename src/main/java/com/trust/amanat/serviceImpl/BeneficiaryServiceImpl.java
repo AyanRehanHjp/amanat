@@ -3,7 +3,9 @@ package com.trust.amanat.serviceImpl;
 import com.trust.amanat.controller.BeneficiaryController;
 import com.trust.amanat.dto.BeneficiaryDTO;
 import com.trust.amanat.entity.BeneficiaryEntity;
+import com.trust.amanat.entity.ExpenditureEntity;
 import com.trust.amanat.repository.BeneficiaryRepository;
+import com.trust.amanat.repository.ExpenditureRepository;
 import com.trust.amanat.service.BeneficiaryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,6 +25,9 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
     private static final Logger logger = LoggerFactory.getLogger(BeneficiaryServiceImpl.class);
     @Autowired
     BeneficiaryRepository beneficiaryRepository;
+
+    @Autowired
+    ExpenditureRepository expenditureRepository;
 
     @Override
     public BeneficiaryEntity addBeneficiary(BeneficiaryDTO beneficiaryDTO , MultipartFile file) {
@@ -75,8 +81,72 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
         }
 
         if ("ACCEPTED".equals(status)) {
-            if (amount == null || amount == 0) return null;
+
+            if (amount == null || amount == 0){
+                return null;
+            }
+
             beneficiary.setAmount(amount);
+            ExpenditureEntity lastExp =
+                    expenditureRepository
+                            .findTopByOrderByIdDesc();
+
+            String nextReceiptNo = "REC-1";
+
+            if(lastExp != null &&
+                    lastExp.getReceiptNo() != null){
+
+                String lastNo =
+                        lastExp.getReceiptNo()
+                                .replace("REC-", "");
+
+                int num = Integer.parseInt(lastNo);
+
+                nextReceiptNo = "REC-" + (num + 1);
+            }
+
+            ExpenditureEntity exp =
+                    new ExpenditureEntity();
+
+            exp.setName(
+                    beneficiary.getNeedyName()
+            );
+
+            exp.setAddress(
+                    beneficiary.getAddress()
+            );
+
+            exp.setAmount(
+                    Double.valueOf(amount)
+            );
+
+            exp.setProblem(
+                    beneficiary.getProblem()
+            );
+
+            exp.setYear(
+                    new Date().getYear() + 1900
+            );
+
+            exp.setReceiptNo(
+                    nextReceiptNo
+            );
+
+            exp.setExpDate(
+                    new Date()
+            );
+
+            exp.setSupDoc(
+                    beneficiary.getSupportiveDocuments()
+            );
+
+            exp.setReceiptGenerated("N");
+
+            exp.setBeneficiaryId(
+                    beneficiary.getId()
+            );
+
+            expenditureRepository.save(exp);
         }
         else if ("REJECTED".equals(status)) {
             beneficiary.setAmount(0);

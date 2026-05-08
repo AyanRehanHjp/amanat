@@ -23,4 +23,10 @@ public class ExpenditureEntity {
         private int year;
         private String problem;
         private String supDoc;
+
+    @Column(name = "receipt_generated")
+    private String receiptGenerated;
+
+    @Column(name = "beneficiary_id")
+    private Long beneficiaryId;
 }

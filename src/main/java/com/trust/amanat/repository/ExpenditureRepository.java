@@ -13,4 +13,6 @@ public interface ExpenditureRepository extends JpaRepository <ExpenditureEntity,
     Double getTotalExpenditure();
     @Query("SELECT e.year, SUM(e.amount) FROM ExpenditureEntity e GROUP BY e.year")
     List<Object[]> getYearlyExpense();
+    ExpenditureEntity findTopByOrderByIdDesc();
+    ExpenditureEntity findByReceiptNo(String receiptNo);
 }

@@ -2,7 +2,9 @@ package com.trust.amanat.controller;
 
 import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.RecPdfGenDTO;
+import com.trust.amanat.entity.ExpenditureEntity;
 import com.trust.amanat.entity.RecPdfGenEntity;
+import com.trust.amanat.repository.ExpenditureRepository;
 import com.trust.amanat.repository.RecPdfGenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,9 @@ public class RecpdfgenController {
 
     @Autowired
     private RecPdfGenRepository receiptRepository;
+
+    @Autowired
+    private ExpenditureRepository expenditureRepository;
 
 
     @PostMapping("/generateReceipt")
@@ -40,7 +45,12 @@ public class RecpdfgenController {
         rec.setRecDate(dto.getRecDate());
 
         receiptRepository.save(rec);
+        ExpenditureEntity exp = expenditureRepository.findByReceiptNo(dto.getReceiptNo());
 
+        if(exp != null){
+            exp.setReceiptGenerated("Y");
+            expenditureRepository.save(exp);
+        }
         return ResponseEntity.ok(rec);
     }
 
