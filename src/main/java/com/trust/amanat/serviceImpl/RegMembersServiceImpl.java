@@ -46,6 +46,7 @@ public class RegMembersServiceImpl implements RegMembersService {
         newMember.setJoiningYear(member.getJoiningYear());
         newMember.setMemberId(newMemberId);
         newMember.setStatus(member.getStatus());
+        newMember.setApprovalFlag(member.getApprovalFlag());
 
         // 🔥  save
         MembersEntity savedMember = regMembersRepository.save(newMember);
@@ -55,6 +56,7 @@ public class RegMembersServiceImpl implements RegMembersService {
         user.setFirstName(savedMember.getFirstname());
         user.setLastName(savedMember.getLastname());
         user.setMobile(savedMember.getMobile());
+        user.setApprovalFlag(savedMember.getApprovalFlag());
         user.setMember(savedMember);   // relation
 
         userSignUpRepository.save(user);
@@ -89,6 +91,8 @@ public class RegMembersServiceImpl implements RegMembersService {
         members.setJoinedBy(member.getJoinedBy());
         members.setJoiningYear(member.getJoiningYear());
         members.setStatus(member.getStatus());
+        members.setApprovalFlag(member.getApprovalFlag());
+
 
         // 🔥 (relation )
         UserEntity user = members.getUser();

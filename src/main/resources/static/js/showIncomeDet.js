@@ -131,11 +131,17 @@ else {
 
         let totalRow = document.createElement("tr");
 
-        let totalHTML = `
-            <td colspan="4" style="font-weight:bold; background:#e8f5e9;">
-                TOTAL
-            </td>
-        `;
+     let totalHTML = `
+         <td style="font-weight:bold; background:#e8f5e9;"></td>
+
+         <td style="font-weight:bold; background:#e8f5e9;"></td>
+
+         <td style="font-weight:bold; background:#e8f5e9;"></td>
+
+         <td style="font-weight:bold; background:#e8f5e9;">
+         TOTAL
+         </td>
+     `;
 
         totals.forEach(val => {
             totalHTML += `
@@ -155,35 +161,64 @@ else {
     });
 }
 
-// ===============================
-// 🖨️ Print PDF
-// ===============================
+
+// =======🖨️ Print PDF========================
 function printPDF(){
+
+    // First show all columns
+    for(let i = 4; i <= 15; i++){
+        toggleColumn(i, true);
+    }
 
     let checked = document.querySelectorAll("#monthFilter input:checked");
 
-    for(let i = 4; i <= 15; i++){
-        toggleColumn(i, false);
-    }
+    // If some months selected then hide others
+    if(checked.length > 0){
 
-    if(checked.length === 0){
+        // Hide all month columns first
         for(let i = 4; i <= 15; i++){
-            toggleColumn(i, true);
+            toggleColumn(i, false);
         }
-    } else {
+
+        // Show only selected months
         checked.forEach(cb => {
             toggleColumn(parseInt(cb.value), true);
         });
     }
 
-    window.print();
-    location.reload();
+    // Add print mode class
+    document.body.classList.add("print-mode");
+
+    // Small delay so browser recalculates layout properly
+    setTimeout(() => {
+
+        window.print();
+
+        // Restore everything after print
+        document.body.classList.remove("print-mode");
+
+        for(let i = 4; i <= 15; i++){
+            toggleColumn(i, true);
+        }
+
+    }, 300);
 }
 
+
+
+// ============👀 Show / Hide Column===================
 function toggleColumn(index, show){
+
     document.querySelectorAll("#reportTable tr").forEach(row => {
+
         if(row.children[index]){
-            row.children[index].style.display = show ? "" : "none";
+
+            if(show){
+                row.children[index].classList.remove("hide-column");
+            }
+            else{
+                row.children[index].classList.add("hide-column");
+            }
         }
     });
 }

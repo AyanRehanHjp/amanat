@@ -146,8 +146,18 @@ tbody tr:hover {
 }
 
 /* ============================= */
-/* PRINT */
+/* PRINT COLUMN CONTROL */
 /* ============================= */
+
+.hide-column{
+    display: none !important;
+}
+
+
+/* ============================= */
+/* PERFECT PRINT FIX */
+/* ============================= */
+
 @media print {
 
     @page {
@@ -155,52 +165,79 @@ tbody tr:hover {
         margin: 8mm;
     }
 
-    body * {
+    html,
+    body{
+        width: 100%;
+        overflow: hidden;
+    }
+
+    body *{
         visibility: hidden;
     }
 
-    .ShowIncomeDet, .ShowIncomeDet * {
+    .ShowIncomeDet,
+    .ShowIncomeDet *{
         visibility: visible;
     }
 
-    .ShowIncomeDet {
-        position: static !important;
+    .ShowIncomeDet{
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 100% !important;
-        margin: 0 auto !important;
-        padding: 5px;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 5px !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: white !important;
     }
 
-    button, select {
+    table{
+        width: 100% !important;
+        border-collapse: collapse !important;
+        table-layout: fixed !important;
+    }
+
+    th,
+    td{
+        border: 1px solid #000 !important;
+        padding: 4px !important;
+        font-size: 9px !important;
+        text-align: center !important;
+        vertical-align: middle !important;
+        overflow: hidden;
+    }
+
+    thead{
+        display: table-header-group;
+    }
+
+    tr{
+        page-break-inside: avoid !important;
+    }
+
+    #monthFilter,
+    button,
+    select,
+    .pay-btn,
+    .load-btn{
         display: none !important;
     }
 
+    /* Hide mobile column */
     th:nth-child(3),
-    td:nth-child(3) {
-        display: none;
+    td:nth-child(3){
+        display: none !important;
     }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: auto;
-    }
-
-    th, td {
-        font-size: 9px;
-        padding: 4px;
-        white-space: nowrap;
-    }
-
+    /* Name & Address wrap */
     td:nth-child(2),
-    td:nth-child(4) {
-        white-space: normal;
-    }
-
-    tr {
-        page-break-inside: avoid;
+    td:nth-child(4){
+        white-space: normal !important;
+        word-break: break-word;
     }
 }
-
 /* ============================= */
 /* MONTH FILTER */
 /* ============================= */

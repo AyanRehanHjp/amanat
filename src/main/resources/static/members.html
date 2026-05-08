@@ -78,9 +78,9 @@
         <div class="form-group small">
             <label>Status</label>
             <select id="status">
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-                <option value="Left">Left</option>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+                <option value="LEFT">LEFT</option>
             </select>
         </div>
 
@@ -88,7 +88,21 @@
             <label>Joined By</label>
             <input type="text" id="joinedBy">
         </div>
+        <div class="form-group small">
 
+            <label>Flag</label>
+
+            <select id="approvalFlag">
+
+                <option value="P">P</option>
+
+                <option value="A">A</option>
+
+                <option value="R">R</option>
+
+            </select>
+
+        </div>
         <div class="form-group button-group">
             <button type="button" onclick="saveMember()">Save</button>
         </div>
@@ -109,6 +123,7 @@
             <th>Address</th>
             <th>Status</th>
             <th>Joined By</th>
+            <th>Approval Flag</th>
             <th>Action/Edit</th>
         </tr>
         </thead>

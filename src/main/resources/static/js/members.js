@@ -23,6 +23,7 @@ let row = `
 <td>${member.address ?? ""}</td>
 <td>${member.status ?? ""}</td>
 <td>${member.joinedBy ?? ""}</td>
+<td>${member.approvalFlag ?? "P"}</td>
 <td><button onclick="editMember('${member.memberId}')">Edit</button></td>
 
 </tr>
@@ -68,7 +69,7 @@ document.getElementById("mobile").value = m.mobile ? m.mobile.replace("+91","") 
 document.getElementById("address").value = m.address || "";
 document.getElementById("status").value = m.status || "Active";
 document.getElementById("joinedBy").value = m.joinedBy || "";
-
+document.getElementById("approvalFlag").value = m.approvalFlag || "P";
 // heading
 document.getElementById("formTitle").innerText = "Update Member";
 
@@ -98,7 +99,8 @@ let member = {
     mobile: fullMobile,
     address: document.getElementById("address").value,
     status: document.getElementById("status").value,
-    joinedBy: document.getElementById("joinedBy").value
+    joinedBy: document.getElementById("joinedBy").value,
+    approvalFlag:document.getElementById("approvalFlag").value
 };
 
 // 🔥 decide API
@@ -150,6 +152,7 @@ document.getElementById("mobile").value = "";
 document.getElementById("address").value = "";
 document.getElementById("joinedBy").value = "";
 document.getElementById("status").value = "Active";
+document.getElementById("approvalFlag").value ="P";
 
 document.querySelector(".add-member-box").classList.remove("edit-mode");
 document.querySelector(".add-member-box").classList.add("add-mode");}
