@@ -158,13 +158,13 @@ function handleAction(value, id){
 
     .then(msg => {
 
-        alert(msg);
+        showPopup(msg);
 
         loadAdmins();
     })
 
     .catch(() => {
 
-        alert("Error while accepting resignation");
+        showPopup("Error while accepting resignation");
     });
 }

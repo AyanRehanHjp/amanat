@@ -14,7 +14,7 @@
     let role = localStorage.getItem("role");
 
     if(!token || role !== "SUPER_ADMIN"){
-    alert("Access Denied - Super Admin Only");
+    showPopup("Access Denied - Super Admin Only");
     window.location.href = "/super-admin-login.html";
 }
 </script>
