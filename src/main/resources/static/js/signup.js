@@ -38,6 +38,12 @@ let valid=true;
 const firstName=document.getElementById("firstName").value.trim();
 const lastName=document.getElementById("lastName").value.trim();
 const mobile=document.getElementById("mobile").value.trim();
+const countryCode =
+document.getElementById("countryCode").value;
+
+const fullMobile =
+countryCode + mobile;
+
 const email=document.getElementById("email").value.trim();
 const userName=document.getElementById("userName").value.trim();
 const password=document.getElementById("password").value.trim();
@@ -57,6 +63,13 @@ valid=false;
 
 if(mobile===""){
 setFieldError("mobile","Mobile is mandatory");
+valid=false;
+}
+else if(!/^[0-9]{6,15}$/.test(mobile)){
+setFieldError(
+"mobile",
+"Enter valid mobile number"
+);
 valid=false;
 }
 
@@ -95,7 +108,7 @@ headers:{
 body:JSON.stringify({
 firstName,
 lastName,
-mobile,
+mobile:fullMobile,
 email,
 userName,
 password,

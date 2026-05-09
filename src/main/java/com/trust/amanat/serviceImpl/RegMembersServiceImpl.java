@@ -101,6 +101,9 @@ public class RegMembersServiceImpl implements RegMembersService {
             user.setFirstName(member.getFirstname());
             user.setLastName(member.getLastname());
             user.setMobile(member.getMobile());
+            user.setJoinedBy(member.getJoinedBy());
+            user.setCity(member.getAddress());
+            user.setApprovalFlag(member.getApprovalFlag());
         }
 
         return regMembersRepository.save(members);

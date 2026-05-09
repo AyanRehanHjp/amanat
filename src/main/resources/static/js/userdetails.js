@@ -41,8 +41,7 @@ fetch("http://localhost:9000/signUp/retriveUser/" + userId,{
     mobile.value=data.mobile||"";
     email.value=data.email||"";
     userName.value=data.userName||"";
-    role.value=data.role||"";
-memberId.value = data.memberId || (data.member && data.member.memberId) || "";
+    memberId.value = data.memberId || (data.member && data.member.memberId) || "";
 
     /*  PROFILE IMAGE LOAD WITH AUTH HEADER + SPACE FIX */
     if(data.profilePicture){
@@ -113,7 +112,7 @@ fetch("http://localhost:9000/signUp/updateUser/"+userId,{
 })
 .then(res=>res.text())
 .then(msg=>{
-    alert(msg);
+    showPopup(msg);
 
     /* reload ki jagah direct latest image load */
     loadUser();

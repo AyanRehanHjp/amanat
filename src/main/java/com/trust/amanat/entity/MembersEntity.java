@@ -24,6 +24,7 @@ public class MembersEntity {
     @Column(name = "joining_year")
     private Integer joiningYear;
 
+    @Column(name = "mobile", unique = true)
     private String mobile;
 
     private String address;

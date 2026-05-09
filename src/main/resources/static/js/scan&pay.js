@@ -18,22 +18,31 @@ function submitPayment(){
     // 🔥 VALIDATION
     // ===============================
     if(!name || !mobile || !amount || !utr || !paymentDate){
-        alert("Please fill all required fields");
+        showPopup("Please fill all required fields");
+        return;
+    }
+    if(name.length < 3){
+        showPopup("Name must be minimum 3 characters");
         return;
     }
 
-    if(mobile.length !== 10){
-        alert("Mobile number must be 10 digits");
+    if(!/^[a-zA-Z ]+$/.test(name)){
+        showPopup("Name must contain letters only");
         return;
     }
 
-    if(isNaN(amount) || amount <= 0){
-        alert("Enter valid amount");
+    if(!/^[0-9]{10}$/.test(mobile)){
+        showPopup("Mobile number must be exactly 10 digits");
+        return;
+    }
+
+    if(isNaN(amount) || amount <= 1){
+        showPopup("Enter valid amount");
         return;
     }
 
     if(utr.length !== 5){
-        alert("UTR must be last 5 digits");
+        showPopup("UTR must be last 5 digits");
         return;
     }
 
@@ -70,7 +79,7 @@ function submitPayment(){
     })
     .then(msg => {
 
-        alert(msg);
+        showPopup(msg);
 
         // 🔥 reset form
         document.querySelectorAll(".payment-form input").forEach(input => input.value = "");
@@ -78,6 +87,6 @@ function submitPayment(){
     })
     .catch(err => {
         console.error(err);
-        alert("Error submitting payment");
+        showPopup("Error submitting payment");
     });
 }

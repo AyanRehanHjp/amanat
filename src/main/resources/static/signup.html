@@ -39,8 +39,45 @@
         </div>
 
         <div>
-            <input id="mobile" placeholder="Mobile">
+
+            <div style="display:flex; gap:8px;">
+
+                <select id="countryCode" style="width:170px;">
+
+                    <option value="+91">🇮🇳 India (+91)</option>
+                    <option value="+1">🇺🇸 America (+1)</option>
+                    <option value="+92">🇵🇰 Pakistan (+92)</option>
+                    <option value="+971">🇦🇪 Dubai UAE (+971)</option>
+                    <option value="+974">🇶🇦 Qatar (+974)</option>
+                    <option value="+966">🇸🇦 Saudi Arabia (+966)</option>
+                    <option value="+880">🇧🇩 Bangladesh (+880)</option>
+                    <option value="+94">🇱🇰 Sri Lanka (+94)</option>
+                    <option value="+968">🇴🇲 Oman (+968)</option>
+                    <option value="+965">🇰🇼 Kuwait (+965)</option>
+                    <option value="+973">🇧🇭 Bahrain (+973)</option>
+                    <option value="+98">🇮🇷 Iran (+98)</option>
+                    <option value="+964">🇮🇶 Iraq (+964)</option>
+                    <option value="+90">🇹🇷 Turkey (+90)</option>
+                    <option value="+60">🇲🇾 Malaysia (+60)</option>
+                    <option value="+62">🇮🇩 Indonesia (+62)</option>
+                    <option value="+93">🇦🇫 Afghanistan (+93)</option>
+                    <option value="+960">🇲🇻 Maldives (+960)</option>
+                    <option value="+962">🇯🇴 Jordan (+962)</option>
+                    <option value="+20">🇪🇬 Egypt (+20)</option>
+
+                </select>
+
+                <input
+                        id="mobile"
+                        placeholder="Mobile Number"
+                        maxlength="10"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+                >
+
+            </div>
+
             <div id="mobileError" class="error"></div>
+
         </div>
 
         <div>
