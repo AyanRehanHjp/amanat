@@ -2,7 +2,8 @@
 /* MAIN CONTAINER */
 /* ============================= */
 .ShowIncomeDet {
-    width: 80%;
+    width: 1400px;
+    max-width: 1400px;
     margin: 40px auto;
     background: #ffffff;
     padding: 35px;
@@ -322,11 +323,14 @@ tbody tr:hover {
 }
 .report-banner{
 text-align:center;
+width:100%;
 margin-bottom:20px;
 }
 
 .report-banner img{
 width:100%;
-max-width:1350px;
-border-radius:8px;
+max-width:1400px;
+height:auto;
+display:block;
+margin:auto;
 }

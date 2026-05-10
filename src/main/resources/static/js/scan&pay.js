@@ -45,7 +45,12 @@ function submitPayment(){
         showPopup("UTR must be last 5 digits");
         return;
     }
+    let today = new Date().toISOString().split("T")[0];
 
+    if(paymentDate > today){
+        showPopup("Please select today’s date or a previous payment date, Future  Dates are not allowed.");
+        return;
+    }
     // ===============================
     // 🔥 DATA (DTO ke hisaab se keys match honi chahiye)
     // ===============================
