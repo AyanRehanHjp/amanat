@@ -117,17 +117,38 @@ fetch(url,{
     },
     body: JSON.stringify(member)
 })
-.then(res => res.text())
+.then(async res => {
+
+    let msg = await res.text();
+
+    if(!res.ok){
+
+        if(msg.toLowerCase().includes("mobile")){
+            throw new Error(
+                "Duplicate Mobile Number. Mobile number cannot be updated."
+            );
+        }
+
+        throw new Error(msg || "Something went wrong");
+    }
+
+    return msg;
+})
 .then(msg => {
 
     showPopup(msg);
+
     loadMembers();
     resetForm();
 
 })
 .catch(err => {
+
     console.error("Save error:", err);
-    showPopup("Something went wrong");
+
+    showPopup(
+        err.message || "Something went wrong"
+    );
 });
 }
 
