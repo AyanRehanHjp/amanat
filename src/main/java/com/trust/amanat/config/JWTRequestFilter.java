@@ -93,6 +93,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/super-admin/super-admin-login")||
                 path.startsWith("/super-admin-login.html")||
                 path.startsWith("/admins/resign/**")||
+                path.startsWith("/manualDetailUpdate.html")||
                 path.startsWith("/admins/accept-resignation/**")||
 
                 path.equals("/signUp/addUser")) {

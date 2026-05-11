@@ -38,16 +38,17 @@
         <h3>Navigation</h3>
 
         <ul>
-            <li onclick="openPage('/admin-detail.html')">Admin Details</li>
             <li onclick="openPage('/members.html')">Add/Modify/View Members Details</li>
-            <li onclick="openPage('/incomedet.html')"> Add Income Details</li>
             <li onclick="openPage('/showIncomeDet.html')"> Show Members Income Details</li>
-            <li onclick="openPage('/expenditure.html')">Expenditure Details</li>
-            <li onclick="openPage('/recpdfgen.html')">Generate Receipt</li>
+            <li onclick="openPage('/incomedet.html')"> Add Income Details</li>
+            <li onclick="openPage('/expenditure.html')">Add/Show Expenditure Details</li>
             <li onclick="openPage('/help-requests.html')">Help Requests</li>
             <li onclick="openPage('/cover.html')">Full Report</li>
             <li onclick="openPage('/feedback-view.html')">View Feedback</li>
-            <li onclick="openPage('/super-admin.html')">Super-Admin</li>
+            <li onclick="openPage('/manualDetailUpdate')">Manual Detail Update</li>
+            <li onclick="openPage('/admin-detail.html')">Admin Details</li>
+            <li onclick="openPage('/super-admin-login.html')">Super-Admin</li>
+
 
 
 
@@ -66,10 +67,6 @@
         <p style="font-size:11px ; font-style : italic; color:red;  font-weight: bold; text-decoration: underline;">This page belongs to admin team only, For Normal User Access is not permissible</p>
 
         <div class="cards">
-            <div class="card" onclick="openPage('/admin-detail.html')">
-                👥<br>
-                Admin Details
-            </div>
 
             <div class="card" onclick="openPage('/members.html')">
                 ➕ / 👥<br>
@@ -86,13 +83,7 @@
 
             <div class="card" onclick="openPage('/expenditure.html')">
                 📄<br>
-                Expenditure Details
-            </div>
-
-
-            <div class="card" onclick="openPage('/recpdfgen.html')">
-                📑<br>
-                Generate Receipt
+                Add / Show Expenditure Details
             </div>
 
             <div class="card" onclick="openPage('/help-requests.html')">
@@ -108,6 +99,21 @@
             <div class="card" onclick="openPage('/feedback-view.html')">
                 📊<br>
                 View Feedback
+            </div>
+
+            <div class="card" onclick="openPage('/manualDetailUpdate.html')">
+                📊<br>
+                Manual Detail Update
+            </div>
+
+            <div class="card" onclick="openPage('/admin-detail.html')">
+                👥<br>
+                Admin Details
+            </div>
+
+            <div class="card" onclick="openPage('/super-admin-login.html')">
+                👥<br>
+                Super Admin
             </div>
         </div>
 

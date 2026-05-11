@@ -82,6 +82,7 @@ public class SecurityConfig {
                                 "/super-admin/create-super-admin",
                                 "/super-admin/super-admin-login",
                                 "/super-admin-login.html",
+                                "/manualDetailUpdate.html",
                                 "/admins/accept-resignation/**"
 
 

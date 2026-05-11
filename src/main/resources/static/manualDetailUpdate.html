@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Manual Details - Amanat Welfare Trust</title>
+
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/manualDetailUpdate.css">
+
+</head>
+
+<body>
+
+<script>
+    let token = localStorage.getItem("token");
+    let role = localStorage.getItem("role");
+
+    if(!token || role !== "ADMIN"){
+        alert("Access Denied - Admin Only");
+        window.location.href="/admin-login.html";
+    }
+</script>
+
+<div id="common-navbar"></div>
+
+<div class="logout">
+    <button onclick="logout()">Logout</button>
+</div>
+
+<div class="container">
+
+    <div class="sidebar">
+
+        <h3>Navigation</h3>
+
+        <ul>
+
+            <li onclick="openPage('/recpdfgen.html')">
+                Manual Receipt Generation
+            </li>
+
+            <li onclick="openPage('/manual-bill-generate.html')">
+                Manual Bill Generate
+            </li>
+
+            <li onclick="openPage('/manual-payment-update.html')">
+                Manual Payment Update
+            </li>
+
+            <li onclick="openPage('/manual-status-change.html')">
+                Manual Status Change
+            </li>
+
+            <li onclick="openPage('/manual-disconnect.html')">
+                Manual Disconnect
+            </li>
+
+            <li onclick="openPage('/manual-reconnect.html')">
+                Manual Reconnect
+            </li>
+
+            <li onclick="openPage('/manual-receipt.html')">
+                Manual Receipt Generate
+            </li>
+
+            <li onclick="openPage('/manual-report.html')">
+                Manual Report Generate
+            </li>
+           <li onclick="openPage('/manual-data-sync.html')">
+            Manual Data Sync
+        </li>
+            <li onclick="openPage('/manual-data-sync.html')">
+                Manual Data Sync
+            </li>
+
+            <li onclick="openPage('/manual-cache-clear.html')">
+                Clear System Cache
+            </li>
+
+            <li onclick="openPage('/manual-file-upload.html')">
+                Manual File Upload
+            </li>
+
+            <li onclick="openPage('/manual-notification.html')">
+                Send Notification
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div class="main">
+
+        <h1>Manual Operations Panel</h1>
+
+        <p>
+            Welcome to Manual Operations Management Panel
+        </p>
+
+        <p style="font-size:11px; font-style:italic; color:red; font-weight:bold; text-decoration:underline;">
+            This page is highly secured and only accessible to authorized admin users
+        </p>
+
+        <div class="cards">
+
+            <div class="card" onclick="openPage('/recpdfgen.html')">
+                🧾<br>
+                Manual Receipt Generation
+            </div>
+
+            <div class="card" onclick="openPage('/manual-bill-generate.html')">
+                💧<br>
+                Manual Bill Generate
+            </div>
+
+            <div class="card" onclick="openPage('/manual-payment-update.html')">
+                💰<br>
+                Manual Payment Update
+            </div>
+
+            <div class="card" onclick="openPage('/manual-status-change.html')">
+                🔄<br>
+                Manual Status Change
+            </div>
+
+            <div class="card" onclick="openPage('/manual-disconnect.html')">
+                ⛔<br>
+                Manual Disconnect
+            </div>
+
+            <div class="card" onclick="openPage('/manual-reconnect.html')">
+                🔌<br>
+                Manual Reconnect
+            </div>
+
+            <div class="card" onclick="openPage('/manual-receipt.html')">
+                🧾<br>
+                .............
+            </div>
+
+            <div class="card" onclick="openPage('/manual-report.html')">
+                📊<br>
+                Manual Report Generate
+            </div>
+
+            <div class="card" onclick="openPage('/manual-data-sync.html')">
+                🔃<br>
+                Manual Data Sync
+            </div>
+
+            <div class="card" onclick="openPage('/manual-cache-clear.html')">
+                🗑️<br>
+                Clear System Cache
+            </div>
+
+            <div class="card" onclick="openPage('/manual-file-upload.html')">
+                📁<br>
+                Manual File Upload
+            </div>
+
+            <div class="card" onclick="openPage('/manual-notification.html')">
+                🔔<br>
+                Send Notification
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/constants.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/manualDetailUpdate.js"></script>
+
+
+<script>
+
+    function openPage(url){
+        window.location.href=url;
+    }
+
+    function feature(){
+        alert("Feature coming soon");
+    }
+
+    function logout(){
+        localStorage.clear();
+        window.location.href="/admin-login.html";
+    }
+
+    fetch('/common.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("common-navbar").innerHTML=data;
+    });
+
+</script>
+
+</body>
+</html>
