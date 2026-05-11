@@ -1,84 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <title>Admin Details</title>
 
     <link rel="stylesheet" href="/css/super-admin.css">
     <link rel="stylesheet" href="/css/common.css">
+
 </head>
 
 <body>
+
 <script>
+
     let token = localStorage.getItem("token");
     let role = localStorage.getItem("role");
 
     if(!token || role !== "SUPER_ADMIN"){
-    showPopup("Access Denied - Super Admin Only");
-    window.location.href = "/super-admin-login.html";
-}
+
+        alert("Access Denied - Super Admin Only");
+
+        window.location.href =
+            "/super-admin-login.html";
+    }
+
 </script>
+
 <div id="common-navbar"></div>
+
 <div class="super-admin-ribbon">
+
     SUPER ADMIN PANEL
+
 </div>
+
 <div class="container">
 
-    <!-- CREATE ADMIN (HIGHLIGHTED CENTER) -->
+    <!-- CREATE ADMIN -->
+
     <div class="top-create">
-        <span>To Create Admin Click here</span>
-        <button class="create-btn" onclick="goToCreate()">+ Create Admin</button>
+
+        <span>
+            To Create Admin Click here
+        </span>
+
+        <button class="create-btn"
+                onclick="goToCreate()">
+
+            + Create Admin
+
+        </button>
+
     </div>
 
-    <!-- TITLE + VIEW -->
+    <!-- TITLE BAR -->
+
     <div class="title-bar">
+
         <h2>Admin Details</h2>
 
         <div class="view-section">
-            <span>Click here for Admin Details</span>
-            <button class="view-btn" onclick="loadAdmins()">View Admins</button>
+
+            <span>
+                Click here for Admin Details
+            </span>
+
+            <button class="view-btn"
+                    onclick="loadAdmins()">
+
+                View Admins
+
+            </button>
+
         </div>
+
     </div>
 
-    <!-- CARD -->
+    <!-- TABLE CARD -->
+
     <div class="card">
+
         <table>
+
             <thead>
+
             <tr>
+
                 <th>Sl No</th>
                 <th>User ID</th>
                 <th>Full Name</th>
                 <th>Designation</th>
                 <th>Status</th>
                 <th>Action</th>
+
             </tr>
+
             </thead>
 
             <tbody id="adminTableBody">
+
             <tr>
-                <td colspan="6" class="empty">Click "View Admins" to load data</td>
+
+                <td colspan="6"
+                    class="empty">
+
+                    Click "View Admins"
+                    to load data
+
+                </td>
+
             </tr>
+
             </tbody>
+
         </table>
+
     </div>
 
-    <!-- BACK BUTTON -->
-    <div class="back-container">
-        <button class="back-btn" onclick="goBack()">⬅ Back to Admin Page</button>
+    <!-- BOTTOM BUTTONS -->
+
+    <div class="bottom-buttons">
+
+        <button class="back-btn"
+                onclick="goBack()">
+
+            ⬅ Back to Admin Page
+
+        </button>
+
+        <button class="logout-btn"
+                onclick="logoutSuperAdmin()">
+
+            Logout
+
+        </button>
+
     </div>
 
 </div>
+
 <script src="/js/constants.js"></script>
 <script src="/js/super-admin.js"></script>
 <script src="/js/common.js"></script>
 
 <script>
+
     fetch('/common.html')
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById("common-navbar").innerHTML = data;
-        });
+
+    .then(res => res.text())
+
+    .then(data => {
+
+        document.getElementById(
+            "common-navbar"
+        ).innerHTML = data;
+
+    });
+
 </script>
 
 </body>
+
 </html>

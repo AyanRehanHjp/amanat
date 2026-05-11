@@ -1,30 +1,44 @@
 function loadAdmins() {
 
-    let table = document.getElementById("adminTableBody");
+    let table =
+        document.getElementById(
+            "adminTableBody"
+        );
 
-    // loading message
     table.innerHTML =
+
     `<tr>
-        <td colspan="6" class="empty">
+
+        <td colspan="6"
+            class="empty">
+
             Loading...
+
         </td>
+
     </tr>`;
 
-    // getting admins
-    fetch("http://localhost:9000/admins/getAllAdmins")
+    fetch(
+        "http://localhost:9000/admins/getAllAdmins"
+    )
 
     .then(res => res.json())
 
     .then(data => {
 
-        // no data found
         if(data.length === 0){
 
             table.innerHTML =
+
             `<tr>
-                <td colspan="6" class="empty">
+
+                <td colspan="6"
+                    class="empty">
+
                     No admins found
+
                 </td>
+
             </tr>`;
 
             return;
@@ -36,36 +50,45 @@ function loadAdmins() {
 
             let status = "";
 
-            // pending status
             if(admin.status === "PENDING"){
 
                 status =
+
                 `<span class="pending-status">
+
                     Wanted To Resign
+
                 </span>`;
             }
 
-            // accepted status
-            else if(admin.status === "RESIGNED"){
+            else if(
+                admin.status === "RESIGNED"
+            ){
 
                 status =
+
                 `<span class="accepted-status">
+
                     Resignation Accepted
+
                 </span>`;
             }
 
-            // active status
             else{
 
                 status =
+
                 `<span class="active-status">
+
                     ACTIVE_ADMIN
+
                 </span>`;
             }
 
-            // action dropdown
             let action = `
+
                 <select
+
                     ${
                         admin.status !== "PENDING"
                         ? "disabled"
@@ -81,58 +104,80 @@ function loadAdmins() {
                 >
 
                     <option selected disabled>
+
                         REJECTED
+
                     </option>
 
                     <option value="ACCEPT">
+
                         ACCEPT
+
                     </option>
 
                 </select>
             `;
 
-            // table row
             let row = `
+
                 <tr>
+
                     <td>${admin.id}</td>
+
                     <td>${admin.userId}</td>
+
                     <td>${admin.fullName}</td>
+
                     <td>${admin.designation}</td>
+
                     <td>${status}</td>
+
                     <td>${action}</td>
+
                 </tr>
             `;
 
             table.innerHTML += row;
+
         });
 
     })
 
     .catch(() => {
 
-        // api error
         table.innerHTML =
+
         `<tr>
-            <td colspan="6" class="empty">
+
+            <td colspan="6"
+                class="empty">
+
                 Error loading data
+
             </td>
+
         </tr>`;
     });
 }
 
-/* NAVIGATION */
+/* BACK BUTTON */
 
-// back button
-function goBack() {
-    window.location.href = "/super-admin.html";
+function goBack(){
+
+    window.location.href =
+        "/super-admin.html";
 }
 
-// create admin page
-function goToCreate() {
-    window.location.href = "/create-admin.html";
+/* CREATE ADMIN */
+
+function goToCreate(){
+
+    window.location.href =
+        "/create-admin.html";
 }
 
-// accept resignation
+/* ACCEPT RESIGNATION */
+
 function handleAction(value, id){
 
     if(value !== "ACCEPT"){
@@ -146,13 +191,16 @@ function handleAction(value, id){
     if(!yes){
 
         loadAdmins();
+
         return;
     }
 
-    fetch(`/admins/accept-resignation/${id}`, {
-
-        method:"POST"
-    })
+    fetch(
+        `/admins/accept-resignation/${id}`,
+        {
+            method:"POST"
+        }
+    )
 
     .then(res => res.text())
 
@@ -165,6 +213,24 @@ function handleAction(value, id){
 
     .catch(() => {
 
-        showPopup("Error while accepting resignation");
+        showPopup(
+            "Error while accepting resignation"
+        );
     });
+}
+
+/* LOGOUT */
+
+function logoutSuperAdmin(){
+
+    localStorage.removeItem("token");
+
+    localStorage.removeItem("role");
+
+    localStorage.removeItem(
+        "superAdminUsername"
+    );
+
+    window.location.href =
+        "/admin-login.html";
 }

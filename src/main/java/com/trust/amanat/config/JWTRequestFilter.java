@@ -2,8 +2,10 @@ package com.trust.amanat.config;
 
 import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.entity.AdminEntity;
+import com.trust.amanat.entity.SuperAdminEntity;
 import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.repository.AdminRepository;
+import com.trust.amanat.repository.SuperAdminRepository;
 import com.trust.amanat.repository.UserSignInRepository;
 import com.trust.amanat.serviceImpl.JWTService;
 import jakarta.servlet.FilterChain;
@@ -30,6 +32,9 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     private UserSignInRepository userSignInRepository;
     @Autowired
     private AdminRepository adminRepository;
+    @Autowired
+    private SuperAdminRepository superAdminRepository;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response, FilterChain filterChain)
@@ -124,18 +129,24 @@ public class JWTRequestFilter extends OncePerRequestFilter {
             } else {
             AdminEntity admin = adminRepository.findByUserId(username);
             if (admin != null) {
-                UsernamePasswordAuthenticationToken auth
-                        = new UsernamePasswordAuthenticationToken(admin,null,List.of(new SimpleGrantedAuthority(role)));
-
+                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(admin, null, List.of(new SimpleGrantedAuthority(role)));
                 auth.setDetails(new WebAuthenticationDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(auth);
             } else {
-                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                return;
+
+                SuperAdminEntity superAdmin = superAdminRepository.findByUsername(username);
+                if (superAdmin != null) {
+                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken
+                            (superAdmin, null, List.of(new SimpleGrantedAuthority(role)));
+                    auth.setDetails(new WebAuthenticationDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                } else {
+                    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                    return;
+                }
+
             }
-
         }
-
         filterChain.doFilter(request, response);
     }
 

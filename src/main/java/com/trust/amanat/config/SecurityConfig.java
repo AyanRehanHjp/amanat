@@ -86,7 +86,6 @@ public class SecurityConfig {
                                 "/admins/accept-resignation/**"
 
 
-
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
