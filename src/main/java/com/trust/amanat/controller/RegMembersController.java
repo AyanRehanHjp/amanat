@@ -1,15 +1,13 @@
 package com.trust.amanat.controller;
 
 import com.trust.amanat.common.constants.AppConstants;
-import com.trust.amanat.dto.PostHolderDTO;
 import com.trust.amanat.entity.MembersEntity;
-import com.trust.amanat.entity.PostHolderEntity;
 import com.trust.amanat.service.RegMembersService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,10 +21,11 @@ public class RegMembersController {
     RegMembersService regMembersService;
 
     @GetMapping  ("/allmembers")
-    public List <MembersEntity> getAllMembers() {
+    public Page<MembersEntity> getAllMembers(@RequestParam(defaultValue = "0") int page,
+                                             @RequestParam(defaultValue = "10") int size) {
         logger.info("calling request to get all members");
-        List <MembersEntity> members= regMembersService.getAllMembers();
-        logger.info("getAllMembers method is called, total members found: {}", members != null ? members.size() : 0);
+        Page <MembersEntity> members= regMembersService.getAllMembers( page, size);
+        logger.info("getAllMembers method is called, total members found: {}", members != null ? members.getNumberOfElements() : 0);
         return members;
     }
     @PostMapping("/addMember")

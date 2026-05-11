@@ -6,7 +6,7 @@ padding:0;
 }
 
 header{
-background:#0d6efd;
+background:#112d57;
 color:white;
 padding:20px;
 text-align:center;
@@ -17,12 +17,18 @@ font-weight:bold;
 .container{
 width:90%;
 margin:40px auto;
+background:#fffdf7;
+padding:30px;
+border-radius:18px;
+box-shadow:
+0 8px 25px rgba(0,0,0,0.08);
+border:1px solid #eee;
 }
 
 .title{
 text-align:center;
 margin-bottom:20px;
-color:#333;
+color:#33;
 }
 
 table{
@@ -169,4 +175,30 @@ color:black;
 }
 #formTitle{
 text-align:center;
+}
+
+.pagination{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+}
+
+.pagination button{
+    padding:8px 18px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.pagination button:hover{
+    background:#084298;
+}
+
+#pageInfo{
+    font-weight:bold;
+    font-size:16px;
 }

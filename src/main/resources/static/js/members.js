@@ -1,17 +1,20 @@
 let editingMemberId = null;
-
+let currentPage = 0;
+let pageSize = 30;
+let totalPages = 1;
 
 // ================= LOAD MEMBERS =================
 function loadMembers(){
-fetch("http://localhost:9000/members/allmembers")
+fetch(`http://localhost:9000/members/allmembers?page=${currentPage}&size=${pageSize}`)
 .then(res => res.json())
 .then(data => {
 
 let table = document.querySelector("#membersTable tbody");
 table.innerHTML = "";
 
-data.forEach(member => {
-
+//data.forEach(member => {
+totalPages = data.totalPages;
+data.content.forEach(member => {
 let row = `
 <tr>
 <td>${member.id}</td>
@@ -33,6 +36,10 @@ table.innerHTML += row;
 
 });
 
+document.getElementById("pageInfo")
+.innerText =
+`Page ${currentPage + 1} of ${totalPages}`;
+
 })
 .catch(err => {
 console.error("Error loading members:", err);
@@ -43,11 +50,11 @@ console.error("Error loading members:", err);
 // ================= EDIT MEMBER =================
 function editMember(memberId){
 
-fetch("http://localhost:9000/members/allmembers")
+fetch(`http://localhost:9000/members/allmembers?page=${currentPage}&size=${pageSize}`)
 .then(res => res.json())
 .then(data => {
 
-let m = data.find(x => x.memberId === memberId);
+let m = data.content.find(x => x.memberId === memberId);
 
 if(!m){
     showPopup("Member not found");
@@ -204,3 +211,24 @@ loadMembers();
 loadYears();
 document.querySelector(".add-member-box").classList.add("add-mode");
 };
+// ================= For Next and Previous page data =================
+
+function nextPage(){
+
+    if(currentPage < totalPages - 1){
+
+        currentPage++;
+
+        loadMembers();
+    }
+}
+
+function previousPage(){
+
+    if(currentPage > 0){
+
+        currentPage--;
+
+        loadMembers();
+    }
+}

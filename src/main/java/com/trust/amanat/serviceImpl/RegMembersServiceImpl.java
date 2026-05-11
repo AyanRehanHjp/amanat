@@ -7,9 +7,10 @@ import com.trust.amanat.repository.RegMembersRepository;
 import com.trust.amanat.repository.UserSignUpRepository;
 import com.trust.amanat.service.RegMembersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class RegMembersServiceImpl implements RegMembersService {
@@ -67,9 +68,9 @@ public class RegMembersServiceImpl implements RegMembersService {
 
     // ================= GET ALL =================
     @Override
-    public List<MembersEntity> getAllMembers() {
-
-        return regMembersRepository.findAll();
+    public Page<MembersEntity> getAllMembers(int page, int size) {
+         Pageable pageble = PageRequest.of(page, size);
+        return regMembersRepository.findAll(pageble);
     }
 
 
