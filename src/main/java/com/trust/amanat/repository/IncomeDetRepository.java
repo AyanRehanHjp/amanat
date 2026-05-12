@@ -72,4 +72,6 @@ public interface IncomeDetRepository extends JpaRepository <IncomeDetEntity, Lon
 
     @Query("SELECT i.forYear, SUM(i.amount) FROM IncomeDetEntity i GROUP BY i.forYear")
     List<Object[]> getYearlyIncome();
+
+    boolean existsByMemberId(String memberId);
 }

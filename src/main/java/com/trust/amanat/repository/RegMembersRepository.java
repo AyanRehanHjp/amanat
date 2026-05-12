@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface RegMembersRepository extends JpaRepository <MembersEntity, Long> {
     MembersEntity findTopByOrderByIdDesc();
     MembersEntity findByMemberId(String memberId);
+    boolean existsByMemberId(String memberId);
 }

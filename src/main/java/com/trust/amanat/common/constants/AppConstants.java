@@ -123,6 +123,7 @@ public class AppConstants {
         public static final String NAME_REQUIRED = "Name is required";
         public static final String ADDRESS_REQUIRED = "Address is required";
         public static final String AMOUNT_REQUIRED = "Amount is required";
+        public static final String MEMBER_ID_DOES_NOT_EXISTS = "Member Id Does Not Exist";
         public static final String EXP_DATE_REQUIRED = "Expenditure date is required";
         public static final String YEAR_REQUIRED = "Year is required";
         public static final String RECEIPT_REQUIRED = "Receipt number is required";

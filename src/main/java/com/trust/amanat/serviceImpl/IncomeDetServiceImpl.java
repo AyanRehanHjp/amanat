@@ -3,6 +3,7 @@ import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.IncomeDetDTO;
 import com.trust.amanat.entity.IncomeDetEntity;
 import com.trust.amanat.repository.IncomeDetRepository;
+import com.trust.amanat.repository.RegMembersRepository;
 import com.trust.amanat.service.IncomeDetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class IncomeDetServiceImpl implements IncomeDetService {
     private static final Logger logger = LoggerFactory.getLogger(IncomeDetServiceImpl.class);
     @Autowired
     IncomeDetRepository incomeDetRepository;
+    @Autowired
+    RegMembersRepository regMembersRepository;
+
 
     @Override
     public String addPayment(IncomeDetDTO incomeDetDTO) {
@@ -28,6 +32,13 @@ public class IncomeDetServiceImpl implements IncomeDetService {
 
             if (incomeDetDTO.getMemberId() == null) {
                 return AppConstants.Validation.MEMBER_ID_REQUIRED;
+            }
+
+            boolean memberExists =  regMembersRepository.existsByMemberId(incomeDetDTO.getMemberId());
+
+            if(!memberExists){
+                return AppConstants.Validation.MEMBER_ID_DOES_NOT_EXISTS;
+
             }
 
             if (incomeDetDTO.getAmount() == null) {
