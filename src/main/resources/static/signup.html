@@ -28,17 +28,42 @@
 
     <div class="form-grid">
 
+        <!-- FIRST NAME -->
         <div>
-            <input id="firstName" placeholder="First Name">
+
+            <label for="firstName">First Name</label>
+
+            <input
+                    id="firstName"
+                    placeholder="Enter First Name"
+                    minlength="3"
+                    maxlength="24"
+                    oninput="this.value=this.value.replace(/[^A-Za-z ]/g,'')">
+
             <div id="firstNameError" class="error"></div>
+
         </div>
 
+        <!-- LAST NAME -->
         <div>
-            <input id="lastName" placeholder="Last Name">
+
+            <label for="lastName">Last Name</label>
+
+            <input
+                    id="lastName"
+                    placeholder="Enter Last Name"
+                    minlength="3"
+                    maxlength="24"
+                    oninput="this.value=this.value.replace(/[^A-Za-z ]/g,'')">
+
             <div id="lastNameError" class="error"></div>
+
         </div>
 
+        <!-- MOBILE -->
         <div>
+
+            <label for="mobile">Mobile Number</label>
 
             <div style="display:flex; gap:8px;">
 
@@ -69,7 +94,7 @@
 
                 <input
                         id="mobile"
-                        placeholder="Mobile Number"
+                        placeholder="Enter Mobile Number"
                         maxlength="10"
                         oninput="this.value=this.value.replace(/[^0-9]/g,'')"
                 >
@@ -80,33 +105,76 @@
 
         </div>
 
+        <!-- EMAIL -->
         <div>
-            <input id="email" placeholder="Email">
+
+            <label for="email">Email Address</label>
+
+            <input
+                    id="email"
+                    placeholder="Enter Email Address">
+
             <div id="emailError" class="error"></div>
+
         </div>
 
+        <!-- USERNAME -->
         <div class="full">
-            <input id="userName" placeholder="Username">
+
+            <label for="userName">Username</label>
+
+            <input
+                    id="userName"
+                    placeholder="Enter Username"
+                    minlength="6"
+                    maxlength="24"
+                    oninput="this.value=this.value.replace(/[^A-Za-z0-9]/g,'')">
+
             <div id="userNameError" class="error"></div>
+
         </div>
 
+        <!-- PASSWORD -->
         <div class="password-box">
-            <input id="password" type="password" placeholder="Password">
+
+            <label for="password">Password</label>
+
+            <input
+                    id="password"
+                    type="password"
+                    placeholder="Enter Password"
+                    minlength="8"
+                    maxlength="24">
+
             <span class="eye" onclick="togglePassword()">👁</span>
+
             <div id="passwordError" class="error"></div>
+
         </div>
 
+        <!-- CONFIRM PASSWORD -->
         <div>
-            <input id="confirmPassword" type="password" placeholder="Confirm Password">
+
+            <label for="confirmPassword">Confirm Password</label>
+
+            <input
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="Confirm Password"
+                    minlength="8"
+                    maxlength="24">
+
             <div id="confirmPasswordError" class="error"></div>
+
         </div>
 
-<!--        <div class="full">-->
-<!--            <select id="role">-->
-<!--                <option value="user">Member</option>-->
-<!--                <option value="admin">Admin</option>-->
-<!--            </select>-->
-<!--        </div>-->
+        <!--        <div class="full">-->
+        <!--            <label for="role">Role</label>-->
+        <!--            <select id="role">-->
+        <!--                <option value="user">Member</option>-->
+        <!--                <option value="admin">Admin</option>-->
+        <!--            </select>-->
+        <!--        </div>-->
 
     </div>
 
@@ -118,6 +186,7 @@
         </button>
 
         <div class="btn-row">
+
             <button onclick="location.href='/index.html'" class="back">
                 Back to Home
             </button>
@@ -125,6 +194,7 @@
             <button onclick="location.href='/login.html'" class="login">
                 Go to Login
             </button>
+
         </div>
 
     </div>
@@ -132,6 +202,7 @@
 </div>
 
 <div id="popup"></div>
+
 <script src="/js/constants.js"></script>
 <script src="/js/signup.js"></script>
 <script src="/js/common.js"></script>

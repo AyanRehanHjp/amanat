@@ -39,7 +39,7 @@ public class MembersEntity {
     @Column(name = "mobile", unique = true)
     private String mobile;
 
-    @NotBlank(message = "Address is required")
+//    @NotBlank(message = "Address is required")
     private String address;
 
     @Column(name = "member_id", unique = true)

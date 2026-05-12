@@ -30,11 +30,15 @@ function trackStatus() {
         return;
     }
 
+
     fetch("http://localhost:9000/beneficiary/track/" + token)
-        .then(res => {
-            if (!res.ok) throw new Error();
-            return res.json();
-        })
+            .then(async res => {
+                let response = await res.text();
+                if (!res.ok) {
+                    throw new Error(response);
+                }
+                return JSON.parse(response);
+            })
         .then(data => {
             document.getElementById("resultBox").innerHTML = `
                 <div class="result-card success">
@@ -45,14 +49,14 @@ function trackStatus() {
                 </div>
             `;
         })
-        .catch(() => {
-            document.getElementById("resultBox").innerHTML = `
-                <div class="result-card error">
-                    <span class="close-btn" onclick="closeResult()">✖</span>
-                    <h3 style="color:red;">Invalid Token</h3>
-                </div>
-            `;
-        });
+.catch(error => {
+    document.getElementById("resultBox").innerHTML = `
+        <div class="result-card error">
+            <span class="close-btn" onclick="closeResult()">✖</span>
+            <h3 style="color:red;">${error.message}</h3>
+        </div>
+    `;
+});
 }
 
 /* OUTSIDE function */

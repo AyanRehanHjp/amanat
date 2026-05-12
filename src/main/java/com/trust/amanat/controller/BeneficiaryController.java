@@ -4,6 +4,7 @@ import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.BeneficiaryDTO;
 import com.trust.amanat.entity.BeneficiaryEntity;
 import com.trust.amanat.service.BeneficiaryService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +73,11 @@ public class BeneficiaryController {
         }
     }
     @GetMapping("/track/{tokenId}")
-    public ResponseEntity<?> trackByToken(@PathVariable String tokenId) {
+    public ResponseEntity<?> trackByToken(@Valid @PathVariable String tokenId) {
+        if(tokenId.length() != 8 ){
+            return ResponseEntity.badRequest().body("Token ID must be exactly 8 characters");
 
+        }
         BeneficiaryEntity data = beneficiaryService.findByToken(tokenId);
 
         if (data != null) {

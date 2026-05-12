@@ -1,6 +1,7 @@
 package com.trust.amanat.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
@@ -26,6 +27,7 @@ public class BeneficiaryEntity {
     private String documentPath;
     @Column(name = "supportive_documents")
     private String supportiveDocuments;
+    @Size(min = 8, max = 8, message = "Token ID must be exactly 8 characters")
     @Column(name = "token_Id", unique = true)
     private String tokenId;
 
