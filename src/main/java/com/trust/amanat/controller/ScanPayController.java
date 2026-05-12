@@ -11,18 +11,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/scan&pay")
 public class ScanPayController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ScanPayController.class);
 
     @Autowired
     ScanPayService scanPayService;
 
     @PostMapping("/addPayee")
     public ResponseEntity<String> addPayee(@RequestBody ScanPayDTO scanPayDTO) {
-         scanPayService.addPayee(scanPayDTO);
-        return new ResponseEntity<>(AppConstants.Message.PAYMENT_DETAILS_SUBMITTED, HttpStatus.CREATED) ;
-    }
+         logger.info("addPayee called for scanPayDTO mobile={}", scanPayDTO != null ? scanPayDTO.getMobile() : null);
+        ScanPayEntity payEntity = scanPayService.addPayee(scanPayDTO);
+         if(payEntity!= null){
+             logger.info("addPayee completed for mobile={}", scanPayDTO != null ? scanPayDTO.getMobile() : null);
+             return new ResponseEntity<>(AppConstants.Message.PAYMENT_DETAILS_SUBMITTED, HttpStatus.CREATED) ;
+
+         }
+         else {
+        logger.error("addPayee failed for mobile={}", scanPayDTO != null ? scanPayDTO.getMobile() : null);
+        return new ResponseEntity<>(AppConstants.Message.PAYMENT_FAILED, HttpStatus.BAD_REQUEST) ;
+    }}
 
 }

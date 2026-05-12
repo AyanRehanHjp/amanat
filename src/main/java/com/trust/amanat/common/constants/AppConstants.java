@@ -27,6 +27,11 @@ public class AppConstants {
         // Admin
         public static final String ADMIN_ID_ALREADY_EXISTS = "Admin Id already exists";
         public static final String ADMIN_ID = "Your Admin Id is: ";
+        public static final String SUPER_ADMIN =   "SUPER_ADMIN";
+        public static final String ADMIN_CREATED = "Admin created successfully";
+        public static final String ADMIN_CREATION_FAILED = "Failed to create admin";
+        public static final String ADMIN_UPDATED = "Admin updated successfully";
+        public static final String ADMIN_UPDATE_FAILED = "Failed to update admin";
 
         // Beneficiary
         public static final String BENEFICIARY_CREATED = "Your details submitted successfully";
@@ -104,6 +109,12 @@ public class AppConstants {
         //Feedback
 
         public static final String FEEDBACK_RECEIVED = "Thanks for your feedback, Your Feedback sent to AWT Trust Management";
+
+        //RESIGNATION
+        public static final String RESIGNATION_SENT = "Resignation Sent";
+        public static final String RESIGNATION_ACCEPTED = "Resignation Accepted";
+
+
     }
 
     //  VALIDATION

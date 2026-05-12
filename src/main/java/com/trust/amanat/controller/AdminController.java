@@ -26,9 +26,12 @@ public class AdminController {
     @PostMapping("/create")
     public ResponseEntity<?> createAdmin(@RequestBody AdminEntity admin) {
         try {
+            logger.info("Create Admin API called with admin details: {}", admin);
             AdminEntity saved = adminService.createAdmin(admin);
+            logger.info("Admin created successfully with ID: {}", saved.getUserId());
             return ResponseEntity.ok(AppConstants.Message.ADMIN_ID + saved.getUserId() );
         } catch (Exception e) {
+            logger.error("Error creating admin: {}", e.getMessage(), e);
             return ResponseEntity.badRequest().body(e.getMessage());
 
         }
@@ -40,9 +43,10 @@ public class AdminController {
                 TokenResponseDTO tok = new TokenResponseDTO();
                 tok.setToken(token);
                 tok.setRole(AppConstants.Role.ADMIN);
-
+            logger.info("Admin login successful for userId: {}", adminLoginDTO.getUserId());
                 return ResponseEntity.ok(tok);
             }
+            logger.error("Admin login failed for userId: {}", adminLoginDTO.getUserId());
             return ResponseEntity.badRequest().body(AppConstants.Message.INVALID_CREDENTIALS);
 }
 
@@ -50,24 +54,26 @@ public class AdminController {
     public ResponseEntity<?> getAllAdmins(){
        List<AdminEntity> allAdmins= adminService.getAllAdmins();
        if (allAdmins!=null){
+           logger.info("Fetched all admins successfully, count: {}", allAdmins.size());
            return new ResponseEntity<>(allAdmins, HttpStatus.OK);
        }
+       logger.info("Failed to fetch admins, no admins found");
        return new ResponseEntity<>(AppConstants.Message.SOMETHING_WRONG, HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/resign/{id}")
     public String resign(@PathVariable Long id){
-        logger.info("RESIGN API HITs ");
         adminService.resign(id);
         logger.info("Resignation APi Done");
-        return "Resignation Sent";
+        return AppConstants.Message.RESIGNATION_SENT ;
     }
 
     @PostMapping("/accept-resignation/{id}")
     public String acceptResignation(@PathVariable Long id){
         logger.info("method accept resignation started");
         adminService.acceptResignation(id);
+
         logger.info("Resignation Accepted success");
-        return "Resignation Accepted";
+        return AppConstants.Message.RESIGNATION_ACCEPTED ;
     }
 }

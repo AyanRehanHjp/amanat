@@ -28,10 +28,11 @@ public class ExpenditureController {
 
         if(file != null && !file.isEmpty()){
             logger.info("File received: {}", file.getOriginalFilename());
-        } else {
+            }
+            else {
             logger.info("No file uploaded");
-        }
-
+            }
+            logger.info("Processing expenditure addition for: {}", expenditureDTO.getName());
         return expenditureService.addExpenditure(expenditureDTO, file);
     }
 

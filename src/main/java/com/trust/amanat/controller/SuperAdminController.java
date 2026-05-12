@@ -1,5 +1,6 @@
 package com.trust.amanat.controller;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.SuperAdminLoginDto;
 import com.trust.amanat.dto.SuperAdminTokenDTO;
 import com.trust.amanat.entity.SuperAdminEntity;
@@ -22,6 +23,7 @@ public class SuperAdminController {
     @PostMapping("/create-super-admin")
     public ResponseEntity<?> createSuperAdmin(@RequestBody SuperAdminEntity superAdminEntity){
         SuperAdminEntity saved = superAdminService.createSuperAdmin(superAdminEntity);
+        logger.info("createSuperAdmin method called for username: {}", superAdminEntity != null ? superAdminEntity.getUsername() : null);
         return ResponseEntity.ok(saved);
     }
 
@@ -31,13 +33,13 @@ public class SuperAdminController {
        if (token != null) {
            SuperAdminTokenDTO tok = new SuperAdminTokenDTO();
            tok.setToken(token);
-           tok.setRole("SUPER_ADMIN");
+           tok.setRole(AppConstants.Message.SUPER_ADMIN);
            logger.info("Super Admin login successful for username: {}", superAdminLoginDto.getUsername());
               return ResponseEntity.ok(tok);
        }
 
        logger.info("Super Admin login attempt failed for username: {}", superAdminLoginDto.getUsername());
-       return ResponseEntity.badRequest().body("Invalid Credentials");
+       return ResponseEntity.badRequest().body(AppConstants.Message.INVALID_CREDENTIALS);
    }
 
 }

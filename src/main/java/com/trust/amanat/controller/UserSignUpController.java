@@ -33,6 +33,7 @@ public class UserSignUpController {
                 logger.info("User signed up successfully:  email={}",response.getEmail());
                 userData.put("msg", "You have successfully signed up");
                 userData.put("userId", response.getId());
+                logger.info("User data prepared for response: email={}, userId={}", response.getEmail(), response.getId());
                 return new ResponseEntity<>(userData, HttpStatus.CREATED);
             }
             logger.error("Failed to sign up user: email={}", signUpDTO != null ? signUpDTO.getEmail() : null);

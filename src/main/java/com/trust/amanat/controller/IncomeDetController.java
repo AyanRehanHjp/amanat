@@ -47,7 +47,7 @@ logger.error("Error occurred while adding payment: {}", e.getMessage(), e);
 
     @GetMapping("/monthly-report")
     public List<Object[]> getMonthlyReport(@RequestParam int year) {
-
+        logger.info("monthly-report called for year={}", year);
         return incomeDetService.getMonthlyReportByYear(year);
     }
 
@@ -55,11 +55,7 @@ logger.error("Error occurred while adding payment: {}", e.getMessage(), e);
     public List<Object[]> getMyMonthlyReport(@RequestParam int year) {
 
         logger.info("my-monthly-report called for year={}", year);
-        //Get current logged-in user from SecurityContext
-        Object principal = SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         // Check if the user is valid (not anonymous)
         if (!(principal instanceof UserEntity)) {
@@ -81,6 +77,7 @@ logger.error("Error occurred while adding payment: {}", e.getMessage(), e);
 
     @GetMapping("/searchMember")
     public List<Object[]> searchMember(@RequestParam String value) {
+        logger.info("searchMember called with value={}", value);
         return incomeDetService.searchMember(value);
     }
 }

@@ -46,7 +46,7 @@ public class BeneficiaryController {
     public ResponseEntity<?> getAllBeneficiaries() {
 
         List<BeneficiaryEntity> list = beneficiaryService.getAllBeneficiaries();
-
+        logger.info("Retrieved {} beneficiaries", list.size());
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
@@ -57,13 +57,17 @@ public class BeneficiaryController {
         Integer amount = null;
 
         if (data.get("amount") != null && !data.get("amount").toString().trim().isEmpty()) {
+            logger.info("Updating beneficiary with ID: {}, Status: {}, Amount: {}", id, status, data.get("amount"));
             amount = Integer.parseInt(data.get("amount").toString());
+            logger.info("Parsed amount: {}", amount);
         }
         BeneficiaryEntity updated = beneficiaryService.updateStatus(id, status, amount);
 
         if(updated != null){
+            logger.info("Beneficiary with ID: {} updated successfully", id);
             return ResponseEntity.ok(AppConstants.Message.BENEFICIARY_UPDATED);
         }else{
+            logger.warn("Failed to update beneficiary with ID: {}", id);
             return ResponseEntity.badRequest().body(AppConstants.Message.BENEFICIARY_UPDATE_FAILED);
         }
     }
@@ -73,8 +77,10 @@ public class BeneficiaryController {
         BeneficiaryEntity data = beneficiaryService.findByToken(tokenId);
 
         if (data != null) {
+            logger.info("Beneficiary found for tokenId: {}", tokenId);
             return ResponseEntity.ok(data);
         } else {
+            logger.error("Invalid tokenId: {}", tokenId);
             return ResponseEntity.badRequest().body("Invalid Token");
         }
     }
