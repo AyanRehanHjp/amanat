@@ -10,20 +10,26 @@
 </head>
 
 <body>
+
 <script>
+
     let token = localStorage.getItem("token");
     let role = localStorage.getItem("role");
 
-if(!token || role !== "SUPER_ADMIN" ){
-    alert("Access Denied - Super Admin Only");
-    window.location.href =
+    if(!token || role !== "SUPER_ADMIN"){
+
+        alert("Access Denied - Super Admin Only");
+
+        window.location.href =
         "/super-admin-login.html";
-}
+    }
+
 </script>
+
 <div id="common-navbar"></div>
 
 <div class="header">
-    <h2>Admin Panel</h2>
+    <h2>ADMIN SIGNUP</h2>
 </div>
 
 <div class="card">
@@ -33,74 +39,102 @@ if(!token || role !== "SUPER_ADMIN" ){
     <div id="msgBox" class="msg">
         <span id="msgText"></span>
     </div>
-    <form id="adminForm">
 
+    <form id="adminForm" novalidate>
+
+        <!-- FULL NAME -->
         <label>Full Name</label>
-        <input id="fullName"
-               placeholder="Enter full name"
-               required
-               minlength="3"
-               maxlength="50"
-               pattern="^[A-Za-z ]+$">
-        <!-- Only alphabets and spaces allowed -->
 
+        <input
+                id="fullName"
+                placeholder="Enter full name"
+                required
+                minlength="3"
+                maxlength="24"
+                oninput="this.value=this.value.replace(/[^A-Za-z ]/g,'')">
+
+        <!-- DESIGNATION -->
         <label>Designation</label>
-        <input id="designation"
-               placeholder="Enter designation"
-               required
-               minlength="2"
-               maxlength="50"
-               pattern="^[A-Za-z ]+$">
-        <!-- Prevent numbers/special characters -->
 
+        <input
+                id="designation"
+                placeholder="Enter designation"
+                required
+                minlength="3"
+                maxlength="16"
+                oninput="this.value=this.value.replace(/[^A-Za-z ]/g,'')">
+
+        <!-- ADMIN ID -->
         <label>Admin ID</label>
-        <input id="userId"
-               placeholder="Enter Admin ID (ADM001)"
-               required
-               minlength="5"
-               maxlength="10"
-               pattern="^[A-Za-z0-9]+$">
-        <!-- No spaces, only alphanumeric -->
 
+        <input
+                id="userId"
+                placeholder="Enter Admin ID (ADM001)"
+                required
+                minlength="6"
+                maxlength="6"
+                oninput="this.value=this.value.replace(/[^A-Za-z0-9]/g,'').replace(/^([A-Za-z]{0,3})(.*)$/,(m,p1,p2)=>p1+p2.replace(/[^0-9]/g,''))">
+
+        <!-- PASSWORD -->
         <label>Password</label>
-        <input id="password"
-               type="password"
-               required
-               minlength="6"
-               maxlength="12"
-               pattern="(?=.*[A-Z])(?=.*[0-9]).{6,12}"
-               title="Password must contain 1 uppercase and 1 number">
-        <!-- Strong password rule -->
 
-        <button type="submit" class="login-btn">Create Admin</button>
+        <input
+                id="password"
+                type="password"
+                placeholder="Enter Password"
+                required
+                minlength="8"
+                maxlength="24">
+
+        <!-- BUTTON -->
+        <button type="submit" class="login-btn">
+            Create Admin
+        </button>
 
     </form>
+
 </div>
+
+<!-- POPUP -->
 <div id="popup" class="popup">
+
     <div class="popup-content">
+
         <span class="close-btn" onclick="closePopup()">✖</span>
+
         <h2 id="popupTitle"></h2>
+
         <h3 id="popupSubTitle"></h3>
+
         <p id="popupMsg"></p>
+
     </div>
+
 </div>
+
+<!-- BACK BUTTON -->
 <button class="signup"
         style="display:block; margin:20px auto;"
         onclick="location.href='/super-admin.html'">
-    Back to Super Admin
-</button>
 
+    Back to Super Admin
+
+</button>
 
 <script src="/js/constants.js"></script>
 <script src="/js/create-admin.js"></script>
 <script src="/js/common.js"></script>
 
 <script>
+
     fetch('/common.html')
     .then(res => res.text())
     .then(data => {
+
         document.getElementById("common-navbar").innerHTML = data;
+
     });
+
 </script>
 
 </body>
