@@ -42,6 +42,9 @@ public class RegMembersServiceImpl implements RegMembersService {
         newMember.setFirstname(member.getFirstname());
         newMember.setLastname(member.getLastname());
         newMember.setAddress(member.getAddress());
+        if(userSignUpRepository.existsByMobile(member.getMobile())){
+            throw new RuntimeException("Mobile Number already exists" );
+        }
         newMember.setMobile(member.getMobile());
         newMember.setJoinedBy(member.getJoinedBy());
         newMember.setJoiningYear(member.getJoiningYear());
@@ -61,7 +64,6 @@ public class RegMembersServiceImpl implements RegMembersService {
         user.setMember(savedMember);   // relation
 
         userSignUpRepository.save(user);
-
         return savedMember;
     }
 

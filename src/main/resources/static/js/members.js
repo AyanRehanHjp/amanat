@@ -95,7 +95,13 @@ function saveMember(){
 
 let fullMobile = document.getElementById("countryCode").value +
                  document.getElementById("mobile").value;
+let mobile =
+document.getElementById("mobile").value;
 
+if(mobile.length !== 10){
+    showPopup("Mobile Number must be 10 digits");
+    return;
+}
 // 🔥 FIXED memberId logic
 let member = {
     memberId: editingMemberId ? editingMemberId : document.getElementById("memberId").value,
@@ -130,13 +136,7 @@ fetch(url,{
 
     if(!res.ok){
 
-        if(msg.toLowerCase().includes("mobile")){
-            throw new Error(
-                "Duplicate Mobile Number. Mobile number cannot be updated."
-            );
-        }
-
-        throw new Error(msg || "Something went wrong");
+        throw new Error(msg );
     }
 
     return msg;

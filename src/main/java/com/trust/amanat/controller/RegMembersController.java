@@ -3,6 +3,7 @@ package com.trust.amanat.controller;
 import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.entity.MembersEntity;
 import com.trust.amanat.service.RegMembersService;
+import jakarta.validation.Valid;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
@@ -29,7 +30,7 @@ public class RegMembersController {
         return members;
     }
     @PostMapping("/addMember")
-    public ResponseEntity<?> addMember(@RequestBody MembersEntity member) {
+    public ResponseEntity<?> addMember( @Valid @RequestBody MembersEntity member) {
         MembersEntity addedMember = regMembersService.addMember(member);
 
         if (addedMember != null) {

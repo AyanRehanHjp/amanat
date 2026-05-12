@@ -21,6 +21,13 @@
     margin-bottom: 20px;
     color: #2e7d32;
 }
+h1{
+    color: green;
+    font-weight: bold;
+    font-style: italic;
+    background: lightyellow;
+    padding: 10px;
+}
 
 /* ============================= */
 /* BUTTONS (ONLY NORMAL BUTTONS) */
