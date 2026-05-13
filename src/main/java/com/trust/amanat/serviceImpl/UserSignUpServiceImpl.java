@@ -1,6 +1,8 @@
 package com.trust.amanat.serviceImpl;
 
 import com.trust.amanat.common.constants.AppConstants;
+import com.trust.amanat.dto.ChangePasswordDTO;
+import com.trust.amanat.dto.ForgotPasswordDTO;
 import com.trust.amanat.entity.MembersEntity;
 import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.repository.RegMembersRepository;
@@ -8,6 +10,7 @@ import com.trust.amanat.repository.UserSignUpRepository;
 import com.trust.amanat.service.UserSignUpService;
 import com.trust.amanat.dto.SignUpDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -204,4 +207,73 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         userSignUpRepository.save(user);
     }
 
+    @Override
+    public String forgotPassword(ForgotPasswordDTO forgotPasswordDTO) {
+        try{
+            if (forgotPasswordDTO == null){
+                return AppConstants.Validation.REQUEST_BODY_EMPTY;
+            }
+            if(forgotPasswordDTO.getUserName() == null || forgotPasswordDTO.getUserName().trim().isEmpty()){
+                return AppConstants.Validation.USERNAME_REQUIRED;
+            }
+
+            if(forgotPasswordDTO.getNewPassword() == null || forgotPasswordDTO.getNewPassword().trim().isEmpty()){
+                return AppConstants.Validation.NEW_PASSWORD_REQUIRED;
+
+            }
+            UserEntity user =userSignUpRepository.findByUserName(forgotPasswordDTO.getUserName().trim());
+            if(user == null){
+                return AppConstants.Validation.USER_NOT_FOUND;
+
+            }
+            user.setPassword(BCrypt.hashpw(forgotPasswordDTO.getNewPassword(), BCrypt.gensalt(10)));
+            userSignUpRepository.save(user);
+            return AppConstants.Validation.PASSWORD_RESET_SUCCESS;
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return AppConstants.Validation.PASSWORD_RESET_FAILED;
+        }
+    }
+
+        @Override
+        public String changePassword(ChangePasswordDTO changePasswordDTO) {
+
+            try {
+                if (changePasswordDTO == null) {
+                    return AppConstants.Validation.REQUEST_BODY_EMPTY;
+
+                }
+                if (changePasswordDTO.getCurrentPassword() == null || changePasswordDTO.getCurrentPassword().trim().isEmpty()) {
+                    return AppConstants.Validation.CURRENT_PASSWORD_REQUIRED;
+
+                }
+                if (changePasswordDTO.getNewPassword() == null || changePasswordDTO.getNewPassword().trim().isEmpty()) {
+                    return AppConstants.Validation.NEW_PASSWORD_REQUIRED;
+
+                }
+                UserEntity user =(UserEntity)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                System.out.println(user);
+//                UserEntity user = userSignUpRepository.findByUserName(username);
+//                if (user == null) {
+//                    return AppConstants.Validation.USER_NOT_AUTHENTICATED;
+//
+//                }
+
+                if (!BCrypt.checkpw(changePasswordDTO.getCurrentPassword(), user.getPassword())) {
+                    return AppConstants.Validation.CURRENT_PASSWORD_INCORRECT;
+
+                }
+
+                user.setPassword(BCrypt.hashpw(changePasswordDTO.getNewPassword(), BCrypt.gensalt(10)));
+                userSignUpRepository.save(user);
+                return AppConstants.Validation.PASSWORD_CHANGE_SUCCESS;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return AppConstants.Validation.PASSWORD_CHANGE_FAILED;
+
+            }
+        }
 }

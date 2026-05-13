@@ -187,3 +187,18 @@ cursor:pointer;
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(0,0,0,0.2);
 }
+.change-pass-btn{
+
+    background:linear-gradient(45deg,#134E5E,#1f6f8b);
+
+    color:white;
+
+}
+
+.change-pass-btn:hover{
+
+    background:linear-gradient(45deg,#0f3b47,#155768);
+
+    transform:scale(1.03);
+
+}

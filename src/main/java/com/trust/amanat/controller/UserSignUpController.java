@@ -1,10 +1,13 @@
 package com.trust.amanat.controller;
 
 import com.trust.amanat.common.constants.AppConstants;
+import com.trust.amanat.dto.ChangePasswordDTO;
+import com.trust.amanat.dto.ForgotPasswordDTO;
 import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.service.UserSignUpService;
 import com.trust.amanat.dto.SignUpDTO;
 
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,5 +94,40 @@ public class UserSignUpController {
     public ResponseEntity<String> removeProfilePic(@PathVariable Long id) {
              userSignUpService.removeProfilePic(id);
             return new ResponseEntity<>(AppConstants.Message.PROFILE_PIC_REMOVED, HttpStatus.OK);
-}
-}
+    }
+
+    @PostMapping("/forgotPassword")
+    public ResponseEntity<String> forgotPassword(@Valid @RequestBody ForgotPasswordDTO forgotPasswordDTO) {
+        try {
+            String response = userSignUpService.forgotPassword(forgotPasswordDTO);
+            if (response.equals(AppConstants.Validation.PASSWORD_RESET_SUCCESS)) {
+                return new ResponseEntity<>(AppConstants.Validation.PASSWORD_RESET_SUCCESS, HttpStatus.OK);
+            }
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(AppConstants.Validation.PASSWORD_RESET_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+        @PostMapping("/changePassword")
+    public ResponseEntity<String> changePassword(@Valid @RequestBody ChangePasswordDTO changePasswordDTO) {
+            try {
+                String response = userSignUpService.changePassword(changePasswordDTO);
+                if (response.equals(AppConstants.Validation.PASSWORD_CHANGE_SUCCESS)) {
+                    return new ResponseEntity<>(AppConstants.Validation.PASSWORD_CHANGE_SUCCESS, HttpStatus.OK);
+                }
+
+                return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
+
+            } catch (Exception e) {
+                return new ResponseEntity<>(AppConstants.Validation.PASSWORD_CHANGE_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        }
+
+
+
+
+
+    }

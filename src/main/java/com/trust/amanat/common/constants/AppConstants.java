@@ -120,8 +120,19 @@ public class AppConstants {
     //  VALIDATION
     public static class Validation {
 
+        public static final String USERNAME_REQUIRED = "User Name is required";
         public static final String NAME_REQUIRED = "Name is required";
+        public static final String NEW_PASSWORD_REQUIRED = "New Password is required";
         public static final String ADDRESS_REQUIRED = "Address is required";
+        public static final String PASSWORD_RESET_SUCCESS = "Password reset successfully";
+        public static final String PASSWORD_RESET_FAILED = "Failed to reset password";
+        public static final String CURRENT_PASSWORD_REQUIRED = "Current Password is required";
+        public static final String USER_NOT_AUTHENTICATED = "User not authenticated";
+        public static final String CURRENT_PASSWORD_INCORRECT = "Current password is incorrect";
+        public static final String PASSWORD_CHANGE_SUCCESS = "Password changed successfully";
+        public static final String PASSWORD_CHANGE_FAILED = "Failed to change password";
+        public static final String CURRENT_PASSWORD_INCORRCT = "Current password is incorrect";
+
         public static final String AMOUNT_REQUIRED = "Amount is required";
         public static final String MEMBER_ID_DOES_NOT_EXISTS = "Member Id Does Not Exist";
         public static final String EXP_DATE_REQUIRED = "Expenditure date is required";
