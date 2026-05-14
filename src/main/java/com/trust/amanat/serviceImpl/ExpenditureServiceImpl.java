@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -25,13 +26,15 @@ public class ExpenditureServiceImpl implements ExpenditureService {
     @Autowired
     ExpenditureRepository expenditureRepository;
 
+
     @Override
     public List<ExpenditureEntity> getAllExpenditures() {
         List<ExpenditureEntity> allExpend = expenditureRepository.findAll();
         return allExpend;
     }
-
-public String addExpenditure(ExpenditureDTO dto, MultipartFile file) {
+    @Override
+    @Transactional
+    public String addExpenditure(ExpenditureDTO dto, MultipartFile file) {
 
     logger.info("Saving expenditure: {}", dto.getName());
 

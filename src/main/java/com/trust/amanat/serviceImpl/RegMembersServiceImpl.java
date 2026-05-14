@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RegMembersServiceImpl implements RegMembersService {
@@ -22,7 +23,9 @@ public class RegMembersServiceImpl implements RegMembersService {
     UserSignUpRepository userSignUpRepository;
 
     // ================= ADD MEMBER =================
+
     @Override
+    @Transactional
     public MembersEntity addMember(MembersEntity member) {
 
         MembersEntity lastMember = regMembersRepository.findTopByOrderByIdDesc();
@@ -78,6 +81,7 @@ public class RegMembersServiceImpl implements RegMembersService {
 
     // ================= UPDATE MEMBER =================
     @Override
+    @Transactional
     public MembersEntity updateMember(String memberId, MembersEntity member){
 
         MembersEntity members = regMembersRepository.findByMemberId(memberId);

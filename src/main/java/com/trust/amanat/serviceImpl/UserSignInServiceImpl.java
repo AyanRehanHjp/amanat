@@ -17,6 +17,7 @@ public class UserSignInServiceImpl implements UserSignInService {
     @Autowired
     JWTService jwtService;
 
+    @Override
     public  String verifyLogIn(LogInDTO loginDTO){
         List<UserEntity> record = userSignInRepository.findByUserName(loginDTO.getUserName());
         if (record.size()>1){
@@ -44,6 +45,8 @@ public class UserSignInServiceImpl implements UserSignInService {
         return null;
 
     }
+
+    @Override
     public Long getUserId(String userName){
         List<UserEntity> record = userSignInRepository.findByUserName(userName);
 
@@ -53,6 +56,8 @@ public class UserSignInServiceImpl implements UserSignInService {
 
         return null;
     }
+
+    @Override
     public UserEntity getUser(String userName){
 
         List<UserEntity> record = userSignInRepository.findByUserName(userName);

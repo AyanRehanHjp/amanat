@@ -23,6 +23,8 @@ public class AppConstants {
         public static final String SAVED_FAILED = "Saved Failed";
         public static final String UPDATED = "Updated Successfully";
         public static final String DELETED_SUCCESSFULLY = "Deleted successfully";
+        public static final String RESIGNED = "RESIGNED";
+
 
         // Admin
         public static final String ADMIN_ID_ALREADY_EXISTS = "Admin Id already exists";

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class IncomeDetServiceImpl implements IncomeDetService {
 
 
     @Override
+    @Transactional
     public String addPayment(IncomeDetDTO incomeDetDTO) {
 
         try {
@@ -79,6 +82,7 @@ public class IncomeDetServiceImpl implements IncomeDetService {
 
     @Override
     public List<Object[]> getMonthlyReportByYear(int year) {
+
         return incomeDetRepository.getMonthlyReportByYear(year);
     }
     @Override
@@ -95,6 +99,7 @@ public class IncomeDetServiceImpl implements IncomeDetService {
     }
     @Override
     public List<Object[]> searchMember(String value) {
+
         return incomeDetRepository.searchMember(value);
     }
 }

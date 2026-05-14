@@ -8,6 +8,7 @@ import com.trust.amanat.service.PostHolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
@@ -17,7 +18,10 @@ public class PostHolderServiceImpl implements PostHolderService {
 
     @Autowired
     PostHolderRepository postHolderRepository;
+
+
     @Override
+    @Transactional
     public PostHolderEntity addPostHolder( PostHolderDTO postHolderDTO){
         PostHolderEntity postHolderEntity = new PostHolderEntity();
         postHolderEntity.setName(postHolderDTO.getName());
@@ -27,11 +31,14 @@ public class PostHolderServiceImpl implements PostHolderService {
          return postHolderRepository.save(postHolderEntity);
     }
 
-
+    @Override
     public List< PostHolderEntity > getAllPostHolders(){
+
         return postHolderRepository.findAll();
     }
 
+    @Override
+    @Transactional
     public String deletePostHolder(Long id){
         if (postHolderRepository.existsById(id)){
             postHolderRepository.deleteById(id);

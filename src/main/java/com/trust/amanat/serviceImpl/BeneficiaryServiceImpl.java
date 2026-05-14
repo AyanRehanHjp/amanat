@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
     ExpenditureRepository expenditureRepository;
 
     @Override
+    @Transactional
     public BeneficiaryEntity addBeneficiary(BeneficiaryDTO beneficiaryDTO , MultipartFile file) {
         logger.info("Saving beneficiary: {}", beneficiaryDTO.getNeedyName());
 
@@ -72,6 +74,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
     }
 
     @Override
+    @Transactional
     public BeneficiaryEntity updateStatus(Long id, String status, Integer amount){
 
         BeneficiaryEntity beneficiary = beneficiaryRepository.findById(id).orElse(null);
@@ -162,6 +165,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 
     @Override
     public BeneficiaryEntity findByToken(String tokenId) {
+
         return beneficiaryRepository.findByTokenId(tokenId);
     }
 }

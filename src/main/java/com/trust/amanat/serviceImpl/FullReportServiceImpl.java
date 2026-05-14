@@ -28,7 +28,7 @@ public class FullReportServiceImpl implements FullReportService {
         Double total = incomeDetRepository.getTotalIncome();
         return total != null ? total : 0;
     }
-
+    @Override
     public List<Map<String, Object>> getYearlyReport(){
 
         List<Object[]> incomeList = incomeDetRepository.getYearlyIncome();
@@ -37,21 +37,21 @@ public class FullReportServiceImpl implements FullReportService {
         Map<Integer, Double> incomeMap = new HashMap<>();
         Map<Integer, Double> expenseMap = new HashMap<>();
 
-        // 🟢 Income map
+        //  Income map
         for(Object[] obj : incomeList){
             Integer year = (Integer) obj[0];
             Double amount = (Double) obj[1];
             incomeMap.put(year, amount);
         }
 
-        // 🔴 Expense map
+        // Expense map
         for(Object[] obj : expenseList){
             Integer year = (Integer) obj[0];
             Double amount = (Double) obj[1];
             expenseMap.put(year, amount);
         }
 
-        // 🔥 Combine
+        //  Combine
         List<Map<String, Object>> result = new ArrayList<>();
 
         Set<Integer> allYears = new HashSet<>();

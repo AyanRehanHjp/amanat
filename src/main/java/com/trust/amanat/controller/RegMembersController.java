@@ -20,12 +20,12 @@ public class RegMembersController {
     RegMembersService regMembersService;
 
     @GetMapping  ("/allmembers")
-    public Page<MembersEntity> getAllMembers(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<Page<MembersEntity>> getAllMembers(@RequestParam(defaultValue = "0") int page,
                                              @RequestParam(defaultValue = "10") int size) {
         logger.info("calling request to get all members");
         Page <MembersEntity> members= regMembersService.getAllMembers( page, size);
         logger.info("getAllMembers method is called, total members found: {}", members != null ? members.getNumberOfElements() : 0);
-        return members;
+        return new ResponseEntity<>(members, members != null && members.hasContent() ? org.springframework.http.HttpStatus.OK : org.springframework.http.HttpStatus.NO_CONTENT);
     }
     @PostMapping("/addMember")
     public ResponseEntity<?> addMember( @Valid @RequestBody MembersEntity member) {

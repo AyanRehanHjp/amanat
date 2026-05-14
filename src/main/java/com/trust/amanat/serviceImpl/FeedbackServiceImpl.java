@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     FeedbackRepository feedbackRepository;
 
     @Override
+    @Transactional
     public String addFeedback(FeedbackDTO feedbackDTO){
 
         logger.info("Saving feedback: name={}, mobile={}",

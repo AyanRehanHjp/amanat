@@ -7,6 +7,7 @@ import com.trust.amanat.service.SuperAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SuperAdminServiceImpl implements SuperAdminService {
@@ -17,6 +18,8 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     @Autowired
     JWTService  jwtService;
 
+
+    @Override
     public String verifyLogin (SuperAdminLoginDto superAdminLoginDto) {
        SuperAdminEntity superAdmin = superAdminRepository.findByUsername(superAdminLoginDto.getUsername());
        if(superAdmin!= null){
@@ -33,6 +36,7 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     }
 
     @Override
+    @Transactional
     public SuperAdminEntity createSuperAdmin(
             SuperAdminEntity superAdminEntity) {
 

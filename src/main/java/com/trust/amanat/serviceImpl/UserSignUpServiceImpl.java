@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -33,17 +34,14 @@ public class UserSignUpServiceImpl implements UserSignUpService {
     RegMembersRepository regMembersRepository;
 
     @Override
+    @Transactional
     public UserEntity addUser(SignUpDTO signUpDTO) {
-
         MembersEntity last = regMembersRepository.findTopByOrderByIdDesc();
-
         String memberId = "AWT001";
-
         if (last != null && last.getMemberId() != null) {
             int num = Integer.parseInt(last.getMemberId().replace(AppConstants.Message.AWT, ""));
             memberId = String.format("AWT%03d", num + 1);
         }
-
         if (userSignUpRepository.existsByUserName(signUpDTO.getUserName())) {
             throw new RuntimeException(AppConstants.Validation.USERNAME_ALREADY_EXISTS);
         }
@@ -86,6 +84,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         return userSignUpRepository.save(signUp);
     }
     @Override
+    @Transactional
     public UserEntity updateUser(Long id, SignUpDTO signUpDTO, MultipartFile file) {
 
         UserEntity user = userSignUpRepository.findById(id)
@@ -173,6 +172,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
     }
 
     @Override
+    @Transactional
     public String deleteUser(Long id) {
 
         UserEntity user = userSignUpRepository.findById(id)
@@ -197,7 +197,8 @@ public class UserSignUpServiceImpl implements UserSignUpService {
 
         } else throw new RuntimeException(AppConstants.Validation.USER_NOT_FOUND_WITH_THIS_ID + id);
     }
-
+    @Override
+    @Transactional
     public void removeProfilePic(Long id){
 
         UserEntity user = userSignUpRepository.findById(id)
@@ -208,6 +209,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
     }
 
     @Override
+    @Transactional
     public String forgotPassword(ForgotPasswordDTO forgotPasswordDTO) {
         try{
             if (forgotPasswordDTO == null){
@@ -238,6 +240,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
     }
 
         @Override
+        @Transactional
         public String changePassword(ChangePasswordDTO changePasswordDTO) {
 
             try {
