@@ -1,118 +1,345 @@
-// 🔹 Redirect to home
-function goHome(){
-    window.location.href="/admin.html";
-}
+// Redirect
+function goHome(){ window.location.href="/admin.html"; }
 
+// Year dropdown
+const yearSelect=document.getElementById("year");
 
-// 🔹 Year dropdown fill (2021–2099)
-const yearSelect = document.getElementById("year");
-
-for(let y = 2021; y <= 2099; y++){
-
-    let option = document.createElement("option");
-
-    option.value = y;
-    option.text = y;
-
+for(let y=2021;y<=2099;y++){
+    let option=document.createElement("option");
+    option.value=y;
+    option.text=y;
     yearSelect.appendChild(option);
 }
 
-// 🔹 Default current year select
-yearSelect.value = new Date().getFullYear();
+yearSelect.value=new Date().getFullYear();
 
-
-// 🔹 FORM SUBMIT (Save Payment)
+// FORM SUBMIT
 document.getElementById("paymentForm").addEventListener("submit",function(e){
 
     e.preventDefault();
 
-    let data = {
-
-        memberId: document.getElementById("memberId").value,
-        amount: document.getElementById("amount").value,
-        forMonth: document.getElementById("month").value,
-        forYear: document.getElementById("year").value,
-        comment: document.getElementById("comment").value
-
+    let data={
+        memberId:document.getElementById("memberId").value,
+        amount:document.getElementById("amount").value,
+        forMonth:document.getElementById("month").value,
+        forYear:document.getElementById("year").value,
+        comment:document.getElementById("comment").value
     };
 
-    // 🔹 API call to save payment
     fetch("/incomeDet/addPayment",{
-
         method:"POST",
-
-        headers:{
-            "Content-Type":"application/json"
-        },
-
-        body: JSON.stringify(data)
-
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
     })
 
-    .then(res => res.text())
+    .then(res=>res.text())
 
-    .then(msg => {
+    .then(msg=>{
 
-        document.getElementById("popupMsg").innerText = msg;
-        document.getElementById("popup").style.display = "flex";
+        if(msg!=="Payment added successfully"){
+            document.getElementById("popupMsg").innerText=msg;
+            document.getElementById("popup").style.display="flex";
+            return;
+        }
+
+        document.getElementById("popupMsg").innerText=msg;
+        document.getElementById("popup").style.display="flex";
+
+    const { jsPDF }=window.jspdf;
+    const doc=new jsPDF();
+
+    const logo=document.getElementById("trustLogo");
+
+    doc.addImage(logo,"PNG",160,8,30,30);
+
+
+    // TITLE
+    doc.setFontSize(30);
+    doc.setFont(undefined,"bold");
+    doc.setTextColor(0,51,153);
+    doc.text("AMANAT WELFARE TRUST",15,20);
+
+
+    // SUBTITLE
+    doc.setFontSize(20);
+    doc.setFont(undefined,"bolditalic");
+    doc.setTextColor(0,0,0);
+    doc.text("Hajipur Bihar 844101",15,32);
+
+
+    // RECEIPT INFO RIGHT SIDE
+    doc.setFontSize(12);
+    doc.setFont(undefined,"bold");
+    doc.setTextColor(0,0,0);
+
+
+    // DATE
+    const today=new Date();
+
+    const dd=String(today.getDate()).padStart(2,'0');
+    const mm=String(today.getMonth()+1).padStart(2,'0');
+    const yyyy=today.getFullYear();
+
+    const formattedDate=dd+"-"+mm+"-"+yyyy;
+
+    const receiptNo="AWT"+dd+mm+"01";
+
+
+    // RECEIPT NUMBER
+    doc.text(
+        "Receipt No : "+receiptNo,
+        140,
+        58
+    );
+
+
+    // PAYMENT DATE
+    doc.text(
+        "Payment Date : "+formattedDate,
+        140,
+        67
+    );
+
+
+    // RECEIPT BOX
+    doc.setFillColor(0,51,153);
+
+    doc.roundedRect(
+        72,
+        38,
+        75,
+        12,
+        2,
+        2,
+        "F"
+    );
+
+
+    // RECEIPT TEXT
+    doc.setFontSize(18);
+    doc.setTextColor(255,255,255);
+
+    doc.text(
+        "RECEIPT",
+        110,
+        46,
+        {align:"center"}
+    );
+
+
+    // TABLE
+    doc.autoTable({
+
+        startY:72,
+
+        theme:"grid",
+
+        head:[["Content","Details"]],
+
+        body:[
+
+            ["Member ID",data.memberId],
+
+            ["Full Name",
+            document.getElementById("fullName").value],
+
+            ["Mobile Number",
+            document.getElementById("mobile").value],
+
+            ["Amount",
+            "Rs. "+data.amount],
+
+            ["Month",
+            data.forMonth],
+
+            ["Year",
+            data.forYear],
+
+            ["Comment",
+            data.comment || "-"]
+
+        ],
+
+        styles:{
+            fontSize:10
+        },
+
+        headStyles:{
+            fillColor:[0,51,153]
+        }
+
+    });
+
+
+    // TOTAL BOX
+    let finalY=doc.lastAutoTable.finalY+15;
+
+    doc.setFillColor(245,245,245);
+
+    doc.rect(
+        130,
+        finalY,
+        60,
+        22,
+        "F"
+    );
+
+
+    // TOTAL TEXT
+    doc.setTextColor(0,0,0);
+
+    doc.setFontSize(13);
+
+    doc.text(
+        "Total Amount",
+        138,
+        finalY+8
+    );
+
+
+    // TOTAL AMOUNT
+    doc.setFontSize(16);
+
+    doc.setFont(undefined,"bold");
+
+    doc.text(
+        "Rs. "+data.amount,
+        145,
+        finalY+17
+    );
+
+
+    // SUCCESS
+    doc.setTextColor(0,128,0);
+
+    doc.setFontSize(15);
+
+    doc.text(
+        "Your Payment Added Successfully",
+        105,
+        finalY+40,
+        {align:"center"}
+    );
+
+
+    // THANK YOU
+    doc.setTextColor(80);
+
+    doc.setFontSize(12);
+
+    doc.setFont(undefined,"normal");
+
+    doc.text(
+        "Thank you for your valuable contribution and support to Amanat Welfare Trust.",
+        105,
+        finalY+55,
+        {align:"center"}
+    );
+
+
+    // FOOTER BOX
+    doc.setFillColor(0,0,120);
+
+    doc.rect(
+        0,
+        282,
+        210,
+        15,
+        "F"
+    );
+
+
+    // FOOTER TEXT STYLE
+    doc.setTextColor(255,255,255);
+
+    doc.setFontSize(9);
+
+    doc.setFont(undefined,"bold");
+
+
+    // MOBILE
+    doc.text(
+        "Mob: +91 7277222729",
+        10,
+        291
+    );
+
+
+    // EMAIL
+    doc.text(
+        "Mail: amanatwelfaretrust@gmail.com",
+        105,
+        291,
+        {align:"center"}
+    );
+
+
+    // WEBSITE
+    doc.text(
+        "Web: www.amanatwelfaretrust.com",
+        200,
+        291,
+        {align:"right"}
+    );
+        // DOWNLOAD
+        doc.save("AWT_Receipt.pdf");
+
+        //Test
+//        window.open(doc.output("bloburl"));
+        // RESET
         document.getElementById("paymentForm").reset();
 
     })
 
     .catch(()=>{
 
-        document.getElementById("popupMsg").innerText = "Server Error";
-        document.getElementById("popup").style.display = "flex";
+        document.getElementById("popupMsg").innerText="Server Error";
+        document.getElementById("popup").style.display="flex";
 
     });
 
 });
 
 
-// 🔹 Close popup
+// Close popup
 function closePopup(){
-    document.getElementById("popup").style.display = "none";
+    document.getElementById("popup").style.display="none";
 }
 
 
-// 🔥 🔥 MEMBER SEARCH (ONLY MEMBER ID FIELD) 🔥 🔥
+// MEMBER SEARCH
+document.getElementById("memberId").addEventListener("input",function(){
 
+    let value=this.value;
 
-// 🔹 Typing → search API call
-document.getElementById("memberId").addEventListener("input", function(){
+    if(!value || value.length<2) return;
 
-    let value = this.value;
+    fetch("/incomeDet/searchMember?value="+value)
 
-    if(!value || value.length < 2) return;
+    .then(res=>res.json())
 
-    fetch("/incomeDet/searchMember?value=" + value)
-    .then(res => res.json())
-    .then(data => {
+    .then(data=>{
 
-        let list = document.getElementById("memberList");
-        list.innerHTML = "";
+        let list=document.getElementById("memberList");
 
-        // ❌ No data
-        if(data.length === 0){
-            document.getElementById("msg").innerText = "No record found";
+        list.innerHTML="";
+
+        if(data.length===0){
+            document.getElementById("msg").innerText="No record found";
             return;
         }
 
-        // ✅ Clear message
-        document.getElementById("msg").innerText = "";
+        document.getElementById("msg").innerText="";
 
-        // 🔽 Fill dropdown
-        data.forEach(m => {
+        data.forEach(m=>{
 
-            let option = document.createElement("option");
+            let option=document.createElement("option");
 
-            // value → memberId
-            option.value = m[0];
-
-            // label → full display
-            option.label = m[0] + " - " + m[1] + " - " + m[2];
+            option.value=m[0];
+            option.label=m[0]+" - "+m[1]+" - "+m[2];
 
             list.appendChild(option);
+
         });
 
     });
@@ -120,22 +347,24 @@ document.getElementById("memberId").addEventListener("input", function(){
 });
 
 
-// 🔹 Select from dropdown → autofill
-document.getElementById("memberId").addEventListener("change", function(){
+// Autofill
+document.getElementById("memberId").addEventListener("change",function(){
 
-    let value = this.value;
+    let value=this.value;
 
-    fetch("/incomeDet/searchMember?value=" + value)
-    .then(res => res.json())
-    .then(data => {
+    fetch("/incomeDet/searchMember?value="+value)
 
-        if(data.length > 0){
+    .then(res=>res.json())
 
-            let m = data[0];
+    .then(data=>{
 
-            document.getElementById("memberId").value = m[0];
-            document.getElementById("fullName").value = m[1];
-            document.getElementById("mobile").value = m[2];
+        if(data.length>0){
+
+            let m=data[0];
+
+            document.getElementById("memberId").value=m[0];
+            document.getElementById("fullName").value=m[1];
+            document.getElementById("mobile").value=m[2];
 
         }
 
