@@ -19,6 +19,7 @@ public class RegMembersController {
     @Autowired
     RegMembersService regMembersService;
 
+
     @GetMapping  ("/allmembers")
     public ResponseEntity<Page<MembersEntity>> getAllMembers(@RequestParam(defaultValue = "0") int page,
                                              @RequestParam(defaultValue = "10") int size) {
@@ -27,6 +28,7 @@ public class RegMembersController {
         logger.info("getAllMembers method is called, total members found: {}", members != null ? members.getNumberOfElements() : 0);
         return new ResponseEntity<>(members, members != null && members.hasContent() ? org.springframework.http.HttpStatus.OK : org.springframework.http.HttpStatus.NO_CONTENT);
     }
+
     @PostMapping("/addMember")
     public ResponseEntity<?> addMember( @Valid @RequestBody MembersEntity member) {
         MembersEntity addedMember = regMembersService.addMember(member);
@@ -38,6 +40,7 @@ public class RegMembersController {
             logger.error("Failed to add member with memberId: {}", member != null ? member.getMemberId() : null);
         return ResponseEntity.badRequest().body(AppConstants.Message.MEMBER_ADDING_FAILED);
     }
+
     @PutMapping("/updateMember/{memberId}")
     public ResponseEntity<?> updateMember(@PathVariable String memberId, @RequestBody MembersEntity member) {
         MembersEntity updatedMember = regMembersService.updateMember(memberId, member);

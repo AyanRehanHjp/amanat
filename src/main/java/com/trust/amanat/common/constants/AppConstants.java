@@ -152,7 +152,7 @@ public class AppConstants {
         public static final String USERNAME_ALREADY_EXISTS = "This username is already exists";
         public static final String EMAIL_ALREADY_EXISTS = "This email is already exists";
         public static final String MOBILE_ALREADY_EXISTS = "This Mobile no is already exists";
-
+        public static final String MOBILE_NO_ALREADY_EXISTS = "Mobile Number already exists";
         public static final String USER_NOT_FOUND = "User not found";
         public static final String USER_NOT_FOUND_WITH_THIS_ID = "User not found with this id: ";
 

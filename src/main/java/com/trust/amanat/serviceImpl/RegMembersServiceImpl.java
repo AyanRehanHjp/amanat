@@ -49,7 +49,7 @@ public class RegMembersServiceImpl implements RegMembersService {
         newMember.setLastname(member.getLastname());
         newMember.setAddress(member.getAddress());
         if(userSignUpRepository.existsByMobile(member.getMobile())){
-            throw new RuntimeException("Mobile Number already exists" );
+            throw new RuntimeException(AppConstants.Validation.MOBILE_NO_ALREADY_EXISTS );
         }
         newMember.setMobile(member.getMobile());
         newMember.setJoinedBy(member.getJoinedBy());
@@ -86,7 +86,7 @@ public class RegMembersServiceImpl implements RegMembersService {
     // ================= UPDATE MEMBER =================
     @Override
     @Transactional
-    @CacheEvict(value = "membersCache", allEntries = true) // Evict cache after updating a member
+    @CacheEvict(value = "membersCache", allEntries = true)
     public MembersEntity updateMember(String memberId, MembersEntity member){
 
         MembersEntity members = regMembersRepository.findByMemberId(memberId);

@@ -86,7 +86,6 @@ public class SecurityConfig {
                                 "/forgot-password.html",
                                 "/change-password.html",
                                 "/signUp/forgotPassword",
-//                                "/signUp/changePassword",
                                 "/admins/accept-resignation/**"
 
 
