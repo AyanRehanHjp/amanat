@@ -7,6 +7,8 @@ import com.trust.amanat.repository.RegMembersRepository;
 import com.trust.amanat.repository.UserSignUpRepository;
 import com.trust.amanat.service.RegMembersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +28,7 @@ public class RegMembersServiceImpl implements RegMembersService {
 
     @Override
     @Transactional
+    @CacheEvict(value = "membersCache", allEntries = true) // Evict cache after adding a member
     public MembersEntity addMember(MembersEntity member) {
 
         MembersEntity lastMember = regMembersRepository.findTopByOrderByIdDesc();
@@ -73,6 +76,7 @@ public class RegMembersServiceImpl implements RegMembersService {
 
     // ================= GET ALL =================
     @Override
+    @Cacheable(value = "membersCache", key = "#page + '-' + #size") // Cache the result of this method
     public Page<MembersEntity> getAllMembers(int page, int size) {
          Pageable pageble = PageRequest.of(page, size);
         return regMembersRepository.findAll(pageble);
@@ -82,6 +86,7 @@ public class RegMembersServiceImpl implements RegMembersService {
     // ================= UPDATE MEMBER =================
     @Override
     @Transactional
+    @CacheEvict(value = "membersCache", allEntries = true) // Evict cache after updating a member
     public MembersEntity updateMember(String memberId, MembersEntity member){
 
         MembersEntity members = regMembersRepository.findByMemberId(memberId);
