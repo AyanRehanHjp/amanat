@@ -18,9 +18,7 @@ function loadAdmins() {
 
     </tr>`;
 
-    fetch(
-        "http://localhost:9000/admins/getAllAdmins"
-    )
+    fetch(GET_ALL_ADMIN )
 
     .then(res => res.json())
 

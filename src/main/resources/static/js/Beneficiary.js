@@ -39,7 +39,7 @@ document.getElementById("beneficiaryForm").addEventListener("submit", function(e
     }
 
     // API call
-    fetch("http://localhost:9000/beneficiary/addBeneficiary", {
+    fetch(ADD_BENEFICIARY, {
         method: "POST",
         body: formData
     })

@@ -7,7 +7,7 @@ function loadAdmins() {
 
     let loggedInUserId = localStorage.getItem("userId");
 
-    fetch("http://localhost:9000/admins/getAllAdmins")
+    fetch(GET_ALL_ADMINS)
     .then(res => res.json())
     .then(data => {
 

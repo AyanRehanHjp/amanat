@@ -40,7 +40,7 @@ document.getElementById("feedbackForm").addEventListener("submit", function(e){
         feedback: feedback
     };
 
-    fetch("http://localhost:9000/feedback/addFeedback", {
+    fetch(ADD_FEEDBACK, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

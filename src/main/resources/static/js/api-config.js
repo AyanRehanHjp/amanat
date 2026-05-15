@@ -1,2 +1,20 @@
 //const BASE_URL="http://localhost:9000";
 const BASE_URL="https://amanat-welfare-trust.onrender.com";
+const GET_ALL_ADMINS=BASE_URL+"/admins/getAllAdmins";
+const ADD_BENEFICIARY=BASE_URL+"/beneficiary/addBeneficiary";
+const ALL_EXPENDITURE=BASE_URL+"/expenditure/allExpenditure";
+const EXPENDITURE_FILE_VIEW=BASE_URL+"/uploads/helprequests/";
+const ADD_EXPENDITURE=BASE_URL+"/expenditure/addExpenditure";
+const ADD_FEEDBACK=BASE_URL+"/feedback/addFeedback";
+const ALL_BENEFICIARY=BASE_URL+"/beneficiary/allBeneficiary";
+const UPDATE_BENEFICIARY_STATUS=BASE_URL+"/beneficiary/updateStatus/";
+const TRACK_BENEFICIARY_STATUS=BASE_URL+"/beneficiary/track/";
+const ALL_MEMBERS=BASE_URL+"/members/allmembers";
+const UPDATE_MEMBER=BASE_URL+"/members/updateMember/";
+const ADD_MEMBER=BASE_URL+"/members/addMember";
+const GET_ALL_ADMINS=BASE_URL+"/admins/getAllAdmins";
+const RETRIEVE_USER=BASE_URL+"/signUp/retriveUser/";
+const PROFILE_IMAGE=BASE_URL+"/uploads/profile/";
+const UPDATE_USER=BASE_URL+"/signUp/updateUser/";
+const REMOVE_PROFILE_PIC=BASE_URL+"/signUp/removeProfilePic/";
+

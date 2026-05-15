@@ -1,7 +1,7 @@
 // LOAD DATA FUNCTION
 function loadData(){
 
-    fetch("http://localhost:9000/expenditure/allExpenditure")
+    fetch(ALL_EXPENDITURE)
 
     .then(response => response.json())
 
@@ -16,7 +16,7 @@ function loadData(){
             let date = exp.expDate ? new Date(exp.expDate).toLocaleDateString() : "";
 
             let fileLink = exp.supDoc
-            ? `<a href="http://localhost:9000/uploads/helprequests/${exp.supDoc}" target="_blank">View</a>`
+            ? `<a href="${EXPENDITURE_FILE_VIEW}${exp.supDoc}" target="_blank">View</a>`
             : "No File";
 
             let row = `
@@ -106,7 +106,7 @@ function saveExp(){
         formData.append("file", file);
     }
 
-    fetch("http://localhost:9000/expenditure/addExpenditure", {
+    fetch(ADD_EXPENDITURE, {
         method: "POST",
         body: formData
     })

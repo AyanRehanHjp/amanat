@@ -20,7 +20,7 @@ function loadUser(){
 
 const userId = localStorage.getItem("userId");
 
-fetch("http://localhost:9000/signUp/retriveUser/" + userId,{
+fetch(RETRIEVE_USER  + userId,{
     headers:{
         "Authorization":"Bearer "+token
     }
@@ -47,7 +47,7 @@ fetch("http://localhost:9000/signUp/retriveUser/" + userId,{
     if(data.profilePicture){
 
         fetch(
-            "http://localhost:9000/uploads/profile/" +
+            PROFILE_IMAGE +
             encodeURIComponent(data.profilePicture),
         {
             headers:{
@@ -103,7 +103,7 @@ if(file){
     formData.append("profileImage",file);
 }
 
-fetch("http://localhost:9000/signUp/updateUser/"+userId,{
+fetch(UPDATE_USER +userId,{
     method:"PUT",
     headers:{
         "Authorization":"Bearer "+token
@@ -130,7 +130,7 @@ function deleteProfilePic(){
 
 const userId = localStorage.getItem("userId");
 
-fetch("http://localhost:9000/signUp/removeProfilePic/"+userId,{
+fetch(REMOVE_PROFILE_PIC+userId,{
     method:"DELETE",
     headers:{
         "Authorization":"Bearer "+token

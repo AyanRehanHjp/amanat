@@ -1,6 +1,6 @@
 // ================= LOAD DATA =================
 function loadRequests() {
-    fetch("http://localhost:9000/beneficiary/allBeneficiaries")
+    fetch(ALL_BENEFICIARY)
         .then(res => res.json())
         .then(data => {
             let table = document.querySelector("#helpTable tbody");
@@ -98,7 +98,7 @@ function updateStatus(id) {
     }
 
     // ✅ API CALL
-    fetch("http://localhost:9000/beneficiary/updateStatus/" + id, {
+    fetch(UPDATE_BENEFICIARY_STATUS + id, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus, amount })

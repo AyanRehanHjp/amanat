@@ -31,7 +31,7 @@ function trackStatus() {
     }
 
 
-    fetch("http://localhost:9000/beneficiary/track/" + token)
+    fetch(TRACK_BENEFICIARY_STATUS  + token)
             .then(async res => {
                 let response = await res.text();
                 if (!res.ok) {

@@ -5,7 +5,7 @@ let totalPages = 1;
 
 // ================= LOAD MEMBERS =================
 function loadMembers(){
-fetch(`http://localhost:9000/members/allmembers?page=${currentPage}&size=${pageSize}`)
+fetch(`${ALL_MEMBERS}?page=${currentPage}&size=${pageSize}`)
 .then(res => res.json())
 .then(data => {
 
@@ -50,7 +50,7 @@ console.error("Error loading members:", err);
 // ================= EDIT MEMBER =================
 function editMember(memberId){
 
-fetch(`http://localhost:9000/members/allmembers?page=${currentPage}&size=${pageSize}`)
+fetch(`${ALL_MEMBERS}?page=${currentPage}&size=${pageSize}`)
 .then(res => res.json())
 .then(data => {
 
@@ -118,8 +118,8 @@ let member = {
 
 // 🔥 decide API
 let url = editingMemberId
-    ? "http://localhost:9000/members/updateMember/" + editingMemberId
-    : "http://localhost:9000/members/addMember";
+    ? UPDATE_MEMBER + editingMemberId
+    : ADD_MEMBER;
 
 let method = editingMemberId ? "PUT" : "POST";
 
