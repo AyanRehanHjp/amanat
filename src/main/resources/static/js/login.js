@@ -1,4 +1,3 @@
-const BASE_URL="http://localhost:9000";
 
 function showMessage(text){
     const msg=document.getElementById("msg");
