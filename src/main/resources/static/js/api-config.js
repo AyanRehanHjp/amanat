@@ -12,7 +12,6 @@ const TRACK_BENEFICIARY_STATUS=BASE_URL+"/beneficiary/track/";
 const ALL_MEMBERS=BASE_URL+"/members/allmembers";
 const UPDATE_MEMBER=BASE_URL+"/members/updateMember/";
 const ADD_MEMBER=BASE_URL+"/members/addMember";
-const GET_ALL_ADMINS=BASE_URL+"/admins/getAllAdmins";
 const RETRIEVE_USER=BASE_URL+"/signUp/retriveUser/";
 const PROFILE_IMAGE=BASE_URL+"/uploads/profile/";
 const UPDATE_USER=BASE_URL+"/signUp/updateUser/";
