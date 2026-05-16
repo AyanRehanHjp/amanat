@@ -40,10 +40,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                                     HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String path = request.getServletPath();
-        if(path.contains("beneficiary")){
-            filterChain.doFilter(request,response);
-            return;
-        }
+
         if (path.equals("/") ||
                 path.equals("/contact.html") ||
                 path.equals("/about.html") ||
