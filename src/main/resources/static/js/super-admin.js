@@ -18,7 +18,7 @@ function loadAdmins() {
 
     </tr>`;
 
-    fetch(GET_ALL_ADMIN )
+    fetch(GET_ALL_ADMINS )
 
     .then(res => res.json())
 
