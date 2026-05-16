@@ -104,6 +104,8 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/signUp/forgotPassword")||
                 path.startsWith("/forgot-password.html")||
                 path.startsWith("/change-password.html")||
+                path.startsWith("/api/cloudinary/uploadtest")||
+
 
 
                 path.equals("/signUp/addUser")) {
