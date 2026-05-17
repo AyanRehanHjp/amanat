@@ -38,13 +38,13 @@ public class BeneficiaryController {
             logger.info("Beneficiary saved successfully with ID: {}", submittedDetails.getId());
             return new ResponseEntity<>(
                     AppConstants.Message.SUCCESSFUL_ASKING_REQUEST
-                            + "<br>"
+                            + "\n"
                             + submittedDetails.getTokenId()
-                            + "<br>"
+                            + "\n"
                             + AppConstants.Message.WHATSAPP_AND_EMAIL_CONTACT_MSG
-                            + "<br>"
+                            + "\n"
                             + AppConstants.Message.WHATSAPP
-                            + "<br>"
+                            + "\n"
                             + AppConstants.Message.GMAIL,
                             HttpStatus.CREATED
             );        } else {
