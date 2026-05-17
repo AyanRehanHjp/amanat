@@ -92,11 +92,10 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
             }
             beneficiary.setAmount(amount);
             ExpenditureEntity lastExp = expenditureRepository.findTopByOrderByIdDesc();
-            String nextReceiptNo = "REC-1";
+            String nextReceiptNo = "001";
             if (lastExp != null && lastExp.getReceiptNo() != null) {
-                String lastNo = lastExp.getReceiptNo().replace("REC-", "");
-                int num = Integer.parseInt(lastNo);
-                nextReceiptNo = "REC-" + (num + 1);
+                int num = Integer.parseInt(lastExp.getReceiptNo());
+                nextReceiptNo = String.format("%03d",(num + 1));
             }
             ExpenditureEntity exp = new ExpenditureEntity();
             exp.setName(beneficiary.getNeedyName());

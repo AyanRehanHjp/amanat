@@ -16,4 +16,5 @@ public class RecPdfGenEntity {
     private String address;
     private double amount;
     private String recDate;
+    private String receiptImageUrl;
 }
