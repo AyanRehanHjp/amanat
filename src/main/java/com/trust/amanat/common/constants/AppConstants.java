@@ -29,6 +29,8 @@ public class AppConstants {
 
         public static final String BENEFICIARY_DOCUMENTS = "beneficiary-documents";
         public static final String PROFILE_PIC = "profile-pictures";
+        public static final String RESIGNATION_REJECTED = "Sorry!, Your Resignation request is Rejected";
+
 
 
 

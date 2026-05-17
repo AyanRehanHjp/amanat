@@ -1,4 +1,3 @@
-
 /* BODY */
 body{
     font-family:Arial;
@@ -9,46 +8,67 @@ body{
 /* CONTAINER */
 .team-container{
     text-align:center;
-    padding:60px 5%;   /* 👈 thoda kam kiya (space mil sake) */
+    padding:60px 5%;
 }
 
-/* GRID */
+/* TOP 4 FIXED */
+.top-team{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    margin-bottom:30px;
+}
+
+/* TOP TEAM SCROLL HIDE */
+.top-team::-webkit-scrollbar{
+    display:none;
+}
+
+/* OTHER MEMBERS GRID */
 .team-grid{
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
-    gap:20px;   /* 👈 gap kam kiya */
+    gap:20px;
 }
 
-/* DEFAULT SMALL CARDS (6 per row, smaller) */
+/* DEFAULT CARD */
 .team-card{
     background:white;
     padding:12px;
     border-radius:10px;
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
     transition:0.3s;
-
-    flex: 0 0 calc(14.28% - 20px); /* 👈 7 slot → max 6 fit comfortably */
 }
 
-/* FIRST 4 CARDS (big ones) */
-.team-card:nth-child(-n+4){
+/* TOP 4 CARDS */
+.top-team .team-card{
+    flex:0 0 22%;
     padding:20px;
-    flex: 0 0 calc(22% - 20px);  /* 👈 ab 4 perfectly fit honge */
+    min-width:220px;
 }
 
-/* IMAGE small */
-.team-card img{
+/* OTHER SMALL CARDS */
+.team-grid .team-card{
+    flex:0 0 calc(14.28% - 20px);
+}
+
+/* SMALL IMAGE */
+.team-grid .team-card img{
     width:90px;
     height:120px;
     border:2px solid black;
     border-radius:8px;
 }
 
-/* IMAGE big */
-.team-card:nth-child(-n+4) img{
+/* BIG IMAGE */
+.top-team .team-card img{
     width:120px;
     height:160px;
+    border:2px solid black;
+    border-radius:8px;
 }
 
 /* HOVER */
@@ -61,12 +81,14 @@ body{
     margin:10px 0 5px;
 }
 
+/* ROLE */
 .role{
     color:#27ae60;
     font-weight:bold;
     margin-bottom:10px;
 }
 
+/* INFO */
 .info{
     font-size:13px;
     color:#666;

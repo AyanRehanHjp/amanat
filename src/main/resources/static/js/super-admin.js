@@ -103,13 +103,19 @@ function loadAdmins() {
 
                     <option selected disabled>
 
-                        REJECTED
+                        SELECT
 
                     </option>
 
                     <option value="ACCEPT">
 
                         ACCEPT
+
+                    </option>
+
+                    <option value="REJECT">
+
+                        REJECT
 
                     </option>
 
@@ -174,47 +180,83 @@ function goToCreate(){
         "/create-admin.html";
 }
 
-/* ACCEPT RESIGNATION */
+/* HANDLE ACTION */
 
 function handleAction(value, id){
 
-    if(value !== "ACCEPT"){
-        return;
-    }
+    if(value === "ACCEPT"){
 
-    let yes = confirm(
-        "Do you want to accept resignation?"
-    );
-
-    if(!yes){
-
-        loadAdmins();
-
-        return;
-    }
-
-    fetch(
-        `/admins/accept-resignation/${id}`,
-        {
-            method:"POST"
-        }
-    )
-
-    .then(res => res.text())
-
-    .then(msg => {
-
-        showPopup(msg);
-
-        loadAdmins();
-    })
-
-    .catch(() => {
-
-        showPopup(
-            "Error while accepting resignation"
+        let yes = confirm(
+            "Do you want to accept resignation?"
         );
-    });
+
+        if(!yes){
+
+            loadAdmins();
+
+            return;
+        }
+
+        fetch(
+            `/admins/accept-resignation/${id}`,
+            {
+                method:"POST"
+            }
+        )
+
+        .then(res => res.text())
+
+        .then(msg => {
+
+            showPopup(msg);
+
+            loadAdmins();
+        })
+
+        .catch(() => {
+
+            showPopup(
+                "Error while accepting resignation"
+            );
+        });
+    }
+
+    else if(value === "REJECT"){
+
+        let yes = confirm(
+            "Do you want to reject resignation?"
+        );
+
+        if(!yes){
+
+            loadAdmins();
+
+            return;
+        }
+
+        fetch(
+            `/admins/reject-resignation/${id}`,
+            {
+                method:"POST"
+            }
+        )
+
+        .then(res => res.text())
+
+        .then(msg => {
+
+            showPopup(msg);
+
+            loadAdmins();
+        })
+
+        .catch(() => {
+
+            showPopup(
+                "Error while rejecting resignation"
+            );
+        });
+    }
 }
 
 /* LOGOUT */

@@ -88,6 +88,7 @@ public class SecurityConfig {
                                 "/change-password.html",
                                 "/signUp/forgotPassword",
                                 "/api/cloudinary/uploadtest",
+                                "/admins/reject-resignation/**",
                                 "/admins/accept-resignation/**"
 
 

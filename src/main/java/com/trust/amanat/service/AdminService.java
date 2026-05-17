@@ -11,5 +11,6 @@ public interface AdminService {
     List<AdminEntity> getAllAdmins();
     public void resign(Long id);
     void acceptResignation(Long id);
+    String rejectResignation(Long id);
 
     }
