@@ -50,7 +50,7 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
 
     const logo=document.getElementById("trustLogo");
 
-    doc.addImage(logo,"PNG",160,8,30,30);
+    doc.addImage(logo,"PNG",160,8,30,22);
 
 
     // TITLE
@@ -64,8 +64,13 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
     doc.setFontSize(20);
     doc.setFont(undefined,"bolditalic");
     doc.setTextColor(0,0,0);
-    doc.text("Hajipur Bihar 844101",15,32);
 
+    doc.text(
+        "Hajipur, Bihar - 844101",
+        105,
+        32,
+        { align: "center" }
+    );
 
     // RECEIPT INFO RIGHT SIDE
     doc.setFontSize(12);

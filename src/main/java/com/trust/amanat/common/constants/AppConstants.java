@@ -49,8 +49,9 @@ public class AppConstants {
         public static final String BENEFICIARY_UPDATED = "Updated Successfully";
         public static final String BENEFICIARY_UPDATE_FAILED = "Update Failed";
         public static final String SUCCESSFUL_ASKING_REQUEST = "Thank you for Asking Request, Your HelpRequest Token No is: ";
-        public static final String WHATSAPP_AND_EMAIL_CONTACT_MSG = " for further update Contact on WhatsApp or email";
-        public static final String WHATSAPP_AND_GMAIL= " Our WhatsApp No is 7277222729 and Email- amanatwelfaretrust@gmail.com";
+        public static final String WHATSAPP_AND_EMAIL_CONTACT_MSG = " For further update Contact us on WhatsApp or email";
+        public static final String WHATSAPP= " WhatsApp No: 7277222729 ";
+        public static final String GMAIL= " Email: amanatwelfaretrust@gmail.com";
 
 
         // Member
@@ -121,7 +122,7 @@ public class AppConstants {
 
         //Feedback
 
-        public static final String FEEDBACK_RECEIVED = "Thanks for your feedback, Your Feedback sent to AWT Trust Management";
+        public static final String FEEDBACK_RECEIVED = "Thanks for your feedback, Your Feedback sent to AWT Management";
 
         //RESIGNATION
         public static final String RESIGNATION_SENT = "Resignation Sent";

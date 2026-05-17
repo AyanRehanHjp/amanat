@@ -36,8 +36,18 @@ public class BeneficiaryController {
         BeneficiaryEntity submittedDetails = beneficiaryService.addBeneficiary(beneficiaryDTO, file);
         if (submittedDetails != null) {
             logger.info("Beneficiary saved successfully with ID: {}", submittedDetails.getId());
-            return new ResponseEntity<>(AppConstants.Message.SUCCESSFUL_ASKING_REQUEST + submittedDetails.getTokenId() + AppConstants.Message.WHATSAPP_AND_EMAIL_CONTACT_MSG+AppConstants.Message.WHATSAPP_AND_GMAIL, HttpStatus.CREATED);
-        } else {
+            return new ResponseEntity<>(
+                    AppConstants.Message.SUCCESSFUL_ASKING_REQUEST
+                            + "<br>"
+                            + submittedDetails.getTokenId()
+                            + "<br>"
+                            + AppConstants.Message.WHATSAPP_AND_EMAIL_CONTACT_MSG
+                            + "<br>"
+                            + AppConstants.Message.WHATSAPP
+                            + "<br>"
+                            + AppConstants.Message.GMAIL,
+                            HttpStatus.CREATED
+            );        } else {
             logger.error("Failed to save beneficiary");
             return new ResponseEntity<>(AppConstants.Message.BENEFICIARY_FAILED, HttpStatus.BAD_REQUEST);
         }
