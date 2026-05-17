@@ -21,7 +21,7 @@ public class CloudinaryController {
             @RequestParam("file") MultipartFile file
     ) {
 
-        String imageUrl = cloudinaryService.uploadFile(file);
+        String imageUrl = cloudinaryService.uploadFile(file, "test-folder");
 
         return ResponseEntity.ok(imageUrl);
     }

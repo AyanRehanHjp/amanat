@@ -25,6 +25,14 @@ public class AppConstants {
         public static final String DELETED_SUCCESSFULLY = "Deleted successfully";
         public static final String RESIGNED = "RESIGNED";
 
+        public static final String ACCEPTED = "ACCEPTED";
+
+        public static final String BENEFICIARY_DOCUMENTS = "beneficiary-documents";
+        public static final String PROFILE_PIC = "profile-pictures";
+
+
+
+
 
         // Admin
         public static final String ADMIN_ID_ALREADY_EXISTS = "Admin Id already exists";
@@ -74,11 +82,14 @@ public class AppConstants {
         // Status
         public static final String ACTIVE = "ACTIVE";
         public static final String INACTIVE = "INACTIVE";
-        public static final String APPROVED = "A";
-        public static final String REJECTED = "R";
-        public static final String PENDING = "P";
+        public static final String Flag_APPROVED = "A";
+        public static final String Flag_PENDING = "P";
+        public static final String Flag_REJECT = "R";
+        public static final String PENDING = "PENDING";
+        public static final String REJECTED = "REJECTED";
+        public static final String WORKING = "WORKING";
 
-
+        
 
         // Receipt
         public static final String RECEIPT_ALREADY_GENERATED = "Receipt already generated";

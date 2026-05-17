@@ -58,6 +58,7 @@ public class SecurityConfig {
                                 "/incomeDet/searchMember",
                                 "/common.html",
                                 "/scan&pay/addPayee",
+                                "/beneficiary/allBeneficiaries",
                                 "/beneficiary/**",
                                 "/members/updateMember/**",
                                 "/help-requests/",

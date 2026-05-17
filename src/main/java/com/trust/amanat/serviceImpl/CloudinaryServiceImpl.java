@@ -12,25 +12,58 @@ import java.util.Map;
 @Service
 public class CloudinaryServiceImpl implements CloudinaryService {
 
-
     @Autowired
     private Cloudinary cloudinary;
 
     @Override
-    public String uploadFile(MultipartFile file) {
+    public String uploadFile(MultipartFile file, String folderName) {
 
         try {
 
             Map uploadResult = cloudinary.uploader().upload(
                     file.getBytes(),
-                    ObjectUtils.emptyMap()
+                    ObjectUtils.asMap(
+                            "folder", folderName,
+                            "resource_type", "image",
+                            "use_filename", true,
+                            "unique_filename", true
+                    )
             );
 
             return uploadResult.get("secure_url").toString();
 
         } catch (Exception e) {
+
+            e.printStackTrace();
+
             throw new RuntimeException("File upload failed");
         }
     }
-}
 
+    @Override
+    public void deleteFile(String imageUrl) {
+
+        try {
+
+            String publicId = imageUrl
+                    .substring(imageUrl.indexOf("beneficiary-documents/"))
+                    .replace(".jpg", "")
+                    .replace(".png", "")
+                    .replace(".jpeg", "")
+                    .replace(".pdf", "");
+
+            cloudinary.uploader().destroy(
+                    publicId,
+                    ObjectUtils.asMap(
+                            "resource_type", "image"
+                    )
+            );
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            throw new RuntimeException("File delete failed");
+        }
+    }
+}

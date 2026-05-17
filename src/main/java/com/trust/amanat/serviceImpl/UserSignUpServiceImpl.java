@@ -7,6 +7,7 @@ import com.trust.amanat.entity.MembersEntity;
 import com.trust.amanat.entity.UserEntity;
 import com.trust.amanat.repository.RegMembersRepository;
 import com.trust.amanat.repository.UserSignUpRepository;
+import com.trust.amanat.service.CloudinaryService;
 import com.trust.amanat.service.UserSignUpService;
 import com.trust.amanat.dto.SignUpDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,8 @@ public class UserSignUpServiceImpl implements UserSignUpService {
     @Autowired
     RegMembersRepository regMembersRepository;
 
+    @Autowired
+    CloudinaryService cloudinaryService;
     @Override
     @Transactional
     public UserEntity addUser(SignUpDTO signUpDTO) {
@@ -63,7 +66,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         signUp.setMobile(signUpDTO.getMobile());
         signUp.setEmail(signUpDTO.getEmail());
         signUp.setRole(signUpDTO.getRole());
-        signUp.setApprovalFlag(AppConstants.Message.PENDING);
+        signUp.setApprovalFlag(AppConstants.Message.Flag_PENDING);
 
 
         // MEMBER
@@ -75,7 +78,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         member.setMemberId(memberId);
         member.setJoiningYear(java.time.Year.now().getValue());
         member.setStatus(AppConstants.Message.INACTIVE);
-        member.setApprovalFlag(AppConstants.Message.PENDING);
+        member.setApprovalFlag(AppConstants.Message.Flag_PENDING);
 
         // LINK
         signUp.setMemberId(memberId);
@@ -128,22 +131,36 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         user.setPinCode(signUpDTO.getPinCode());
 
         // ================= FILE UPLOAD =================
+//        if (file != null && !file.isEmpty()) {
+//            try {
+//                String folder = "uploads/profile/";
+//                File dir = new File(folder);
+//                if (!dir.exists()) {
+//                    dir.mkdirs();
+//                }
+//
+//                String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+//                Path path = Paths.get(folder + fileName);
+//                Files.write(path, file.getBytes());
+//
+//                user.setProfilePicture(fileName);
+//
+//            } catch (IOException e) {
+//                throw new RuntimeException(AppConstants.Message.FAILED_TO_UPLOAD_PROFILE_PIC, e);
+//            }
+//        }
         if (file != null && !file.isEmpty()) {
+
             try {
-                String folder = "uploads/profile/";
-                File dir = new File(folder);
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
 
-                String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-                Path path = Paths.get(folder + fileName);
-                Files.write(path, file.getBytes());
+                String imageUrl = cloudinaryService.uploadFile(file, AppConstants.Message.PROFILE_PIC);
+                user.setProfilePicture(imageUrl);
 
-                user.setProfilePicture(fileName);
-
-            } catch (IOException e) {
-                throw new RuntimeException(AppConstants.Message.FAILED_TO_UPLOAD_PROFILE_PIC, e);
+            } catch (Exception e) {
+                throw new RuntimeException(
+                        AppConstants.Message.FAILED_TO_UPLOAD_PROFILE_PIC,
+                        e
+                );
             }
         }
 
@@ -203,7 +220,12 @@ public class UserSignUpServiceImpl implements UserSignUpService {
 
         UserEntity user = userSignUpRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(AppConstants.Validation.USER_NOT_FOUND));
+        if(user.getProfilePicture() != null){
 
+            cloudinaryService.deleteFile(
+                    user.getProfilePicture()
+            );
+        }
         user.setProfilePicture(null);
         userSignUpRepository.save(user);
     }

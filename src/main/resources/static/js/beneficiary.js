@@ -1,6 +1,14 @@
+let isSubmitting = false;
+
 document.getElementById("beneficiaryForm").addEventListener("submit", function(e){
 
     e.preventDefault();
+
+    if(isSubmitting){
+        return;
+    }
+
+    const submitBtn = document.querySelector("#beneficiaryForm button[type='submit']");
 
     // Collect JSON data
     let beneficiaryData = {
@@ -29,29 +37,58 @@ document.getElementById("beneficiaryForm").addEventListener("submit", function(e
         return;
     }
 
+    isSubmitting = true;
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting...";
+
     // Prepare FormData for JSON + File
     let formData = new FormData();
-    formData.append("beneficiary", new Blob([JSON.stringify(beneficiaryData)], { type: "application/json" }));
+
+    formData.append(
+        "beneficiary",
+        new Blob(
+            [JSON.stringify(beneficiaryData)],
+            { type: "application/json" }
+        )
+    );
 
     let fileInput = document.getElementById("supportiveDocuments");
+
     if(fileInput && fileInput.files.length > 0){
         formData.append("file", fileInput.files[0]);
     }
 
     // API call
-    fetch(ADD_BENEFICIARY, {
-        method: "POST",
-        body: formData
+    fetch(ADD_BENEFICIARY,{
+        method:"POST",
+        body:formData
     })
     .then(res => res.text())
     .then(msg => {
+
         showPopup(msg);
+
         document.getElementById("beneficiaryForm").reset();
+
         document.getElementById("msg").innerText = "";
+
+        isSubmitting = false;
+
+        submitBtn.disabled = false;
+
+        submitBtn.innerText = "Submit Request";
     })
     .catch(err => {
+
         console.error(err);
+
         document.getElementById("msg").innerText = "Server error";
+
+        isSubmitting = false;
+
+        submitBtn.disabled = false;
+
+        submitBtn.innerText = "Submit Request";
     });
 
 });
