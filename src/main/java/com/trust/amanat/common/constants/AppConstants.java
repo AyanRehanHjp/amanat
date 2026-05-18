@@ -62,11 +62,6 @@ public class AppConstants {
         public static final String MEMBER_NOT_FOUND = "Member not found";
         public static final String MEMBER_UPDATED = "Member updated successfully";
 
-        // Post Holder
-        public static final String POST_HOLDER_NOT_FOUND = "Post holder not found with id: ";
-        public static final String POST_HOLDER_DELETED_SUCCESSFULLY = "Post holder deleted successfully";
-        public static final String POST_HOLDER_ADDED_SUCCESSFULLY = "Post holder added successfully";
-
         // Expenditure
         public static final String EXP_ADDED_SUCCESSFULLY = "Expenditure added successfully";
 

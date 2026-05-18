@@ -24,7 +24,7 @@ public class AdminEntity {
     @Column(nullable = false)
     private String password;
 
-    private String role ;
+    private final String role = "ADMIN" ;
 
     private String status;   // ACTIVE, PENDING, RESIGNED
 }
