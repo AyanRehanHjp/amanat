@@ -83,7 +83,6 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/admin-detail.html") ||
                 path.startsWith("/admins/create") ||
                 path.startsWith("/admins/login") ||
-                path.startsWith("/admins/")||
                 path.startsWith("/report/")||
                 path.startsWith("/uploads/")||
                 path.startsWith("/feedback/")||
@@ -95,10 +94,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/super-admin/create-super-admin")||
                 path.startsWith("/super-admin/super-admin-login")||
                 path.startsWith("/super-admin-login.html")||
-                path.startsWith("/admins/resign/**")||
                 path.startsWith("/manualDetailUpdate.html")||
-                path.startsWith("/admins/accept-resignation/**")||
-                path.startsWith("/admins/reject-resignation/**")||
                 path.startsWith("/signUp/forgotPassword")||
                 path.startsWith("/forgot-password.html")||
                 path.startsWith("/change-password.html")||

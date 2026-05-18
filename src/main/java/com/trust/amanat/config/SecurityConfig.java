@@ -67,7 +67,6 @@ public class SecurityConfig {
                                 "/admin-login.html",
                                 "/admin-detail.html",
                                 "/admins/login",
-                                "/admins/getAllAdmins",
                                 "/feedback/",
                                 "/feedback/addFeedback",
                                 "/feedback.html",
@@ -75,7 +74,6 @@ public class SecurityConfig {
                                 "/feedback-view.html",
                                 "/super-admin.html",
                                 "/report/**",
-                                "/admins/resign/**",
                                 "/uploads/**",
                                 "/super-admin/create-super-admin",
                                 "/super-admin/super-admin-login",
@@ -84,9 +82,8 @@ public class SecurityConfig {
                                 "/forgot-password.html",
                                 "/change-password.html",
                                 "/signUp/forgotPassword",
-                                "/api/cloudinary/uploadtest",
-                                "/admins/reject-resignation/**",
-                                "/admins/accept-resignation/**"
+                                "/api/cloudinary/uploadtest"
+
 
 
                         ).permitAll()

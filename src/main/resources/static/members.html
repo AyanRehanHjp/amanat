@@ -16,7 +16,7 @@
     let role = localStorage.getItem("role");
 
     if(!token || role !== "ADMIN"){
-        showPopup("Access Denied - Admin Only");
+        alert("Access Denied - Admin Only");
         window.location.href = "/admin-login.html";
     }
 </script>

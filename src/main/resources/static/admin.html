@@ -24,7 +24,8 @@
     let role =
         localStorage.getItem("role");
 
-    if(!token || role !== "ADMIN"){
+        if(!token || (role !== "ADMIN" && role !== "SUPER_ADMIN"))
+    {
 
         alert(
             "Access Denied - Admin Only"
