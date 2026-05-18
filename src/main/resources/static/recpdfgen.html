@@ -48,7 +48,7 @@
 
             <div class="field">
                 <label>Receipt Number<span style="color:red">*</span></label>
-                <input id="receiptNo" type="text" required pattern="[0-9]+" placeholder="Enter receipt number">
+                <input id="receiptNo" type="text" readonly>
             </div>
 
             <div class="field">
@@ -63,7 +63,7 @@
 
             <div class="field">
                 <label>Amount<span style="color:red">*</span></label>
-                <input id="amount" type="number" required placeholder="Enter amount">
+                <input id="amount" type="number" readonly>
             </div>
 
             <div class="field">
@@ -112,7 +112,7 @@
         </div>
 
         <div style="text-align:center;margin-top:20px;">
-            <button class="download" onclick="download()">Download PDF</button>
+            <button class="download" onclick="download()">Download Receipt</button>
             <button class="download" onclick="window.location.href='/recpdfgen.html'"> Return without Download </button>
         </div>
 

@@ -72,4 +72,20 @@ public void acceptResignation(Long id){
     admin.setStatus(AppConstants.Message.RESIGNED);
     adminRepository.save(admin);
     }
+
+    // AdminServiceImpl
+
+    @Override
+    @Transactional
+    public String rejectResignation(Long id) {
+
+        AdminEntity admin = adminRepository.findById(id).orElse(null);
+
+        if(admin == null){
+            return "Admin Not Found";
+        }
+        admin.setStatus(AppConstants.Message.ACTIVE);
+        adminRepository.save(admin);
+        return AppConstants.Message.RESIGNATION_REJECTED;
+    }
 }

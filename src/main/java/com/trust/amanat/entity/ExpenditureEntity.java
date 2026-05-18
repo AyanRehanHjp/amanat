@@ -23,6 +23,8 @@ public class ExpenditureEntity {
         private int year;
         private String problem;
         private String supDoc;
+    @Column(name = "receipt_image_url")
+    private String receiptImageUrl;
 
     @Column(name = "receipt_generated")
     private String receiptGenerated;

@@ -1,3 +1,28 @@
+window.onload = function(){
+
+    let id = new URLSearchParams(window.location.search)
+        .get("id");
+
+    fetch("/expenditure/receiptGenGetById/" + id)
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        document.getElementById("receiptNo").value =
+            data.receiptNo;
+
+        document.getElementById("name").value =
+            data.name;
+
+        document.getElementById("address").value =
+            data.address;
+
+        document.getElementById("amount").value =
+            data.amount;
+    });
+}
+
 function generateReceipt(){
 
 let name=document.getElementById("name").value;
@@ -79,34 +104,61 @@ html2canvas(element,{useCORS:true,scale:2}).then(function(canvas){
 
 const imgData = canvas.toDataURL("image/png");
 
-const pdf = new jsPDF('landscape','px',[canvas.width,canvas.height]);
+//const pdf = new jsPDF('landscape','px',[canvas.width,canvas.height]);
+//
+//pdf.addImage(imgData,'PNG',0,0,canvas.width,canvas.height);
+//let pdfBlob = pdf.output("blob")
+//
+//let reader = new FileReader()
+//
+//reader.readAsDataURL(pdfBlob)
+//
+//reader.onloadend = function(){
+//
+//    let base64data = reader.result.split(',')[1]
+//
+//    fetch("/recpdfgen/savePdf",{
+//
+//        method:"POST",
+//
+//        headers:{
+//            "Content-Type":"application/json"
+//        },
+//
+//        body:JSON.stringify({
+//            receiptNo:receiptNo,
+//            pdf:base64data
+//        })
+//    })
+//}
+//pdf.save(receiptNo+".pdf");
+fetch("/recpdfgen/savePdf",{
 
-pdf.addImage(imgData,'PNG',0,0,canvas.width,canvas.height);
-let pdfBlob = pdf.output("blob")
+    method:"POST",
 
-let reader = new FileReader()
+    headers:{
+        "Content-Type":"application/json"
+    },
 
-reader.readAsDataURL(pdfBlob)
-
-reader.onloadend = function(){
-
-    let base64data = reader.result.split(',')[1]
-
-    fetch("/recpdfgen/savePdf",{
-
-        method:"POST",
-
-        headers:{
-            "Content-Type":"application/json"
-        },
-
-        body:JSON.stringify({
-            receiptNo:receiptNo,
-            pdf:base64data
-        })
+    body:JSON.stringify({
+        receiptNo:receiptNo,
+        image:imgData
     })
-}
-pdf.save(receiptNo+".pdf");
+})
+
+.then(() => {
+
+    let a = document.createElement("a");
+
+    a.href = imgData;
+
+    a.download = receiptNo + ".png";
+
+    a.click();
+      setTimeout(() => {
+            window.location.href = "/expenditure.html";
+        },1000);
+});
 
 });
 

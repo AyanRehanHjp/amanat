@@ -4,7 +4,10 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Admin Dashboard - Amanat Welfare Trust</title>
+
+    <title>
+        Admin Dashboard - Amanat Welfare Trust
+    </title>
 
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/admin.css">
@@ -12,24 +15,38 @@
 </head>
 
 <body>
+
 <script>
-    let token = localStorage.getItem("token");
-    let role = localStorage.getItem("role");
+
+    let token =
+        localStorage.getItem("token");
+
+    let role =
+        localStorage.getItem("role");
 
     if(!token || role !== "ADMIN"){
-        alert("Access Denied - Admin Only");
-        window.location.href = "/admin-login.html";
+
+        alert(
+            "Access Denied - Admin Only"
+        );
+
+        window.location.href =
+            "/admin-login.html";
     }
+
 </script>
+
 <div id="common-navbar"></div>
 
+<div class="logout">
 
+    <button onclick="logout()">
 
-    <div class="logout">
-        <button onclick="logout()">Logout</button>
-    </div>
+        Logout
 
+    </button>
 
+</div>
 
 <div class="container">
 
@@ -38,103 +55,316 @@
         <h3>Navigation</h3>
 
         <ul>
-            <li onclick="openPage('/members.html')">Add/Modify/View Members Details</li>
-            <li onclick="openPage('/showIncomeDet.html')"> Show Members Income Details</li>
-            <li onclick="openPage('/incomedet.html')"> Add Income Details</li>
-            <li onclick="openPage('/expenditure.html')">Add/Show Expenditure Details</li>
-            <li onclick="openPage('/help-requests.html')">Help Requests</li>
-            <li onclick="openPage('/cover.html')">Full Report</li>
-            <li onclick="openPage('/feedback-view.html')">View Feedback</li>
-            <li onclick="openPage('/manualDetailUpdate')">Manual Detail Update</li>
-            <li onclick="openPage('/admin-detail.html')">Admin Details</li>
-            <li onclick="openPage('/super-admin-login.html')">Super-Admin</li>
 
+            <li onclick="openPage('/members.html')">
 
+                Add/Modify/View Members Details
 
+            </li>
 
+            <li onclick="openPage('/showIncomeDet.html')">
 
+                Show Members Income Details
+
+            </li>
+
+            <li onclick="openPage('/incomedet.html')">
+
+                Add Income Details
+
+            </li>
+
+            <li onclick="openPage('/help-requests.html')">
+
+                Help Requests
+
+            </li>
+
+            <li onclick="openPage('/expenditure.html')">
+
+                Add/Show Expenditure Details
+
+            </li>
+
+            <li onclick="openPage('/feedback-view.html')">
+
+                View Feedback
+
+            </li>
+
+            <li onclick="openPage('/admin-detail.html')">
+
+                Admin Details
+
+            </li>
+
+            <li onclick="openPage('/super-admin-login.html')">
+
+                Super-Admin
+
+            </li>
+
+            <li onclick="openPage('/manualDetailUpdate.html')">
+
+                Manual Detail Update
+
+            </li>
+
+            <li onclick="openPage('/cover.html')">
+
+                Full Report
+
+            </li>
 
         </ul>
 
     </div>
 
-
     <div class="main">
 
-        <h1>Admin Control Panel</h1>
+        <h1>
 
-        <p>Welcome to Amanat Welfare Trust Administration Panel</p>
-        <p style="font-size:11px ; font-style : italic; color:red;  font-weight: bold; text-decoration: underline;">This page belongs to admin team only, For Normal User Access is not permissible</p>
+            Admin Control Panel
+
+        </h1>
+
+        <p>
+
+            Welcome to Amanat Welfare Trust
+            Administration Panel
+
+        </p>
+
+        <p
+                style="
+                font-size:11px;
+                font-style:italic;
+                color:red;
+                font-weight:bold;
+                text-decoration:underline;
+            "
+        >
+
+            This page belongs to admin team only,
+            For Normal User Access is not permissible
+
+        </p>
 
         <div class="cards">
 
-            <div class="card" onclick="openPage('/members.html')">
-                ➕ / 👥<br>
-                Add/Modify/View Members Details
-            </div>
-            <div class="card" onclick="openPage('/showIncomeDet.html')">
-                📑<br>
-                Show Members Income Details
-            </div>
-            <div class="card" onclick="openPage('/incomedet.html')">
-                📊<br>
-                Add Income Details
+            <!-- CARD 1 -->
+
+            <div
+                    class="card"
+                    onclick="openPage('/members.html')"
+            >
+
+                <span class="icon">
+
+                    ➕👥
+
+                </span>
+
+                1. Add/Modify/View Members Details
+
             </div>
 
-            <div class="card" onclick="openPage('/expenditure.html')">
-                📄<br>
-                Add / Show Expenditure Details
+            <!-- CARD 2 -->
+
+            <div
+                    class="card"
+                    onclick="openPage('/showIncomeDet.html')"
+            >
+
+                <span class="icon">
+
+                    💰📑
+
+                </span>
+
+                2. Show Members Income Details
+
             </div>
 
-            <div class="card" onclick="openPage('/help-requests.html')">
-                <br>
-                🙏 Help Requests
+            <!-- CARD 3 -->
+
+            <div
+                    class="card"
+                    onclick="openPage('/incomedet.html')"
+            >
+
+                <span class="icon">
+
+                    ➕💵
+
+                </span>
+
+                3. Add Income Details
+
             </div>
 
-             <div class="card" onclick="openPage('/cover.html')">
-                📊<br>
-                Full Report
-             </div>
+            <!-- CARD 4 -->
 
-            <div class="card" onclick="openPage('/feedback-view.html')">
-                📊<br>
-                View Feedback
+            <div
+                    class="card"
+                    onclick="openPage('/expenditure.html')"
+            >
+
+                <span class="icon">
+
+                    ➕📉
+
+                </span>
+
+                4. Add / Show Expenditure Details
+
             </div>
 
-            <div class="card" onclick="openPage('/manualDetailUpdate.html')">
-                📊<br>
-                Manual Detail Update
+            <!-- CARD 5 -->
+
+            <div
+                    class="card"
+                    onclick="openPage('/help-requests.html')"
+            >
+
+                <span class="icon">
+
+                    🙏
+
+                </span>
+
+                5. Help Beneficiary Requests
+
             </div>
 
-            <div class="card" onclick="openPage('/admin-detail.html')">
-                👥<br>
-                Admin Details
+            <!-- CARD 6 -->
+
+            <div
+                    class="card"
+                    onclick="openPage('/cover.html')"
+            >
+
+                <span class="icon">
+
+                    📊
+
+                </span>
+
+                6. Full Report
+
             </div>
 
-            <div class="card" onclick="openPage('/super-admin-login.html')">
-                👥<br>
-                Super Admin
+            <!-- CARD 7 -->
+
+            <div
+                    class="card"
+                    onclick="openPage('/feedback-view.html')"
+            >
+
+                <span class="icon">
+
+                    ✏️⭐
+
+                </span>
+
+                7. View Feedback
+
             </div>
 
-            <div class="card" onclick="openPage('/forgot-password.html')">
-                👥<br>
-               🔐 Forgot Password By username
+            <!-- CARD 8 -->
+
+            <div
+                    class="card"
+                    onclick="openPage('/manualDetailUpdate.html')"
+            >
+
+                <span class="icon">
+
+                    📊
+
+                </span>
+
+                8. Manual Detail Update
+
             </div>
+
+            <!-- CARD 9 -->
+
+            <div
+                    class="card"
+                    onclick="openPage('/admin-detail.html')"
+            >
+
+                <span class="icon">
+
+                    🛡️🧑🏻‍💼
+
+                </span>
+
+                9. Admin Details
+
+            </div>
+
+            <!-- CARD 10 -->
+
+            <div
+                    class="card"
+                    onclick="openPage('/super-admin-login.html')"
+            >
+
+                <span class="icon">
+
+                    🤴🏻👔
+
+                </span>
+
+                10. Super Admin
+
+            </div>
+
+            <!-- CARD 11 -->
+
+            <div
+                    class="card"
+                    onclick="openPage('/forgot-password.html')"
+            >
+
+                <span class="icon">
+
+                    🔐
+
+                </span>
+
+                11. Forgot Password By username
+
+            </div>
+
         </div>
 
     </div>
 
 </div>
+
 <script src="/js/constants.js"></script>
 <script src="/js/admin.js"></script>
 <script src="/js/common.js"></script>
 
 <script>
+
     fetch('/common.html')
+
        .then(res => res.text())
+
        .then(data => {
-           document.getElementById("common-navbar").innerHTML = data;
+
+           document.getElementById(
+               "common-navbar"
+           ).innerHTML = data;
+
        });
+
 </script>
+
 </body>
+
 </html>

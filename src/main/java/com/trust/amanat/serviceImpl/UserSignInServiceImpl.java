@@ -27,15 +27,15 @@ public class UserSignInServiceImpl implements UserSignInService {
             UserEntity user = record.get(0);
             if(BCrypt.checkpw(loginDTO.getPassword(),user.getPassword())){
 
-                if(AppConstants.Message.PENDING.equals(user.getApprovalFlag())){
+                if(AppConstants.Message.Flag_PENDING.equals(user.getApprovalFlag())){
                     throw new RuntimeException(AppConstants.Message.PENDING_APPROVAL);
                 }
 
-                if(AppConstants.Message.REJECTED.equals(user.getApprovalFlag())){
+                if(AppConstants.Message.Flag_REJECT.equals(user.getApprovalFlag())){
                     throw new RuntimeException(AppConstants.Message.REJECTED_REQUEST);
                 }
 
-                if(!AppConstants.Message.APPROVED.equals(user.getApprovalFlag())){
+                if(!AppConstants.Message.Flag_APPROVED.equals(user.getApprovalFlag())){
                     throw new RuntimeException(AppConstants.Message.ACCESS_DENIED);
                 }
                 return  jwtService.generateToken(user.getUserName(), user.getRole());

@@ -6,6 +6,7 @@ import com.trust.amanat.entity.ExpenditureEntity;
 import com.trust.amanat.entity.RecPdfGenEntity;
 import com.trust.amanat.repository.ExpenditureRepository;
 import com.trust.amanat.repository.RecPdfGenRepository;
+import com.trust.amanat.service.RecpdfgenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,8 @@ public class RecpdfgenController {
 
     @Autowired
     private ExpenditureRepository expenditureRepository;
+    @Autowired
+    private RecpdfgenService recpdfgenService;
 
 
     @PostMapping("/generateReceipt")
@@ -81,24 +84,31 @@ public class RecpdfgenController {
 
 
     }
+//    @PostMapping("/savePdf")
+//    public ResponseEntity<?> savePdf(@RequestBody Map<String,String> data){
+//
+//        try{
+//
+//            logger.info("savePdf called for receiptNo={}", data != null ? data.get("receiptNo") : null);
+//
+//            String pdfBase64 = data.get("pdf");
+//            String receiptNo = data.get("receiptNo");
+//            byte[] pdfBytes = Base64.getDecoder().decode(pdfBase64);
+//            Path path = Paths.get("uploads/receipts/" + receiptNo + ".pdf");
+//            Files.createDirectories(path.getParent());
+//            Files.write(path, pdfBytes);
+//            logger.info("PDF saved successfully for receiptNo={}", receiptNo);
+//            return ResponseEntity.ok("PDF Saved");
+//        }catch(Exception e){
+//            logger.error("Error saving PDF for receiptNo={}: {}", data != null ? data.get("receiptNo") : null, e.getMessage());
+//            return ResponseEntity.badRequest().body("PDF Save Failed");
+//        }
+//    }
+
     @PostMapping("/savePdf")
     public ResponseEntity<?> savePdf(@RequestBody Map<String,String> data){
-
-        try{
-
-            logger.info("savePdf called for receiptNo={}", data != null ? data.get("receiptNo") : null);
-
-            String pdfBase64 = data.get("pdf");
-            String receiptNo = data.get("receiptNo");
-            byte[] pdfBytes = Base64.getDecoder().decode(pdfBase64);
-            Path path = Paths.get("uploads/receipts/" + receiptNo + ".pdf");
-            Files.createDirectories(path.getParent());
-            Files.write(path, pdfBytes);
-            logger.info("PDF saved successfully for receiptNo={}", receiptNo);
-            return ResponseEntity.ok("PDF Saved");
-        }catch(Exception e){
-            logger.error("Error saving PDF for receiptNo={}: {}", data != null ? data.get("receiptNo") : null, e.getMessage());
-            return ResponseEntity.badRequest().body("PDF Save Failed");
-        }
+        return ResponseEntity.ok(
+                recpdfgenService.saveReceiptImage(data)
+        );
     }
 }

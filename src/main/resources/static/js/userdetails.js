@@ -44,28 +44,11 @@ fetch(RETRIEVE_USER  + userId,{
     memberId.value = data.memberId || (data.member && data.member.memberId) || "";
 
     /*  PROFILE IMAGE LOAD WITH AUTH HEADER + SPACE FIX */
-    if(data.profilePicture){
-
-        fetch(
-            PROFILE_IMAGE +
-            encodeURIComponent(data.profilePicture),
-        {
-            headers:{
-                "Authorization":"Bearer "+token
-            }
-        })
-        .then(res=>res.blob())
-        .then(blob=>{
-            const url = URL.createObjectURL(blob);
-            document.getElementById("profilePreview").src = url;
-        })
-        .catch(()=>{
-            document.getElementById("profilePreview").src="/images/defaultpic.png";
-        });
-
-    }else{
-        document.getElementById("profilePreview").src="/images/defaultpic.png";
-    }
+   if(data.profilePicture){
+       document.getElementById("profilePreview").src = data.profilePicture;
+   }else{
+       document.getElementById("profilePreview").src = "/images/defaultpic.png";
+   }
 
     dateOfJoining.value=data.dateOfJoining||"";
     gender.value=data.gender||"";
@@ -138,7 +121,7 @@ fetch(REMOVE_PROFILE_PIC+userId,{
 })
 .then(res=>res.text())
 .then(msg=>{
-    alert(msg);
+    showPopup(msg);
 
     document.getElementById("profilePreview").src="/images/defaultpic.png";
 });

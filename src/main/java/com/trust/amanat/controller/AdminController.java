@@ -76,4 +76,14 @@ public class AdminController {
         logger.info("Resignation Accepted success");
         return AppConstants.Message.RESIGNATION_ACCEPTED ;
     }
+
+    @PostMapping("/reject-resignation/{id}")
+    public ResponseEntity<?> rejectResignation(
+            @PathVariable Long id){
+
+        String msg =
+                adminService.rejectResignation(id);
+
+        return ResponseEntity.ok(msg);
+    }
 }

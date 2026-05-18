@@ -58,6 +58,7 @@ public class SecurityConfig {
                                 "/incomeDet/searchMember",
                                 "/common.html",
                                 "/scan&pay/addPayee",
+                                "/beneficiary/allBeneficiaries",
                                 "/beneficiary/**",
                                 "/members/updateMember/**",
                                 "/help-requests/",
@@ -86,6 +87,8 @@ public class SecurityConfig {
                                 "/forgot-password.html",
                                 "/change-password.html",
                                 "/signUp/forgotPassword",
+                                "/api/cloudinary/uploadtest",
+                                "/admins/reject-resignation/**",
                                 "/admins/accept-resignation/**"
 
 

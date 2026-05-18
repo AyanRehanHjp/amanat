@@ -44,5 +44,15 @@ public class ExpenditureController {
        return allExp;
     }
 
+    @GetMapping("/receiptGenGetById/{id}")
+    public ExpenditureEntity receiptGenGetById(@PathVariable Long id){
+
+        return expenditureService.getAllExpenditures()
+                .stream()
+                .filter(exp -> exp.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
 }
 
