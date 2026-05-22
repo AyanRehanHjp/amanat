@@ -380,29 +380,31 @@ document.getElementById("memberId").addEventListener("change",function(){
     });
 
 });
-function shareReceipt(){
+async function shareWhatsapp(){
 
-    if(navigator.share){
+    const pdfBlob =
+        await fetch(receiptBlobUrl).then(r => r.blob());
+
+    const file = new File(
+        [pdfBlob],
+        "AWT_Receipt.pdf",
+        { type:"application/pdf" }
+    );
+
+    if(navigator.canShare &&
+        navigator.canShare({ files:[file] })){
 
         navigator.share({
             title:"AWT Receipt",
             text:"Payment Receipt",
-            url:receiptBlobUrl
+            files:[file]
         });
 
     }else{
 
-        alert("Sharing not supported");
+        let whatsappUrl =
+            "https://wa.me/?text=Payment Receipt";
+
+        window.open(whatsappUrl,"_blank");
     }
-}
-
-function shareWhatsapp(){
-
-    let whatsappUrl =
-        "https://wa.me/?text=" +
-        encodeURIComponent(
-            "Payment Receipt: " + receiptBlobUrl
-        );
-
-    window.open(whatsappUrl,"_blank");
 }
