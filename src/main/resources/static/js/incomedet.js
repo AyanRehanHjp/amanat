@@ -1,3 +1,4 @@
+let receiptBlobUrl = "";
 // Redirect
 function goHome(){ window.location.href="/admin.html"; }
 
@@ -286,6 +287,9 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
         291,
         {align:"right"}
     );
+            // SHAREABLE URL
+        receiptBlobUrl = doc.output("bloburl");
+
         // DOWNLOAD
         doc.save("AWT_Receipt.pdf");
 
@@ -376,3 +380,29 @@ document.getElementById("memberId").addEventListener("change",function(){
     });
 
 });
+function shareReceipt(){
+
+    if(navigator.share){
+
+        navigator.share({
+            title:"AWT Receipt",
+            text:"Payment Receipt",
+            url:receiptBlobUrl
+        });
+
+    }else{
+
+        alert("Sharing not supported");
+    }
+}
+
+function shareWhatsapp(){
+
+    let whatsappUrl =
+        "https://wa.me/?text=" +
+        encodeURIComponent(
+            "Payment Receipt: " + receiptBlobUrl
+        );
+
+    window.open(whatsappUrl,"_blank");
+}
