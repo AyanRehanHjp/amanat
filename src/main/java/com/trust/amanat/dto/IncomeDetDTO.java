@@ -14,5 +14,7 @@ public class IncomeDetDTO {
     private Integer forYear;
     private String paymentDate;
     private String comment;
+    private String inc_receipt_no;
+
 
 }

@@ -27,14 +27,13 @@ public class IncomeDetController {
 
             String response = incomeDetService.addPayment(incomeDetDTO);
                 logger.info("addPayment method is calling");
-            if (response.equals(AppConstants.Message.SUCCESS)) {
+            if (response.startsWith("AWTIN")) {
                 logger.info("Payment added successfully for memberId={}, amount={}, for month={}, and year={}",
                         incomeDetDTO != null ? incomeDetDTO.getMemberId() : null,
                         incomeDetDTO != null ? incomeDetDTO.getAmount() : null,
                         incomeDetDTO != null ? incomeDetDTO.getForMonth() : null,
                         incomeDetDTO != null ? incomeDetDTO.getForYear() : null);
-                return new ResponseEntity<>(AppConstants.Message.PAYMENT_ADDED, HttpStatus.CREATED);
-            }
+                return new ResponseEntity<>(response, HttpStatus.CREATED);            }
 
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 

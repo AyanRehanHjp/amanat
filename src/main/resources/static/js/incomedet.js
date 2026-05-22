@@ -37,7 +37,7 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
 
     .then(msg=>{
 
-        if(msg!=="Payment added successfully"){
+        if(startsWith("AWTIN")){
             document.getElementById("popupMsg").innerText=msg;
             document.getElementById("popup").style.display="flex";
             return;
@@ -88,8 +88,7 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
 
     const formattedDate=dd+"-"+mm+"-"+yyyy;
 
-    const receiptNo="AWT"+dd+mm+"01";
-
+const receiptNo=msg;
 
     // RECEIPT NUMBER
     doc.text(

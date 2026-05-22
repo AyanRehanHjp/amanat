@@ -74,4 +74,5 @@ public interface IncomeDetRepository extends JpaRepository <IncomeDetEntity, Lon
     List<Object[]> getYearlyIncome();
 
     boolean existsByMemberId(String memberId);
+    IncomeDetEntity findTopByOrderByIdDesc();
 }
