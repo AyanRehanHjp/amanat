@@ -11,3 +11,10 @@ function logout(){
     window.location.href="/admin-login.html";
     }
 
+function toggleSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList
+        .toggle("hide");
+}
