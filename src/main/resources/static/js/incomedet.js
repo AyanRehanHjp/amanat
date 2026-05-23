@@ -37,7 +37,7 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
 
     .then(msg=>{
 
-        if(startsWith("AWTIN")){
+if(!msg.startsWith("AWTIN")){
             document.getElementById("popupMsg").innerText=msg;
             document.getElementById("popup").style.display="flex";
             return;
