@@ -58,5 +58,6 @@ function closeGlobalPopup(){
     }
 }
 function paymentNotAllowed(){
-    showPopup("⚠ Payment not allowed without Sign Up, For security reasons. \n\n Please Sign Up or Log In to continue.");
+    showPopup("⚠️ PAYMENT NOT ALLOWED \n\n  For security reasons."+
+    "Please Sign Up and after Approval Log In to continue.");
 }
