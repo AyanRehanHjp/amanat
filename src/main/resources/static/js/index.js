@@ -63,3 +63,35 @@ function trackStatus() {
 function closeResult() {
     document.getElementById("resultBox").innerHTML = "";
 }
+
+function loadHealthBar() {
+
+    Promise.all([
+        fetch("/actuator/health").then(r => r.json()),
+        fetch("/actuator/metrics/jvm.memory.used").then(r => r.json())
+    ])
+    .then(([health, memory]) => {
+
+        const memoryMb =
+            (memory.measurements[0].value / 1024 / 1024).toFixed(2);
+
+        const freeDisk =
+            (health.components.diskSpace.details.free /
+            1024 / 1024 / 1024).toFixed(2);
+
+        document.getElementById("healthBar").innerHTML = `
+            🟢 System Healthy
+            &nbsp; | &nbsp;
+            🟢 DB Connected
+            &nbsp; | &nbsp;
+            💾 ${freeDisk} GB Free
+            &nbsp; | &nbsp;
+            🧠 ${memoryMb} MB RAM
+        `;
+    })
+    .catch(() => {
+        document.getElementById("healthBar").innerHTML =
+            "🔴 System Health Unavailable";
+    });
+}
+loadHealthBar();

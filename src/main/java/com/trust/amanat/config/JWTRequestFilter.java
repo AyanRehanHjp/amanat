@@ -99,6 +99,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/forgot-password.html")||
                 path.startsWith("/change-password.html")||
                 path.startsWith("/api/cloudinary/uploadtest")||
+                path.startsWith("/actuator")||
 
 
 

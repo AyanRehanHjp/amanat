@@ -431,3 +431,15 @@ background:#b02a37;
     right: 12px;
     cursor: pointer;
 }
+.health-bar{
+    width: fit-content;
+    margin: 20px auto;
+    padding: 12px 25px;
+    background: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    font-weight: 600;
+    color: #134E5E;
+    font-size: 15px;
+    text-align: center;
+}
