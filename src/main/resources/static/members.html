@@ -108,6 +108,35 @@
 
     </div>
 
+    <h2 class="title">SEARCH BY NAME or NUMBER</h2>
+
+    <div class="member-search-box">
+
+        <div class="form-group">
+            <label>Search By Name</label>
+            <input type="text" id="searchName" maxlength="30" placeholder="Enter Name" oninput="this.value=this.value.replace(/[^A-Za-z ]/g,'')">
+
+        </div>
+
+        <div class="form-group">
+            <label>Search By Mobile</label>
+            <input type="tel" id="searchMobile" maxlength="10" placeholder="Enter Mobile Number"
+                   oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+        </div>
+
+        <div class="form-group search-btn-group">
+            <button type="button" onclick="searchMembers()">Search</button>
+        </div>
+
+        <div class="form-group all-members-btn-group">
+            <button type="button" onclick="loadMembers()">All Members</button>
+        </div>
+
+        <div class="form-group reset-btn-group">
+            <button type="button" onclick="resetSearch()">Reset</button>
+        </div>
+    </div>
+
     <h2 class="title">Member List</h2>
 
     <table id="membersTable">

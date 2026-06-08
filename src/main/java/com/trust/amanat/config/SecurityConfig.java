@@ -83,11 +83,14 @@ public class SecurityConfig {
                                 "/change-password.html",
                                 "/signUp/forgotPassword",
                                 "/api/cloudinary/uploadtest",
-                                "/actuator/**"
+                                "/actuator/**",
+                                "/members/searchByName",
+                                "/members/searchByMobile"
 
 
 
-                        ).permitAll()
+
+                                ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(

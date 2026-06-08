@@ -133,6 +133,8 @@ public class AppConstants {
 
         public static final String USERNAME_REQUIRED = "User Name is required";
         public static final String NAME_REQUIRED = "Name is required";
+        public static final String NO_MEMBERS_FOUND_NAME = "No members found with the given name";
+        public static final String NO_MEMBERS_FOUND_MOBILE = "No members found with the given Mobile number";
         public static final String NEW_PASSWORD_REQUIRED = "New Password is required";
         public static final String ADDRESS_REQUIRED = "Address is required";
         public static final String PASSWORD_RESET_SUCCESS = "Password reset successfully";
@@ -162,6 +164,9 @@ public class AppConstants {
         public static final String EMAIL_ALREADY_EXISTS = "This email is already exists";
         public static final String MOBILE_ALREADY_EXISTS = "This Mobile no is already exists";
         public static final String MOBILE_NO_ALREADY_EXISTS = "Mobile Number already exists";
+        public static final String MOBILE_REQUIRED = "Mobile number is required";
+        public static final String MOBILE_NO = "Mobile Number";
+
         public static final String USER_NOT_FOUND = "User not found";
         public static final String USER_NOT_FOUND_WITH_THIS_ID = "User not found with this id: ";
 

@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class RegMembersServiceImpl implements RegMembersService {
 
@@ -119,5 +121,13 @@ public class RegMembersServiceImpl implements RegMembersService {
         }
 
         return regMembersRepository.save(members);
+    }
+
+    public List <MembersEntity> searchMembersByName(String name) {
+        return regMembersRepository.searchMemByName(name);
+    }
+
+    public List <MembersEntity> searchByMobile(String mobile) {
+        return regMembersRepository.searchByMobile(mobile);
     }
 }
