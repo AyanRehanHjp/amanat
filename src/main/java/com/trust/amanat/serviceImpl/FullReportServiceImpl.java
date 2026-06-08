@@ -37,19 +37,15 @@ public class FullReportServiceImpl implements FullReportService {
         Map<Integer, Double> incomeMap = new HashMap<>();
         Map<Integer, Double> expenseMap = new HashMap<>();
 
-        //  Income map
-        for(Object[] obj : incomeList){
-            Integer year = (Integer) obj[0];
-            Double amount = (Double) obj[1];
-            incomeMap.put(year, amount);
-        }
+        //  Income map with the help of Consumer functional interface
+        incomeList.forEach(obj -> {
+            incomeMap.put((Integer) obj[0], (Double) obj[1]);
+        });
 
-        // Expense map
-        for(Object[] obj : expenseList){
-            Integer year = (Integer) obj[0];
-            Double amount = (Double) obj[1];
-            expenseMap.put(year, amount);
-        }
+        // Expense map with the help of Consumer Functional Interface
+        expenseList.forEach(obj -> {
+            expenseMap.put((Integer) obj[0],(Double) obj[1]);
+        });
 
         //  Combine
         List<Map<String, Object>> result = new ArrayList<>();

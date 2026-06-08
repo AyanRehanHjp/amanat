@@ -403,7 +403,8 @@ background:#b02a37;
 
 /* result side */
 #resultBox {
-    min-width: 320px;
+    display: none;
+    width: 320px;
 }
 
 /* success */

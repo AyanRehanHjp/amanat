@@ -40,6 +40,7 @@ function trackStatus() {
                 return JSON.parse(response);
             })
         .then(data => {
+            document.getElementById("resultBox").style.display = "block";
             document.getElementById("resultBox").innerHTML = `
                 <div class="result-card success">
                     <span class="close-btn" onclick="closeResult()">✖</span>
@@ -50,6 +51,7 @@ function trackStatus() {
             `;
         })
 .catch(error => {
+    document.getElementById("resultBox").style.display = "block";
     document.getElementById("resultBox").innerHTML = `
         <div class="result-card error">
             <span class="close-btn" onclick="closeResult()">✖</span>
@@ -61,7 +63,8 @@ function trackStatus() {
 
 /* OUTSIDE function */
 function closeResult() {
-    document.getElementById("resultBox").innerHTML = "";
+        document.getElementById("resultBox").innerHTML = "";
+        document.getElementById("resultBox").style.display = "none";
 }
 
 function loadHealthBar() {
