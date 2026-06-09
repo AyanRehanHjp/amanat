@@ -7,12 +7,11 @@ import com.trust.amanat.service.ScanPayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/scan&pay")
@@ -36,5 +35,13 @@ public class ScanPayController {
         logger.error("addPayee failed for mobile={}", scanPayDTO != null ? scanPayDTO.getMobile() : null);
         return new ResponseEntity<>(AppConstants.Message.PAYMENT_FAILED, HttpStatus.BAD_REQUEST) ;
     }}
+
+
+
+    @GetMapping("/allPayments")
+    public List<ScanPayEntity> getAllPayments() {
+
+        return scanPayService.getAllPayments();
+    }
 
 }

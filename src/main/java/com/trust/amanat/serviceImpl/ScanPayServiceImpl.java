@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class ScanPayServiceImpl implements ScanPayService {
     private static final Logger logger = LoggerFactory.getLogger(ScanPayServiceImpl.class);
@@ -36,6 +38,14 @@ public class ScanPayServiceImpl implements ScanPayService {
             logger.error("Error in addPayee: {}", e.getMessage(), e);
             throw e;
         }
+    }
+
+    @Override
+    public List<ScanPayEntity> getAllPayments() {
+
+        logger.info("getAllPayments() called");
+
+        return scanPayRepository.findAll();
     }
 
 
