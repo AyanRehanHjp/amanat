@@ -1,5 +1,6 @@
 // ================= LOAD DATA =================
 function loadRequests() {
+    showLoader();
 
     fetch(ALL_BENEFICIARY)
         .then(res => res.json())
@@ -92,6 +93,7 @@ function loadRequests() {
 
                 table.innerHTML += row;
             });
+            hideLoader();
         });
 }
 
@@ -228,7 +230,7 @@ function updateStatus(id) {
     })
 
     .catch(err => {
-
+    hideLoader();
         console.error(err);
 
         showPopup("Update failed");
@@ -242,5 +244,8 @@ function updateStatus(id) {
 
 // ================= INIT =================
 window.onload = function () {
-    loadRequests();
-};
+ showLoader();
+
+    setTimeout(() => {
+        loadRequests();
+    }, 100);};
