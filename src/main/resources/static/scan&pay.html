@@ -14,6 +14,16 @@
 
 <body>
 <div id="common-navbar"></div>
+
+<script>
+    let token = localStorage.getItem("token");
+    let role = localStorage.getItem("role");
+
+    if(!token || role !== "user"){
+        alert("Access Denied - User Only");
+        window.location.href = "/login.html";
+    }
+</script>
 <div class="header">
 
     <img src="/images/money.png" class="logo">

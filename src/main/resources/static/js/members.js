@@ -6,8 +6,11 @@ let totalPages = 1;
 // ================= LOAD MEMBERS =================
 function loadMembers(){
 showLoader();
-fetch(`${ALL_MEMBERS}?page=${currentPage}&size=${pageSize}`)
-.then(res => res.json())
+fetch(`${ALL_MEMBERS}?page=${currentPage}&size=${pageSize}`,{
+    headers:{
+        "Authorization":"Bearer " + token
+    }
+}).then(res => res.json())
 .then(data => {
 
 let table = document.querySelector("#membersTable tbody");
@@ -86,8 +89,11 @@ function renderSearchResult(data){
 function editMember(memberId){
     showLoader();
 
-fetch(`${ALL_MEMBERS}?page=${currentPage}&size=${pageSize}`)
-.then(res => res.json())
+fetch(`${ALL_MEMBERS}?page=${currentPage}&size=${pageSize}`,{
+    headers:{
+        "Authorization":"Bearer " + token
+    }
+}).then(res => res.json())
 .then(data => {
 
 let m = data.content.find(x => x.memberId === memberId);
@@ -166,9 +172,10 @@ let method = editingMemberId ? "PUT" : "POST";
 
 fetch(url,{
     method: method,
-    headers: {
-        "Content-Type":"application/json"
-    },
+headers: {
+    "Content-Type":"application/json",
+    "Authorization":"Bearer " + token
+},
     body: JSON.stringify(member)
 })
 .then(async res => {
@@ -294,7 +301,11 @@ function searchMembers(){
     // Name Search
     if(name && !mobile){
 
-        fetch(`/members/searchByName?name=${encodeURIComponent(name)}`)
+        fetch(`/members/searchByName?name=${encodeURIComponent(name)}`,
+          {
+              headers: { "Authorization": "Bearer " + token
+              }
+          })
         .then(async res => {
 
             if(!res.ok){
@@ -322,7 +333,11 @@ function searchMembers(){
     // Mobile Search
     if(!name && mobile){
 
-        fetch(`/members/searchByMobile?mobile=${encodeURIComponent(mobile)}`)
+        fetch(`/members/searchByMobile?mobile=${encodeURIComponent(mobile)}`,
+        {
+            headers: { "Authorization": "Bearer " + token
+            }
+        })
         .then(async res => {
 
             if(!res.ok){
@@ -348,8 +363,11 @@ function searchMembers(){
     }
 
     // Name + Mobile
-    fetch(`/members/searchByName?name=${encodeURIComponent(name)}`)
-    .then(async res => {
+fetch(`/members/searchByName?name=${encodeURIComponent(name)}`,{
+    headers:{
+        "Authorization":"Bearer " + token
+    }
+})    .then(async res => {
 
         if(!res.ok){
             throw new Error(await res.text());

@@ -1,3 +1,8 @@
+
+if(!token){
+    window.location.href="/login.html";
+}
+
 function goBack(){
 
 window.location.href="/admin.html";
@@ -72,7 +77,8 @@ function submitPayment(){
     fetch("/scan&pay/addPayee", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
         },
         body: JSON.stringify(data)
     })

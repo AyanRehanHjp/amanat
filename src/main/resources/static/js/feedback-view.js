@@ -1,5 +1,9 @@
-fetch("/feedback/allFeedback")
-.then(res => res.json())
+const token = localStorage.getItem("token");
+fetch("/feedback/allFeedback",{
+    headers:{
+        "Authorization":"Bearer " + token
+    }
+}).then(res => res.json())
 .then(data => {
 
     let tbody = document.querySelector("#feedbackTable tbody");

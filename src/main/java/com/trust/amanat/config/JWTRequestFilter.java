@@ -61,8 +61,8 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/expenditure.html") ||
                 path.startsWith("/incomedet.html") ||
                 path.equals("/incomeDet/addPayment") ||
-                path.startsWith("/scan&pay") ||
-                path.startsWith("/scan&pay/addPayee") ||
+//                path.startsWith("/scan&pay") ||
+//                path.startsWith("/scan&pay/addPayee") ||
                 path.startsWith("/cover") ||
                 path.equals("/scan&pay.html") ||
                 path.equals("/recpdfgen.html") ||
@@ -85,9 +85,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/admins/login") ||
                 path.startsWith("/report/")||
                 path.startsWith("/uploads/")||
-                path.startsWith("/feedback/")||
                 path.startsWith("/feedback/addFeedback")||
-                path.startsWith("/feedback/allFeedback")||
                 path.startsWith("/feedback.html")||
                 path.startsWith("/feedback-view.html")||
                 path.startsWith("/super-admin.html")||
@@ -100,11 +98,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/change-password.html")||
                 path.startsWith("/api/cloudinary/uploadtest")||
                 path.startsWith("/actuator")||
-                path.startsWith("/members/searchByName")||
-                path.startsWith("/members/searchByMobile")||
                 path.startsWith("/captcha/generate")||
-
-
 
 
                 path.equals("/signUp/addUser")) {
