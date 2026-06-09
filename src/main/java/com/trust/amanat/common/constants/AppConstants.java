@@ -169,6 +169,8 @@ public class AppConstants {
 
         public static final String USER_NOT_FOUND = "User not found";
         public static final String USER_NOT_FOUND_WITH_THIS_ID = "User not found with this id: ";
+        public static final String INVALID_CAPTCHA = "Invalid Captcha";
+        public static final String CAPTCHA = "Captcha";
 
         public static final String MOBILE_ALREADY_EXISTS_TO_ANOTHER = "Mobile already exists to another one";
         public static final String EMAIL_ALREADY_EXISTS_TO_ANOTHER = "Email already exists to another one";
