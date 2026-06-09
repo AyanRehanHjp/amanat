@@ -85,7 +85,9 @@ public class SecurityConfig {
                                 "/api/cloudinary/uploadtest",
                                 "/actuator/**",
                                 "/members/searchByName",
-                                "/members/searchByMobile"
+                                "/members/searchByMobile",
+                                "/captcha/generate"
+
 
 
 

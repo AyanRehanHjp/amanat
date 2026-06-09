@@ -6,6 +6,7 @@ import com.trust.amanat.dto.TokenResponseDTO;
 import com.trust.amanat.entity.AdminEntity;
 import com.trust.amanat.service.AdminService;
 
+import com.trust.amanat.service.CaptchaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private CaptchaService captchaService;
+
     @PostMapping("/create")
     public ResponseEntity<?> createAdmin(@RequestBody AdminEntity admin) {
         try {
@@ -38,6 +42,18 @@ public class AdminController {
     }
         @PostMapping("/login")
     public ResponseEntity<?> verifyAdminLogin(@RequestBody AdminLoginDTO adminLoginDTO){
+            boolean validCaptcha =
+                    captchaService.verifyCaptcha(
+                            adminLoginDTO.getCaptchaId(),
+                            adminLoginDTO.getCaptchaValue());
+            logger.info("Admin login attempt for userId: {}, captcha valid: {}", adminLoginDTO.getUserId(), validCaptcha);
+
+            if(!validCaptcha){
+                logger.error("Invalid captcha for userId: {}", adminLoginDTO.getUserId());
+                return ResponseEntity
+                        .badRequest()
+                        .body("Invalid Captcha");
+            }
             String token = adminService.verifyAdminLogin(adminLoginDTO);
             if(token!=null) {
                 TokenResponseDTO tok = new TokenResponseDTO();

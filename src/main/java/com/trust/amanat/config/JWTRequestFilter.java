@@ -102,6 +102,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/actuator")||
                 path.startsWith("/members/searchByName")||
                 path.startsWith("/members/searchByMobile")||
+                path.startsWith("/captcha/generate")||
 
 
 

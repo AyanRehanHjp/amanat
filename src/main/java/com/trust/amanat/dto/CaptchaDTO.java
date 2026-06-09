@@ -5,9 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AdminLoginDTO {
-    private String userId;
-    private String password;
+public class CaptchaDTO {
     private String captchaId;
-    private String captchaValue;
+    private String captcha;
 }
