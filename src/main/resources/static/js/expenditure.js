@@ -125,7 +125,7 @@ function saveExp(){
     .then(msg => {
         showPopup(msg);
         loadData();
-        location.reload();
+//        location.reload();
     })
     .catch(err => {
         showPopup("Error: " + err.message);
