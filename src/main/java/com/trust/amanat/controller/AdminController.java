@@ -42,17 +42,12 @@ public class AdminController {
     }
         @PostMapping("/login")
     public ResponseEntity<?> verifyAdminLogin(@RequestBody AdminLoginDTO adminLoginDTO){
-            boolean validCaptcha =
-                    captchaService.verifyCaptcha(
-                            adminLoginDTO.getCaptchaId(),
-                            adminLoginDTO.getCaptchaValue());
+            boolean validCaptcha = captchaService.verifyCaptcha(adminLoginDTO.getCaptchaId(), adminLoginDTO.getCaptchaValue());
             logger.info("Admin login attempt for userId: {}, captcha valid: {}", adminLoginDTO.getUserId(), validCaptcha);
 
             if(!validCaptcha){
                 logger.error("Invalid captcha for userId: {}", adminLoginDTO.getUserId());
-                return ResponseEntity
-                        .badRequest()
-                        .body("Invalid Captcha");
+                return ResponseEntity.badRequest().body(AppConstants.Validation.INVALID_CAPTCHA);
             }
             String token = adminService.verifyAdminLogin(adminLoginDTO);
             if(token!=null) {

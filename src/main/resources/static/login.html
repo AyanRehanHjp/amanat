@@ -27,7 +27,20 @@
     <input id="userName" placeholder="Username" minlength="12" maxlength="24">
 
     <input id="password" type="password" placeholder="Password" minlength="8" maxlength="32">
+    <label>Captcha</label>
 
+    <div class="captcha-box">
+        <span id="captchaText"></span>
+
+        <button type="button"
+                onclick="loadCaptcha()">
+            ↻
+        </button>
+    </div>
+
+    <input type="hidden" id="captchaId">
+
+    <input id="captchaValue" placeholder="Enter Captcha">
     <!-- BUTTONS -->
     <div class="btn-group">
 

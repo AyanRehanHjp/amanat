@@ -1,4 +1,16 @@
+function loadCaptcha(){
 
+    fetch("/captcha/generate")
+    .then(res => res.json())
+    .then(data => {
+
+        document.getElementById("captchaText")
+                .innerText = data.captcha;
+
+        document.getElementById("captchaId")
+                .value = data.captchaId;
+    });
+}
 function showMessage(text){
     const msg=document.getElementById("msg");
     msg.innerText=text;
@@ -10,6 +22,8 @@ function login(){
     const userName=document.getElementById("userName").value.trim();
     const password=document.getElementById("password").value.trim();
 
+     let captchaId = document.getElementById("captchaId").value;
+     let captchaValue = document.getElementById("captchaValue").value;
     if(userName==="" || password===""){
         showMessage("Username and Password required");
         return;
@@ -24,7 +38,9 @@ function login(){
         },
         body:JSON.stringify({
             userName:userName,
-            password:password
+            password:password,
+            captchaId:captchaId,
+            captchaValue:captchaValue
         })
     })
     .then(response => {
@@ -72,4 +88,7 @@ function login(){
 // forgot button
 function forgotHelp(){
     showPopup("Please contact admin via WhatsApp or Email.");
+}
+window.onload = function () {
+    loadCaptcha();
 }
