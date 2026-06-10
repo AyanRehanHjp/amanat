@@ -109,9 +109,36 @@
             <div id="msg" style="color:red; text-align:center; margin-top:10px;"></div>
 
             <button type="submit" class="save-btn">Save Payment</button>
+            <button type="button"
+                    class="pending-btn"
+                    onclick="loadPendingRequests()">
+                Pending Requests
+            </button>
+
 
         </form>
     </div>
+</div>
+    <div id="pendingSection" style="display:none; margin-top:20px;">
+        <h3>Pending Requests</h3>
+
+        <table id="pendingTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Payee Name</th>
+                <th>Member ID</th>
+                <th>UTR No</th>
+                <th>Amount</th>
+                <th>Mobile</th>
+                <th>Pay Date</th>
+                <th>Comment</th>
+            </tr>
+            </thead>
+
+            <tbody id="pendingTableBody"></tbody>
+        </table>
+
 
 </div>
 

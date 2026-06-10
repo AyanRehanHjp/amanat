@@ -5,8 +5,8 @@
     <title>User Details - Amanat Welfare Trust</title>
 
     <!-- PAGE CSS -->
-    <link rel="stylesheet" href="/css/userdetails.css">
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/userdetails.css">
 
 </head>
 
@@ -192,8 +192,8 @@
 
 <!-- PAGE JS -->
 <script src="/js/api-config.js"></script>
-<script src="/js/userdetails.js"></script>
 <script src="/js/common.js"></script>
+<script src="/js/userdetails.js"></script>
 
 
 <!-- LOAD COMMON NAVBAR -->
@@ -202,6 +202,7 @@
        .then(res => res.text())
        .then(data => {
            document.getElementById("common-navbar").innerHTML = data;
+           loadUser();
        });
 </script>
 </body>

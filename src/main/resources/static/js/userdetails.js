@@ -17,7 +17,7 @@ if(!token || role.toUpperCase() !== "USER"){
 
 /* FETCH USER */
 function loadUser(){
-
+showLoader();
 const userId = localStorage.getItem("userId");
 
 fetch(RETRIEVE_USER  + userId,{
@@ -27,13 +27,14 @@ fetch(RETRIEVE_USER  + userId,{
 })
 .then(res=>{
     if(res.status===403){
+        hideLoader();
         window.location.href="/login.html";
     }
     return res.json();
 })
 .then(data=>{
 
-
+hideLoader();
     localStorage.setItem("userId",data.id);
 
     firstName.value=data.firstName||"";
@@ -62,12 +63,11 @@ fetch(RETRIEVE_USER  + userId,{
 }
 
 /* PAGE LOAD */
-loadUser();
+//loadUser();
 
 
 /* UPDATE USER */
 function updateUser(){
-
 const userId=localStorage.getItem("userId");
 
 const formData=new FormData();
@@ -85,7 +85,7 @@ const file=document.getElementById("profileImage").files[0];
 if(file){
     formData.append("profileImage",file);
 }
-
+showLoader();
 fetch(UPDATE_USER +userId,{
     method:"PUT",
     headers:{
@@ -95,6 +95,7 @@ fetch(UPDATE_USER +userId,{
 })
 .then(res=>res.text())
 .then(msg=>{
+    hideLoader();
     showPopup(msg);
 
     /* reload ki jagah direct latest image load */
@@ -112,7 +113,7 @@ function logout(){
 function deleteProfilePic(){
 
 const userId = localStorage.getItem("userId");
-
+showLoader();
 fetch(REMOVE_PROFILE_PIC+userId,{
     method:"DELETE",
     headers:{
@@ -121,6 +122,7 @@ fetch(REMOVE_PROFILE_PIC+userId,{
 })
 .then(res=>res.text())
 .then(msg=>{
+hideLoader();
     showPopup(msg);
 
     document.getElementById("profilePreview").src="/images/defaultpic.png";

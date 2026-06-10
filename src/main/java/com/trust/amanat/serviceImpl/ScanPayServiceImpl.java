@@ -42,10 +42,17 @@ public class ScanPayServiceImpl implements ScanPayService {
 
     @Override
     public List<ScanPayEntity> getAllPayments() {
-
         logger.info("getAllPayments() called");
 
-        return scanPayRepository.findAll();
+        List <ScanPayEntity> allPayList=  scanPayRepository.findAll();
+        if(allPayList.isEmpty()){
+            logger.info("No payments found in the database.");
+            return null;
+        } else {
+            logger.info("Payments retrieved: {}", allPayList.size());
+            return allPayList;
+
+        }
     }
 
 

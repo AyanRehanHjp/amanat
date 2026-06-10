@@ -407,3 +407,39 @@ async function shareWhatsapp(){
         window.open(whatsappUrl,"_blank");
     }
 }
+function loadPendingRequests(){
+    showLoader();
+    fetch("/scan&pay/allPayments")
+    .then(response => response.json())
+    .then(data => {
+
+        let tbody =
+        document.getElementById("pendingTableBody");
+
+        tbody.innerHTML = "";
+
+        data.forEach(item => {
+
+            tbody.innerHTML += `
+            <tr>
+                <td>${item.id ?? ''}</td>
+                <td>${item.payeeName ?? ''}</td>
+                <td>${item.memberId ?? ''}</td>
+                <td>${item.utrNo ?? ''}</td>
+                <td>₹ ${item.amount ?? 0}</td>
+                <td>${item.mobile ?? ''}</td>
+                <td>${item.payDate ?? ''}</td>
+                <td>${item.comment ?? ''}</td>
+            </tr>
+            `;
+        });
+hideLoader();
+        document.getElementById("pendingSection")
+        .style.display = "block";
+    })
+    .catch(error => {
+    hideLoader();
+        console.error(error);
+        alert("Unable to load data");
+    });
+}

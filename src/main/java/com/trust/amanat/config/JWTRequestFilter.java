@@ -97,7 +97,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/api/cloudinary/uploadtest")||
                 path.startsWith("/actuator")||
                 path.startsWith("/captcha/generate")||
-                path.startsWith("scan&pay/allPayments")||
+                path.startsWith("/scan&pay/allPayments")||
 
 
 

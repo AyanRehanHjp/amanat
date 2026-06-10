@@ -40,7 +40,7 @@ public class ScanPayController {
 
     @GetMapping("/allPayments")
     public List<ScanPayEntity> getAllPayments() {
-
+    logger.info("getAllPayments called");
         return scanPayService.getAllPayments();
     }
 
