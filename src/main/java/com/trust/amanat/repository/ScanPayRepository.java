@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ScanPayRepository extends JpaRepository <ScanPayEntity, Long> {
+    
 }

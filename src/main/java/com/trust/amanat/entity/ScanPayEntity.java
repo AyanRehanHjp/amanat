@@ -18,4 +18,6 @@ public class ScanPayEntity {
     private String mobile;
     private String payDate;
     private String comment;
+    @Column(name = "ENTRY_STATUS")
+    private String entryStatus;
 }

@@ -8,5 +8,6 @@ import java.util.List;
 public interface ScanPayService {
     ScanPayEntity addPayee(ScanPayDTO scanPayDTO);
     public List<ScanPayEntity> getAllPayments();
+    public String updateStatus(Long id, String status) ;
 
     }

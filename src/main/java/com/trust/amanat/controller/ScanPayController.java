@@ -44,4 +44,23 @@ public class ScanPayController {
         return scanPayService.getAllPayments();
     }
 
+
+    @PutMapping("/updateStatus/{id}")
+    public ResponseEntity<String> updateStatus(@PathVariable Long id,@RequestParam String status) {
+        logger.info("updateStatus called for id={} status={}", id, status);
+        try {
+
+            String response = scanPayService.updateStatus(id, status);
+            logger.info("Status updated successfully for id={}", id);
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+
+            logger.error("Error while updating status for id={} : {}", id, e.getMessage(), e);
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(AppConstants.Message.SOMETHING_WRONG);
+        }
+    }
+
 }

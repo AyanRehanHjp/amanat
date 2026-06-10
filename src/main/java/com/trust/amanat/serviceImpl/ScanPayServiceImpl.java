@@ -1,5 +1,6 @@
 package com.trust.amanat.serviceImpl;
 
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.ScanPayDTO;
 import com.trust.amanat.entity.ScanPayEntity;
 import com.trust.amanat.repository.ScanPayRepository;
@@ -31,6 +32,7 @@ public class ScanPayServiceImpl implements ScanPayService {
             scanPayEntity.setPayDate(scanPayDTO.getPayDate());
             scanPayEntity.setUtrNo(scanPayDTO.getUtrNo());
             scanPayEntity.setComment(scanPayDTO.getComment());
+            scanPayEntity.setEntryStatus(AppConstants.Message.PENDING);
             ScanPayEntity payeeSaved = scanPayRepository.save(scanPayEntity);
             logger.info("pay details Saved");
             return payeeSaved;
@@ -54,6 +56,26 @@ public class ScanPayServiceImpl implements ScanPayService {
 
         }
     }
+
+        @Override
+        public String updateStatus(Long id, String status) {
+
+            ScanPayEntity entity = scanPayRepository.findById(id).orElseThrow(() ->
+             new RuntimeException("Record not found"));
+            // Done hone ke baad wapas Pending nahi
+            if ("DONE".equalsIgnoreCase(entity.getEntryStatus())) {
+                logger.info("Attempt to update status for id={} but it's already DONE", id);
+                return "Status already DONE";
+            }
+            if(!"DONE".equalsIgnoreCase(status)){
+                logger.info("Invalid status update attempt for id={} with status={}", id, status);
+                return "Invalid Status";
+            }
+            entity.setEntryStatus(status);
+            scanPayRepository.save(entity);
+            logger.info("Status updated to {} for id={}", status, id);
+            return "Status updated successfully";
+        }
 
 
 }

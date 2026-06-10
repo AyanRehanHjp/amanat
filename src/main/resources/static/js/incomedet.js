@@ -430,6 +430,13 @@ function loadPendingRequests(){
                 <td>${item.mobile ?? ''}</td>
                 <td>${item.payDate ?? ''}</td>
                 <td>${item.comment ?? ''}</td>
+                <td>
+                <select onchange="updateStatus(${item.id},this)"
+                ${item.entryStatus === 'DONE' ? 'disabled' : ''}>
+                <option value="PENDING" ${item.entryStatus === 'PENDING' ? 'selected' : ''}>Pending</option>
+                <option value="DONE" ${item.entryStatus === 'DONE' ? 'selected' : ''}>Done</option>
+                </select>
+                </td>
             </tr>
             `;
         });
@@ -442,4 +449,46 @@ hideLoader();
         console.error(error);
         alert("Unable to load data");
     });
+}
+function updateStatus(id,obj){
+
+    if(obj.value !== "DONE"){
+        return;
+    }
+    showLoader();
+    fetch("/scan&pay/updateStatus/" + id + "?status=DONE",{
+        method:"PUT",
+        headers:{
+            "Authorization":"Bearer " + token
+        }
+    })
+    .then(res => {
+
+        console.log("STATUS =", res.status);
+
+        if(!res.ok){
+            throw new Error("Request Failed : " + res.status);
+        }
+
+        return res.text();
+    })
+    .then(msg => {
+
+        console.log("MSG =", msg);
+
+        showPopup(msg);
+
+        obj.disabled = true;
+    })
+    .catch(err => {
+        console.error(err);
+
+        showPopup("Error : " + err.message);
+    })
+    .finally(() => {
+
+        hideLoader();
+
+    });
+
 }
