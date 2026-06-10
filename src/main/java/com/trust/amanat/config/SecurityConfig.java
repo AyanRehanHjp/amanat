@@ -45,7 +45,6 @@ public class SecurityConfig {
                                 "/incomedet.html",
                                 "/incomeDet/addPayment",
                                 "/scan-pay.html",
-                                "/scan-pay/allPayments",
                                 "/recpdfgen.html",
                                 "/recpdfgen/**",
                                 "/cover.html",
@@ -81,8 +80,7 @@ public class SecurityConfig {
                                 "/signUp/forgotPassword",
                                 "/api/cloudinary/uploadtest",
                                 "/actuator/**",
-                                "/captcha/generate",
-                                "/scan-pay/paymentsByStatus"
+                                "/captcha/generate"
 
 
                                 ).permitAll()

@@ -409,7 +409,11 @@ async function shareWhatsapp(){
 }
 function loadPendingRequests(){
     showLoader();
-    fetch("/scan-pay/allPayments")
+    fetch("/scan-pay/allPayments",{
+    headers:{
+    "Authorization":"Bearer " + token
+    }
+    })
     .then(response => response.json())
     .then(data => {
 
@@ -456,7 +460,7 @@ function updateStatus(id,obj){
         return;
     }
     showLoader();
-    fetch("/scanpay/updateStatus/" + id + "?status=DONE",{
+    fetch("/scan-pay/updateStatus/" + id + "?status=DONE",{
         method:"PUT",
         headers:{
             "Authorization":"Bearer " + token
@@ -514,7 +518,7 @@ function searchByStatus(){
 
     showLoader();
 
-    fetch("/scanpay/paymentsByStatus?status="+status,{
+fetch("/scan-pay/paymentsByStatus?status="+status,{
         headers:{
             "Authorization":"Bearer "+token
         }
