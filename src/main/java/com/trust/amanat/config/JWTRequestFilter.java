@@ -62,7 +62,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/incomedet.html") ||
                 path.equals("/incomeDet/addPayment") ||
                 path.startsWith("/cover") ||
-                path.equals("/scan&pay.html") ||
+                path.equals("/scan-pay.html") ||
                 path.equals("/recpdfgen.html") ||
                 path.startsWith("/recpdfgen/") ||
                 path.startsWith("/showIncomeDet.html")||
@@ -97,8 +97,8 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/api/cloudinary/uploadtest")||
                 path.startsWith("/actuator")||
                 path.startsWith("/captcha/generate")||
-                path.startsWith("/scan&pay/allPayments")||
-                path.startsWith("/scan&pay/paymentsByStatus")||
+                path.startsWith("/scan-pay/allPayments")||
+                path.startsWith("/scan-pay/paymentsByStatus")||
 
 
                 path.equals("/signUp/addUser")) {

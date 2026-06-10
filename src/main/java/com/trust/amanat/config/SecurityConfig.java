@@ -44,8 +44,8 @@ public class SecurityConfig {
                                 "/members.html/**",
                                 "/incomedet.html",
                                 "/incomeDet/addPayment",
-                                "/scan&pay.html",
-                                "/scan&pay/allPayments",
+                                "/scan-pay.html",
+                                "/scan-pay/allPayments",
                                 "/recpdfgen.html",
                                 "/recpdfgen/**",
                                 "/cover.html",
@@ -82,7 +82,7 @@ public class SecurityConfig {
                                 "/api/cloudinary/uploadtest",
                                 "/actuator/**",
                                 "/captcha/generate",
-                                "/scan&pay/paymentsByStatus"
+                                "/scan-pay/paymentsByStatus"
 
 
                                 ).permitAll()

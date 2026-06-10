@@ -74,7 +74,7 @@ function submitPayment(){
     // ===============================
     // 🔥 API CALL
     // ===============================
-    fetch("/scan&pay/addPayee", {
+    fetch("/scan-pay/addPayee", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
