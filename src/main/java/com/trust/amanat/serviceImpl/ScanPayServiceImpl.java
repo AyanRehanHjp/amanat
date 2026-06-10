@@ -78,4 +78,18 @@ public class ScanPayServiceImpl implements ScanPayService {
         }
 
 
+    @Override
+    public List<ScanPayEntity> getPaymentsByStatus(String status) {
+
+        logger.info("getPaymentsByStatus() called with status={}", status);
+
+        List<ScanPayEntity> paymentList = scanPayRepository.findByStatus(status);
+        if(paymentList.isEmpty()){
+            logger.info("No records found for status={}", status);
+            return null;
+        }
+        logger.info("Found {} records for status={}", paymentList.size(),status);
+        return paymentList;
+    }
+
 }

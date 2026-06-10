@@ -492,3 +492,80 @@ function updateStatus(id,obj){
     });
 
 }
+function toggleStatusSearch(){
+
+    let div =
+    document.getElementById("statusSearchDiv");
+
+    div.style.display =
+    div.style.display === "none"
+    ? "block"
+    : "none";
+}
+function searchByStatus(){
+
+    let status =
+    document.getElementById("statusFilter").value;
+
+    if(!status){
+        showPopup("Select Status");
+        return;
+    }
+
+    showLoader();
+
+    fetch("/scan&pay/paymentsByStatus?status="+status,{
+        headers:{
+            "Authorization":"Bearer "+token
+        }
+    })
+    .then(res=>res.json())
+    .then(data=>{
+
+        let tbody =
+        document.getElementById("pendingTableBody");
+
+        tbody.innerHTML="";
+
+        data.forEach(item=>{
+
+            tbody.innerHTML += `
+            <tr>
+                <td>${item.id ?? ''}</td>
+                <td>${item.payeeName ?? ''}</td>
+                <td>${item.memberId ?? ''}</td>
+                <td>${item.utrNo ?? ''}</td>
+                <td>₹ ${item.amount ?? 0}</td>
+                <td>${item.mobile ?? ''}</td>
+                <td>${item.payDate ?? ''}</td>
+                <td>${item.comment ?? ''}</td>
+<td>
+<select onchange="updateStatus(${item.id},this)"
+${item.entryStatus === 'DONE' ? 'disabled' : ''}>
+
+<option value="PENDING" ${item.entryStatus === 'PENDING' ? 'selected' : ''}>Pending</option>
+
+<option value="DONE" ${item.entryStatus === 'DONE' ? 'selected' : ''}>Done</option>
+
+</select>
+</td>            </tr>
+            `;
+        });
+
+        document.getElementById("pendingSection")
+        .style.display="block";
+    })
+    .finally(()=>{
+        hideLoader();
+    });
+}
+function resetTable(){
+
+    document.getElementById("statusFilter").value="";
+
+    document.getElementById("pendingTableBody")
+    .innerHTML="";
+
+    document.getElementById("pendingSection")
+    .style.display="none";
+}

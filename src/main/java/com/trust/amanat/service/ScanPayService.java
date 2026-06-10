@@ -9,5 +9,5 @@ public interface ScanPayService {
     ScanPayEntity addPayee(ScanPayDTO scanPayDTO);
     public List<ScanPayEntity> getAllPayments();
     public String updateStatus(Long id, String status) ;
-
+    List<ScanPayEntity> getPaymentsByStatus(String status);
     }

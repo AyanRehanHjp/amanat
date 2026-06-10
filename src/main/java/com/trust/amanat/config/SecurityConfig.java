@@ -81,7 +81,8 @@ public class SecurityConfig {
                                 "/signUp/forgotPassword",
                                 "/api/cloudinary/uploadtest",
                                 "/actuator/**",
-                                "/captcha/generate"
+                                "/captcha/generate",
+                                "/scan&pay/paymentsByStatus"
 
 
                                 ).permitAll()

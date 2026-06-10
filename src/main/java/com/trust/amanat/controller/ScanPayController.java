@@ -62,5 +62,12 @@ public class ScanPayController {
                     .body(AppConstants.Message.SOMETHING_WRONG);
         }
     }
+    @GetMapping("/paymentsByStatus")
+    public ResponseEntity<List<ScanPayEntity>> getPaymentsByStatus(  @RequestParam String status) {
 
+        logger.info("getPaymentsByStatus called with status={}", status);
+        List<ScanPayEntity> paymentList =scanPayService.getPaymentsByStatus(status);
+        logger.info("Payments retrieved for status={} : count={}", status, paymentList != null ? paymentList.size() : 0);
+        return ResponseEntity.ok(paymentList);
+    }
 }

@@ -109,12 +109,40 @@
             <div id="msg" style="color:red; text-align:center; margin-top:10px;"></div>
 
             <button type="submit" class="save-btn">Save Payment</button>
-            <button type="button"
-                    class="pending-btn"
-                    onclick="loadPendingRequests()">
-                Pending Requests
-            </button>
+            <div class="action-buttons">
 
+                <button type="button"
+                        class="all-btn"
+                        onclick="loadPendingRequests()">
+                    All Pending Requests
+                </button>
+
+                <button type="button"
+                        class="status-btn"
+                        onclick="toggleStatusSearch()">
+                    Search By Status
+                </button>
+
+            </div>
+
+            <div id="statusSearchDiv" style="display:none;">
+
+                <select id="statusFilter"
+                        onchange="searchByStatus()">
+
+                    <option value="">Select Status</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="DONE">Done</option>
+
+                </select>
+
+                <button type="button"
+                        class="reset-btn"
+                        onclick="resetTable()">
+                    Reset Filter
+                </button>
+
+            </div>
 
         </form>
     </div>
