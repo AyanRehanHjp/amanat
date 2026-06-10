@@ -2,6 +2,7 @@ package com.trust.amanat.serviceImpl;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.service.CloudinaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,7 @@ public class CloudinaryServiceImpl implements CloudinaryService {
         try {
 
             String publicId = imageUrl
-                    .substring(imageUrl.indexOf("beneficiary-documents/"))
+                    .substring(imageUrl.indexOf(AppConstants.Message.PROFILE_PIC+"/"))
                     .replace(".jpg", "")
                     .replace(".png", "")
                     .replace(".jpeg", "")
