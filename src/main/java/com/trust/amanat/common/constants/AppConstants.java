@@ -102,6 +102,8 @@ public class AppConstants {
         public static final String LABEL_AMOUNT = "Amount : ";
         public static final String LABEL_RECEIPT_DATE = "Receipt Date : ";
         public static final String AWT = "AWT";
+        public static final String AWT_PLUS_MEM_ID_FORMAT = "AWT%03d";
+        public static final String DEFAULT_MEMBER_ID = "AWT001";
 
         // Report Keys
         public static final String YEAR = "year";
