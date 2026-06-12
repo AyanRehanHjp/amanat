@@ -218,7 +218,7 @@ editingMemberId = null;
 document.getElementById("formTitle").innerText = "Add New Member";
 
 // 🔥 enable ID again
-document.getElementById("memberId").disabled = false;
+document.getElementById("memberId").disabled = true;
 
 // clear fields
 document.getElementById("memberId").value = "";

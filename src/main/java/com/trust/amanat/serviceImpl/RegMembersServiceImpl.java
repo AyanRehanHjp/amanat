@@ -42,7 +42,7 @@ public class RegMembersServiceImpl implements RegMembersService {
             String numberPart = lastId.replace(AppConstants.Message.AWT, "");
             int num = Integer.parseInt(numberPart);
             num++;
-            newMemberId = AppConstants.Message.AWT_PLUS_MEM_ID_FORMAT + num;
+            newMemberId = String.format(AppConstants.Message.AWT_PLUS_MEM_ID_FORMAT , num);
         }
 
         MembersEntity newMember = new MembersEntity();
