@@ -62,11 +62,6 @@ public class AppConstants {
         public static final String MEMBER_NOT_FOUND = "Member not found";
         public static final String MEMBER_UPDATED = "Member updated successfully";
 
-        // Post Holder
-        public static final String POST_HOLDER_NOT_FOUND = "Post holder not found with id: ";
-        public static final String POST_HOLDER_DELETED_SUCCESSFULLY = "Post holder deleted successfully";
-        public static final String POST_HOLDER_ADDED_SUCCESSFULLY = "Post holder added successfully";
-
         // Expenditure
         public static final String EXP_ADDED_SUCCESSFULLY = "Expenditure added successfully";
 
@@ -107,6 +102,8 @@ public class AppConstants {
         public static final String LABEL_AMOUNT = "Amount : ";
         public static final String LABEL_RECEIPT_DATE = "Receipt Date : ";
         public static final String AWT = "AWT";
+        public static final String AWT_PLUS_MEM_ID_FORMAT = "AWT%03d";
+        public static final String DEFAULT_MEMBER_ID = "AWT001";
 
         // Report Keys
         public static final String YEAR = "year";
@@ -138,6 +135,8 @@ public class AppConstants {
 
         public static final String USERNAME_REQUIRED = "User Name is required";
         public static final String NAME_REQUIRED = "Name is required";
+        public static final String NO_MEMBERS_FOUND_NAME = "No members found with the given name";
+        public static final String NO_MEMBERS_FOUND_MOBILE = "No members found with the given Mobile number";
         public static final String NEW_PASSWORD_REQUIRED = "New Password is required";
         public static final String ADDRESS_REQUIRED = "Address is required";
         public static final String PASSWORD_RESET_SUCCESS = "Password reset successfully";
@@ -167,8 +166,13 @@ public class AppConstants {
         public static final String EMAIL_ALREADY_EXISTS = "This email is already exists";
         public static final String MOBILE_ALREADY_EXISTS = "This Mobile no is already exists";
         public static final String MOBILE_NO_ALREADY_EXISTS = "Mobile Number already exists";
+        public static final String MOBILE_REQUIRED = "Mobile number is required";
+        public static final String MOBILE_NO = "Mobile Number";
+
         public static final String USER_NOT_FOUND = "User not found";
         public static final String USER_NOT_FOUND_WITH_THIS_ID = "User not found with this id: ";
+        public static final String INVALID_CAPTCHA = "Invalid Captcha";
+        public static final String CAPTCHA = "Captcha";
 
         public static final String MOBILE_ALREADY_EXISTS_TO_ANOTHER = "Mobile already exists to another one";
         public static final String EMAIL_ALREADY_EXISTS_TO_ANOTHER = "Email already exists to another one";

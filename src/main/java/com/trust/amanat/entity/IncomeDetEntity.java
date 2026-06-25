@@ -20,4 +20,5 @@ public class IncomeDetEntity {
     @Column(name = "payment_date")
     private LocalDate paymentDate;
     private String comment;
+    private String inc_receipt_no;
 }

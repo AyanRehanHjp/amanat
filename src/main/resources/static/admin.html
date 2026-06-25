@@ -24,7 +24,8 @@
     let role =
         localStorage.getItem("role");
 
-    if(!token || role !== "ADMIN"){
+        if(!token || (role !== "ADMIN" && role !== "SUPER_ADMIN"))
+    {
 
         alert(
             "Access Denied - Admin Only"
@@ -49,9 +50,7 @@
 </div>
 
 <div class="container">
-
-    <div class="sidebar">
-
+    <div class="sidebar" id="sidebar">
         <h3>Navigation</h3>
 
         <ul>
@@ -122,7 +121,12 @@
 
     <div class="main">
 
-        <h1>
+        <h1 class="admin-title">
+
+    <span class="menu-btn"
+          onclick="toggleSidebar()">
+        ☰
+    </span>
 
             Admin Control Panel
 

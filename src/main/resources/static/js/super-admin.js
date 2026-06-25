@@ -18,8 +18,11 @@ function loadAdmins() {
 
     </tr>`;
 
-    fetch(GET_ALL_ADMINS )
-
+fetch(GET_ALL_ADMINS, {
+    headers:{
+        "Authorization":"Bearer " + localStorage.getItem("token")
+    }
+})
     .then(res => res.json())
 
     .then(data => {
@@ -169,7 +172,7 @@ function loadAdmins() {
 function goBack(){
 
     window.location.href =
-        "/super-admin.html";
+        "/admin.html";
 }
 
 /* CREATE ADMIN */
@@ -197,12 +200,15 @@ function handleAction(value, id){
             return;
         }
 
-        fetch(
-            `/admins/accept-resignation/${id}`,
-            {
-                method:"POST"
-            }
-        )
+       fetch(
+           `/admins/accept-resignation/${id}`,
+           {
+               method:"POST",
+               headers:{
+                   "Authorization":"Bearer " + localStorage.getItem("token")
+               }
+           }
+       )
 
         .then(res => res.text())
 
@@ -234,12 +240,15 @@ function handleAction(value, id){
             return;
         }
 
-        fetch(
-            `/admins/reject-resignation/${id}`,
-            {
-                method:"POST"
+    fetch(
+        `/admins/reject-resignation/${id}`,
+        {
+            method:"POST",
+            headers:{
+                "Authorization":"Bearer " + localStorage.getItem("token")
             }
-        )
+        }
+    )
 
         .then(res => res.text())
 

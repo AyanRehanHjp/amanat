@@ -9,8 +9,11 @@ import org.slf4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping ("members")
 @RestController
@@ -47,5 +50,40 @@ public class RegMembersController {
         logger.info("updateMember method called for memberId: {}", memberId);
         return ResponseEntity.ok( updatedMember.getMemberId()+" "+AppConstants.Message.MEMBER_UPDATED );
     }
+
+    @GetMapping("/searchByName")
+    public ResponseEntity<?> searchMembersByName(@RequestParam String name) {
+        logger.info("searchMembersByName method called with name: {}", name);
+        if (name == null || name.trim().isEmpty()) {
+            logger.warn("Name parameter is empty");
+            return ResponseEntity.badRequest().body(AppConstants.Validation.NAME_REQUIRED);
+        }
+
+        List <MembersEntity> members = regMembersService.searchMembersByName(name.trim());
+        if(members == null || members.isEmpty()){
+            logger.warn("No members found with name: {}", name);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body
+                    (AppConstants.Validation.NO_MEMBERS_FOUND_NAME);
+        }
+        return ResponseEntity.ok(members);
+    }
+
+    @GetMapping ("/searchByMobile")
+    public ResponseEntity<?> searchMembersByMobile(@RequestParam String mobile) {
+        logger.info("searchMembersByMobile method called with mobile: {}", mobile);
+        if (mobile == null || mobile.trim().isEmpty()) {
+            logger.warn("Mobile parameter is empty");
+            return ResponseEntity.badRequest().body(AppConstants.Validation.MOBILE_REQUIRED);
+        }
+
+        List <MembersEntity> membersMob = regMembersService.searchByMobile(mobile.trim());
+        if( membersMob.isEmpty()){
+            logger.warn("No members found with mobile: {}", mobile);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body
+                    (AppConstants.Validation.NO_MEMBERS_FOUND_MOBILE);
+        }
+        return ResponseEntity.ok(membersMob);
+    }
+
 
 }

@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class RegMembersServiceImpl implements RegMembersService {
 
@@ -33,14 +35,14 @@ public class RegMembersServiceImpl implements RegMembersService {
 
         MembersEntity lastMember = regMembersRepository.findTopByOrderByIdDesc();
 
-        String newMemberId = "AWT001";
+        String newMemberId = AppConstants.Message.DEFAULT_MEMBER_ID;
 
         if (lastMember != null && lastMember.getMemberId() != null) {
             String lastId = lastMember.getMemberId();
             String numberPart = lastId.replace(AppConstants.Message.AWT, "");
             int num = Integer.parseInt(numberPart);
             num++;
-            newMemberId = AppConstants.Message.AWT + num;
+            newMemberId = String.format(AppConstants.Message.AWT_PLUS_MEM_ID_FORMAT , num);
         }
 
         MembersEntity newMember = new MembersEntity();
@@ -119,5 +121,13 @@ public class RegMembersServiceImpl implements RegMembersService {
         }
 
         return regMembersRepository.save(members);
+    }
+    @Override
+    public List <MembersEntity> searchMembersByName(String name) {
+        return regMembersRepository.searchMemByName(name);
+    }
+    @Override
+    public List <MembersEntity> searchByMobile(String mobile) {
+        return regMembersRepository.searchByMobile(mobile);
     }
 }

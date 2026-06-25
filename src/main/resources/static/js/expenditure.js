@@ -1,5 +1,6 @@
 // LOAD ALL EXPENDITURE DATA
 function loadData(){
+showLoader();
     fetch(ALL_EXPENDITURE)
     .then(response => response.json())
     .then(data => {
@@ -60,17 +61,22 @@ function loadData(){
 
         document.getElementById("receiptNo").value =
             String(parseInt(lastReceipt) + 1).padStart(3,'0');
-
+        hideLoader();
     })
     .catch(err => {
+        hideLoader();
         showPopup("Error loading data: " + err.message);
+
     });
 }
 
 // Page load
 window.onload = function(){
     document.getElementById("year").value = new Date().getFullYear();
-    loadData();
+
+    setTimeout(() => {
+        loadData();
+    }, 200);
 };
 
 // Back button
@@ -125,7 +131,7 @@ function saveExp(){
     .then(msg => {
         showPopup(msg);
         loadData();
-        location.reload();
+//        location.reload();
     })
     .catch(err => {
         showPopup("Error: " + err.message);

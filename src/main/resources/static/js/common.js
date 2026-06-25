@@ -21,6 +21,16 @@ function instagram(){
 function youtube(){
     window.open(URLS.YOUTUBE, "_blank");
 }
+function whatsappContact(){
+
+window.open(
+"https://wa.me/917277222729?text=" +
+encodeURIComponent("Hi, I want to know more about AWT"),
+"_blank"
+);
+
+}
+
 // 🔹 GLOBAL POPUP
 function showPopup(message){
 
@@ -48,5 +58,6 @@ function closeGlobalPopup(){
     }
 }
 function paymentNotAllowed(){
-    showPopup("⚠ Payment not allowed without Sign Up, For security reasons. \n\n Please Sign Up or Log In to continue.");
+    showPopup("⚠️ PAYMENT NOT ALLOWED \n\n  For security reasons."+
+    "Please Sign Up and after Approval Log In to continue.");
 }

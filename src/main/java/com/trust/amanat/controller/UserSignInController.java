@@ -4,6 +4,8 @@ import com.trust.amanat.common.constants.AppConstants;
 import com.trust.amanat.dto.LogInDTO;
 import com.trust.amanat.dto.TokenResponseDTO;
 import com.trust.amanat.entity.UserEntity;
+import com.trust.amanat.service.AdminService;
+import com.trust.amanat.service.CaptchaService;
 import com.trust.amanat.service.UserSignInService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +23,19 @@ public class UserSignInController {
     public static final Logger logger = LoggerFactory.getLogger(UserSignInController.class);
     @Autowired
     private UserSignInService userSignInService;
+    @Autowired
+    private CaptchaService captchaService;
+
     @PostMapping("/verifyLogin")
     public ResponseEntity<Object> verifyLogin(@RequestBody LogInDTO loginDTO) {
         try {
+            boolean validCaptcha = captchaService.verifyCaptcha(loginDTO.getCaptchaId(), loginDTO.getCaptchaValue());
+            logger.info("User login attempt for userName: {}, captcha valid: {}", loginDTO.getUserName(), validCaptcha);
 
+            if(!validCaptcha){
+                logger.error("Invalid captcha for userName: {}", loginDTO.getUserName());
+                return ResponseEntity.badRequest().body(AppConstants.Validation.INVALID_CAPTCHA);
+            }
 
             String token = userSignInService.verifyLogIn(loginDTO);
             logger.info("verifyLogin method is called for userName={}", loginDTO != null ? loginDTO.getUserName() : null);

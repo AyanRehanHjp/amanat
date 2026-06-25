@@ -17,11 +17,12 @@ body{
 /* CONTAINER */
 .container{
     padding:20px;
+    overflow-x:auto;
 }
 
 /* TABLE */
 table{
-    width:100%;
+    width:max-content;
     border-collapse:collapse;
     background:white;
     box-shadow:0 5px 20px rgba(0,0,0,0.1);

@@ -40,10 +40,10 @@ public class UserSignUpServiceImpl implements UserSignUpService {
     @Transactional
     public UserEntity addUser(SignUpDTO signUpDTO) {
         MembersEntity last = regMembersRepository.findTopByOrderByIdDesc();
-        String memberId = "AWT001";
+        String memberId = AppConstants.Message.DEFAULT_MEMBER_ID;
         if (last != null && last.getMemberId() != null) {
             int num = Integer.parseInt(last.getMemberId().replace(AppConstants.Message.AWT, ""));
-            memberId = String.format("AWT%03d", num + 1);
+            memberId = String.format(AppConstants.Message.AWT_PLUS_MEM_ID_FORMAT, num + 1);
         }
         if (userSignUpRepository.existsByUserName(signUpDTO.getUserName())) {
             throw new RuntimeException(AppConstants.Validation.USERNAME_ALREADY_EXISTS);
@@ -131,24 +131,6 @@ public class UserSignUpServiceImpl implements UserSignUpService {
         user.setPinCode(signUpDTO.getPinCode());
 
         // ================= FILE UPLOAD =================
-//        if (file != null && !file.isEmpty()) {
-//            try {
-//                String folder = "uploads/profile/";
-//                File dir = new File(folder);
-//                if (!dir.exists()) {
-//                    dir.mkdirs();
-//                }
-//
-//                String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-//                Path path = Paths.get(folder + fileName);
-//                Files.write(path, file.getBytes());
-//
-//                user.setProfilePicture(fileName);
-//
-//            } catch (IOException e) {
-//                throw new RuntimeException(AppConstants.Message.FAILED_TO_UPLOAD_PROFILE_PIC, e);
-//            }
-//        }
         if (file != null && !file.isEmpty()) {
 
             try {
@@ -164,8 +146,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
             }
         }
 
-        // ============================================================
-        // 🔥 ADDED: MEMBER SYNC (User update ke saath member bhi update)
+        //MEMBER SYNC (User update ke saath member bhi update)
         // ============================================================
         MembersEntity member = user.getMember();
 
@@ -280,11 +261,6 @@ public class UserSignUpServiceImpl implements UserSignUpService {
                 }
                 UserEntity user =(UserEntity)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 System.out.println(user);
-//                UserEntity user = userSignUpRepository.findByUserName(username);
-//                if (user == null) {
-//                    return AppConstants.Validation.USER_NOT_AUTHENTICATED;
-//
-//                }
 
                 if (!BCrypt.checkpw(changePasswordDTO.getCurrentPassword(), user.getPassword())) {
                     return AppConstants.Validation.CURRENT_PASSWORD_INCORRECT;

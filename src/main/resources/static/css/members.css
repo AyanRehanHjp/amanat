@@ -202,3 +202,84 @@ text-align:center;
     font-weight:bold;
     font-size:16px;
 }
+.member-search-box{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    background:#f8f9fa;
+    padding:15px;
+    border-radius:6px;
+    margin-bottom:20px;
+    border:3px solid #3aad56;
+}
+
+.member-search-box .form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.member-search-box .form-group:nth-child(1),
+.member-search-box .form-group:nth-child(2){
+    width:30%;
+}
+
+.member-search-box .form-group:nth-child(3),
+.member-search-box .form-group:nth-child(4),
+.member-search-box .form-group:nth-child(5){
+    width:auto;
+}
+
+.member-search-box .form-group input{
+    width:100%;
+    padding:6px;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+/* SEARCH BUTTON */
+.search-btn-group button{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:8px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    height:32px;
+    min-width:100px;
+}
+
+.search-btn-group button:hover{
+    background:#084298;
+}
+
+/* ALL MEMBERS BUTTON */
+.all-members-btn-group button{
+    background:#198754;
+    color:white;
+    border:none;
+    padding:8px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    height:32px;
+    min-width:120px;
+}
+
+.all-members-btn-group button:hover{
+    background:#146c43;
+}
+
+/* RESET BUTTON */
+.reset-btn-group button{
+    background:#dc3545;
+    color:white;
+    border:none;
+    padding:8px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    height:32px;
+    min-width:100px;
+}
+
+.reset-btn-group button:hover{
+    background:#bb2d3b;
+}

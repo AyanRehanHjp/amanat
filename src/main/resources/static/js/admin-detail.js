@@ -7,8 +7,11 @@ function loadAdmins() {
 
     let loggedInUserId = localStorage.getItem("userId");
 
-    fetch(GET_ALL_ADMINS)
-    .then(res => res.json())
+fetch(GET_ALL_ADMINS, {
+    headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+    }
+})    .then(res => res.json())
     .then(data => {
 
         if (data.length === 0) {
@@ -96,7 +99,10 @@ function resignAdmin(id){
     if(!confirm("Are you sure?")) return;
 
     fetch(`/admins/resign/${id}`, {
-        method: "POST"
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        }
     })
     .then(res => res.text())
     .then(msg => {
@@ -121,7 +127,10 @@ function closeResignPopup(){
 function confirmResign(){
 
     fetch(`/admins/resign/${selectedAdminId}`, {
-        method: "POST"
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        }
     })
     .then(res => res.text())
     .then(msg => {

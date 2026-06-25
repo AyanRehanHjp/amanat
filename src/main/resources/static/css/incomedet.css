@@ -312,3 +312,87 @@ padding:25px;
 }
 
 }
+#pendingTable{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+#pendingTable th{
+    background:#1b5e20;
+    color:white;
+}
+
+#pendingTable th,
+#pendingTable td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+#pendingTable tr:nth-child(even){
+    background:#f5f5f5;
+}
+.pending-btn{
+    margin-top:10px;
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#ff9800;
+    color:white;
+    font-size:16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.pending-btn:hover{
+    background:#f57c00;
+}
+#pendingSection{
+    width:90%;
+    margin:15px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+.action-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+}
+
+.all-btn{
+    flex:1;
+    background:#ff9800;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.status-btn{
+    flex:1;
+    background:#2196f3;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.reset-btn{
+    width:100%;
+    margin-top:10px;
+    background:#f44336;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+#statusSearchDiv{
+    margin-top:10px;
+}

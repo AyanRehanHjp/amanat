@@ -1,3 +1,4 @@
+let receiptBlobUrl = "";
 // Redirect
 function goHome(){ window.location.href="/admin.html"; }
 
@@ -36,7 +37,7 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
 
     .then(msg=>{
 
-        if(msg!=="Payment added successfully"){
+if(!msg.startsWith("AWTIN")){
             document.getElementById("popupMsg").innerText=msg;
             document.getElementById("popup").style.display="flex";
             return;
@@ -87,8 +88,7 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
 
     const formattedDate=dd+"-"+mm+"-"+yyyy;
 
-    const receiptNo="AWT"+dd+mm+"01";
-
+const receiptNo=msg;
 
     // RECEIPT NUMBER
     doc.text(
@@ -286,6 +286,9 @@ document.getElementById("paymentForm").addEventListener("submit",function(e){
         291,
         {align:"right"}
     );
+            // SHAREABLE URL
+        receiptBlobUrl = doc.output("bloburl");
+
         // DOWNLOAD
         doc.save("AWT_Receipt.pdf");
 
@@ -376,3 +379,197 @@ document.getElementById("memberId").addEventListener("change",function(){
     });
 
 });
+async function shareWhatsapp(){
+
+    const pdfBlob =
+        await fetch(receiptBlobUrl).then(r => r.blob());
+
+    const file = new File(
+        [pdfBlob],
+        "AWT_Receipt.pdf",
+        { type:"application/pdf" }
+    );
+
+    if(navigator.canShare &&
+        navigator.canShare({ files:[file] })){
+
+        navigator.share({
+            title:"AWT Receipt",
+            text:"Payment Receipt",
+            files:[file]
+        });
+
+    }else{
+
+        let whatsappUrl =
+            "https://wa.me/?text=Payment Receipt";
+
+        window.open(whatsappUrl,"_blank");
+    }
+}
+function loadPendingRequests(){
+    showLoader();
+    fetch("/scan-pay/allPayments",{
+    headers:{
+    "Authorization":"Bearer " + token
+    }
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        let tbody =
+        document.getElementById("pendingTableBody");
+
+        tbody.innerHTML = "";
+
+        data.forEach(item => {
+
+            tbody.innerHTML += `
+            <tr>
+                <td>${item.id ?? ''}</td>
+                <td>${item.payeeName ?? ''}</td>
+                <td>${item.memberId ?? ''}</td>
+                <td>${item.utrNo ?? ''}</td>
+                <td>₹ ${item.amount ?? 0}</td>
+                <td>${item.mobile ?? ''}</td>
+                <td>${item.payDate ?? ''}</td>
+                <td>${item.comment ?? ''}</td>
+                <td>
+                <select onchange="updateStatus(${item.id},this)"
+                ${item.entryStatus === 'DONE' ? 'disabled' : ''}>
+                <option value="PENDING" ${item.entryStatus === 'PENDING' ? 'selected' : ''}>Pending</option>
+                <option value="DONE" ${item.entryStatus === 'DONE' ? 'selected' : ''}>Done</option>
+                </select>
+                </td>
+            </tr>
+            `;
+        });
+hideLoader();
+        document.getElementById("pendingSection")
+        .style.display = "block";
+    })
+    .catch(error => {
+    hideLoader();
+        console.error(error);
+        alert("Unable to load data");
+    });
+}
+function updateStatus(id,obj){
+
+    if(obj.value !== "DONE"){
+        return;
+    }
+    showLoader();
+    fetch("/scan-pay/updateStatus/" + id + "?status=DONE",{
+        method:"PUT",
+        headers:{
+            "Authorization":"Bearer " + token
+        }
+    })
+    .then(res => {
+
+        console.log("STATUS =", res.status);
+
+        if(!res.ok){
+            throw new Error("Request Failed : " + res.status);
+        }
+
+        return res.text();
+    })
+    .then(msg => {
+
+        console.log("MSG =", msg);
+
+        showPopup(msg);
+
+        obj.disabled = true;
+    })
+    .catch(err => {
+        console.error(err);
+
+        showPopup("Error : " + err.message);
+    })
+    .finally(() => {
+
+        hideLoader();
+
+    });
+
+}
+function toggleStatusSearch(){
+
+    let div =
+    document.getElementById("statusSearchDiv");
+
+    div.style.display =
+    div.style.display === "none"
+    ? "block"
+    : "none";
+}
+function searchByStatus(){
+
+    let status =
+    document.getElementById("statusFilter").value;
+
+    if(!status){
+        showPopup("Select Status");
+        return;
+    }
+
+    showLoader();
+
+fetch("/scan-pay/paymentsByStatus?status="+status,{
+        headers:{
+            "Authorization":"Bearer "+token
+        }
+    })
+    .then(res=>res.json())
+    .then(data=>{
+
+        let tbody =
+        document.getElementById("pendingTableBody");
+
+        tbody.innerHTML="";
+
+        data.forEach(item=>{
+
+            tbody.innerHTML += `
+            <tr>
+                <td>${item.id ?? ''}</td>
+                <td>${item.payeeName ?? ''}</td>
+                <td>${item.memberId ?? ''}</td>
+                <td>${item.utrNo ?? ''}</td>
+                <td>₹ ${item.amount ?? 0}</td>
+                <td>${item.mobile ?? ''}</td>
+                <td>${item.payDate ?? ''}</td>
+                <td>${item.comment ?? ''}</td>
+<td>
+<select onchange="updateStatus(${item.id},this)"
+${item.entryStatus === 'DONE' ? 'disabled' : ''}>
+
+<option value="PENDING" ${item.entryStatus === 'PENDING' ? 'selected' : ''}>Pending</option>
+
+<option value="DONE" ${item.entryStatus === 'DONE' ? 'selected' : ''}>Done</option>
+
+</select>
+</td>            </tr>
+            `;
+        });
+
+        document.getElementById("pendingSection")
+        .style.display="block";
+    })
+    .finally(()=>{
+        hideLoader();
+    });
+}
+function resetTable(){
+
+    document.getElementById("statusFilter").value="";
+
+    document.getElementById("pendingTableBody")
+    .innerHTML="";
+
+    document.getElementById("pendingSection")
+    .style.display="none";
+}

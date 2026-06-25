@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Scan & Pay - Amanat Welfare Trust</title>
 
-    <link rel="stylesheet" href="/css/scan&pay.css">
+    <link rel="stylesheet" href="/css/scan-pay.css">
     <link rel="stylesheet" href="/css/common.css">
 
 
@@ -14,6 +14,16 @@
 
 <body>
 <div id="common-navbar"></div>
+
+<script>
+    let token = localStorage.getItem("token");
+    let role = localStorage.getItem("role");
+
+    if(!token || role !== "user"){
+        alert("Access Denied - User Only");
+        window.location.href = "/login.html";
+    }
+</script>
 <div class="header">
 
     <img src="/images/money.png" class="logo">
@@ -139,7 +149,7 @@
 </div>
 
 <script src="/js/constants.js"></script>
-<script src="/js/scan&pay.js"></script>
+<script src="/js/scan-pay.js"></script>
 <script src="/js/common.js"></script>
 <script>
     fetch('/common.html')

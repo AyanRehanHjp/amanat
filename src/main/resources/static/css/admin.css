@@ -2,13 +2,10 @@ body{
 margin:0;
 font-family:Arial;
 background:#f4f6f9;
-
 overflow-x:hidden;
 }
 
-/* =========================
-   LOGO
-========================= */
+/* LOGO */
 
 .logo{
 display:flex;
@@ -22,35 +19,24 @@ font-weight:bold;
 height:40px;
 }
 
-/* =========================
-   LOGOUT
-========================= */
+/* LOGOUT */
 
 .logout{
 position:fixed;
-
 top:100px;
 right:20px;
-
 z-index:9999;
 }
 
 .logout button{
 padding:10px 18px;
-
 border:none;
-
 background:red;
 color:white;
-
 border-radius:8px;
-
 cursor:pointer;
-
 font-weight:bold;
-
 font-size:16px;
-
 transition:0.3s;
 }
 
@@ -58,32 +44,36 @@ transition:0.3s;
 background:darkred;
 }
 
-/* =========================
-   LAYOUT
-========================= */
+/* LAYOUT */
 
 .container{
 display:flex;
-
 align-items:stretch;
+position:relative;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
+/* SIDEBAR */
 
 .sidebar{
 width:220px;
 background:#1f2d3d;
 color:white;
 padding:20px;
-
 height:100vh;
-
 overflow-y:scroll;
 overflow-x:hidden;
-
 flex-shrink:0;
+transition:0.3s;
+position:relative;
+z-index:1000;
+}
+
+/* SIDEBAR HIDE */
+
+.sidebar.hide{
+width:0;
+padding:0;
+overflow:hidden;
 }
 
 /* SIDEBAR SCROLLBAR */
@@ -125,18 +115,34 @@ transition:0.3s;
 background:#0d6efd;
 }
 
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 .main{
 flex:1;
 padding:40px;
 }
 
-/* =========================
-   CARDS
-========================= */
+/* ADMIN TITLE */
+
+.admin-title{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+/* MENU BUTTON */
+
+.menu-btn{
+font-size:30px;
+cursor:pointer;
+background:#1f2d3d;
+color:white;
+padding:8px 14px;
+border-radius:5px;
+width:fit-content;
+}
+
+/* CARDS */
 
 .cards{
 display:grid;
@@ -162,9 +168,7 @@ color:white;
 transform:scale(1.05);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 
 @media(max-width:768px){
 
@@ -190,10 +194,13 @@ right:10px;
 padding:8px 18px;
 font-size:14px;
 }
+
 }
 
+/* CARD ICON */
+
 .icon{
-    display:block;
-    font-size:38px;
-    margin-bottom:12px;
+display:block;
+font-size:38px;
+margin-bottom:12px;
 }

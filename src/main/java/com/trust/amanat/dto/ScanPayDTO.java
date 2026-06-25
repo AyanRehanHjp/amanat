@@ -15,5 +15,7 @@ public class ScanPayDTO {
     private String mobile;
     private String payDate;
     private String comment;
+//    private String EntryStatus;
+
 
 }

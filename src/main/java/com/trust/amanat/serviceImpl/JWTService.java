@@ -24,8 +24,11 @@ public class JWTService {
 
     @PostConstruct
     public void postConstruct() {
+
         algorithm = Algorithm.HMAC256(algorithmKey);
     }
+
+
     public String generateToken(String userName, String role){
         return JWT.create()
                 .withClaim(USER_NAME, userName)

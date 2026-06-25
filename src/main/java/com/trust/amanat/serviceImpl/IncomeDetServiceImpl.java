@@ -70,9 +70,16 @@ public class IncomeDetServiceImpl implements IncomeDetService {
             incomeDet.setForYear(incomeDetDTO.getForYear());
             incomeDet.setPaymentDate(LocalDate.now());
             incomeDet.setComment(incomeDetDTO.getComment());
+
+            IncomeDetEntity lastIncome=incomeDetRepository.findTopByOrderByIdDesc();
+            String incReceiptNo="AWTIN1001";
+            if(lastIncome!=null && lastIncome.getInc_receipt_no()!=null){
+                int num=Integer.parseInt(lastIncome.getInc_receipt_no().replace("AWTIN",""));
+                incReceiptNo="AWTIN"+(num+1); }
+            incomeDet.setInc_receipt_no(incReceiptNo);
             incomeDetRepository.save(incomeDet);
 
-            return AppConstants.Message.SUCCESS;
+            return incReceiptNo;
 
         } catch (Exception e) {
             e.printStackTrace();

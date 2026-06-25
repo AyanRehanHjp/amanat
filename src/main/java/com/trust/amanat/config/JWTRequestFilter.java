@@ -61,17 +61,12 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/expenditure.html") ||
                 path.startsWith("/incomedet.html") ||
                 path.equals("/incomeDet/addPayment") ||
-                path.startsWith("/scan&pay") ||
-                path.startsWith("/scan&pay/addPayee") ||
                 path.startsWith("/cover") ||
-                path.equals("/scan&pay.html") ||
+                path.equals("/scan-pay.html") ||
                 path.equals("/recpdfgen.html") ||
                 path.startsWith("/recpdfgen/") ||
                 path.startsWith("/showIncomeDet.html")||
                 path.startsWith("/incomeDet/monthly-report") ||
-                path.startsWith("/postholder/") ||
-                path.startsWith("/getAllPostHolders") ||
-                path.startsWith("/postholder.html") ||
                 path.startsWith("/common.html") ||
                 path.startsWith("/members/addMember") ||
                 path.startsWith("/incomeDet/searchMember")||
@@ -86,28 +81,25 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/admin-detail.html") ||
                 path.startsWith("/admins/create") ||
                 path.startsWith("/admins/login") ||
-                path.startsWith("/admins/")||
                 path.startsWith("/report/")||
                 path.startsWith("/uploads/")||
-                path.startsWith("/feedback/")||
                 path.startsWith("/feedback/addFeedback")||
-                path.startsWith("/feedback/allFeedback")||
                 path.startsWith("/feedback.html")||
                 path.startsWith("/feedback-view.html")||
                 path.startsWith("/super-admin.html")||
                 path.startsWith("/super-admin/create-super-admin")||
                 path.startsWith("/super-admin/super-admin-login")||
                 path.startsWith("/super-admin-login.html")||
-                path.startsWith("/admins/resign/**")||
                 path.startsWith("/manualDetailUpdate.html")||
-                path.startsWith("/admins/accept-resignation/**")||
-                path.startsWith("/admins/reject-resignation/**")||
                 path.startsWith("/signUp/forgotPassword")||
                 path.startsWith("/forgot-password.html")||
                 path.startsWith("/change-password.html")||
                 path.startsWith("/api/cloudinary/uploadtest")||
+                path.startsWith("/actuator")||
+                path.startsWith("/eureka/help-test")||
+                path.startsWith("/eureka/help-feign")||
 
-
+                path.startsWith("/captcha/generate")||
 
                 path.equals("/signUp/addUser")) {
 

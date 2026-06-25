@@ -28,7 +28,20 @@
 
         <label>Password</label>
         <input id="password" type="password" placeholder="Enter Password" minlength="8" maxlength="24">
+        <label>Captcha</label>
 
+        <div class="captcha-box">
+            <span id="captchaText"></span>
+
+            <button type="button"
+                    onclick="loadCaptcha()">
+                ↻
+            </button>
+        </div>
+
+        <input type="hidden" id="captchaId">
+
+        <input id="captchaValue" placeholder="Enter Captcha">
         <div class="btn-group">
 
             <button class="login-btn" onclick="adminLogin()">
