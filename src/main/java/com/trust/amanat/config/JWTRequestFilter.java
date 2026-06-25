@@ -96,6 +96,9 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 path.startsWith("/change-password.html")||
                 path.startsWith("/api/cloudinary/uploadtest")||
                 path.startsWith("/actuator")||
+                path.startsWith("/eureka/help-test")||
+                path.startsWith("/eureka/help-feign")||
+
                 path.startsWith("/captcha/generate")||
 
                 path.equals("/signUp/addUser")) {

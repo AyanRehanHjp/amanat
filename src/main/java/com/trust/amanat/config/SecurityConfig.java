@@ -80,6 +80,8 @@ public class SecurityConfig {
                                 "/signUp/forgotPassword",
                                 "/api/cloudinary/uploadtest",
                                 "/actuator/**",
+                                "/eureka/help-test",
+                                "/eureka/help-feign",
                                 "/captcha/generate"
 
 

@@ -1,5 +1,5 @@
-//const BASE_URL="http://localhost:9000";
-const BASE_URL="https://amanat-welfare-trust.onrender.com";
+const BASE_URL="http://localhost:9000";
+//const BASE_URL="https://amanat-welfare-trust.onrender.com";
 const GET_ALL_ADMINS=BASE_URL+"/admins/getAllAdmins";
 const ADD_BENEFICIARY=BASE_URL+"/beneficiary/addBeneficiary";
 const ALL_EXPENDITURE=BASE_URL+"/expenditure/allExpenditure";
